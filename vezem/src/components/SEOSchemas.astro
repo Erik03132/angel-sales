@@ -1,0 +1,75 @@
+---
+// Компонент для добавления микроразметки товаров и других структурированных данных
+export const productSchema = (productId: string, productName: string, description: string, price: number | string, image: string) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": productName,
+    "description": description,
+    "image": image,
+    "brand": {
+      "@type": "Brand",
+      "name": "ВеzemЦыплят"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": price,
+      "priceCurrency": "RUB",
+      "availability": "https://schema.org/InStock",
+      "url": "https://vezemcip.bitrix24.ru/#products"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "150"
+    }
+  };
+};
+
+export const deliverySchema = {
+  "@context": "https://schema.org",
+  "@type": "DeliveryEvent",
+  "name": "Доставка молодняка птицы по России",
+  "description": "Быстрая доставка молодняка птицы по всей России за 2-3 дня",
+  "availableLanguage": "ru",
+  "areaServed": {
+    "@type": "Country",
+    "name": "RU"
+  },
+  "location": {
+    "@type": "Place",
+    "name": "Россия"
+  }
+};
+
+export const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Какова стоимость доставки молодняка птицы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость доставки зависит от региона и количества товара. Свяжитесь с нашими менеджерами для получения точной информации."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько дней занимает доставка?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стандартная доставка занимает 2-3 дня по России с момента оплаты заказа."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой молодняк вы предлагаете?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Мы предлагаем молодняк птицы: РОСС-308, КОББ-500, Ломан Браун, утята и другие виды с полным ветеринарным контролем."
+      }
+    }
+  ]
+};
+---

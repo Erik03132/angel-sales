@@ -1,0 +1,146 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  @keyframes slideUpFade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: slideUpFade 0.6s ease-out forwards;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+</style>
+
+<section id="contacts" class="py-12 sm:py-20 lg:py-32 relative">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Заголовок -->
+    <div class="text-center mb-12 sm:mb-16 animate-fade-in">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight tracking-tight mb-4 sm:mb-6">
+        <span class="block text-white">Как нас найти?</span>
+        <span class="block bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">Свяжитесь с нами</span>
+      </h2>
+      <p class="text-base sm:text-lg lg:text-xl text-blue-100/90 max-w-2xl mx-auto leading-relaxed px-2">
+        Мы открыты для общения и готовы помочь вам с выбором молодняка птицы
+      </p>
+    </div>
+
+    <!-- Контакты и карта -->
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 sm:gap-8 lg:gap-12 items-start">
+      <!-- Левая колонка: контакты -->
+      <div class="space-y-6 sm:space-y-8 lg:col-span-2">
+        <!-- Телефоны -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-blue-400/40 hover:bg-white/10 transition duration-300 animate-fade-in delay-1">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:phone" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            Телефоны
+          </h3>
+          <div class="space-y-3 sm:space-y-4">
+            <a href="tel:+79183500225" class="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-white/5 hover:bg-white/10 transition group text-sm sm:text-base">
+              <span class="text-cyan-400 font-bold">+7 (918) 350-02-25</span>
+              <Icon name="mdi:open-in-new" class="w-4 sm:w-5 h-4 sm:h-5 text-blue-300/60 group-hover:text-blue-300 transition flex-shrink-0" />
+            </a>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300 animate-fade-in delay-2">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:email" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            Email
+          </h3>
+          <a href="mailto:VezemCip@yandex.com" class="flex items-center gap-3 p-3 sm:p-4 rounded-lg bg-white/5 hover:bg-white/10 transition group text-sm sm:text-base">
+            <span class="text-cyan-400 font-bold break-all">VezemCip@yandex.com</span>
+            <Icon name="mdi:open-in-new" class="w-4 sm:w-5 h-4 sm:h-5 text-blue-300/60 group-hover:text-blue-300 transition flex-shrink-0" />
+          </a>
+        </div>
+
+        <!-- Социальные сети -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300 animate-fade-in delay-3">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:link" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            Мы в соцсетях
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-2 gap-3 sm:gap-4">
+            <a href="https://vk.com/vezem_cypljat" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-lg bg-gradient-to-r from-blue-600/20 to-blue-500/20 hover:from-blue-600/40 hover:to-blue-500/40 border border-blue-500/30 hover:border-blue-400/50 transition group text-xs sm:text-sm">
+              <Icon name="mdi:vk" class="w-5 sm:w-6 h-5 sm:h-6 text-blue-300 group-hover:text-blue-200 flex-shrink-0" />
+              <span class="text-blue-200 font-semibold group-hover:text-blue-100 hidden sm:inline">ВКонтакте</span>
+              <span class="text-blue-200 font-semibold group-hover:text-blue-100 sm:hidden">ВК</span>
+            </a>
+            <a href="https://t.me/+wVL6G7UGIQs3Yzky" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-lg bg-gradient-to-r from-cyan-600/20 to-cyan-500/20 hover:from-cyan-600/40 hover:to-cyan-500/40 border border-cyan-500/30 hover:border-cyan-400/50 transition group text-xs sm:text-sm">
+              <Icon name="mdi:send" class="w-5 sm:w-6 h-5 sm:h-6 text-cyan-300 group-hover:text-cyan-200 flex-shrink-0" />
+              <span class="text-cyan-200 font-semibold group-hover:text-cyan-100">Telegram</span>
+            </a>
+            <a href="https://www.avito.ru/user/02c9215ec28eef88815a3010b1b18886/profile?src=sharing" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-lg bg-gradient-to-r from-orange-600/20 to-orange-500/20 hover:from-orange-600/40 hover:to-orange-500/40 border border-orange-500/30 hover:border-orange-400/50 transition group text-xs sm:text-sm">
+              <Icon name="mdi:shopping" class="w-5 sm:w-6 h-5 sm:h-6 text-orange-300 group-hover:text-orange-200 flex-shrink-0" />
+              <span class="text-orange-200 font-semibold group-hover:text-orange-100 hidden sm:inline">Авито</span>
+              <span class="text-orange-200 font-semibold group-hover:text-orange-100 sm:hidden">Авито</span>
+            </a>
+            <a href="https://wa.me/79183500225" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 p-3 sm:p-4 rounded-lg bg-gradient-to-r from-emerald-600/20 to-emerald-500/20 hover:from-emerald-600/40 hover:to-emerald-500/40 border border-emerald-500/30 hover:border-emerald-400/50 transition group text-xs sm:text-sm">
+              <Icon name="mdi:whatsapp" class="w-5 sm:w-6 h-5 sm:h-6 text-emerald-300 group-hover:text-emerald-200 flex-shrink-0" />
+              <span class="text-emerald-200 font-semibold group-hover:text-emerald-100 hidden sm:inline">WhatsApp</span>
+              <span class="text-emerald-200 font-semibold group-hover:text-emerald-100 sm:hidden">WA</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Адрес -->
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300 animate-fade-in delay-4">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:map-marker" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            Адрес
+          </h3>
+          <p class="text-blue-100/90 mb-4 leading-relaxed text-sm sm:text-base">
+            <span class="hidden sm:block">Россия, Республика Крым<br/>
+            пгт. Азовское<br/>
+            ул. Железнодорожная, 42</span>
+            <span class="sm:hidden">Россия, Республика Крым, пгт. Азовское, ул. Железнодорожная, 42</span>
+          </p>
+          <div class="flex justify-center sm:block">
+            <a href="https://www.openstreetmap.org/?mlat=45.221498&mlon=38.851229&zoom=15" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-emerald-600/30 to-cyan-600/30 border border-emerald-500/50 hover:border-emerald-400/50 hover:from-emerald-600/50 hover:to-cyan-600/50 transition text-emerald-300 hover:text-emerald-200 font-semibold text-xs sm:text-sm">
+              <Icon name="mdi:map-check" class="w-5 h-5" />
+              Открыть на карте
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Правая колонка: встроенная карта (скрыта на мобильной версии) -->
+      <div class="hidden lg:block bg-white/5 backdrop-blur-md border border-white/5 rounded-2xl overflow-hidden hover:border-blue-400/40 transition duration-300 h-full min-h-96 lg:col-span-3 animate-fade-in delay-3">
+        <iframe 
+          width="100%" 
+          height="100%" 
+          style="border:0; min-height: 600px;" 
+          loading="lazy" 
+          allowfullscreen="" 
+          src="https://www.openstreetmap.org/export/embed.html?bbox=38.8%2C45.2%2C38.9%2C45.25&layer=mapnik&marker=45.221498%2C38.851229">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Часы работы -->
+    <div class="mt-12 sm:mt-16 bg-gradient-to-r from-blue-600/20 via-cyan-600/20 to-emerald-600/20 border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 text-center animate-fade-in delay-4">
+      <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4 flex items-center justify-center gap-2 sm:gap-3">
+        <Icon name="mdi:clock-outline" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400" />
+        Режим работы
+      </h3>
+      <p class="text-base sm:text-lg text-blue-100/90">
+        Пн-Пт: 09:00 - 18:00 | Сб: 10:00 - 16:00 | Вс: Выходной<br/>
+        <span class="text-cyan-300 font-semibold mt-2 block">Консультации по телефону 24/7</span>
+      </p>
+    </div>
+  </div>
+</section>

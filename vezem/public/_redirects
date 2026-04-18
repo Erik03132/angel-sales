@@ -1,0 +1,11 @@
+# Редиректы для SEO (для Netlify)
+# Правило: от старых URL к новым (если будут изменения)
+
+# Перенаправление www на non-www (если нужно)
+# https://www.vezemcip.bitrix24.ru/* https://vezemcip.bitrix24.ru/:splat 301!
+
+# Перенаправление /index.html на /
+# /index.html / 301!
+
+# Перенаправление для API
+/api/* /.netlify/functions/:splat 200

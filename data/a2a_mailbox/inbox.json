@@ -1,0 +1,109 @@
+[
+  {
+    "id": "avitolog_1776243638654",
+    "sender": "avitolog",
+    "receiver": "angelochka",
+    "intent": "notification",
+    "payload": {
+      "message": "Объявление #42 неэффективно",
+      "item_id": 42
+    },
+    "priority": 3,
+    "timestamp": "2026-04-15T12:00:38.654324",
+    "status": "pending"
+  },
+  {
+    "id": "scanner_1776243638655",
+    "sender": "scanner",
+    "receiver": "all",
+    "intent": "insight",
+    "payload": {
+      "insight": "3 забытые сделки на 45000₽",
+      "count": 3
+    },
+    "priority": 3,
+    "timestamp": "2026-04-15T12:00:38.655063",
+    "status": "pending"
+  },
+  {
+    "id": "angelochka_1776243638656",
+    "sender": "angelochka",
+    "receiver": "reporter",
+    "intent": "delegate_task",
+    "payload": {
+      "task": "Добавь в отчёт: 12 обращений"
+    },
+    "priority": 2,
+    "timestamp": "2026-04-15T12:00:38.656104",
+    "status": "pending"
+  },
+  {
+    "id": "proactive_1776254410813",
+    "sender": "proactive",
+    "receiver": "all",
+    "intent": "insight",
+    "payload": {
+      "insight": "Найдено 50 забытых сделок в CRM",
+      "count": 50,
+      "total_amount": 371305,
+      "top_deals": [
+        {
+          "id": "120310",
+          "title": "Сделка #120310",
+          "stage": "NEW",
+          "amount": "6400.00000000",
+          "days_idle": 99,
+          "contact_id": "30386"
+        },
+        {
+          "id": "120390",
+          "title": "Сделка #120390",
+          "stage": "NEW",
+          "amount": "5400.00000000",
+          "days_idle": 93,
+          "contact_id": "18254"
+        },
+        {
+          "id": "120416",
+          "title": "Сделка #120416",
+          "stage": "NEW",
+          "amount": "10475.00000000",
+          "days_idle": 93,
+          "contact_id": "26526"
+        },
+        {
+          "id": "120528",
+          "title": "Сделка #120528",
+          "stage": "NEW",
+          "amount": "9000.00000000",
+          "days_idle": 91,
+          "contact_id": "32290"
+        },
+        {
+          "id": "120604",
+          "title": "Сделка #120604",
+          "stage": "NEW",
+          "amount": "1900.00000000",
+          "days_idle": 89,
+          "contact_id": "4780"
+        }
+      ]
+    },
+    "priority": 3,
+    "timestamp": "2026-04-15T15:00:10.813437",
+    "status": "pending"
+  },
+  {
+    "id": "proactive_1776254410861",
+    "sender": "proactive",
+    "receiver": "angelochka",
+    "intent": "notification",
+    "payload": {
+      "message": "🔥 ПИК СЕЗОНА! Бройлер КОББ-500 и РОСС-308 в максимальном спросе. Рекомендация: поднять все объявления бройлеров на Авито, добавить пометку 'Бронирование открыто!'",
+      "type": "season_peak"
+    },
+    "priority": 1,
+    "timestamp": "2026-04-15T15:00:10.861854",
+    "status": "pending"
+  }
+]

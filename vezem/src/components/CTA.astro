@@ -1,0 +1,421 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<style>
+  .testimonials-carousel {
+    scroll-behavior: smooth;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .testimonials-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .testimonial-card {
+    scroll-snap-align: start;
+    flex: 0 0 auto;
+    width: 280px;
+  }
+
+  @media (min-width: 640px) {
+    .testimonial-card {
+      width: 340px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .testimonial-card {
+      width: 380px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .testimonial-card {
+      flex: 0 0 calc(33.333% - 1rem);
+      min-height: 320px;
+    }
+  }
+</style>
+
+<section id="delivery" class="py-12 sm:py-20 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 sm:mb-16">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black leading-tight tracking-tight mb-4 sm:mb-6">
+        <span class="block text-white">Доставка по России</span>
+        <span class="block bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">Быстро и надежно</span>
+      </h2>
+      <p class="text-base sm:text-lg lg:text-xl text-blue-100/90 max-w-2xl mx-auto leading-relaxed px-2">
+        Доставляем молодняк птицы в Ставропольский край, Краснодарский край, Республику Адыгея и Ростовскую область с гарантией выживаемости
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <!-- Стоимость доставки -->
+      <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-blue-400/40 hover:bg-white/10 transition duration-300">
+        <div class="flex items-center gap-3 mb-3 sm:mb-4">
+          <div class="bg-gradient-to-br from-blue-500/30 to-cyan-500/20 p-3 rounded-lg flex-shrink-0">
+            <Icon name="mdi:truck" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400" />
+          </div>
+          <h3 class="text-lg sm:text-2xl font-bold text-white">Доставка</h3>
+        </div>
+        <p class="text-blue-100/90 leading-relaxed text-sm sm:text-base">
+          <span class="text-cyan-300 font-bold">Бесплатная доставка</span> во все регионы обслуживания. Сроки и условия доставки уточняются у менеджера при оформлении заказа.
+        </p>
+      </div>
+
+      <!-- Сроки доставки -->
+      <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300">
+        <div class="flex items-center gap-3 mb-3 sm:mb-4">
+          <div class="bg-gradient-to-br from-cyan-500/30 to-emerald-500/20 p-3 rounded-lg flex-shrink-0">
+            <Icon name="mdi:clock-fast" class="w-6 sm:w-7 h-6 sm:h-7 text-emerald-400" />
+          </div>
+          <h3 class="text-lg sm:text-2xl font-bold text-white">Сроки доставки</h3>
+        </div>
+        <p class="text-blue-100/90 leading-relaxed text-sm sm:text-base">
+          Сроки зависят от <span class="text-emerald-300 font-bold">выбранной породы</span> молодняка. Точные сроки доставки уточняются у менеджеров при оформлении заказа.
+        </p>
+      </div>
+
+      <!-- Гарантия -->
+      <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300">
+        <div class="flex items-center gap-3 mb-3 sm:mb-4">
+          <div class="bg-gradient-to-br from-emerald-500/30 to-blue-500/20 p-3 rounded-lg flex-shrink-0">
+            <Icon name="mdi:shield-check" class="w-6 sm:w-7 h-6 sm:h-7 text-emerald-400" />
+          </div>
+          <h3 class="text-2xl font-bold text-white">Гарантия выживаемости</h3>
+        </div>
+        <p class="text-blue-100/90 leading-relaxed">
+          Гарантируем <span class="text-blue-300 font-bold">95% выживаемость</span> при соблюдении условий содержания. Ветеринарный контроль перед отправкой.
+        </p>
+      </div>
+    </div>
+
+    <!-- Дополнительная информация -->
+    <div class="mt-12 sm:mt-16 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:package-variant" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            <span>Упаковка и подготовка</span>
+          </h3>
+          <ul class="space-y-2 sm:space-y-3 text-blue-100/90">
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-emerald-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Доставка специализированным транспортом</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-emerald-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Соблюдение температурного режима</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:check-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-emerald-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Защита от перепадов температуры и влаги</span>
+            </li>
+          </ul>
+        </div>
+        <div class="bg-white/5 backdrop-blur-md border border-white/5 rounded-lg sm:rounded-2xl p-6 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300">
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 flex items-center gap-3">
+            <Icon name="mdi:phone-in-talk" class="w-6 sm:w-7 h-6 sm:h-7 text-cyan-400 flex-shrink-0" />
+            <span>Как оформить доставку</span>
+          </h3>
+          <ul class="space-y-2 sm:space-y-3 text-blue-100/90">
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:numeric-1-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Выберите товары в каталоге и добавьте в корзину</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:numeric-2-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Позвоните нам или свяжитесь через соцсети для уточнения стоимости</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <Icon name="mdi:numeric-3-circle" class="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400 flex-shrink-0 mt-0.5 sm:mt-1" />
+              <span class="text-sm sm:text-base">Оплатите заказ и получите отслеживаемый трек-номер</span>
+            </li>
+          </ul>
+        </div>
+    </div>
+
+    <!-- Кнопка ближайшей доставки -->
+    <div class="mt-12 text-center">
+      <button id="schedule-btn" class="bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white px-8 py-4 rounded-lg font-bold text-lg transition transform hover:scale-105 shadow-lg shadow-cyan-500/50">
+        <Icon name="mdi:calendar-check" class="w-6 h-6 inline mr-2" />
+        Ближайшая доставка
+      </button>
+    </div>
+
+    <!-- Модальное окно расписания -->
+    <div id="schedule-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4">
+      <div class="bg-gradient-to-b from-slate-900 to-blue-950 rounded-lg sm:rounded-2xl border border-white/10 max-w-lg w-full shadow-2xl p-3 sm:p-6 max-h-[95vh] sm:max-h-none overflow-y-auto">
+        <div class="flex items-center justify-between mb-3 sm:mb-6">
+          <h2 class="text-lg sm:text-3xl md:text-4xl font-bold text-white flex items-center gap-2 sm:gap-3">
+            <Icon name="mdi:calendar-month" class="w-5 sm:w-8 h-5 sm:h-8 text-cyan-400 flex-shrink-0" />
+            <span class="truncate">График доставки</span>
+          </h2>
+          <button id="close-modal" class="text-white/60 hover:text-white transition flex-shrink-0">
+            <Icon name="mdi:close" class="w-5 sm:w-8 h-5 sm:h-8" />
+          </button>
+        </div>
+
+        <div class="space-y-3 sm:space-y-4">
+          <!-- РОСС-308 -->
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-5 hover:border-emerald-400/40 transition">
+            <div class="mb-2 sm:mb-3">
+              <h3 class="text-base sm:text-lg font-bold text-white">РОСС-308</h3>
+              <p class="text-xs sm:text-sm text-blue-300">Бройлерные цыплята</p>
+            </div>
+            <div class="grid grid-cols-2 gap-2 sm:gap-3">
+              <div class="bg-white/10 rounded-lg p-2 sm:p-3 border border-cyan-400/30">
+                <p class="text-cyan-300 font-semibold text-xs sm:text-sm">12-14 ноября</p>
+              </div>
+              <div class="bg-white/10 rounded-lg p-2 sm:p-3 border border-cyan-400/30">
+                <p class="text-cyan-300 font-semibold text-xs sm:text-sm">22-24 ноября</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Хайбрид Конвертер -->
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-5 hover:border-emerald-400/40 transition">
+            <div class="mb-2 sm:mb-3">
+              <h3 class="text-base sm:text-lg font-bold text-white">Хайбрид Конвертер</h3>
+              <p class="text-xs sm:text-sm text-blue-300">Индюшата (Канада)</p>
+            </div>
+            <div class="bg-white/10 rounded-lg p-2 sm:p-3 border border-cyan-400/30 w-fit">
+              <p class="text-cyan-300 font-semibold text-xs sm:text-sm">26-28 ноября</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center text-blue-100/70 text-xs sm:text-sm mt-4 sm:mt-6">
+          💡 Точные даты доставки уточняются при оформлении заказа
+        </p>
+      </div>
+    </div>
+
+    <!-- Блок отзывов -->
+    <div id="testimonials" class="mt-20">
+      <div class="text-center mb-12 sm:mb-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight mb-4 sm:mb-6">
+          <span class="block text-white">Отзывы клиентов</span>
+          <span class="block bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">Они доверяют нам</span>
+        </h2>
+        <p class="text-base sm:text-lg lg:text-xl text-blue-100/90 max-w-2xl mx-auto leading-relaxed px-2">
+          Тысячи птицеводов получили здоровый молодняк и остались довольны качеством
+        </p>
+      </div>
+
+      <div class="relative group">
+        <!-- Карусель -->
+        <div id="testimonials-container" class="testimonials-carousel flex gap-3 sm:gap-6 lg:gap-8 overflow-x-scroll pb-4 pl-4 pr-4 sm:pl-0 sm:pr-0">
+          <!-- Отзыв 1 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-blue-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Отличное качество молодняка! Цыплята приехали в отличном состоянии. Все живы и здоровы. Спасибо за профессионализм и внимательность."
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Иван Петров</p>
+              <p class="text-cyan-300 text-xs sm:text-sm">Фермер из Краснодарского края</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 2 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Долгое время работаю с вами. Каждый раз доволен качеством и сроками доставки. Птица хорошо приживается и быстро набирает вес."
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Сергей Иванов</p>
+              <p class="text-emerald-300 text-xs sm:text-sm">Владелец птицефермы, Ставропольский край</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 3 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Честная компания с хорошими ценами. Быстро обработали мой заказ и отправили. Гарантия 95% приживаемости - не пустые слова!"
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Людмила Смирнова</p>
+              <p class="text-blue-300 text-xs sm:text-sm">Хозяйка подсобного хозяйства, Ростовская область</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 4 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-blue-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Второй раз заказываю у вас. В этот раз попросил редкую породу уток - помогли с подбором и консультацией. Спасибо за профессионализм!"
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Виктор Козлов</p>
+              <p class="text-emerald-300 text-xs sm:text-sm">Фермер утиного направления, Краснодарский край</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 5 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Упаковка на уровне! Никогда не видел такой серьёзный подход к доставке. Молодняк приехал как с конвейера - все одного размера и здоровые."
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Олег Морозов</p>
+              <p class="text-blue-300 text-xs sm:text-sm">Предприниматель, Республика Адыгея</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 6 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-emerald-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Начинающему фермеру очень помогли с советами по содержанию и кормлению. Птица растёт как надо. Буду постоянным клиентом!"
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Екатерина Новикова</p>
+              <p class="text-cyan-300 text-xs sm:text-sm">Начинающий птицевод, Краснодарский край</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 7 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-blue-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Соотношение цена-качество просто идеальное. На рынке дороже, а качество хуже. Спасибо за честный бизнес и хороший товар!"
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Павел Воробьёв</p>
+              <p class="text-emerald-300 text-xs sm:text-sm">Ставропольский край, фермер</p>
+            </div>
+          </div>
+
+          <!-- Отзыв 8 -->
+          <div class="testimonial-card bg-white/5 backdrop-blur-md border border-white/5 rounded-xl sm:rounded-2xl p-4 sm:p-8 hover:border-cyan-400/40 hover:bg-white/10 transition duration-300">
+            <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-4">
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+              <Icon name="mdi:star" class="w-4 sm:w-5 h-4 sm:h-5 text-amber-400" />
+            </div>
+            <p class="text-blue-100/90 mb-3 sm:mb-6 leading-relaxed text-sm sm:text-base">
+              "Помощь с логистикой была огромной! Не пришлось волноваться о том как доставить живой товар. Профессионалы своего дела!"
+            </p>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base">Анна Федорова</p>
+              <p class="text-blue-300 text-xs sm:text-sm">Владелица мини-фермы, Ростовская область</p>
+            </div>
+          </div>
+          
+          <!-- Spacer для правильного скролла -->
+          <div class="flex-shrink-0 w-4 sm:w-0"></div>
+        </div>
+
+        <!-- Кнопки навигации -->
+        <button id="scroll-left" class="absolute left-2 sm:left-0 top-1/2 -translate-y-1/2 sm:-translate-x-12 md:translate-x-0 z-10 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white p-2 sm:p-3 rounded-full transition transform hover:scale-110 shadow-lg">
+          <Icon name="mdi:chevron-left" class="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+        <button id="scroll-right" class="absolute right-2 sm:right-0 top-1/2 -translate-y-1/2 sm:translate-x-12 md:translate-x-0 z-10 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-600 hover:to-emerald-600 text-white p-2 sm:p-3 rounded-full transition transform hover:scale-110 shadow-lg">
+          <Icon name="mdi:chevron-right" class="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const container = document.getElementById('testimonials-container');
+  const scrollLeftBtn = document.getElementById('scroll-left');
+  const scrollRightBtn = document.getElementById('scroll-right');
+
+  if (container && scrollLeftBtn && scrollRightBtn) {
+    // Динамический расчёт прокрутки в зависимости от ширины карточки
+    const getScrollAmount = () => {
+      const firstCard = container.querySelector('.testimonial-card');
+      if (firstCard) {
+        return firstCard.offsetWidth + 12; // ширина карточки + gap
+      }
+      return window.innerWidth < 640 ? 292 : 400; // 280px карточка + 12px gap
+    };
+
+    scrollLeftBtn.addEventListener('click', () => {
+      container.scrollBy({
+        left: -getScrollAmount(),
+        behavior: 'smooth'
+      });
+    });
+
+    scrollRightBtn.addEventListener('click', () => {
+      container.scrollBy({
+        left: getScrollAmount(),
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Модальное окно расписания
+  const scheduleBtn = document.getElementById('schedule-btn');
+  const scheduleModal = document.getElementById('schedule-modal');
+  const closeModal = document.getElementById('close-modal');
+
+  if (scheduleBtn && scheduleModal && closeModal) {
+    scheduleBtn.addEventListener('click', () => {
+      scheduleModal.classList.remove('hidden');
+    });
+
+    closeModal.addEventListener('click', () => {
+      scheduleModal.classList.add('hidden');
+    });
+
+    scheduleModal.addEventListener('click', (e) => {
+      if (e.target === scheduleModal) {
+        scheduleModal.classList.add('hidden');
+      }
+    });
+  }
+</script>

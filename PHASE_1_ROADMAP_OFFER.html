@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>IncuBird 2.0: Дорожная карта Спринта (14 дней)</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-light: #eff6ff;
+            --text-dark: #1e293b;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --bg: #ffffff;
+            --border: #f1f5f9;
+        }
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            color: var(--text-main);
+            line-height: 1.7;
+            margin: 0;
+            padding: 20px;
+            background: #fafafa;
+        }
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background: var(--bg);
+            padding: 60px 80px;
+            border-radius: 1px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        h1 { font-size: 24px; font-weight: 700; color: var(--text-dark); text-transform: uppercase; letter-spacing: 2px; margin: 0; }
+        .subtitle { font-size: 13px; color: var(--text-light); margin-top: 10px; font-weight: 500; }
+        
+        h2 { font-size: 18px; font-weight: 600; color: var(--text-dark); margin-top: 50px; margin-bottom: 25px; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
+        
+        .step-container { margin-bottom: 40px; }
+        .step-title { font-weight: 700; color: var(--primary); font-size: 15px; margin-bottom: 12px; display: flex; align-items: center; }
+        .step-title span { background: var(--primary-light); padding: 2px 8px; border-radius: 4px; margin-right: 12px; font-size: 12px; }
+        .step-desc { font-size: 14px; color: var(--text-main); text-align: justify; margin-bottom: 15px; }
+
+        .economics-section {
+            background: var(--primary-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 50px 0;
+        }
+        .economics-section h3 { font-size: 16px; margin-top: 0; color: var(--primary); }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid rgba(59, 130, 246, 0.1); }
+        th { text-align: left; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
+        td strong { color: var(--text-dark); }
+
+        .investment-section {
+            margin-top: 70px;
+            padding: 40px;
+            border: 1px solid var(--primary-light);
+            background: linear-gradient(135deg, #ffffff 0%, #f7faff 100%);
+            border-radius: 12px;
+            text-align: left;
+        }
+        .investment-header { font-size: 18px; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+        .total-amount { font-size: 28px; font-weight: 400; color: var(--primary); margin-bottom: 25px; }
+        
+        .payment-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 25px; }
+        .payment-item { font-size: 13px; }
+        .payment-item strong { display: block; font-size: 14px; margin-bottom: 5px; color: var(--text-dark); }
+        
+        .khan-note {
+            font-size: 12px;
+            color: var(--text-light);
+            font-style: italic;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 11px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        @media print {
+            body { padding: 0; background: #fff; }
+            .container { box-shadow: none; padding: 0; margin: 0; max-width: 100%; }
+            .step-desc { font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>IncuBird 2.0: Дорожная карта (Этап 1)</h1>
+        <div class="subtitle">Технический план автоматизации для Андрея (Крымского хана)</div>
+    </header>
+
+    <p style="font-size: 14px; margin-bottom: 40px;">Данный спринт представляет собой техническую основу стратегии <strong>IncuBird 2.0</strong>. Мы переходим к использованию многоканальной системы на базе ИИ, объединяющей Авито, Telegram и ВКонтакте в единую платформу управления.</p>
+
+    <h2>📅 План реализации</h2>
+    
+    <div class="step-container">
+        <div class="step-title"><span>ДНИ 1-3</span> АУДИТ РЕСУРСОВ И ИНТЕГРАЦИЯ API</div>
+        <div class="step-desc">
+            На начальном этапе устанавливается API-соединение между Bitrix24 и всеми внешними каналами связи: Авито, Telegram и ВКонтакте. Проводится техническая аналитика накопленной базы данных для корректной подготовки к автоматизации. Параллельно выявляются неэффективные участки в структуре CRM, ведущие к потере входящих запросов. Формируется база знаний по продукции (породы птицы, корма, графики), необходимая для работы ИИ-модулей. К концу третьего дня все площадки интегрированы в единую систему данных.
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title"><span>ДНИ 4-6</span> РАЗВЕРТЫВАНИЕ МОДУЛЯ ANGELOCHKA (TG + VK + AVITO + MAX)</div>
+        <div class="step-desc">
+            Проводится обучение ИИ-модуля на основе 150+ реальных диалогов с учетом специфики каждой платформы: Авито, Telegram, ВКонтакте и MAX Messenger. Angelochka берет на себя функции первой линии поддержки во всех мессенджерах, обеспечивая ответы по ценам и условиям 24/7. Внедрение автоматической обработки входящих обращений позволяет исключить потерю лидов в нерабочее время. Скорость реакции на запрос сокращается до нескольких секунд, что обеспечивает непрерывную доступность сервиса для клиентов. Система переходит к самостоятельному ведению клиента по заданному регламенту.
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title"><span>ДНИ 7-9</span> РАБОТА С БАЗОЙ СОЦСЕТЕЙ И ОПТИМИЗАЦИЯ ТРАФИКА</div>
+        <div class="step-desc">
+            Начинается плановая работа с аудиторией в социальных сетях для повышения конверсии. ИИ-модули проводят анализ рекламного кабинета Авито с целью отключения нерентабельных объявлений. Внедряются новые алгоритмы формирования заголовков, оптимизированные под поисковые тренды 2026 года. Внедряется система оценки стоимости привлечения клиента (CAC), обеспечивающая прозрачность рекламных расходов. Плановый результат этапа — снижение затрат на привлечение до 35% при сохранении объема трафика.
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title"><span>ДНИ 10-12</span> ТЕХНОЛОГИЧЕСКОЕ ОБОСНОВАНИЕ ДЛЯ ГРАНТА</div>
+        <div class="step-desc">
+            Процесс интеграции ИИ в бизнес-процессы упаковывается как инновационное технологическое решение. Формируется пакет документов для подачи заявки на грант «Старт-1» (4 000 000 руб.), где проект позиционируется как AgroTech разработка. Описывается архитектура системы и методика прогнозирования спроса через аналитику социальных сетей. Подготавливается доказательная база роста эффективности труда за счет автоматизации. Этот этап фиксирует статус предприятия как высокотехнологичного субъекта для получения господдержки.
+        </div>
+    </div>
+
+    <div class="step-container">
+        <div class="step-title"><span>ДНИ 13-14</span> ПРИЕМКА РАБОТ И ЗАПУСК В ЭКСПЛУАТАЦИЮ</div>
+        <div class="step-desc">
+            Проводится финальное тестирование системы и демонстрация высвобожденного ресурса времени персонала. Наглядно подтверждается сокращение трудозатрат на обработку типовых запросов на 4 часа в день. Осуществляется передача документации и регламентов взаимодействия с интегрированным модулем Angelochka. Настраиваются финальные метрики эффективности и план развития каналов Telegram и ВК. К концу периода вы получаете полностью автоматизированную воронку продаж, готовую к масштабированию.
+        </div>
+    </div>
+
+    <div class="economics-section">
+        <h3>📊 Прогноз показателей эффективности</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Метрика</th>
+                    <th>Планируемый результат</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Сокращение трудозатрат менеджмента</td>
+                    <td><strong>+450 часов в сезон</strong></td>
+                </tr>
+                <tr>
+                    <td>Конверсия базы в соцсетях</td>
+                    <td><strong>Положительная динамика заказов</strong></td>
+                </tr>
+                <tr>
+                    <td>Снижение CAC (стоимость лида)</td>
+                    <td><strong>До -35%</strong></td>
+                </tr>
+                <tr>
+                    <td>Объем грантовой поддержки (ФСИ)</td>
+                    <td><strong>4 000 000 руб.</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="investment-section">
+        <div class="investment-header">ИНВЕСТИЦИОННЫЕ УСЛОВИЯ (ЭТАП 1)</div>
+        <div class="total-amount">90 000 РУБ.</div>
+        
+        <div class="payment-grid">
+            <div class="payment-item">
+                <strong>АВАНСОВЫЙ ПЛАТЕЖ (50%)</strong>
+                45 000 РУБ. — Направляется на оплату инфраструктуры Gemini Ultra и Perplexity API для обработки баз данных.
+            </div>
+            <div class="payment-item">
+                <strong>ФИНАЛЬНЫЙ ПЛАТЕЖ (50%)</strong>
+                45 000 РУБ. — По завершении этапа и демонстрации работоспособности системы.
+            </div>
+        </div>
+
+        <div class="khan-note">
+            Около $280 (~22 000 руб.) из авансового платежа составляют прямые издержки на ИИ-инфраструктуру. Из них $250 — оплата вычислительных мощностей (Elite Ultra) и $30 — поисковый API (Perplexity). Данные расходы являются необходимым условием для обеспечения требуемой производительности системы.
+        </div>
+    </div>
+
+    <div class="khan-note">
+        <strong>Примечание по голосовой интеграции:</strong> На данном этапе ИИ-модуль Angelochka работает исключительно в текстовом режиме (Авито, TG, VK, SMS). Это обеспечивает 100% надежность при любом качестве интернета. Голосовой модуль является отдельным техническим решением и требует стабильного канала связи (от 256 кбит/с на поток при пинге до 100 мс). Внедрение голоса целесообразно рассматривать на последующих этапах после стабилизации текстовых воронки.
+    </div>
+
+    <div class="footer">
+        INCUBIRD AI | ТЕХНИЧЕСКИЙ ОТЧЕТ ДЛЯ АНДРЕЯ | 2026
+    </div>
+</div>
+
+</body>
+</html>

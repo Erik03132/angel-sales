@@ -1,0 +1,42 @@
+[
+  {
+    "event": "publish",
+    "message_id": "avitolog_1776243638654",
+    "sender": "avitolog",
+    "receiver": "angelochka",
+    "intent": "notification",
+    "timestamp": "2026-04-15T12:00:38.654809"
+  },
+  {
+    "event": "publish",
+    "message_id": "scanner_1776243638655",
+    "sender": "scanner",
+    "receiver": "all",
+    "intent": "insight",
+    "timestamp": "2026-04-15T12:00:38.655877"
+  },
+  {
+    "event": "publish",
+    "message_id": "angelochka_1776243638656",
+    "sender": "angelochka",
+    "receiver": "reporter",
+    "intent": "delegate_task",
+    "timestamp": "2026-04-15T12:00:38.656647"
+  },
+  {
+    "event": "publish",
+    "message_id": "proactive_1776254410813",
+    "sender": "proactive",
+    "receiver": "all",
+    "intent": "insight",
+    "timestamp": "2026-04-15T15:00:10.850735"
+  },
+  {
+    "event": "publish",
+    "message_id": "proactive_1776254410861",
+    "sender": "proactive",
+    "receiver": "angelochka",
+    "intent": "notification",
+    "timestamp": "2026-04-15T15:00:10.863906"
+  }
+]

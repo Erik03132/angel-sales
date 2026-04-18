@@ -1,0 +1,37 @@
+{
+  "generated": "2026-04-15T15:37:25.016078",
+  "total_sessions": 526,
+  "total_leads": 1057,
+  "channels": {
+    "Telegram": 69,
+    "Avito": 190
+  },
+  "popular_products": {
+    "ут": 230,
+    "бройлер": 168,
+    "гус": 58,
+    "мулард": 37,
+    "несушка": 32,
+    "индюш": 31,
+    "росс": 27,
+    "кобб": 24,
+    "перепел": 2
+  },
+  "common_questions": [],
+  "lead_sources": {
+    "CALL": 648,
+    "WEB": 120,
+    "4|TELEGRAM": 24,
+    "5": 11,
+    "WEBFORM": 125,
+    "4|FBINSTAGRAMDIRECT": 2,
+    "42|WZ_MAX_CONNEC9FEFAA8454EB4C59A3160C09FC02D51E": 127
+  },
+  "manager_activity": {
+    "40318": 84,
+    "1528": 222,
+    "4388": 216,
+    "1": 3,
+    "37548": 1
+  }
+}

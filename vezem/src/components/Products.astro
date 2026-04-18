@@ -1,0 +1,570 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="products" class="py-20 lg:py-32 relative">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!    {
+      id: 'red-bro',
+      name: 'Ред Бро',
+      category: 'dual',
+      description: 'Мясояичные цыплята Ред Бро с красивым красным оперением. Быстро растят, хороши для двойного использования. Спокойный характер.',
+      image: '/RedBro.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-red-500 to-rose-600'
+    },ок -->
+    <div class="text-center mb-16">
+      <div class="inline-block mb-4 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/50 backdrop-blur-md">
+        <span class="text-sm font-semibold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">КАТАЛОГ ПРОДУКЦИИ</span>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-black text-white mb-6">
+        Наш <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">ассортимент</span>
+      </h2>
+      <p class="text-xl text-blue-100/90 max-w-2xl mx-auto">
+        Здоровый молодняк птицы с гарантией выживаемости и ветеринарным контролем
+      </p>
+    </div>
+
+    <!-- Навигация по категориям -->
+    <div class="flex flex-wrap gap-3 justify-center mb-12">
+      <button class="category-btn active px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="all">
+        Все
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="broilers">
+        Бройлеры
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="layers">
+        Несушки
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="dual">
+        Мясояичные
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="ducks">
+        Утята
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="geese">
+        Гусята
+      </button>
+      <button class="category-btn px-6 py-2 rounded-full font-semibold text-sm transition duration-300" data-category="turkeys">
+        Индюшата
+      </button>
+    </div>
+
+    <!-- Сетка товаров -->
+    <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 mb-12">
+      <!-- Карточки будут добавлены через JavaScript -->
+    </div>
+  </div>
+
+  <!-- Модаль с деталями -->
+  <div id="product-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-2 sm:p-4">
+    <div class="bg-gradient-to-b from-slate-900 to-blue-950 rounded-lg sm:rounded-2xl border border-white/10 max-w-lg sm:max-w-2xl w-full shadow-2xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto flex flex-col">
+      <div class="flex items-center justify-between p-3 sm:p-4 border-b border-white/10 flex-shrink-0">
+        <h3 id="modal-title" class="text-lg sm:text-2xl font-bold text-white"></h3>
+        <button onclick="closeModal()" class="text-white/60 hover:text-white transition">
+          <Icon name="mdi:close" class="w-5 h-5 sm:w-6 sm:h-6" />
+        </button>
+      </div>
+
+      <div class="p-3 sm:p-5 overflow-y-auto flex-1">
+        <div class="space-y-4 sm:space-y-5">
+          <!-- Картинка товара с блюром -->
+          <div class="relative mb-4">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-blue-600/20 rounded-xl sm:rounded-2xl blur-2xl -z-10"></div>
+            <img id="modal-image" src="" alt="" class="w-4/5 h-auto rounded-xl sm:rounded-2xl mx-auto shadow-lg sm:shadow-2xl shadow-blue-500/30 hidden">
+          </div>
+          
+          <!-- Описание -->
+          <div>
+            <h4 class="text-sm sm:text-lg font-semibold text-cyan-300 mb-2">О породе</h4>
+            <p id="modal-description" class="text-xs sm:text-sm text-blue-100/90 leading-relaxed"></p>
+          </div>
+
+          <!-- Таблица цен -->
+          <div id="pricing-section">
+            <h4 class="text-sm sm:text-lg font-semibold text-cyan-300 mb-2">Прайс-лист</h4>
+            <div id="pricing-table" class="space-y-1 sm:space-y-2"></div>
+          </div>
+
+          <!-- Выбор количества -->
+          <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-lg sm:rounded-xl p-3 sm:p-4">
+            <label class="block text-xs sm:text-sm font-semibold text-cyan-300 mb-2">Выберите количество</label>
+            <div class="flex items-center gap-2 sm:gap-4">
+              <button onclick="decreaseQty()" class="px-2 sm:px-4 py-1 sm:py-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/40 text-white transition">
+                <Icon name="mdi:minus" class="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+              <input id="quantity-input" type="number" value="20" min="1" max="10000" class="flex-1 px-2 sm:px-4 py-1 sm:py-2 rounded-lg bg-white/10 border border-white/20 text-white text-center font-semibold text-xs sm:text-sm focus:outline-none focus:border-cyan-400/50">
+              <button onclick="increaseQty()" class="px-2 sm:px-4 py-1 sm:py-2 rounded-lg bg-blue-500/20 hover:bg-blue-500/40 text-white transition">
+                <Icon name="mdi:plus" class="w-4 h-4 sm:w-5 sm:h-5" />
+              </button>
+            </div>
+            <p id="price-display" class="text-cyan-300 font-bold text-sm sm:text-lg mt-2 sm:mt-3 text-center"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Кнопка добавления в корзину -->
+      <div class="p-6 border-t border-white/10 flex gap-3 flex-shrink-0">
+        <button onclick="closeModal()" class="flex-1 px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold transition">
+          Закрыть
+        </button>
+        <button id="add-to-cart-btn" onclick="addToCartFromModal()" class="flex-1 px-6 py-3 rounded-xl font-bold text-white overflow-hidden relative shadow-xl">
+          <div class="absolute inset-0 bg-gradient-to-r from-emerald-600 via-cyan-500 to-blue-600 transition"></div>
+          <div class="absolute inset-0 opacity-0 hover:opacity-100 transition duration-300 bg-gradient-to-r from-emerald-500 via-cyan-400 to-blue-500 blur-xl"></div>
+          <span class="relative z-10 flex items-center justify-center gap-2">
+            <Icon name="mdi:cart-plus" class="w-5 h-5" />
+            <span>В корзину</span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Данные о товарах
+  const productsData = [
+    // БРОЙЛЕРЫ (ОПТ)
+    {
+      id: 'ross308-opt',
+      name: 'РОСС-308 ОПТ',
+      category: 'broilers',
+      description: 'Оптовые поставки цыплят РОСС-308 (от 1000 шт) для фермерских хозяйств с индивидуальной доставкой.',
+      image: '/ROSS308.png',
+      pricing: 'По запросу',
+      hasCustomDiscount: true,
+      icon: '🐔',
+      color: 'from-orange-500 to-orange-600'
+    },
+    {
+      id: 'cobb500-opt',
+      name: 'КОББ-500 ОПТ',
+      category: 'broilers',
+      description: 'Специальные условия на оптовые партии цыплят КОББ-500. Выделенный контроль качества.',
+      image: '/Kobb.png',
+      pricing: 'По запросу',
+      icon: '🐔',
+      color: 'from-yellow-500 to-orange-500'
+    },
+    // БРОЙЛЕРЫ
+    {
+      id: 'ross308',
+      name: 'РОСС-308',
+      category: 'broilers',
+      description: 'Суточные цыплята бройлерного кросса РОСС-308 — один из самых популярных кроссов в мире. Обладают высочайшей скоростью прироста живой массы, превосходной конверсией корма. Идеальны для выращивания на мясо.',
+      image: '/ROSS308.png',
+      pricing: [
+        { min: 1000, price: 65, label: 'От 1000 шт — 65 ₽' },
+        { min: 500, price: 70, label: 'От 500 шт — 70 ₽' },
+        { min: 100, price: 75, label: 'От 100 шт — 75 ₽' },
+        { min: 20, price: 85, label: 'От 20 шт — 85 ₽' },
+      ],
+      hasCustomDiscount: true,
+      icon: '🐔',
+      color: 'from-orange-500 to-orange-600'
+    },
+    {
+      id: 'cobb500',
+      name: 'КОББ-500',
+      category: 'broilers',
+      description: 'Суточные цыплята бройлерного кросса КОББ-500. Отличаются мясистостью, хорошей конверсией корма и стрессоустойчивостью. Прекрасный выбор для профессионального производства.',
+      image: '/Kobb.png',
+      pricing: 'По запросу',
+      icon: '🐔',
+      color: 'from-yellow-500 to-orange-500'
+    },
+    
+    // НЕСУШКИ
+    {
+      id: 'loman-brown',
+      name: 'Ломан Браун',
+      category: 'layers',
+      description: 'Куры-несушки кросса Ломан Браун. Высокая яйценоскость (400+ яиц в год), коричневое оперение. Популярны в промышленном и частном хозяйстве. Надёжная и рентабельная птица.',
+      image: '/Loman.png',
+      pricing: 'По запросу',
+      icon: '🥚',
+      color: 'from-amber-500 to-yellow-500'
+    },
+    {
+      id: 'hisex-brown',
+      name: 'Хайсекс Браун',
+      category: 'layers',
+      description: 'Куры-несушки кросса Хайсекс Браун (голландская селекция). Отличная яйценоскость, хорошая адаптивность к различным условиям содержания. Крепкая конституция.',
+      image: '/Haiseks.png',
+      pricing: 'По запросу',
+      icon: '🥚',
+      color: 'from-yellow-600 to-amber-600'
+    },
+
+    // МЯСОЯИЧНЫЕ
+    {
+      id: 'master-grey',
+      name: 'Мастер Грей',
+      category: 'dual',
+      description: 'Суточные цыплята мясояичного направления Мастер Грей. Комбинируют хорошие характеристики по мясу и яйцам. Универсальный выбор для небольших хозяйств.',
+      image: '/MasterGray.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-slate-500 to-gray-600'
+    },
+    {
+      id: 'red-bro',
+      name: 'Ред Бро',
+      category: 'dual',
+      description: 'Мясояичные цыплята Ред Бро с красивым красным оперением. Быстро растут, хороши для двойного использования. Спокойный характер.',
+      image: '/RedBro.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-red-500 to-rose-600'
+    },
+    {
+      id: 'griz-bar',
+      name: 'Гриз Бар',
+      category: 'dual',
+      description: 'Мясояичные цыплята Гриз Бар серо-золотистого окраса. Хороший прирост, хорошая яйценоскость. Полу-автосексные (можно определить пол суточных по пуху).',
+      image: '/GREEZBAR.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-gray-600 to-amber-700'
+    },
+    {
+      id: 'goloshejka',
+      name: 'Голошейка',
+      category: 'dual',
+      description: 'Суточные цыплята голошейки — редкая и интересная порода без оперения на шее. Отличная мясная птица, жаростойкая. Хорошая яйценоскость.',
+      image: '/Golosheika.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-orange-600 to-red-700'
+    },
+    {
+      id: 'adler-silver',
+      name: 'Адлерская серебристая',
+      category: 'dual',
+      description: 'Суточные цыплята Адлерской серебристой породы — гордость отечественной селекции. Мясистая птица с красивым оперением. Высокая мясная и яичная продуктивность.',
+      image: '/Adler.png',
+      pricing: 'По запросу',
+      icon: '🐓',
+      color: 'from-slate-400 to-gray-600'
+    },
+
+    // УТЯТА
+    {
+      id: 'agidel',
+      name: 'Агидель',
+      category: 'ducks',
+      description: 'Суточные утята кросса Агидель. Водоплавающие птицы отечественной селекции. Быстро растут, дают качественное мясо. Хорошо адаптированы к выращиванию в российских условиях.',
+      image: '/Agidel.png',
+      pricing: 'По запросу',
+      icon: '🦆',
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      id: 'mulard',
+      name: 'Мулард',
+      category: 'ducks',
+      description: 'Суточные утята гибрида Мулард (помесь мускусной и пекинской уток). Крупная птица, отличное мясо. Не издают громких звуков. Скороспелые.',
+      image: '/Mulard.png',
+      pricing: 'По запросу',
+      icon: '🦆',
+      color: 'from-cyan-500 to-teal-600'
+    },
+    {
+      id: 'musk-duck',
+      name: 'Мускусная',
+      category: 'ducks',
+      description: 'Суточные мускусные утята. Отличаются большим размером и вкусным мясом. Спокойный характер. Долгожители среди уток. Высокий вывод утят.',
+      image: '/Myskus.png',
+      pricing: 'По запросу',
+      icon: '🦆',
+      color: 'from-teal-600 to-emerald-600'
+    },
+
+    // ГУСЯТА
+    {
+      id: 'linda',
+      name: 'Линда',
+      category: 'geese',
+      description: 'Суточные гусята крупной породы Линда. Самые продуктивные гуси. Быстро растут, достигают больших размеров. Очень рентабельны для производства.',
+      image: '/Linda.png',
+      pricing: 'По запросу',
+      icon: '🦢',
+      color: 'from-cyan-500 to-emerald-500'
+    },
+    {
+      id: 'grey-giant',
+      name: 'Серый великан',
+      category: 'geese',
+      description: 'Суточные гусята породы Серый великан. Крупная позднеспелая порода. Высокие показатели по мясу и пуху. Красивое оперение серого окраса.',
+      image: '/Velikan.png',
+      pricing: 'По запросу',
+      icon: '🦢',
+      color: 'from-slate-600 to-blue-600'
+    },
+
+    // ИНДЮШАТА
+    {
+      id: 'hybrid-converter',
+      name: 'Хайбрид Конвертер',
+      category: 'turkeys',
+      description: 'Суточные индюшата кросса Хайбрид Конвертер (Канада). Выдающаяся скорость прироста, отличное соотношение цены и результата. Выход мяса до 80%. Самые востребованные индюшата.',
+      image: '/Konverter.png',
+      pricing: [
+        { min: 500, price: 350, label: 'От 500 шт — 350 ₽' },
+        { min: 100, price: 400, label: 'От 100 шт — 400 ₽' },
+        { min: 50, price: 420, label: 'От 50 шт — 420 ₽' },
+        { min: 10, price: 450, label: 'От 10 шт — 450 ₽' },
+      ],
+      icon: '🦃',
+      color: 'from-red-500 to-orange-600'
+    },
+    {
+      id: 'big-6',
+      name: 'Биг-6',
+      category: 'turkeys',
+      description: 'Суточные индюшата кросса Биг-6 (Канада). Крупные, мясистые птицы. Интенсивный темп роста. Отличный выход мяса. Популярны во всём мире.',
+      image: '/Big6.png',
+      pricing: 'По запросу',
+      icon: '🦃',
+      color: 'from-orange-600 to-amber-600'
+    },
+    {
+      id: 'grade-maker',
+      name: 'Грейд Мейкер',
+      category: 'turkeys',
+      description: 'Суточные индюшата кросса Грейд Мейкер. Превосходный прирост живой массы. Стабильность по результатам. Хороший выход мяса. Надёжный выбор.',
+      image: '/GrayMaker.png',
+      pricing: 'По запросу',
+      icon: '🦃',
+      color: 'from-amber-600 to-yellow-600'
+    },
+    {
+      id: 'bronze-708',
+      name: 'Бронза-708',
+      category: 'turkeys',
+      description: 'Суточные индюшата породы Бронза-708. Красивое бронзовое оперение. Крупная мясистая птица. Хороший выход мяса премиум-качества.',
+      image: 'Bronze.png',
+      pricing: 'По запросу',
+      icon: '🦃',
+      color: 'from-yellow-600 to-orange-700'
+    },
+  ];
+
+  let currentProduct = null;
+  let selectedCategory = 'all';
+
+  // Инициализация
+  function init() {
+    renderProducts();
+    setupCategoryButtons();
+  }
+
+  // Отрисовка товаров
+  function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    grid.innerHTML = '';
+
+    const filtered = selectedCategory === 'all' 
+      ? productsData 
+      : productsData.filter(p => p.category === selectedCategory);
+
+    filtered.forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'product-card group bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden hover:border-cyan-400/50 hover:from-white/15 transition duration-300 cursor-pointer transform hover:scale-105 hover:shadow-2xl';
+      card.innerHTML = `
+        <div class="${product.image ? 'bg-white/10' : `bg-gradient-to-r ${product.color}`} flex items-center justify-center group-hover:scale-110 transition duration-300 aspect-square relative">
+          ${product.image ? `<div class="absolute inset-0 bg-gradient-to-br ${product.color} opacity-10 blur-2xl"></div><img src="${product.image}" alt="${product.name}" class="w-full h-full object-contain p-2 relative z-10">` : `<div class="text-5xl sm:text-6xl">${product.icon}</div>`}
+        </div>
+        <div class="p-3 sm:p-6">
+          <h3 class="text-base sm:text-xl font-bold text-white mb-1 sm:mb-2">${product.name}</h3>
+          <p class="text-xs sm:text-sm text-blue-100/70 line-clamp-2 mb-3 sm:mb-4">${product.description}</p>
+          
+          <div class="flex items-center justify-between">
+            <div class="text-xs sm:text-sm font-semibold text-cyan-300">
+              ${typeof product.pricing === 'string' ? product.pricing : `От ${product.pricing[product.pricing.length - 1].price} ₽`}
+            </div>
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </div>
+        </div>
+      `;
+      
+      card.addEventListener('click', () => openModal(product));
+      grid.appendChild(card);
+    });
+  }
+
+  // Настройка кнопок категорий
+  function setupCategoryButtons() {
+    document.querySelectorAll('.category-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.category-btn').forEach(b => {
+          b.classList.remove('active');
+          b.classList.add('bg-white/5', 'text-blue-200', 'border', 'border-white/10');
+          b.classList.remove('bg-gradient-to-r', 'from-cyan-500', 'to-emerald-500', 'text-white', 'border-cyan-400/50');
+        });
+        
+        btn.classList.add('active');
+        btn.classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-emerald-500', 'text-white', 'border-cyan-400/50');
+        btn.classList.remove('bg-white/5', 'text-blue-200', 'border', 'border-white/10');
+        
+        selectedCategory = btn.dataset.category;
+        renderProducts();
+      });
+    });
+    
+    // Стиль активной кнопки
+    document.querySelector('.category-btn.active').classList.add('bg-gradient-to-r', 'from-cyan-500', 'to-emerald-500', 'text-white', 'border-cyan-400/50');
+    document.querySelector('.category-btn.active').classList.remove('bg-white/5', 'text-blue-200', 'border', 'border-white/10');
+  }
+
+  // Открыть модаль
+  function openModal(product) {
+    currentProduct = product;
+    
+    document.getElementById('modal-title').textContent = product.name;
+    document.getElementById('modal-description').textContent = product.description;
+    document.getElementById('quantity-input').value = 20;
+    
+    // Отображение картинки если есть
+    const modalImage = document.getElementById('modal-image');
+    if (product.image) {
+      modalImage.src = product.image;
+      modalImage.alt = product.name;
+      modalImage.classList.remove('hidden');
+    } else {
+      modalImage.classList.add('hidden');
+    }
+    
+    // Таблица цен
+    const pricingTable = document.getElementById('pricing-table');
+    const pricingSection = document.getElementById('pricing-section');
+    
+    if (typeof product.pricing === 'string') {
+      pricingTable.innerHTML = `
+        <div class="bg-white/10 border border-white/10 rounded-lg p-4 text-center">
+          <p class="text-blue-100/90 font-semibold">${product.pricing}</p>
+          <p class="text-xs text-blue-100/60 mt-2">Уточните цену у менеджера</p>
+        </div>
+      `;
+      pricingSection.style.display = product.pricing === 'По запросу' ? 'block' : 'none';
+    } else {
+      pricingTable.innerHTML = product.pricing.map(tier => `
+        <div class="flex items-center justify-between bg-white/5 border border-white/10 rounded-lg p-3">
+          <span class="text-blue-100/80">${tier.label}</span>
+          <span class="text-cyan-300 font-bold text-lg">${tier.price} ₽/шт</span>
+        </div>
+      `).join('');
+      
+      if (product.hasCustomDiscount) {
+        pricingTable.innerHTML += `
+          <div class="bg-emerald-500/20 border border-emerald-500/50 rounded-lg p-3 mt-2">
+            <p class="text-sm text-emerald-300 font-semibold">💎 При заказе от 1000 штук</p>
+            <p class="text-xs text-emerald-300/80 mt-1">Получите индивидуальную скидку через менеджера!</p>
+          </div>
+        `;
+      }
+    }
+    
+    updatePriceDisplay();
+    document.getElementById('product-modal').classList.remove('hidden');
+  }
+
+  // Закрыть модаль
+  function closeModal() {
+    document.getElementById('product-modal').classList.add('hidden');
+    currentProduct = null;
+  }
+
+  // Сделать функции доступными глобально
+  window.openModal = openModal;
+  window.closeModal = closeModal;
+
+  // Обновить отображение цены
+  function updatePriceDisplay() {
+    if (!currentProduct || typeof currentProduct.pricing === 'string') {
+      document.getElementById('price-display').textContent = 'Уточните цену у менеджера';
+      return;
+    }
+
+    const qty = parseInt(document.getElementById('quantity-input').value);
+    const tier = [...currentProduct.pricing].reverse().find(t => qty >= t.min);
+    
+    if (tier) {
+      const total = qty * tier.price;
+      document.getElementById('price-display').textContent = `${tier.price} ₽/шт × ${qty} шт = ${total.toLocaleString('ru-RU')} ₽`;
+    }
+  }
+
+  // Увеличить количество
+  window.increaseQty = function() {
+    const input = document.getElementById('quantity-input');
+    input.value = Math.min(parseInt(input.value) + 10, 10000);
+    updatePriceDisplay();
+  }
+
+  // Уменьшить количество
+  window.decreaseQty = function() {
+    const input = document.getElementById('quantity-input');
+    input.value = Math.max(parseInt(input.value) - 10, 1);
+    updatePriceDisplay();
+  }
+
+  // Слушатель изменения количества
+  document.addEventListener('input', (e) => {
+    if (e.target.id === 'quantity-input') {
+      updatePriceDisplay();
+    }
+  });
+
+  // Добавить в корзину из модали
+  window.addToCartFromModal = function() {
+    if (!currentProduct) return;
+
+    const qty = parseInt(document.getElementById('quantity-input').value);
+    
+    let price = 0;
+    let requiresQuote = false;
+
+    if (typeof currentProduct.pricing === 'string') {
+      // Товар требует уточнения
+      requiresQuote = true;
+      price = 0; // Цена 0 для товаров по запросу
+    } else {
+      const tier = [...currentProduct.pricing].reverse().find(t => qty >= t.min);
+      price = tier ? tier.price : currentProduct.pricing[currentProduct.pricing.length - 1].price;
+    }
+
+    // Вызываем глобальную функцию из FloatingCart
+    if (window.addToCart) {
+      window.addToCart(currentProduct.id, currentProduct.name, price, qty, requiresQuote);
+      // Уведомление теперь показывается внутри addToCart, не нужно дублировать
+      closeModal();
+    }
+  };
+
+  // Инициализация при загрузке
+  init();
+
+  // Закрыть модаль при клике вне её окна
+  document.getElementById('product-modal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
+</script>
+
+<style>
+  .category-btn {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgb(191, 219, 254);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .category-btn.active {
+    background: linear-gradient(to right, rgb(34, 197, 94), rgb(16, 185, 129));
+    color: white;
+    border-color: rgba(34, 211, 238, 0.5);
+  }
+</style>

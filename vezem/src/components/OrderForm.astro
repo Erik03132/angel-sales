@@ -1,0 +1,310 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<!-- Модаль формы оформления заказа -->
+<div id="order-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+  <div class="bg-gradient-to-b from-slate-900 to-blue-950 rounded-2xl border border-white/10 max-w-2xl w-full shadow-2xl p-6 sm:p-8 my-8">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-3">
+        <Icon name="mdi:clipboard-text" class="w-7 h-7 text-cyan-400" />
+        Оформить заказ
+      </h2>
+      <button onclick="closeOrderModal()" class="text-white/60 hover:text-white transition">
+        <Icon name="mdi:close" class="w-6 h-6" />
+      </button>
+    </div>
+
+    <form id="order-form" class="space-y-4">
+      <!-- Имя -->
+      <div>
+        <label class="block text-sm font-semibold text-cyan-300 mb-2">Ваше имя *</label>
+        <input 
+          type="text" 
+          id="order-name" 
+          placeholder="Иван Петров"
+          required
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 transition"
+        />
+      </div>
+
+      <!-- Телефон -->
+      <div>
+        <label class="block text-sm font-semibold text-cyan-300 mb-2">Номер телефона *</label>
+        <input 
+          type="tel" 
+          id="order-phone" 
+          placeholder="+7 (999) 123-45-67"
+          required
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 transition"
+        />
+      </div>
+
+      <!-- Адрес доставки -->
+      <div>
+        <label class="block text-sm font-semibold text-cyan-300 mb-2">Адрес доставки *</label>
+        <textarea 
+          id="order-address" 
+          placeholder="Например: г. Краснодар, ул. Ленина, д. 10, кв. 5"
+          rows="3"
+          required
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 transition resize-none"
+        ></textarea>
+      </div>
+
+      <!-- Комментарий -->
+      <div>
+        <label class="block text-sm font-semibold text-cyan-300 mb-2">Комментарий (опционально)</label>
+        <textarea 
+          id="order-comment" 
+          placeholder="Дополнительная информация по заказу..."
+          rows="3"
+          class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:border-cyan-400/50 transition resize-none"
+        ></textarea>
+      </div>
+
+      <!-- Информация о товарах в корзине -->
+      <div id="order-items" class="bg-white/5 border border-white/10 rounded-lg p-4">
+        <p class="text-sm text-blue-100/70">Товары будут указаны автоматически</p>
+      </div>
+
+      <!-- Кнопки -->
+      <div class="flex gap-3 pt-4">
+        <button 
+          type="button"
+          onclick="closeOrderModal()" 
+          class="flex-1 px-6 py-3 rounded-lg bg-white/10 hover:bg-white/20 text-white font-semibold transition"
+        >
+          Отмена
+        </button>
+        <button 
+          type="submit"
+          id="submit-order-btn"
+          class="flex-1 px-6 py-3 rounded-lg font-bold text-white overflow-hidden relative shadow-lg bg-gradient-to-r from-emerald-600 via-cyan-500 to-blue-600 hover:from-emerald-500 hover:via-cyan-400 hover:to-blue-500 transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <Icon name="mdi:send" class="w-5 h-5" />
+            Отправить заказ
+          </span>
+        </button>
+      </div>
+
+      <p class="text-xs text-blue-100/50 text-center">
+        Мы свяжемся с вами в течение часа для подтверждения заказа
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+  // ⚠️ ВАЖНО: Webhook автоматически берётся из .env файла
+  
+  // Открыть форму оформления заказа
+  window.openOrderModal = function() {
+    const modal = document.getElementById('order-modal');
+    if (!modal) return;
+
+    // Проверяем корзину перед открытием
+    let cart = {};
+    try {
+      const cartData = localStorage.getItem('cart');
+      cart = cartData ? JSON.parse(cartData) : { regular: [], needsQuote: [] };
+    } catch (e) {
+      cart = { regular: [], needsQuote: [] };
+    }
+
+    const regularItems = Array.isArray(cart.regular) ? cart.regular : [];
+    const quotedItems = Array.isArray(cart.needsQuote) ? cart.needsQuote : [];
+    const allItems = [...regularItems, ...quotedItems];
+
+    // Если корзина пуста, показываем предупреждение и не открываем модаль
+    if (allItems.length === 0) {
+      window.showToast('❌ Корзина пуста! Добавьте товары перед оформлением.', 'error', 3000);
+      return;
+    }
+
+    // Открываем модаль только если в корзине есть товары
+    modal.classList.remove('hidden');
+    updateOrderItems();
+  };
+
+  // Закрыть форму
+  window.closeOrderModal = function() {
+    const modal = document.getElementById('order-modal');
+    if (modal) {
+      modal.classList.add('hidden');
+    }
+  };
+
+  // Обновить список товаров в форме
+  function updateOrderItems() {
+    const itemsContainer = document.getElementById('order-items');
+    if (!itemsContainer) return;
+    
+    let cart = {};
+    try {
+      const cartData = localStorage.getItem('cart');
+      cart = cartData ? JSON.parse(cartData) : { regular: [], needsQuote: [] };
+    } catch (e) {
+      console.warn('Error parsing cart:', e);
+      cart = { regular: [], needsQuote: [] };
+    }
+    
+    // Убедимся, что массивы существуют
+    const regularItems = Array.isArray(cart.regular) ? cart.regular : [];
+    const quotedItems = Array.isArray(cart.needsQuote) ? cart.needsQuote : [];
+    const allItems = [...regularItems, ...quotedItems];
+    
+    let itemsHTML = '';
+    if (allItems.length === 0) {
+      itemsHTML = '<p class="text-sm text-blue-100/70">⚠️ Корзина пуста. Добавьте товары перед оформлением.</p>';
+    } else {
+      itemsHTML = '<div class="space-y-2">';
+      let totalPrice = 0;
+      
+      allItems.forEach(item => {
+        const subtotal = item.price * item.quantity;
+        totalPrice += subtotal;
+        itemsHTML += `
+          <div class="flex justify-between text-sm text-blue-100/80">
+            <span>${item.name} × ${item.quantity} шт</span>
+            <span class="text-cyan-300">${item.price ? (subtotal).toLocaleString('ru-RU') + ' ₽' : 'По запросу'}</span>
+          </div>
+        `;
+      });
+      
+      itemsHTML += `
+        <div class="border-t border-white/10 pt-2 mt-2 flex justify-between font-semibold text-cyan-300">
+          <span>Всего:</span>
+          <span>${totalPrice > 0 ? totalPrice.toLocaleString('ru-RU') + ' ₽' : 'По запросу'}</span>
+        </div>
+      </div>`;
+    }
+
+    itemsContainer.innerHTML = itemsHTML;
+  }
+
+  // Инициализация после загрузки DOM
+    function initOrderForm() {
+    const orderForm = document.getElementById('order-form');
+    const orderModal = document.getElementById('order-modal');
+    
+    if (!orderForm) {
+      console.warn('Order form not found');
+      return;
+    }
+
+    // Отправить форму в Битрикс24
+    orderForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      console.log('Form submitted');
+
+      const submitBtn = document.getElementById('submit-order-btn');
+      if (submitBtn) submitBtn.disabled = true;
+
+      const name = document.getElementById('order-name')?.value || '';
+      const phone = document.getElementById('order-phone')?.value || '';
+      const address = document.getElementById('order-address')?.value || '';
+      const comment = document.getElementById('order-comment')?.value || '';
+
+      if (!name || !phone || !address) {
+        window.showToast('Пожалуйста, заполните все обязательные поля', 'warning');
+        if (submitBtn) submitBtn.disabled = false;
+        return;
+      }
+
+      // Получаем данные корзины с правильной обработкой ошибок
+      let cart = {};
+      try {
+        const cartData = localStorage.getItem('cart');
+        cart = cartData ? JSON.parse(cartData) : { regular: [], needsQuote: [] };
+      } catch (e) {
+        console.warn('Error parsing cart:', e);
+        cart = { regular: [], needsQuote: [] };
+      }
+
+      const regularItems = Array.isArray(cart.regular) ? cart.regular : [];
+      const quotedItems = Array.isArray(cart.needsQuote) ? cart.needsQuote : [];
+      const allItems = [...regularItems, ...quotedItems];
+      
+      if (allItems.length === 0) {
+        window.showToast('Корзина пуста. Добавьте товары перед оформлением.', 'warning');
+        if (submitBtn) submitBtn.disabled = false;
+        return;
+      }
+
+      // Формируем описание товаров
+      let itemsDescription = allItems.map(i => {
+        const itemTotal = i.price * i.quantity;
+        return `${i.name}: ${i.quantity} шт × ${i.price} ₽ = ${itemTotal} ₽`;
+      }).join('\n');
+      
+      const totalPrice = allItems.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+
+      try {
+        console.log('Sending order to API...');
+        
+        const requestBody = JSON.stringify({
+          orderInfo: { name, phone, address, comment, items: allItems }
+        });
+        console.log('Request body string length:', requestBody.length);
+        
+        const response = await fetch('/api/submit-order', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: requestBody
+        });
+
+        console.log('API Response status:', response.status);
+        const result = await response.json();
+        console.log('API Response:', result);
+
+        if (response.ok) {
+          const successMsg = `Заказ успешно отправлен!\n\n📋 ${name}\n📍 ${address}\n📦 ${allItems.length} вид(ов) товара на сумму ${totalPrice} ₽\n\nМы свяжемся с вами в течение часа.`;
+          window.showToast(successMsg, 'success', 6000);
+          
+          // Сбрасываем форму
+          orderForm.reset();
+          
+          // Очищаем корзину
+          localStorage.removeItem('cart');
+          localStorage.setItem('cart', JSON.stringify({ regular: [], needsQuote: [] }));
+          
+          // Закрываем модалку
+          window.closeOrderModal();
+          
+          // Обновляем UI корзины
+          if (window.updateCartUI) {
+            window.updateCartUI();
+          }
+        } else {
+          throw new Error(result.error || result.message || 'Ошибка отправки');
+        }
+      } catch (error) {
+        console.error('Ошибка при отправке:', error);
+        window.showToast(error instanceof Error ? error.message : 'Неизвестная ошибка при отправке заказа', 'error');
+      } finally {
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+
+    // Закрыть при клике вне модали
+    if (orderModal) {
+      orderModal.addEventListener('click', function(e) {
+        if (e.target === this) {
+          window.closeOrderModal();
+        }
+      });
+    }
+  }
+
+  // Инициализация при загрузке страницы
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOrderForm);
+  } else {
+    initOrderForm();
+  }
+</script>
+

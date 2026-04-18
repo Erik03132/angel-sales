@@ -1,0 +1,36 @@
+{
+  "scan_time": "2026-04-17T23:04:45.591479",
+  "since": "2026-04-17T08:17:27.252945",
+  "users": {},
+  "deals": {
+    "count": 0,
+    "items": [],
+    "total_amount": 0
+  },
+  "activities": {
+    "total": 0,
+    "calls_count": 0,
+    "chats_ol_count": 0,
+    "sms_count": 0,
+    "emails_count": 0,
+    "webforms_count": 0,
+    "other_count": 0,
+    "calls": []
+  },
+  "tasks": {
+    "open": 0,
+    "closed": 0,
+    "items": []
+  },
+  "products": {
+    "count": 0,
+    "items": [],
+    "low_stock": []
+  },
+  "manager_stats": {},
+  "forgotten_deals": {
+    "count": 0,
+    "total_amount": 0,
+    "deals": []
+  }
+}

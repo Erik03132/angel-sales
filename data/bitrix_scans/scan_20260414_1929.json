@@ -1,0 +1,2142 @@
+{
+  "scan_time": "2026-04-14T19:29:30.145644",
+  "since": "2026-04-13T19:29:23",
+  "users": {
+    "1": "Андрей",
+    "1528": "Аня",
+    "4388": "Эльзара",
+    "37548": "СРМ Б24",
+    "37728": "Анна Шалиманова",
+    "40318": "Марина Е",
+    "40466": "Служебный",
+    "40994": "Ольга М.",
+    "41624": "Иван Иванов"
+  },
+  "deals": {
+    "count": 80,
+    "items": [
+      {
+        "ID": "128522",
+        "TITLE": "Сделка #128522",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "18000.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T18:06:17+03:00",
+        "CONTACT_ID": "156",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128520",
+        "TITLE": "Сделка #128520",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T17:28:44+03:00",
+        "CONTACT_ID": "26036",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128518",
+        "TITLE": "Сделка #128518",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5550.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T17:28:00+03:00",
+        "CONTACT_ID": "26036",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128516",
+        "TITLE": "Сделка #128516",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "9000.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T17:27:08+03:00",
+        "CONTACT_ID": "26036",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128514",
+        "TITLE": "Сделка #128514",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "3000.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T16:36:36+03:00",
+        "CONTACT_ID": "31384",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128512",
+        "TITLE": "Сделка #128512",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "1900.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T16:33:38+03:00",
+        "CONTACT_ID": "5776",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128510",
+        "TITLE": "Сделка #128510",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "13500.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T16:22:27+03:00",
+        "CONTACT_ID": "1458",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128508",
+        "TITLE": "Сделка #128508",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T16:20:45+03:00",
+        "CONTACT_ID": "32480",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128506",
+        "TITLE": "Сделка #128506",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "13500.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T16:16:07+03:00",
+        "CONTACT_ID": "33790",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128504",
+        "TITLE": "Сделка #128504",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "2000.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T16:15:01+03:00",
+        "CONTACT_ID": "31264",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128502",
+        "TITLE": "Сделка #128502",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "8000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:57:28+03:00",
+        "CONTACT_ID": "34342",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128500",
+        "TITLE": "Сделка #128500",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "2250.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T15:54:51+03:00",
+        "CONTACT_ID": "30932",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128498",
+        "TITLE": "Сделка #128498",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "4000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:52:47+03:00",
+        "CONTACT_ID": "34340",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128496",
+        "TITLE": "Сделка #128496",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "20000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:48:33+03:00",
+        "CONTACT_ID": "16264",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128494",
+        "TITLE": "Сделка #128494",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "45000.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T15:48:14+03:00",
+        "CONTACT_ID": "34140",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128492",
+        "TITLE": "Сделка #128492",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "32000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:43:57+03:00",
+        "CONTACT_ID": "23862",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128490",
+        "TITLE": "Сделка #128490",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "8500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T15:42:23+03:00",
+        "CONTACT_ID": "26722",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128488",
+        "TITLE": "Сделка #128488",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "2400.40000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T15:41:47+03:00",
+        "CONTACT_ID": "7026",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128486",
+        "TITLE": "Сделка #128486",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "90000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:39:57+03:00",
+        "CONTACT_ID": "17924",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128484",
+        "TITLE": "Сделка #128484",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "37500.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:34:08+03:00",
+        "CONTACT_ID": "34140",
+        "COMPANY_ID": null,
+        "COMMENTS": "BitrixGPT\nОкончательное решение: запись на услугу «Редбро» 7 мая по цене 90 рублей.\nКлиент отказался от услуги «Бролер» на 16 апреля и 4 мая.\nКлиент не предоставил контактную информацию, заказ оформлен устно с подтверждением оператором.\nДополнительных услуг, требований к условиям или предпочтений по мастеру не указано.\nКлиент уже договорился с другими поставщиками по несвязанному вопросу."
+      },
+      {
+        "ID": "128482",
+        "TITLE": "Сделка #128482",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "19600.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T15:30:55+03:00",
+        "CONTACT_ID": "34338",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128480",
+        "TITLE": "Сделка #128480",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "9500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T15:27:50+03:00",
+        "CONTACT_ID": "13804",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128478",
+        "TITLE": "Сделка #128478",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "24000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:18:48+03:00",
+        "CONTACT_ID": "32602",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128476",
+        "TITLE": "Сделка #128476",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5000.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T15:08:47+03:00",
+        "CONTACT_ID": "34336",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128474",
+        "TITLE": "Сделка #128474",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "300000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:07:30+03:00",
+        "CONTACT_ID": "23422",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128472",
+        "TITLE": "Сделка #128472",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "240000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T15:06:18+03:00",
+        "CONTACT_ID": "23422",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128470",
+        "TITLE": "Сделка #128470",
+        "STAGE_ID": "8",
+        "OPPORTUNITY": "3.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T15:01:38+03:00",
+        "CONTACT_ID": "154",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128468",
+        "TITLE": "Сделка #128468",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "6800.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T14:39:16+03:00",
+        "CONTACT_ID": "5864",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128466",
+        "TITLE": "Сделка #128466",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "200.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T14:27:27+03:00",
+        "CONTACT_ID": "30578",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128464",
+        "TITLE": "Сделка #128464",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "7500.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T14:25:50+03:00",
+        "CONTACT_ID": "4614",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128462",
+        "TITLE": "Сделка #128462",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T14:18:40+03:00",
+        "CONTACT_ID": "30578",
+        "COMPANY_ID": null,
+        "COMMENTS": "BitrixGPT\nДиалог не содержит достаточной информации для заполнения CRM-карточки: отсутствуют ФИО, контактные данные, детали заказа, продукты, суммы, сроки, согласование условий. Упоминание даты 14 мая и фразы «мы вам позвоним на помощь» не позволяют определить суть запроса. Имя «Галина Федоровна» не связано с конкретным действием."
+      },
+      {
+        "ID": "128460",
+        "TITLE": "Сделка #128460",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "1.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T14:11:13+03:00",
+        "CONTACT_ID": "13984",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128458",
+        "TITLE": "Сделка #128458",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T14:11:01+03:00",
+        "CONTACT_ID": "32638",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128456",
+        "TITLE": "Сделка #128456",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "2500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T14:09:21+03:00",
+        "CONTACT_ID": "32638",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128454",
+        "TITLE": "Сделка #128454",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "16000.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T14:05:43+03:00",
+        "CONTACT_ID": "24434",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128452",
+        "TITLE": "Сделка #128452",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T13:55:04+03:00",
+        "CONTACT_ID": "11664",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128450",
+        "TITLE": "Сделка #128450",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.03000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T13:48:15+03:00",
+        "CONTACT_ID": "29698",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128448",
+        "TITLE": "Сделка #128448",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "33750.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:45:05+03:00",
+        "CONTACT_ID": "34034",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128446",
+        "TITLE": "Сделка #128446",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "33750.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:44:10+03:00",
+        "CONTACT_ID": "34034",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128444",
+        "TITLE": "Сделка #128444",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "2700.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:43:04+03:00",
+        "CONTACT_ID": "29944",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128442",
+        "TITLE": "Сделка #128442",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T13:40:22+03:00",
+        "CONTACT_ID": "33730",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128440",
+        "TITLE": "Сделка #128440",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "4500.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:36:42+03:00",
+        "CONTACT_ID": "942",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128438",
+        "TITLE": "Сделка #128438",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5250.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T13:22:47+03:00",
+        "CONTACT_ID": "24738",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128436",
+        "TITLE": "Сделка #128436",
+        "STAGE_ID": "11",
+        "OPPORTUNITY": "7600.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:16:28+03:00",
+        "CONTACT_ID": "9104",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128434",
+        "TITLE": "Сделка #128434",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "1900.00000000",
+        "ASSIGNED_BY_ID": "1528",
+        "DATE_CREATE": "2026-04-14T13:09:55+03:00",
+        "CONTACT_ID": "25892",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128432",
+        "TITLE": "Сделка #128432",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5950.00000000",
+        "ASSIGNED_BY_ID": "4388",
+        "DATE_CREATE": "2026-04-14T13:04:44+03:00",
+        "CONTACT_ID": "32420",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128430",
+        "TITLE": "Сделка #128430",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "1275.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T12:20:47+03:00",
+        "CONTACT_ID": "7130",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128428",
+        "TITLE": "Сделка #128428",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "3750.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T12:20:00+03:00",
+        "CONTACT_ID": "7130",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128426",
+        "TITLE": "Сделка #128426",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.06000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T12:17:01+03:00",
+        "CONTACT_ID": "30520",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      },
+      {
+        "ID": "128424",
+        "TITLE": "Сделка #128424",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "2550.00000000",
+        "ASSIGNED_BY_ID": "40318",
+        "DATE_CREATE": "2026-04-14T12:08:19+03:00",
+        "CONTACT_ID": "33034",
+        "COMPANY_ID": null,
+        "COMMENTS": null
+      }
+    ],
+    "total_amount": 1386799.5500000003
+  },
+  "activities": {
+    "calls_count": 290,
+    "sms_count": 10,
+    "emails_count": 0,
+    "other_count": 0,
+    "total": 300,
+    "calls": [
+      {
+        "ID": "1261916",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 501-54-05",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T18:05:00+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "326",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261914",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 714-07-95",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T18:04:17+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "326",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261912",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 714-07-96",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T18:04:03+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "326",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261910",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 837-90-61",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T18:02:47+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "125336",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261908",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 960 103-53-33",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:58:03+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "122638",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261906",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 447-64-89",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:56:37+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "120416",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261904",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 627-38-33",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:54:21+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "125428",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261902",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:53:13+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261900",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:52:43+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261898",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 678-38-22",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:50:28+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "125278",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261896",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:51:29+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261894",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 918 144-56-50",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:49:38+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "126838",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261892",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на +7 900 303-60-15",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:49:16+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "125630",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261890",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 920 453-46-22",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:49:04+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "125630",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261888",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 918 664-24-72",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:47:58+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "127210",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261886",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 978 702-68-15",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:45:24+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "125184",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261884",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:43:48+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261882",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на +7 978 708-59-68",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:43:39+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "126954",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261880",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:41:54+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261878",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 504-87-13",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:41:27+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "798",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261876",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 504-87-13",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:39:01+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "798",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261874",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 978 504-87-13",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:35:03+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "798",
+        "OWNER_TYPE_ID": "14",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261872",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 978 524-03-83",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:25:44+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "26036",
+        "OWNER_TYPE_ID": "3",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261870",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 918 622-26-63",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:25:20+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "124470",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261868",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на +7 978 550-37-98",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:24:14+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "126876",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261866",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на +7 978 708-59-68",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:23:23+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "126954",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261864",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на +7 990 204-61-09",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:22:06+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "126970",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261862",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 547-85-65",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:21:31+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "126970",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261860",
+        "TYPE_ID": "2",
+        "SUBJECT": "Исходящий на 7 978 242-20-91",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:18:55+03:00",
+        "DIRECTION": "2",
+        "OWNER_ID": "127032",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      },
+      {
+        "ID": "1261858",
+        "TYPE_ID": "2",
+        "SUBJECT": "Входящий от 7 978 912-40-55",
+        "DESCRIPTION": "",
+        "RESPONSIBLE_ID": "40318",
+        "CREATED": "2026-04-14T17:17:45+03:00",
+        "DIRECTION": "1",
+        "OWNER_ID": "128328",
+        "OWNER_TYPE_ID": "2",
+        "PROVIDER_ID": "VOXIMPLANT_CALL",
+        "PROVIDER_TYPE_ID": "CALL"
+      }
+    ]
+  },
+  "tasks": {
+    "open": 3,
+    "closed": 0,
+    "items": [
+      {
+        "id": "9382",
+        "title": "Позвонить клиенту по сделке 123168 на сумму 60000.00 рублей. Нет предоплаты",
+        "responsibleId": "1528",
+        "createdDate": "2026-04-14T15:22:31+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "1528",
+          "name": "Аня",
+          "link": "/company/personal/user/1528/",
+          "icon": "https://incubird.bitrix24.ru/b10664196/resize_cache/35306/c0120a8d7c10d63c83e32398d1ec4d9e/main/4f9/4f9b13a73e5bb2f5889b0a003faaeb72/nastroeniya-devushka-bryunetka-7384.jpg",
+          "workPosition": "менеджер"
+        },
+        "subStatus": "-2"
+      },
+      {
+        "id": "9380",
+        "title": "Позвонить клиенту по сделке 127860 на сумму 9600.00 рублей. Нет предоплаты",
+        "responsibleId": "4388",
+        "createdDate": "2026-04-14T10:50:35+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "4388",
+          "name": "Эльзара",
+          "link": "/company/personal/user/4388/",
+          "icon": "https://incubird.bitrix24.ru/b10664196/resize_cache/924468/c0120a8d7c10d63c83e32398d1ec4d9e/main/b4f/b4f075eb6223fbaa9a0abdae506a693a/upload.phplaction_uncloudafile_209182msignature_209182.700a17b6ac7bd3351bd71b64cbe2c88f0e34a434549e70a2665e9660a88d3356.png",
+          "workPosition": "Менеджер"
+        },
+        "subStatus": "-2"
+      },
+      {
+        "id": "9378",
+        "title": "Позвонить клиенту по сделке 127032 на сумму 16000.00 рублей. Нет предоплаты",
+        "responsibleId": "1528",
+        "createdDate": "2026-04-14T09:50:07+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "1528",
+          "name": "Аня",
+          "link": "/company/personal/user/1528/",
+          "icon": "https://incubird.bitrix24.ru/b10664196/resize_cache/35306/c0120a8d7c10d63c83e32398d1ec4d9e/main/4f9/4f9b13a73e5bb2f5889b0a003faaeb72/nastroeniya-devushka-bryunetka-7384.jpg",
+          "workPosition": "менеджер"
+        },
+        "subStatus": "-2"
+      }
+    ]
+  },
+  "products": {
+    "count": 156,
+    "items": [
+      {
+        "ID": "8",
+        "NAME": "Муллард",
+        "ACTIVE": "Y",
+        "PRICE": "250.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "10",
+        "NAME": "Биг-6",
+        "ACTIVE": "Y",
+        "PRICE": "450.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "12",
+        "NAME": "Кобб-500",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "14",
+        "NAME": "РОСС",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "16",
+        "NAME": "Доминант Д-102 (192)",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "18",
+        "NAME": "Доминант Д-104 (Сусекс)",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "20",
+        "NAME": "Доминант Д-107 (Голубой)",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "22",
+        "NAME": "Доминант Д-109 (Черный)",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "24",
+        "NAME": "Ломан Браун",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "26",
+        "NAME": "Пет. Ломан вакцина",
+        "ACTIVE": "N",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "28",
+        "NAME": "Адлерская Серебристая",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "30",
+        "NAME": "Ред Бро",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "32",
+        "NAME": "Мастер Грей",
+        "ACTIVE": "Y",
+        "PRICE": "65.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "34",
+        "NAME": "Голошейка",
+        "ACTIVE": "Y",
+        "PRICE": "65.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "36",
+        "NAME": "Gris Barre",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "38",
+        "NAME": "Фарм Колор",
+        "ACTIVE": "Y",
+        "PRICE": "65.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "46",
+        "NAME": "Purina25 Старт Брой",
+        "ACTIVE": "Y",
+        "PRICE": "990.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "48",
+        "NAME": "Purina25 Рост Брой",
+        "ACTIVE": "Y",
+        "PRICE": "950.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "50",
+        "NAME": "Purina25 Финиш Брой",
+        "ACTIVE": "Y",
+        "PRICE": "890.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "52",
+        "NAME": "Energy Старт Бройлер 25 кг",
+        "ACTIVE": "N",
+        "PRICE": "890.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "54",
+        "NAME": "Energy Рост Бройлер 25 кг",
+        "ACTIVE": "N",
+        "PRICE": "850.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "56",
+        "NAME": "Energy Финиш Бройлер 25 кг",
+        "ACTIVE": "N",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "58",
+        "NAME": "Аптечка",
+        "ACTIVE": "Y",
+        "PRICE": "200.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "176",
+        "NAME": "до 2х недель Доминант Д-102 (192)",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "178",
+        "NAME": "до 2х недель Доминант Д-104 (Сусекс)",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "180",
+        "NAME": "до 2х недель Доминант Д-107 (Голубой)",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "182",
+        "NAME": "до 2х недель Доминант Д-109 (Черный)",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "184",
+        "NAME": "до 2х недель Ломан Браун",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "206",
+        "NAME": "до 2х недель Адлерская",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "208",
+        "NAME": "до 2х недель Ред Бро",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "210",
+        "NAME": "до 2х недель Мастер Грей",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "212",
+        "NAME": "до 2х недель Голошейка",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "4",
+        "NAME": "Агидель",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "6",
+        "NAME": "Голубой фаворит",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "40",
+        "NAME": "ПОДР Домин(104) 1-1.5 мес",
+        "ACTIVE": "Y",
+        "PRICE": "100.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "42",
+        "NAME": "ПОДР Домин(107) 1-1.5 мес",
+        "ACTIVE": "Y",
+        "PRICE": "145.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "44",
+        "NAME": "ПОДР Домин(109) 1-1.5 мес",
+        "ACTIVE": "Y",
+        "PRICE": "145.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "64",
+        "NAME": "Hybrid Converter",
+        "ACTIVE": "Y",
+        "PRICE": "450.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "66",
+        "NAME": "Индюк Бронза",
+        "ACTIVE": "Y",
+        "PRICE": "450.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "68",
+        "NAME": "Стар-53",
+        "ACTIVE": "N",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "70",
+        "NAME": "Черри Велли",
+        "ACTIVE": "Y",
+        "PRICE": "150.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "72",
+        "NAME": "Гусь линда",
+        "ACTIVE": "Y",
+        "PRICE": "230.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "74",
+        "NAME": "Цесарка серо-крапчатая",
+        "ACTIVE": "Y",
+        "PRICE": "140.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "76",
+        "NAME": "ПОДР Домин(102) 1-1.5 мес",
+        "ACTIVE": "Y",
+        "PRICE": "145.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "78",
+        "NAME": "ПОДР Ломан 1-1.5 мес",
+        "ACTIVE": "Y",
+        "PRICE": "145.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "82",
+        "NAME": "Мускусная (Индоутка)",
+        "ACTIVE": "Y",
+        "PRICE": "140.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "84",
+        "NAME": "Доминант Д-843 (Янтарный)",
+        "ACTIVE": "N",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "96",
+        "NAME": "Пет. Ломан без",
+        "ACTIVE": "N",
+        "PRICE": "3.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "98",
+        "NAME": "Петух вакцина",
+        "ACTIVE": "Y",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "100",
+        "NAME": "Петух без",
+        "ACTIVE": "Y",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "102",
+        "NAME": "ПОДРОСТ Петух",
+        "ACTIVE": "N",
+        "PRICE": "100.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "104",
+        "NAME": "ПОДРОСТ Петух Домин.",
+        "ACTIVE": "N",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "134",
+        "NAME": "Grade Maker",
+        "ACTIVE": "N",
+        "PRICE": "450.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "136",
+        "NAME": "Purina40 несушка Старт",
+        "ACTIVE": "Y",
+        "PRICE": "1490.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "138",
+        "NAME": "Purina40 несушка Рост",
+        "ACTIVE": "Y",
+        "PRICE": "1250.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "140",
+        "NAME": "Purina40 несушка Финиш",
+        "ACTIVE": "Y",
+        "PRICE": "1150.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "142",
+        "NAME": "Purina25 Предстарт Индюк",
+        "ACTIVE": "Y",
+        "PRICE": "1150.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "144",
+        "NAME": "Purina40 Старт Индюк",
+        "ACTIVE": "Y",
+        "PRICE": "1730.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "146",
+        "NAME": "Purina40 Рост Индюк",
+        "ACTIVE": "N",
+        "PRICE": "1380.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "148",
+        "NAME": "Purina40 Финиш Индюк",
+        "ACTIVE": "N",
+        "PRICE": "1290.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "150",
+        "NAME": "Purina40 Старт Водопл",
+        "ACTIVE": "Y",
+        "PRICE": "1450.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "152",
+        "NAME": "Purina40 Финиш Утка",
+        "ACTIVE": "Y",
+        "PRICE": "1290.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "154",
+        "NAME": "Заморозка 1 кг",
+        "ACTIVE": "Y",
+        "PRICE": "70.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "156",
+        "NAME": "ПОДРОСТ КОББ",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "158",
+        "NAME": "Кобб-МАРЕК",
+        "ACTIVE": "Y",
+        "PRICE": "999.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "160",
+        "NAME": "РОСС-МАРЕК",
+        "ACTIVE": "Y",
+        "PRICE": "999.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "162",
+        "NAME": "ST-5",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "164",
+        "NAME": "ПОДРОСТ МАРЕК Кобб",
+        "ACTIVE": "N",
+        "PRICE": "999.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "166",
+        "NAME": "Arbor",
+        "ACTIVE": "Y",
+        "PRICE": "53.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "168",
+        "NAME": "Arbor-МАРЕК",
+        "ACTIVE": "Y",
+        "PRICE": "999.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "170",
+        "NAME": "Индюк ПОДРОСТ",
+        "ACTIVE": "Y",
+        "PRICE": "300.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "172",
+        "NAME": "Доставка клиенту",
+        "ACTIVE": "Y",
+        "PRICE": "1000.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "174",
+        "NAME": "ПОДРОСТ РОСС",
+        "ACTIVE": "Y",
+        "PRICE": "50.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "186",
+        "NAME": "ПОДР Домин(102) 1.5-2 мес",
+        "ACTIVE": "Y",
+        "PRICE": "180.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "188",
+        "NAME": "ПОДР Домин(104) 1.5-2 мес",
+        "ACTIVE": "Y",
+        "PRICE": "130.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "190",
+        "NAME": "ПОДР Домин(107) 1.5-2 мес",
+        "ACTIVE": "Y",
+        "PRICE": "180.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "192",
+        "NAME": "ПОДР Домин(109) 1.5-2 мес",
+        "ACTIVE": "Y",
+        "PRICE": "180.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "194",
+        "NAME": "ПОДР Ломан 1.5-2 мес",
+        "ACTIVE": "Y",
+        "PRICE": "180.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "196",
+        "NAME": "Подрост Ломан ",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "198",
+        "NAME": "Подрост Адлерская",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "200",
+        "NAME": "Подрост Доминант Д-104 сусекс",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "202",
+        "NAME": "Подрост Доминант Д-107 голубой",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "204",
+        "NAME": "Подрост Доминант Д-109 черный",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "214",
+        "NAME": "ПОДРОСТ Агидель",
+        "ACTIVE": "Y",
+        "PRICE": "55.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "216",
+        "NAME": "ПОДРОСТ Гол. фаворит",
+        "ACTIVE": "Y",
+        "PRICE": "55.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "218",
+        "NAME": "ПОДРОСТ Черри Велли",
+        "ACTIVE": "Y",
+        "PRICE": "100.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "220",
+        "NAME": "ПОДРОСТ Мулард",
+        "ACTIVE": "Y",
+        "PRICE": "200.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "222",
+        "NAME": "ПОДРОСТ Мускусная",
+        "ACTIVE": "Y",
+        "PRICE": "160.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "2",
+        "NAME": "Цыпленок Кобб-500",
+        "ACTIVE": "N",
+        "PRICE": "40.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "108",
+        "NAME": "Гусенок суточный",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "110",
+        "NAME": "Яйцо гусиное",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "118",
+        "NAME": "ПОЗИЦИЯ УДАЛЕНА",
+        "ACTIVE": "Y",
+        "PRICE": "120.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "122",
+        "NAME": "Purina40 Старт Брой",
+        "ACTIVE": "N",
+        "PRICE": "990.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "224",
+        "NAME": "сассо красный",
+        "ACTIVE": "Y",
+        "PRICE": "55.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "226",
+        "NAME": "сассо черный",
+        "ACTIVE": "Y",
+        "PRICE": "55.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "228",
+        "NAME": "сассо кремовые",
+        "ACTIVE": "Y",
+        "PRICE": "55.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "232",
+        "NAME": "сассо серый",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "236",
+        "NAME": "Тест",
+        "ACTIVE": "Y",
+        "PRICE": "1.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "238",
+        "NAME": "Петух Ломан Браун",
+        "ACTIVE": "Y",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "240",
+        "NAME": "Петух Доминант 107",
+        "ACTIVE": "Y",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "242",
+        "NAME": "Петух Доминант 109",
+        "ACTIVE": "Y",
+        "PRICE": "10.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "244",
+        "NAME": "сассо белый",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "248",
+        "NAME": "сассо кабир",
+        "ACTIVE": "Y",
+        "PRICE": "65.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "250",
+        "NAME": "Подрост РОСС",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "252",
+        "NAME": "Подрост КОББ",
+        "ACTIVE": "Y",
+        "PRICE": "70.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "254",
+        "NAME": "Петух Доминант 102",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "256",
+        "NAME": "ПРЕДОПЛАТА ",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "258",
+        "NAME": "Подрост Доминант Д-102",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "260",
+        "NAME": "ПОДРОСТ Доминант Д-107 голубой",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "262",
+        "NAME": "ПОДРОСТ Доминант Д-109 черный",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "264",
+        "NAME": "ПОДРОСТ Адлерская",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "266",
+        "NAME": "Коробка картонная",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "268",
+        "NAME": "ПОДРОСТ Доминант Д-102",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "270",
+        "NAME": "Хайсекс браун",
+        "ACTIVE": "Y",
+        "PRICE": "95.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "272",
+        "NAME": "Петух Хайсекс Браун",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "274",
+        "NAME": "Джа 787",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "276",
+        "NAME": "ПОДРОСТ Мастер",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "278",
+        "NAME": "ПОДРОСТ Гриз Бар",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "280",
+        "NAME": "ПОДРОСТ Редбро",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "282",
+        "NAME": "Грейд Мейкер",
+        "ACTIVE": "Y",
+        "PRICE": "300.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "284",
+        "NAME": "ПОДРОСТ Джа 787",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "286",
+        "NAME": "ПОДРОСТ Голошейка",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "288",
+        "NAME": "ПОДРОСТ Хайсекс Браун",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "290",
+        "NAME": "Гусь ПОДРОСТ",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "294",
+        "NAME": "ПОДРОСТ Цесарка",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "300",
+        "NAME": "Голошейка черная",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "302",
+        "NAME": "Голошейка красная",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "304",
+        "NAME": "стар 53",
+        "ACTIVE": "Y",
+        "PRICE": "90.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "310",
+        "NAME": "сосо белый",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "314",
+        "NAME": "сосо белый",
+        "ACTIVE": "Y",
+        "PRICE": "60.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "318",
+        "NAME": "Супер Харко",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "322",
+        "NAME": "Тетра ХВ color",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "326",
+        "NAME": "Рейнджер (Ranger)",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "330",
+        "NAME": "Тетра Х",
+        "ACTIVE": "Y",
+        "PRICE": "85.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "334",
+        "NAME": "Бройлер 3 кг",
+        "ACTIVE": "Y",
+        "PRICE": "170.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "338",
+        "NAME": "Подрост РОСС :: 52 (23.06.25) ",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "342",
+        "NAME": "РOCC",
+        "ACTIVE": "Y",
+        "PRICE": "45.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "344",
+        "NAME": "гу",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "348",
+        "NAME": "Гусь Линда тушка",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "352",
+        "NAME": "Кучинская",
+        "ACTIVE": "N",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "356",
+        "NAME": "Кучинская юбилейная",
+        "ACTIVE": "Y",
+        "PRICE": "80.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "360",
+        "NAME": "Кучинская юбилейная",
+        "ACTIVE": "N",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "364",
+        "NAME": "Пепельная голубая",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "368",
+        "NAME": "Голошейка цветная",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "372",
+        "NAME": "Русская хохлатая",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "376",
+        "NAME": "Доминант 849",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "380",
+        "NAME": "Доминант 959",
+        "ACTIVE": "Y",
+        "PRICE": null,
+        "CURRENCY_ID": null
+      },
+      {
+        "ID": "386",
+        "NAME": "Легорн",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "390",
+        "NAME": "Плимутрок",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "394",
+        "NAME": "Чёрная Московская",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "402",
+        "NAME": " Старт  д/бройлеров Agravis (25 кг)",
+        "ACTIVE": "Y",
+        "PRICE": "1550.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "406",
+        "NAME": "Рост д/бройлеров Agravis (25 кг)",
+        "ACTIVE": "Y",
+        "PRICE": "1500.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "410",
+        "NAME": "Старт д/несушек и водоплавающих Agravis (25 кг)",
+        "ACTIVE": "Y",
+        "PRICE": "1425.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "416",
+        "NAME": "Легорн Серебристый",
+        "ACTIVE": "Y",
+        "PRICE": "75.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "422",
+        "NAME": "Подрост РОСС",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      },
+      {
+        "ID": "424",
+        "NAME": "ПОДРОСТ Хайсекс Браун",
+        "ACTIVE": "Y",
+        "PRICE": "0.00",
+        "CURRENCY_ID": "RUB"
+      }
+    ],
+    "low_stock": []
+  },
+  "manager_stats": {
+    "Марина Е": {
+      "deals": 39,
+      "amount": 362073.14999999997,
+      "calls": 119
+    },
+    "Эльзара": {
+      "deals": 24,
+      "amount": 855426.0,
+      "calls": 96
+    },
+    "Аня": {
+      "deals": 17,
+      "amount": 169300.4,
+      "calls": 75
+    }
+  }
+}

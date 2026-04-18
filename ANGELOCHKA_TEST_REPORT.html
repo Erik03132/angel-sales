@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчёт: Тестирование Анжелочки v9.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0f1a;
+            --card: #151928;
+            --card-light: #1c2237;
+            --primary: #f59e0b;
+            --accent: #38bdf8;
+            --green: #22c55e;
+            --red: #ef4444;
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --border: #2d3655;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        header h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        header p {
+            color: var(--text-dim);
+            font-size: 1.1em;
+        }
+        
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .stat-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-2px); }
+        .stat-card .value {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .stat-card .label {
+            color: var(--text-dim);
+            font-size: 0.9em;
+            margin-top: 4px;
+        }
+        .stat-card.green .value { color: var(--green); }
+        .stat-card.accent .value { color: var(--accent); }
+        
+        /* Table */
+        .table-container {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead th {
+            background: var(--card-light);
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75em;
+            letter-spacing: 0.05em;
+            padding: 16px 14px;
+            text-align: left;
+            border-bottom: 2px solid var(--border);
+            position: sticky;
+            top: 0;
+        }
+        tbody td {
+            padding: 16px 14px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        tbody tr:hover { background: rgba(245, 158, 11, 0.03); }
+        
+        .question {
+            color: var(--accent);
+            font-weight: 500;
+            min-width: 200px;
+        }
+        .answer {
+            color: var(--text);
+            font-size: 0.92em;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+        .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.8em;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        /* Footer */
+        .recommendations {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid var(--border);
+        }
+        .recommendations h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .recommendations ul {
+            list-style: none;
+        }
+        .recommendations li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-dim);
+        }
+        .recommendations li:last-child { border-bottom: none; }
+        .recommendations li strong { color: var(--text); }
+        
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-dim);
+            font-size: 0.85em;
+        }
+        
+        @media print {
+            body { background: white; color: #1a1a1a; padding: 20px; }
+            .stat-card { border: 1px solid #ddd; }
+            .table-container { border: 1px solid #ddd; }
+            thead th { background: #f5f5f5; color: #333; }
+            tbody td { border-bottom: 1px solid #eee; }
+            .question { color: #0066cc; }
+            .answer { color: #333; }
+            .badge { background: #fff3cd; color: #856404; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐣 Тест-драйв: Анжелочка v9.0</h1>
+            <p>Стресс-тест AI-менеджера «Азовского Инкубатора» — 14.04.2026, 18:26</p>
+        </header>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="value">20</div>
+                <div class="label">Вопросов задано</div>
+            </div>
+            <div class="stat-card green">
+                <div class="value">20/20</div>
+                <div class="label">Успешных ответов</div>
+            </div>
+            <div class="stat-card accent">
+                <div class="value">2.5s</div>
+                <div class="label">Среднее время ответа</div>
+            </div>
+            <div class="stat-card">
+                <div class="value">49s</div>
+                <div class="label">Общее время теста</div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align:center">#</th>
+                        <th>Категория</th>
+                        <th>Вопрос клиента</th>
+                        <th>Ответ Анжелочки</th>
+                        <th style="text-align:center">Время</th>
+                        <th style="text-align:center">Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+        <tr>
+            <td style="text-align:center; font-weight:600;">1</td>
+            <td><span class="badge">Приветствие</span></td>
+            <td class="question">Привет, вы работаете?</td>
+            <td class="answer">Да, работаем! Чем могу помочь? 🐣</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">2</td>
+            <td><span class="badge">Ассортимент</span></td>
+            <td class="question">Чем вы торгуете? Что у вас есть?</td>
+            <td class="answer">Здравствуйте! 🐣<br><br>У нас в &quot;Азовском Инкубаторе&quot; чего только нет! И бройлеры, и уточки, и индюки, и гуси, и цесарки, и даже несушки, которые голубые яички несут! 🥚<br><br>В основном, конечно, предлагаем молодняк и инкубационное яйцо. А ещё корма Purina и Energy есть, чтобы птенчики росли здоровыми и крепкими!<br><br>Что вас интересует? Может, курочек хотите завести? Или бройлеров на мясо?<br><br><br>👉 Сколько штук планируете посадить в этом сезоне?</td>
+            <td style="text-align:center; color:#f59e0b; font-weight:600;">5.9s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">3</td>
+            <td><span class="badge">Бройлеры — цена</span></td>
+            <td class="question">Сколько стоят бройлеры?</td>
+            <td class="answer">Бройлеры у нас есть двух видов: Кобб-500 по 60₽ и Росс-308 по 85₽. Кобб-500 быстрее растет, но Росс-308 выносливее.<br><br>А вы в каком городе находитесь? И сколько примерно голов планируете брать? Может, сразу и корм прикинуть? 🐣<br><br><br>👉 Подсказать, какой комбикорм лучше всего подойдёт к этой породе?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">4.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">4</td>
+            <td><span class="badge">Кобб-500 vs РОСС</span></td>
+            <td class="question">Какая разница между Кобб-500 и РОСС? Что лучше?</td>
+            <td class="answer">Кобб-500 быстрее растет, до 2.5 кг за 40 дней. А Росс-308 выносливее, крепче здоровьем. Вырастить чуть дольше, зато меньше хлопот. 🐣<br><br>А вы в каком городе находитесь? И сколько примерно голов планируете брать? Может, сразу и корм прикинуть? 🤔<br><br><br>💡 Кстати, доставка у нас в климат-контроле — птенцы приезжают бодрые и здоровые.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">4.4s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">5</td>
+            <td><span class="badge">Мулларды</span></td>
+            <td class="question">Есть мулларды? Почём? И чем они отличаются от обычных уток?</td>
+            <td class="answer">Мулларды есть, по 250₽. 🐣 Это такой &quot;утка-гусь&quot; – гибрид мускусной и пекинской утки. Сами не размножаются, зато растут быстро – за 3 месяца до 4-6 кг. Мясо нежирное, для жарки – самое то! И водоём им не нужен.<br><br>А сколько штук примерно планируете? Может, сразу и корм прикинуть, чтобы выгодно получилось? 🤔<br><br>👉 Кстати, доставка у нас в климат-контроле — птенцы приезжают бодрые и здоровые.<br><br>💡 Не забудьте про температурный режим в первую неделю — это критично для выживаемости.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">4.4s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">6</td>
+            <td><span class="badge">Индюки</span></td>
+            <td class="question">Какие индюки есть? Сколько стоят? До какого веса дорастают?</td>
+            <td class="answer">У нас Хайбрид Конвертер и Индюк Бронза — по 450₽/шт. Тяжеловесы, самцы до 22-25 кг! Биг-6 тоже 450₽.<br><br>👉 Сколько штук планируете посадить в этом сезоне?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">7</td>
+            <td><span class="badge">Несушки</span></td>
+            <td class="question">Мне нужны несушки, которые будут нестись. Что посоветуете?</td>
+            <td class="answer">Несушки-доминанты: Д-102, Д-104, Д-107, Д-109 — от 60 до 75₽. Ломан Браун — 60₽. До 300 яиц в год!<br><br>👉 Оставите номер телефона — я запишу вас на ближайший вывод?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">8</td>
+            <td><span class="badge">Народный синоним</span></td>
+            <td class="question">Хочу пекинку. Есть?</td>
+            <td class="answer">Есть Стар-53 по 85₽ – скороспелая, до 3.5 кг за 50 дней. 🐣<br>А сколько штук хотите? И в каком вы городе? Может, сразу и корм подберем, чтобы утка росла как на дрожжах? 🤔<br><br>💡 Не забудьте про температурный режим в первую неделю — это критично для выживаемости.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.3s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">9</td>
+            <td><span class="badge">Минимальный заказ</span></td>
+            <td class="question">Какой минимальный заказ? Можно взять 10 штук?</td>
+            <td class="answer">Минимальный заказ — от 30 голов одной породы. Но если надо меньше — пишите, обсудим! 🐣<br><br>💡 Помните, что мулларды не требуют водоёма — это упростит содержание.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">10</td>
+            <td><span class="badge">Большой заказ</span></td>
+            <td class="question">Мне нужно 500 кобб-500 и 200 мулардов. Посчитайте сколько выйдет?</td>
+            <td class="answer">Отлично! 500 Кобб-500 и 200 муллардов – сейчас посчитаю. 🐣<br><br>Кобб-500: 500 шт. * 60₽ = 30 000₽<br>Мулларды: 200 шт. * 250₽ = 50 000₽<br><br>Итого: 80 000₽<br><br>Кстати, на такое количество бройлеров вам понадобится около 175 кг корма Старт, чтобы хорошо росли в первые дни. Интересно будет рассчитать количество?<br><br><br>💡 Не забудьте про температурный режим в первую неделю — это критично для выживаемости.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.7s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">11</td>
+            <td><span class="badge">Оплата</span></td>
+            <td class="question">Как можно оплатить?</td>
+            <td class="answer">Оплатить можно наличными при получении, переводом на карту или по реквизитам. 💰<br><br>Чтобы забронировать за вами 500 Кобб-500 и 200 муллардов, напишите ваш номер телефона, я передам в отдел логистики, они уточнят детали и помогут с оплатой. 🐣<br><br><br>💡 Помните, что мулларды не требуют водоёма — это упростит содержание.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">4.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">12</td>
+            <td><span class="badge">Адрес</span></td>
+            <td class="question">Где вы находитесь? В каком городе?</td>
+            <td class="answer">Мы находимся в Крыму — Джанкойский район, пгт. Азовское, ул. Железнодорожная, 42. Приезжайте в гости! 🐣</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">13</td>
+            <td><span class="badge">Доставка Краснодар</span></td>
+            <td class="question">Вы доставляете в Краснодар? Сколько стоит доставка?</td>
+            <td class="answer">Доставка по ПН и ЧТ по Крыму и Югу России. Спецтранспорт с климат-контролем. Гарантируем 100% выживаемость!<br><br>👉 Сколько штук планируете посадить в этом сезоне?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">14</td>
+            <td><span class="badge">Доставка Москва</span></td>
+            <td class="question">А в Москву привезёте?</td>
+            <td class="answer">К сожалению, в Москву не возим. Только по Крыму и Югу России. Но если у вас есть друзья в Краснодаре или Ростове, можем туда доставить, а они вам передадут! 😉<br><br>🚚 Кстати, сколько всего планируете птицы в этом сезоне? Может, что-то еще присмотрели к Кобб-500 и мулардам? <br><br><br>💡 Кстати, доставка у нас в климат-контроле — птенцы приезжают бодрые и здоровые.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.7s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">15</td>
+            <td><span class="badge">Температура</span></td>
+            <td class="question">Какая температура нужна цыплятам в первые дни?</td>
+            <td class="answer">В первые 5 дней цыплятам нужна температура 32-35°C. 🐣 С 6-го дня снижаем на 2 градуса в неделю, пока не дойдём до 18-20°C.<br><br>Кстати, а вы Кобб-500 и муллардов в одном помещении планируете растить? Для утят чуть больше влажность нужна, имейте ввиду. 🤔<br><br><br>👉 Хотите, помогу рассчитать нужное количество корма на этот объём?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.6s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">16</td>
+            <td><span class="badge">Кормление</span></td>
+            <td class="question">Чем кормить бройлеров? Какой корм брать? Сколько корма нужно?</td>
+            <td class="answer">Комбикорм Purina 25кг: Старт 990₽, Рост 950₽, Финиш 890₽. Energy: Старт 890₽, Рост 850₽. Рассчитать под ваше поголовье?<br><br>👉 Сколько штук планируете посадить в этом сезоне?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">17</td>
+            <td><span class="badge">Вакцинация</span></td>
+            <td class="question">Птица вакцинирована? Какие прививки делаете?</td>
+            <td class="answer">Да, конечно! На нашей птице делаем базовую вакцинацию от болезней Марека, Гамборо и Ньюкасла. 👍<br><br>Чтобы мои птицеводы подготовили для вас самых здоровых цыплят, скажите, сколько примерно планируете брать? И какая порода интересует? 🐣<br><br><br>💡 Помните, что мулларды не требуют водоёма — это упростит содержание.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.9s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">18</td>
+            <td><span class="badge">Возражение — дорого</span></td>
+            <td class="question">Дорого! У конкурентов дешевле.</td>
+            <td class="answer">Понимаю! 😊 Но знаете, у нас 100% гарантия выживаемости при доставке. Если вдруг что-то случится в дороге — сразу заменим или деньги вернём. Плюс, ветеринарный контроль строгий — птичка вся привитая-перепривитая.<br><br>А вы какую породу смотрите? И сколько примерно голов планируете брать? Может, я вам по корму что-нибудь подскажу, чтобы общая стоимость выгоднее вышла? 😉<br><br><br>👉 На какое число записать в график вывода?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">3.7s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">19</td>
+            <td><span class="badge">Гарантии</span></td>
+            <td class="question">А если птенцы сдохнут по дороге? Какие гарантии?</td>
+            <td class="answer">Гарантируем 100% выживаемость при доставке. Если что-то не так — меняем птицу или возвращаем деньги на месте.<br><br>💡 Рекомендую сразу брать комбикорм-старт, на другом они так быстро не растут.</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">0.0s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+        <tr>
+            <td style="text-align:center; font-weight:600;">20</td>
+            <td><span class="badge">Заказ</span></td>
+            <td class="question">Хочу заказать 100 Кобб-500 на следующую неделю. Как забронировать?</td>
+            <td class="answer">Отлично! Кобб-500 быстро вес набирают, правильный выбор! 🐣<br><br>Чтобы забронировать за вами 100 цыплят на следующую неделю и рассчитать доставку, напишите, пожалуйста, ваш номер телефона и город. Я передам информацию в отдел логистики, они с вами свяжутся и всё подтвердят! 👍<br><br>Кстати, на 100 голов вам понадобится примерно 35 кг корма &quot;Старт&quot; на первые 10 дней. Потом &quot;Рост&quot; и &quot;Финиш&quot;. Рассчитать вам сколько всего корма нужно на весь период, чтобы сразу заказать? 😉<br><br><br>👉 Оставите номер телефона — я запишу вас на ближайший вывод?</td>
+            <td style="text-align:center; color:#22c55e; font-weight:600;">4.4s</td>
+            <td style="text-align:center; font-size:1.2em; color:#22c55e;">✅</td>
+        </tr>
+        
+                </tbody>
+            </table>
+        </div>
+        
+        <footer>
+            <p>Отчёт сгенерирован автоматически · Antigravity AI · 14.04.2026</p>
+        </footer>
+    </div>
+</body>
+</html>

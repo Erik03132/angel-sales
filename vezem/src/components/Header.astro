@@ -1,0 +1,102 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<header id="main-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16 sm:h-20">
+      <div class="flex items-center gap-4 sm:gap-8">
+        <a href="#" class="text-lg sm:text-2xl lg:text-3xl font-black text-white tracking-tight drop-shadow-lg">ВезёмЦыплят</a>
+      </div>
+      
+      <!-- Desktop меню -->
+      <div class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="#products" class="px-3 lg:px-4 py-2 text-white/80 hover:text-white transition-colors text-sm">Продукция</a>
+        <a href="#contacts" class="px-3 lg:px-4 py-2 text-white/80 hover:text-white transition-colors text-sm">Контакты</a>
+        <a href="#delivery" class="px-3 lg:px-4 py-2 text-white/80 hover:text-white transition-colors text-sm">Доставка</a>
+        <a href="#testimonials" class="px-3 lg:px-4 py-2 text-white/80 hover:text-white transition-colors text-sm">Отзывы</a>
+      </div>
+      
+      <div class="flex items-center gap-2 sm:gap-3 lg:gap-4">
+        <button id="schedule-header-btn" class="hidden md:flex items-center gap-1 lg:gap-2 bg-gradient-to-r from-cyan-600 to-emerald-600 hover:from-cyan-500 hover:to-emerald-500 text-white px-3 lg:px-4 py-2 lg:py-3 rounded-lg font-semibold text-sm shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-all duration-300">
+          <Icon name="mdi:calendar-check" class="w-4 lg:w-5 h-4 lg:h-5" />
+          <span class="hidden lg:inline">Сроки</span>
+        </button>
+        <a href="tel:+79183500225" class="hidden md:flex items-center gap-1 lg:gap-2 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 hover:from-blue-500 hover:via-cyan-400 hover:to-emerald-400 text-white px-3 lg:px-4 py-2 lg:py-3 rounded-lg font-semibold text-sm shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-300">
+          <Icon name="mdi:phone" class="w-4 lg:w-5 h-4 lg:h-5" />
+          <span class="hidden lg:inline">+7 (918) 350-02-25</span>
+          <span class="lg:hidden">Звонок</span>
+        </a>
+        
+        <!-- Mobile меню кнопка -->
+        <button id="mobile-menu-btn" class="md:hidden text-white flex-shrink-0 p-2">
+          <Icon name="mdi:menu" class="w-6 h-6" />
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile меню (скрыто по умолчанию) -->
+    <div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-white/10 shadow-lg z-40">
+      <div class="px-4 py-4 space-y-2">
+        <a href="#products" class="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-lg text-sm">Продукция</a>
+        <a href="#contacts" class="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-lg text-sm">Контакты</a>
+        <a href="#delivery" class="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-lg text-sm">Доставка</a>
+        <a href="#testimonials" class="block px-4 py-3 text-white/80 hover:text-white hover:bg-white/5 transition-all rounded-lg text-sm">Отзывы</a>
+        <button id="schedule-mobile-btn" class="w-full text-left px-4 py-3 text-cyan-300 hover:text-cyan-200 hover:bg-cyan-500/10 transition-all rounded-lg text-sm font-semibold flex items-center gap-2">
+          <Icon name="mdi:calendar-check" class="w-4 h-4" />
+          Сроки
+        </button>
+        <a href="tel:+79183500225" class="block px-4 py-3 text-blue-300 hover:text-blue-200 hover:bg-blue-500/10 transition-all rounded-lg text-sm font-semibold flex items-center gap-2">
+          <Icon name="mdi:phone" class="w-4 h-4" />
+          Звонок
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('main-header');
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const scheduleHeaderBtn = document.getElementById('schedule-header-btn');
+  const scheduleMobileBtn = document.getElementById('schedule-mobile-btn');
+
+  // Мобильное меню
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Закрытие мобильного меню при клике на ссылку
+  document.querySelectorAll('#mobile-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+
+  // Scroll для header background
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header.classList.add('bg-black/50', 'backdrop-blur-lg', 'shadow-2xl');
+    } else {
+      header.classList.remove('bg-black/50', 'backdrop-blur-lg', 'shadow-2xl');
+    }
+  });
+
+  // Открытие модала расписания из Header
+  scheduleHeaderBtn?.addEventListener('click', () => {
+    const scheduleModal = document.getElementById('schedule-modal');
+    if (scheduleModal) {
+      scheduleModal.classList.remove('hidden');
+    }
+  });
+
+  // Открытие модала расписания из мобильного меню
+  scheduleMobileBtn?.addEventListener('click', () => {
+    const scheduleModal = document.getElementById('schedule-modal');
+    if (scheduleModal) {
+      scheduleModal.classList.remove('hidden');
+      mobileMenu?.classList.add('hidden');
+    }
+  });
+</script>

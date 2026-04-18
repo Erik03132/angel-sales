@@ -1,0 +1,201 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<!-- Глобальный контейнер для частиц по всей странице -->
+<div id="global-particles-container" class="fixed inset-0 pointer-events-none" style="z-index: 0;"></div>
+
+<script>
+  // Создание анимированных частиц по всей странице
+  function createGlobalParticles() {
+    const container = document.getElementById('global-particles-container');
+    if (!container) return;
+
+    // Очистим контейнер
+    container.innerHTML = '';
+
+    const particleCount = window.innerWidth > 768 ? 60 : 30;
+    
+    // Варианты анимаций
+    const animations = [
+      'float-up',      // Снизу вверх
+      'float-left',    // Справа налево
+      'float-right',   // Слева направо
+      'float-down',    // Сверху вниз
+      'float-diagonal-1', // Диагональ 1
+      'float-diagonal-2'  // Диагональ 2
+    ];
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      const size = Math.random() * 3 + 1;
+      const duration = Math.random() * 20 + 25;
+      const delay = Math.random() * 10;
+      
+      // Рандомная позиция старта
+      const startX = Math.random() * 100;
+      const startY = Math.random() * 100;
+      
+      // Рандомное смещение
+      const xShift = (Math.random() - 0.5) * 300;
+      const yShift = (Math.random() - 0.5) * 300;
+      
+      const opacity = Math.random() * 0.25 + 0.08;
+      
+      // Выбираем рандомную анимацию
+      const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+
+      particle.style.cssText = `
+        position: fixed;
+        width: ${size}px;
+        height: ${size}px;
+        background: radial-gradient(circle, rgba(34, 211, 238, ${opacity}), rgba(6, 182, 212, ${opacity * 0.5}));
+        border-radius: 50%;
+        left: ${startX}%;
+        top: ${startY}%;
+        box-shadow: 0 0 ${size * 2}px rgba(34, 211, 238, ${opacity * 0.8});
+        filter: blur(0.5px);
+        pointer-events: none;
+      `;
+
+      particle.style.setProperty('--tx', `${xShift}px`);
+      particle.style.setProperty('--ty', `${yShift}px`);
+      particle.style.animation = `${randomAnimation} ${duration}s linear ${delay}s infinite`;
+
+      container.appendChild(particle);
+    }
+  }
+
+  // Инициализируем при загрузке
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', createGlobalParticles);
+  } else {
+    createGlobalParticles();
+  }
+
+  // Пересоздаём при изменении размера окна
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      createGlobalParticles();
+    }, 250);
+  });
+</script>
+
+<style>
+  /* Снизу вверх */
+  @keyframes float-up {
+    0% {
+      opacity: 0;
+      transform: translateY(100vh) translateX(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(-100vh) translateX(var(--tx, 0px));
+    }
+  }
+
+  /* Справа налево */
+  @keyframes float-left {
+    0% {
+      opacity: 0;
+      transform: translateX(100vw) translateY(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-100vw) translateY(var(--ty, 0px));
+    }
+  }
+
+  /* Слева направо */
+  @keyframes float-right {
+    0% {
+      opacity: 0;
+      transform: translateX(-100vw) translateY(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100vw) translateY(var(--ty, 0px));
+    }
+  }
+
+  /* Сверху вниз */
+  @keyframes float-down {
+    0% {
+      opacity: 0;
+      transform: translateY(-100vh) translateX(0);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) translateX(var(--tx, 0px));
+    }
+  }
+
+  /* Диагональ 1 - вниз-влево */
+  @keyframes float-diagonal-1 {
+    0% {
+      opacity: 0;
+      transform: translateX(80vw) translateY(-80vh);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-80vw) translateY(80vh);
+    }
+  }
+
+  /* Диагональ 2 - вниз-вправо */
+  @keyframes float-diagonal-2 {
+    0% {
+      opacity: 0;
+      transform: translateX(-80vw) translateY(-80vh);
+    }
+    5% {
+      opacity: 1;
+    }
+    95% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(80vw) translateY(80vh);
+    }
+  }
+
+  #global-particles-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+</style>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IncuBird 2.0: Экосистема Роста</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563EB;
+            --accent: #10B981;
+            --slate-900: #0F172A;
+            --slate-800: #1E293B;
+            --slate-600: #475569;
+            --bg-card: #FFFFFF;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8FAFC;
+            color: var(--slate-900);
+            line-height: 1.6;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid #E2E8F0;
+            padding: 18px 0;
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { text-decoration: none; color: var(--slate-600); font-weight: 500; font-size: 14px; transition: 0.2s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            padding: 180px 0 120px;
+            background: radial-gradient(circle at top right, #3B82F6 0%, #0F172A 100%);
+            color: white;
+            text-align: center;
+        }
+        .hero h1 { font-size: 72px; font-weight: 800; letter-spacing: -4px; margin-bottom: 25px; line-height: 1; }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 24px; color: #94A3B8; max-width: 700px; margin: 0 auto 45px; font-weight: 300; }
+
+        /* Sections */
+        .section { padding: 120px 0; }
+        .detail-row {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 140px;
+        }
+        .detail-row:nth-child(even) { grid-template-columns: 0.9fr 1.1fr; }
+        .detail-row:nth-child(even) .image-block { order: 2; }
+        .detail-row:nth-child(even) .text-block { order: 1; }
+
+        .image-block img {
+            width: 100%;
+            border-radius: 32px;
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .text-block h3 { font-size: 36px; font-weight: 800; margin-bottom: 30px; letter-spacing: -1px; color: var(--slate-900); }
+        .text-block p { font-size: 18px; color: var(--slate-600); margin-bottom: 30px; }
+        
+        /* Fixed List Formatting */
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: grid;
+            grid-template-columns: 32px 160px 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: baseline;
+        }
+        .feature-list li .check { color: var(--accent); font-weight: bold; }
+        .feature-list li strong { color: var(--slate-900); font-weight: 700; white-space: nowrap; }
+        .feature-list li span { color: var(--slate-600); font-size: 15px; }
+
+        /* Roadmap */
+        .roadmap { background: var(--slate-900); color: white; padding: 120px 0; border-radius: 60px 60px 0 0; }
+        .timeline { position: relative; padding: 50px 0; }
+        .timeline-item {
+            padding: 40px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 24px;
+            margin-bottom: 30px;
+            border-left: 6px solid var(--accent);
+            transition: 0.3s;
+        }
+        .timeline-item:hover { background: rgba(255,255,255,0.06); transform: translateX(10px); }
+        .timeline-date { color: var(--accent); font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; display: block; }
+        .timeline-item h4 { font-size: 26px; font-weight: 700; margin-bottom: 15px; }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+        }
+        .btn:hover { transform: scale(1.05); box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.5); }
+
+        footer { text-align: center; padding: 80px 0; color: #94A3B8; font-size: 14px; border-top: 1px solid #1E293B; background: var(--slate-900); }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 48px; }
+            .detail-row { grid-template-columns: 1fr !important; gap: 50px; }
+            .image-block { order: 1 !important; }
+            .text-block { order: 2 !important; }
+            .feature-list li { grid-template-columns: 32px 1fr; }
+            .feature-list li strong { display: block; margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <strong>IncuBird 2.0</strong>
+        <div class="nav-links">
+            <a href="#angelochka">Анжелочка</a>
+            <a href="#avitolog">AI-Авитолог</a>
+            <a href="#website">Сайт 2.0</a>
+            <a href="#roadmap">Дорожная Карта</a>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="container">
+        <h1>Эволюция <span>IncuBird</span></h1>
+        <p>Комплексная стратегия цифрового превосходства. Автоматизация, которая чувствует рынок и бережет ваши ресурсы.</p>
+        <a href="#roadmap" class="btn">Дорожная Карта Внедрения</a>
+    </div>
+</header>
+
+<section class="section" id="angelochka">
+    <div class="container">
+        <div class="detail-row">
+            <div class="image-block">
+                <img src="angelocha.png" alt="Анжелочка">
+            </div>
+            <div class="text-block">
+                <h3>Анжелочка: ИИ-Супервайзер</h3>
+                <p>Бескомпромиссный контроль качества 24/7. Анжелочка следит за тем, чтобы ни один клиент не остался без внимания, а сервис был безупречным.</p>
+                <ul class="feature-list">
+                    <li><div class="check">✓</div><strong>Контроль SLA</strong><span>Мгновенная реакция на заминки менеджеров.</span></li>
+                    <li><div class="check">✓</div><strong>Нейро-Аудит</strong><span>Анализ вежливости и полноты ответов.</span></li>
+                </ul>
+                <a href="angelochka.html" style="color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary); padding-bottom: 5px;">Развернутый обзор «Анжелочки» →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="avitolog" style="background: white;">
+    <div class="container">
+        <div class="detail-row">
+            <div class="text-block">
+                <h3>AI-Авитолог: Центр Управления</h3>
+                <p>Управление 70+ активными объявлениями становится математически точным. Мы инвестируем только в те позиции, которые приносят реальные деньги.</p>
+                <ul class="feature-list">
+                    <li><div class="check">✓</div><strong>A/B Тесты</strong><span>Авто-подбор лучших заголовков и фото.</span></li>
+                    <li><div class="check">✓</div><strong>Unit-аналитика</strong><span>Точная стоимость одного заказа по каждому объявлению.</span></li>
+                </ul>
+                <a href="avitolog.html" style="color: var(--accent); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 5px;">Как мы экономим ваш бюджет →</a>
+            </div>
+            <div class="image-block">
+                <img src="dashboard.png" alt="Авито Аналитика">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="website">
+    <div class="container">
+        <div class="detail-row">
+            <div class="image-block">
+                <img src="rag.png" alt="RAG Система">
+            </div>
+            <div class="text-block">
+                <h3>IncuBird 2.0: Глобальный Хаб</h3>
+                <p>Ваш сайт превращается в "мозг" компании. Здесь аккумулируются все знания, которые делают ваших ИИ-агентов самыми умными менеджерами.</p>
+                <ul class="feature-list">
+                    <li><div class="check">✓</div><strong>Expert RAG</strong><span>Единая база знаний для всех мессенджеров.</span></li>
+                    <li><div class="check">✓</div><strong>AI-SEO Optima</strong><span>Выход в топ ответов голосовых помощников.</span></li>
+                </ul>
+                <a href="website.html" style="color: var(--primary); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--primary); padding-bottom: 5px;">Технический план модернизации →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="roadmap" id="roadmap">
+    <div class="container">
+        <div class="section-header">
+            <h2>Дорожная Карта</h2>
+            <p style="color: #94A3B8;">Прозрачный путь от внедрения до окупаемости.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">Неделя 1-2</span>
+                <h4>Оцифровка и Интеграция</h4>
+                <p>Запуск RAG-хаба. Подключение Avito/VK к Битрикс24. Старт «Анжелочки» в режиме обучения.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Неделя 3-5</span>
+                <h4>Активация AI-Авитолога</h4>
+                <p>Запуск системы авто-тестов на 70 объявлениях. Снижение стоимости лида на 20-30% за счет оптимизации.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">Неделя 6-8</span>
+                <h4>Сайт 2.0 и Масштабирование</h4>
+                <p>Запуск нового SEO-ядра. Подключение VK Mini App. Полная автоматизация рутины в Битрикс24.</p>
+            </div>
+            <div class="timeline-item" style="border-left-color: var(--primary);">
+                <span class="timeline-date">Этап Финансирования</span>
+                <h4>Грантовая Субсидия</h4>
+                <p>Подача заявки в фонд Бортника (Старт-1) на основе успешных показателей работы ИИ в сезон.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2026 AI Grant Consult. Эксклюзивно для компании «Азовский Инкубатор».</p>
+    </div>
+</footer>
+
+</body>
+</html>

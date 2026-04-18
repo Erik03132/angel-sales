@@ -1,0 +1,182 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="hero" class="relative w-full min-h-screen flex items-center pt-20 sm:pt-24 lg:pt-0">
+
+  <div class="w-full">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16 items-center">
+        <!-- Левая колонка (контент премиум) -->
+        <div class="lg:col-span-6 flex flex-col gap-6 sm:gap-8">
+          <!-- Бейдж -->
+          <div class="animate-fade-in-left flex items-center gap-2 w-fit">
+            <div class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-400/50 backdrop-blur-md">
+              <span class="text-xs sm:text-sm font-semibold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent flex items-center gap-2">
+                <span class="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full animate-pulse"></span>
+                <span class="hidden sm:inline">Инкубаторы премиум-класса</span>
+                <span class="sm:hidden">Премиум качество</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- Заголовок с эффектом -->
+          <h1 class="text-3xl sm:text-5xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight animate-fade-in-left animation-delay-300">
+            <span class="block text-white">ВезёмЦыплят</span>
+            <span class="block bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">Здоровый молодняк</span>
+          </h1>
+
+          <!-- Подзаголовок -->
+          <p class="text-base sm:text-lg lg:text-xl font-light text-blue-100/90 leading-relaxed animate-fade-in-left animation-delay-500 max-w-2xl">
+            <span id="rotating-description" class="inline-block font-semibold text-white transition-all duration-700 ease-in-out" style="transform: translateY(0); opacity: 1;">От собственного инкубатора с полным ветеринарным контролем и доставкой по России</span>
+          </p>
+
+          <!-- Телефоны -->
+          <div class="hidden sm:flex flex-col sm:flex-row sm:gap-6 pt-2 sm:pt-4 animate-fade-in-left animation-delay-700 text-sm sm:text-lg lg:text-xl gap-3">
+            <a href="tel:+79183500225" class="flex items-center gap-2 text-blue-200 hover:text-blue-100 transition">
+              <span class="w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></span>
+              <span>+7 (918) 350-02-25</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Правая колонка (картинка + бейджи) - видна на всех экранах -->
+        <div class="col-span-1 lg:col-span-6 flex flex-col items-center justify-start relative">
+          <img 
+            src="/Hero.png" 
+            alt="Молодняк птицы"
+            class="w-full max-w-sm sm:max-w-md lg:max-w-none h-auto object-contain select-none pointer-events-none mb-2 sm:mb-8 translate-y-2 sm:translate-y-6"
+            draggable="false"
+            oncontextmenu="return false"
+          />
+          
+          <!-- Преимущества в виде иконок + текст под картинкой -->
+          <div class="grid grid-cols-3 gap-2 sm:gap-4 w-full px-0 sm:px-4 relative z-10">
+            <div class="group p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-blue-400/50 hover:bg-white/10 transition duration-300 flex flex-col items-center">
+              <Icon name="mdi:shield-check" class="text-2xl sm:text-3xl mb-2 text-blue-400" />
+              <p class="text-xs sm:text-sm font-semibold text-blue-200 text-center">Вакцинация</p>
+              <p class="text-xs text-blue-300/60 mt-1 text-center leading-tight">100% контроль</p>
+            </div>
+            <div class="group p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-cyan-400/50 hover:bg-white/10 transition duration-300 flex flex-col items-center">
+              <Icon name="mdi:truck-fast" class="text-2xl sm:text-3xl mb-2 text-cyan-400" />
+              <p class="text-xs sm:text-sm font-semibold text-cyan-200 text-center">Логистика</p>
+              <p class="text-xs text-cyan-300/60 mt-1 text-center leading-tight">Бесплатная доставка</p>
+            </div>
+            <div class="group p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-md border border-white/10 hover:border-emerald-400/50 hover:bg-white/10 transition duration-300 flex flex-col items-center">
+              <Icon name="mdi:star-circle" class="text-2xl sm:text-3xl mb-2 text-emerald-400" />
+              <p class="text-xs sm:text-sm font-semibold text-emerald-200 text-center">Качество</p>
+              <p class="text-xs text-emerald-300/60 mt-1 text-center leading-tight">Гарантировано</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Нижняя секция: кнопки -->
+      <div class="mt-12 sm:mt-20 lg:mt-24">
+        <!-- CTA блок премиум -->
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:gap-6 justify-center w-full">
+          <a href="#products" class="group relative inline-flex items-center justify-center px-6 sm:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-bold text-base sm:text-lg lg:text-xl text-white overflow-hidden transition duration-300 shadow-lg sm:shadow-xl lg:shadow-2xl shadow-blue-500/50 w-full sm:w-auto">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 transition duration-300 group-hover:opacity-110"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-blue-500 via-cyan-400 to-emerald-400 blur-xl"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+              <Icon name="mdi:store" class="w-5 sm:w-6 h-5 sm:h-6" />
+              <span class="hidden sm:inline">Каталог продукции</span>
+              <span class="sm:hidden">Каталог</span>
+            </span>
+          </a>
+          <a href="tel:+79183500225" class="group relative inline-flex items-center justify-center px-6 sm:px-10 lg:px-12 py-3 sm:py-4 lg:py-5 rounded-lg sm:rounded-xl lg:rounded-2xl font-bold text-base sm:text-lg lg:text-xl text-white overflow-hidden transition duration-300 shadow-lg sm:shadow-xl lg:shadow-2xl shadow-purple-500/50 w-full sm:w-auto">
+            <div class="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-purple-600 transition duration-300 group-hover:opacity-110"></div>
+            <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-purple-500 via-pink-400 to-purple-400 blur-xl"></div>
+            <span class="relative z-10 flex items-center justify-center gap-2 sm:gap-3">
+              <Icon name="mdi:phone" class="w-5 sm:w-6 h-5 sm:h-6" />
+              <span class="hidden sm:inline">Консультация</span>
+              <span class="sm:hidden">Звонок</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator (скрыт на мобильной версии) -->
+  <div class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <a href="#products" class="flex flex-col items-center gap-3 text-blue-300/60 hover:text-blue-300 transition">
+      <span class="text-xs font-semibold tracking-widest">ПРОКРУТИТЬ</span>
+      <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14m0 0l-6-6m6 6l6-6"/></svg>
+    </a>
+  </div>
+</section>
+
+<script>
+  // Параллакс эффект отключен для изображения
+  const heroImg = document.querySelector('#hero img');
+  const heroSection = document.querySelector('#hero');
+  
+  // Удаляем параллакс эффект - изображение остаётся статичным
+  window.addEventListener('scroll', () => {
+    // Параллакс отключен
+  });
+
+  // Анимация смены текста с плавным скольжением вверх
+  const rotatingDesc = document.getElementById('rotating-description');
+  const descriptions = [
+    'Инкубация яйца производится с полным контролем технологического процесса на современном оборудовании.',
+    'Суточные утята скороспелых линий с отличным мясом. Вакцинация, качественный отбор и быстрая доставка',
+    'Гусята крупных пород Линда и Серый великан. Высокий прирост, отличное качество мяса',
+    'Индюшата кроссов Биг-6 для промышленного разведения. Качественный молодняк с гарантией'
+  ];
+  let currentIndex = 0;
+
+  function changeDescription() {
+    // Скольжение вверх с исчезновением
+    rotatingDesc.style.transform = 'translateY(-30px)';
+    rotatingDesc.style.opacity = '0';
+    
+    setTimeout(() => {
+      currentIndex = (currentIndex + 1) % descriptions.length;
+      rotatingDesc.textContent = descriptions[currentIndex];
+      
+      // Появление снизу
+      rotatingDesc.style.transform = 'translateY(30px)';
+      rotatingDesc.style.opacity = '0';
+      
+      // Плавное вверх
+      setTimeout(() => {
+        rotatingDesc.style.transform = 'translateY(0)';
+        rotatingDesc.style.opacity = '1';
+      }, 10);
+    }, 350);
+  }
+
+  // Меняем текст каждые 5 секунд
+  setInterval(changeDescription, 5000);
+</script>
+
+<style>
+  @keyframes fade-in-left { 
+    from { opacity: 0; transform: translateY(20px) translateX(-20px); } 
+    to { opacity: 1; transform: translateY(0) translateX(0); } 
+  }
+  @keyframes fade-in-right { 
+    from { opacity: 0; transform: translateY(20px) translateX(20px); } 
+    to { opacity: 1; transform: translateY(0) translateX(0); } 
+  }
+  @keyframes textFadeIn {
+    0% { opacity: 0; transform: translateY(-10px); }
+    50% { opacity: 0; }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-left { 
+    animation: fade-in-left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; 
+    opacity: 0;
+  }
+  .animate-fade-in-right { 
+    animation: fade-in-right 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; 
+    opacity: 0;
+  }
+  .animation-delay-300 { animation-delay: 0.3s; }
+  .animation-delay-500 { animation-delay: 0.5s; }
+  .animation-delay-700 { animation-delay: 0.7s; }
+  .animation-delay-900 { animation-delay: 0.9s; }
+  .animation-delay-1000 { animation-delay: 1s; }
+</style>

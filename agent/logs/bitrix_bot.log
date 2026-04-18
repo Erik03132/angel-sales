@@ -1,0 +1,4189 @@
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ FAQ cache загружен: 53 записей
+✅ Expert knowledge загружен: 4780 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 1506 символов
+[2026-04-15 12:07:17] 🎭 Ролевая модель загружена: 1 пользователей
+[2026-04-15 12:07:17] 🐣 Анжелочка Bitrix Bot v1.0 запущена!
+[2026-04-15 12:07:17]    PID: 37210
+[2026-04-15 12:07:17]    Bitrix URL: https://incubird.bitrix24.ru/rest/41624/1e3akgqp0k...
+[2026-04-15 12:07:17]    User ID: 41624
+[2026-04-15 12:07:17]    Интервал: 15 сек
+[2026-04-15 12:07:17]    Ядро: angelochka_core.get_answer()
+[2026-04-15 12:07:17]    Непрочитанных нет — чисто!
+[2026-04-15 12:07:17]    Слушаю ТОЛЬКО новые сообщения...
+[2026-04-15 12:07:17] 
+[2026-04-15 12:17:54]    [heartbeat] Цикл #600, processed_cache: 0
+[2026-04-15 12:19:42]    [heartbeat] Цикл #300, processed_cache: 3
+[2026-04-15 12:20:02]    [heartbeat] Цикл #100, processed_cache: 0
+[2026-04-15 12:20:56]    [heartbeat] Цикл #600, processed_cache: 4
+[2026-04-15 12:20:56]    [heartbeat] Цикл #600, processed_cache: 4
+[2026-04-15 12:22:19]    [heartbeat] Цикл #200, processed_cache: 1
+[2026-04-15 12:22:47]    [heartbeat] Цикл #600, processed_cache: 3
+[2026-04-15 12:22:47]    [heartbeat] Цикл #600, processed_cache: 3
+[2026-04-15 12:24:00]    [heartbeat] Цикл #600, processed_cache: 4
+[2026-04-15 12:27:25]    [heartbeat] Цикл #100, processed_cache: 0
+[2026-04-15 12:32:22]    [heartbeat] Цикл #100, processed_cache: 0
+[2026-04-15 12:43:27]    [heartbeat] Цикл #700, processed_cache: 0
+[2026-04-15 12:45:24]    [heartbeat] Цикл #400, processed_cache: 3
+[2026-04-15 12:45:35]    [heartbeat] Цикл #200, processed_cache: 0
+[2026-04-15 12:46:45]    [heartbeat] Цикл #700, processed_cache: 4
+[2026-04-15 12:46:45]    [heartbeat] Цикл #700, processed_cache: 4
+[2026-04-15 12:48:14]    [heartbeat] Цикл #300, processed_cache: 1
+[2026-04-15 12:48:34]    [heartbeat] Цикл #700, processed_cache: 3
+[2026-04-15 12:48:34]    [heartbeat] Цикл #700, processed_cache: 3
+[2026-04-15 12:49:50]    [heartbeat] Цикл #700, processed_cache: 4
+[2026-04-15 12:53:07]    [heartbeat] Цикл #200, processed_cache: 0
+[2026-04-15 12:58:05]    [heartbeat] Цикл #200, processed_cache: 0
+[2026-04-15 13:08:59]    [heartbeat] Цикл #800, processed_cache: 0
+[2026-04-15 13:10:48]    [heartbeat] Цикл #500, processed_cache: 3
+[2026-04-15 13:11:03]    [heartbeat] Цикл #300, processed_cache: 0
+[2026-04-15 13:12:05]    [heartbeat] Цикл #800, processed_cache: 4
+[2026-04-15 13:12:05]    [heartbeat] Цикл #800, processed_cache: 4
+[2026-04-15 13:12:40] 📩 Андрей (ID:1): Привет...
+[2026-04-15 13:12:40] 📩 Андрей (ID:1): Привет...
+[2026-04-15 13:12:40]   ✅ Ответ отправлен (msg #2276062): Привет! Я Анжелочка, менеджер Азовского Инкубатора 🐣 Чем мог...
+[2026-04-15 13:12:40]   ✅ Ответ отправлен (msg #2276062): Привет! Я Анжелочка, менеджер Азовского Инкубатора 🐣 Чем мог...
+[2026-04-15 13:12:40]    Обработано 2 сообщений
+[2026-04-15 13:12:40]    Обработано 2 сообщений
+[2026-04-15 13:13:31]    [heartbeat] Цикл #400, processed_cache: 1
+[2026-04-15 13:13:47] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На какое число есть гусята и цена?...
+[2026-04-15 13:13:49] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На какое число есть гусята и цена?...
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/api_core/_python_version_support.py:242: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+[2026-04-15 13:13:50] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На какое число есть гусята и цена?...
+[2026-04-15 13:13:50] 📩 Андрей (ID:1): На какое число есть гусята и цена?...
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/api_core/_python_version_support.py:242: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+[2026-04-15 13:13:53] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На какое число есть гусята и цена?...
+[2026-04-15 13:13:53] 📩 Андрей (ID:1): На какое число есть гусята и цена?...
+[2026-04-15 13:13:53] 📩 Андрей (ID:1): На какое число есть гусята и цена?...
+[2026-04-15 13:13:53] 📩 Андрей (ID:1): На какое число есть гусята и цена?...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 7.027395081s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 7
+}
+]
+[2026-04-15 13:13:54]   ✅ Ответ отправлен (msg #2276066): Привет! Линдовские гусята сейчас по 230₽. На какое число вас...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 6.849537744s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 6
+}
+]
+[2026-04-15 13:13:54]   ✅ Ответ отправлен (msg #2276068): Андрей, здравствуйте! 🐣
+
+Гусята Линдовские сейчас по 400₽ (о...
+[2026-04-15 13:13:55]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 9.030860855s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 9
+}
+]
+[2026-04-15 13:13:55]   ✅ Ответ отправлен (msg #2276070): Андрей, приветствую! Гусята Линдовские сейчас по 230₽. На ка...
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/api_core/_python_version_support.py:242: FutureWarning: You are using a non-supported Python version (3.9.6). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: You are using a Python version 3.9 past its end of life. Google will update google-auth with critical bug fixes on a best-effort basis, but not with any other fixes or features. Please upgrade your Python version, and then update google-auth.
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+[2026-04-15 13:13:55]    Обработано 2 сообщений
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 9.486618822s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 9
+}
+]
+[2026-04-15 13:13:55]   ✅ Ответ отправлен (msg #2276072): Андрей, актуальную цену на гусят и их наличие вы можете посм...
+[2026-04-15 13:13:56]    [heartbeat] Цикл #800, processed_cache: 4
+[2026-04-15 13:13:56]    [heartbeat] Цикл #800, processed_cache: 4
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 3.679429241s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2026-04-15 13:13:58]   ✅ Ответ отправлен (msg #2276074): Гусята Линда по 230₽ есть на каждый понедельник и четверг. Н...
+[2026-04-15 13:13:58]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 3.752310191s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2026-04-15 13:13:58]   ✅ Ответ отправлен (msg #2276076): Гусята Линда сейчас по 230₽. Хотите взять? 🐣
+
+Кстати, а в ка...
+[2026-04-15 13:13:58]   ✅ Ответ отправлен (msg #2276076): Гусята Линда сейчас по 230₽. Хотите взять? 🐣
+
+Кстати, а в ка...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 2.949516378s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 2
+}
+]
+[2026-04-15 13:13:58]   ✅ Ответ отправлен (msg #2276078): Андрей, здравствуйте! 
+
+Гусята Линдовские сейчас по 400₽ (ес...
+[2026-04-15 13:13:58]    Обработано 2 сообщений
+[2026-04-15 13:13:58]    Обработано 2 сообщений
+✅ Прокси настроен: socks5://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469
+[2026-04-15 13:14:01]    Обработано 2 сообщений
+✅ Прокси настроен: socks5://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469
+[2026-04-15 13:14:01]    Обработано 2 сообщений
+✅ Прокси настроен: socks5://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469
+[2026-04-15 13:14:03]    Обработано 2 сообщений
+[2026-04-15 13:15:14]    [heartbeat] Цикл #800, processed_cache: 5
+[2026-04-15 13:16:44] 📩 Андрей (ID:1): На маи месяц есть?...
+[2026-04-15 13:16:44] 📩 Андрей (ID:1): На маи месяц есть?...
+[2026-04-15 13:16:45] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На маи месяц есть?...
+[2026-04-15 13:16:46] 📩 Андрей (ID:1): На маи месяц есть?...
+[2026-04-15 13:16:47] 📩 Андрей (ID:1): На маи месяц есть?...
+[2026-04-15 13:16:47] 📩 Андрей (ID:1): На маи месяц есть?...
+[2026-04-15 13:16:48] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На маи месяц есть?...
+[2026-04-15 13:16:48] 📩 Андрей (ID:1, роль: Владелец / Руководитель): На маи месяц есть?...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 12.897493796s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 12
+}
+]
+[2026-04-15 13:16:49]   ✅ Ответ отправлен (msg #2276086): На май гусята Линда точно будут! 🐣 Это наша самая популярная...
+[2026-04-15 13:16:49]   ✅ Ответ отправлен (msg #2276086): На май гусята Линда точно будут! 🐣 Это наша самая популярная...
+[2026-04-15 13:16:49]    Обработано 2 сообщений
+[2026-04-15 13:16:49]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 11.444965348s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 11
+}
+]
+[2026-04-15 13:16:50]   ✅ Ответ отправлен (msg #2276088): Андрей, добрый день!
+
+Да, гусята Линдовские есть. Цена сейча...
+[2026-04-15 13:16:50]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 11.11257997s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 11
+}
+]
+[2026-04-15 13:16:50]   ✅ Ответ отправлен (msg #2276090): Гусята Линда есть каждый понедельник и четверг. На какой име...
+[2026-04-15 13:16:50]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 10.418823586s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 10
+}
+]
+[2026-04-15 13:16:51]   ✅ Ответ отправлен (msg #2276092): Привет! 🐣
+
+Уточню сейчас у наших птицеводов по гусятам на ма...
+[2026-04-15 13:16:51]   ✅ Ответ отправлен (msg #2276092): Привет! 🐣
+
+Уточню сейчас у наших птицеводов по гусятам на ма...
+[2026-04-15 13:16:51]    Обработано 2 сообщений
+[2026-04-15 13:16:51]    Обработано 2 сообщений
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 10.543251325s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 10
+}
+]
+[2026-04-15 13:16:52]   ✅ Ответ отправлен (msg #2276094): Андрей, актуальную цену на гусят и их наличие вы можете посм...
+[2026-04-15 13:16:52]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 8.831773638s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 8
+}
+]
+[2026-04-15 13:16:53]   ✅ Ответ отправлен (msg #2276096): Андрей, да, конечно, на май гусята Линдовские доступны по 40...
+[2026-04-15 13:16:53]    Обработано 2 сообщений
+[2026-04-15 13:17:23] 📩 Андрей (ID:1, роль: Владелец / Руководитель): 🤦‍♂️...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 33.267554227s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 33
+}
+]
+[2026-04-15 13:17:27]   ✅ Ответ отправлен (msg #2276102): Андрей, здравствуйте! 🐣
+
+Да, конечно, на май гусята Линдовск...
+[2026-04-15 13:17:28] 📩 Андрей (ID:1): 🤦‍♂️...
+[2026-04-15 13:17:28]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 31.278943827s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 31
+}
+]
+[2026-04-15 13:17:30]   ✅ Ответ отправлен (msg #2276104): Линдовские - 230₽. 🐣 На какое число вас записать в график вы...
+[2026-04-15 13:17:30]    Обработано 2 сообщений
+[2026-04-15 13:18:36]    [heartbeat] Цикл #300, processed_cache: 1
+[2026-04-15 13:22:40] 📩 Андрей (ID:1): 50 штук...
+[2026-04-15 13:22:41] 📩 Андрей (ID:1): 50 штук...
+[2026-04-15 13:22:41] 📩 Андрей (ID:1): 50 штук...
+[2026-04-15 13:22:41] 📩 Андрей (ID:1, роль: Владелец / Руководитель): 50 штук...
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 18.090127182s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 18
+}
+]
+[2026-04-15 13:22:43]   ✅ Ответ отправлен (msg #2276114): Андрей, на май месяц наличие гусят есть. Это для клиента?
+...
+[2026-04-15 13:22:43]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 16.619485672s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 16
+}
+]
+[2026-04-15 13:22:45]   ✅ Ответ отправлен (msg #2276116): Отлично, 50 гусят Линда на май — записываю! 🐣
+
+И чтобы я сра...
+[2026-04-15 13:22:45]   ✅ Ответ отправлен (msg #2276116): Отлично, 50 гусят Линда на май — записываю! 🐣
+
+И чтобы я сра...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 16.864083861s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 16
+}
+]
+[2026-04-15 13:22:45]   ✅ Ответ отправлен (msg #2276118): Отлично! 50 гусят Линда на май месяц – записываю 🐣 На какой ...
+[2026-04-15 13:22:45]    Обработано 2 сообщений
+[2026-04-15 13:22:45]    Обработано 2 сообщений
+[2026-04-15 13:22:45]    Обработано 2 сообщений
+[2026-04-15 13:23:44]    [heartbeat] Цикл #300, processed_cache: 3
+[2026-04-15 13:34:18]    [heartbeat] Цикл #900, processed_cache: 0
+[2026-04-15 13:36:13]    [heartbeat] Цикл #600, processed_cache: 5
+[2026-04-15 13:36:40]    [heartbeat] Цикл #400, processed_cache: 3
+[2026-04-15 13:37:40]    [heartbeat] Цикл #900, processed_cache: 7
+[2026-04-15 13:37:40]    [heartbeat] Цикл #900, processed_cache: 7
+[2026-04-15 13:39:04]    [heartbeat] Цикл #500, processed_cache: 3
+[2026-04-15 13:39:19]    [heartbeat] Цикл #900, processed_cache: 5
+[2026-04-15 13:39:19]    [heartbeat] Цикл #900, processed_cache: 5
+[2026-04-15 13:40:42]    [heartbeat] Цикл #900, processed_cache: 7
+[2026-04-15 13:43:52]    [heartbeat] Цикл #400, processed_cache: 1
+[2026-04-15 13:49:08]    [heartbeat] Цикл #400, processed_cache: 3
+[2026-04-15 13:59:38]    [heartbeat] Цикл #1000, processed_cache: 0
+[2026-04-15 14:01:29]    [heartbeat] Цикл #700, processed_cache: 5
+[2026-04-15 14:01:58]    [heartbeat] Цикл #500, processed_cache: 3
+[2026-04-15 14:02:59]    [heartbeat] Цикл #1000, processed_cache: 7
+[2026-04-15 14:02:59]    [heartbeat] Цикл #1000, processed_cache: 7
+[2026-04-15 14:04:23]    [heartbeat] Цикл #600, processed_cache: 3
+[2026-04-15 14:04:35]    [heartbeat] Цикл #1000, processed_cache: 5
+[2026-04-15 14:04:35]    [heartbeat] Цикл #1000, processed_cache: 5
+[2026-04-15 14:06:05]    [heartbeat] Цикл #1000, processed_cache: 7
+[2026-04-15 14:09:09]    [heartbeat] Цикл #500, processed_cache: 1
+[2026-04-15 14:14:33]    [heartbeat] Цикл #500, processed_cache: 3
+[2026-04-15 14:25:03]    [heartbeat] Цикл #1100, processed_cache: 0
+[2026-04-15 14:26:54]    [heartbeat] Цикл #800, processed_cache: 5
+[2026-04-15 14:27:25]    [heartbeat] Цикл #600, processed_cache: 3
+[2026-04-15 14:28:19]    [heartbeat] Цикл #1100, processed_cache: 7
+[2026-04-15 14:28:19]    [heartbeat] Цикл #1100, processed_cache: 7
+[2026-04-15 14:29:43]    [heartbeat] Цикл #700, processed_cache: 3
+[2026-04-15 14:29:59]    [heartbeat] Цикл #1100, processed_cache: 5
+[2026-04-15 14:29:59]    [heartbeat] Цикл #1100, processed_cache: 5
+[2026-04-15 14:31:29]    [heartbeat] Цикл #1100, processed_cache: 7
+[2026-04-15 14:34:36]    [heartbeat] Цикл #600, processed_cache: 1
+[2026-04-15 14:39:52]    [heartbeat] Цикл #600, processed_cache: 3
+[2026-04-15 14:48:52] 📩 Андрей (ID:1): Давай уберем корма от нее , аптечки. У нее каша в мозгах, она не знает последова...
+[2026-04-15 14:48:52] 📩 Андрей (ID:1): Давай уберем корма от нее , аптечки. У нее каша в мозгах, она не знает последова...
+[2026-04-15 14:48:52]   ✅ Ответ отправлен (msg #2276366): Комбикорм Purina 25кг: Старт 990₽, Рост 950₽, Финиш 890₽. En...
+[2026-04-15 14:48:52]   ✅ Ответ отправлен (msg #2276366): Комбикорм Purina 25кг: Старт 990₽, Рост 950₽, Финиш 890₽. En...
+[2026-04-15 14:48:53] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Давай уберем корма от нее , аптечки. У нее каша в мозгах, она не знает последова...
+[2026-04-15 14:48:53] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Давай уберем корма от нее , аптечки. У нее каша в мозгах, она не знает последова...
+[2026-04-15 14:48:54]   ✅ Ответ отправлен (msg #2276368): Комбикорм Purina 25кг: Старт 990₽, Рост 950₽, Финиш 890₽. En...
+[2026-04-15 14:48:54]   ✅ Ответ отправлен (msg #2276370): Комбикорм Purina 25кг: Старт 990₽, Рост 950₽, Финиш 890₽. En...
+[2026-04-15 14:48:54]    Обработано 2 сообщений
+[2026-04-15 14:48:54]    Обработано 2 сообщений
+[2026-04-15 14:48:56]    Обработано 2 сообщений
+[2026-04-15 14:49:00]    Обработано 2 сообщений
+[2026-04-15 14:49:16] 📩 Андрей (ID:1): Может пусть послушает голосовые менеджеров?...
+[2026-04-15 14:49:16] 📩 Андрей (ID:1): Может пусть послушает голосовые менеджеров?...
+[2026-04-15 14:49:16] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Может пусть послушает голосовые менеджеров?...
+[2026-04-15 14:49:16] 📩 Андрей (ID:1): Может пусть послушает голосовые менеджеров?...
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 41.329045194s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 41
+}
+]
+[2026-04-15 14:49:23]   ✅ Ответ отправлен (msg #2276378): Андрей, понял вас. Сейчас поищу примеры голосовых менеджеров...
+[2026-04-15 14:49:28]    Обработано 1 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 30.924347397s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 30
+}
+]
+[2026-04-15 14:49:32]   ✅ Ответ отправлен (msg #2276380): Не-не, я лучше текстом. Так быстрее информацию найду и сразу...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 32.431984305s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 32
+}
+]
+[2026-04-15 14:49:33]   ✅ Ответ отправлен (msg #2276382): Поняла, больше никакой отсебятины! 🫡 Буду говорить только по...
+[2026-04-15 14:49:33]   ✅ Ответ отправлен (msg #2276382): Поняла, больше никакой отсебятины! 🫡 Буду говорить только по...
+[2026-04-15 14:49:34]    Обработано 2 сообщений
+[2026-04-15 14:49:35]    Обработано 2 сообщений
+[2026-04-15 14:49:35]    Обработано 2 сообщений
+[2026-04-15 14:50:59]    [heartbeat] Цикл #1200, processed_cache: 0
+[2026-04-15 14:52:30] 📩 Андрей (ID:1): Если клиент действующий мы прекрасно понимаем откуда он. Он хочет понять на каки...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 13.768998995s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 13
+}
+]
+[2026-04-15 14:52:53]   ✅ Ответ отправлен (msg #2276412): По гусятам сейчас так: Линдовские есть на 19, 23 и 27 апреля...
+[2026-04-15 14:52:59]    Обработано 2 сообщений
+[2026-04-15 14:53:15] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+[2026-04-15 14:53:17] 📩 Андрей (ID:1): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+[2026-04-15 14:53:17] 📩 Андрей (ID:1): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+[2026-04-15 14:53:17] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+[2026-04-15 14:53:20] 📩 Андрей (ID:1): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+[2026-04-15 14:53:20] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Даты со свободной к продаже цыпленка ей нужно как-то разместить, чтобы было поня...
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 32.681483516s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 32
+}
+]
+[2026-04-15 14:53:33]   ✅ Ответ отправлен (msg #2276418): Андрей, понял задачу.
+
+Судя по вашему запросу, вас интересуе...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 29.940048209s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 29
+}
+]
+[2026-04-15 14:53:34]   ✅ Ответ отправлен (msg #2276420): Всё поняла, теперь буду действовать четко по инструкции! Спа...
+[2026-04-15 14:53:34]   ✅ Ответ отправлен (msg #2276420): Всё поняла, теперь буду действовать четко по инструкции! Спа...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 29.541177766s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 29
+}
+]
+[2026-04-15 14:53:34]   ✅ Ответ отправлен (msg #2276422): Андрей, тут несколько вариантов есть:
+
+1.  **Google Таблицы/...
+[2026-04-15 14:53:36]    Обработано 2 сообщений
+[2026-04-15 14:53:36]    Обработано 2 сообщений
+[2026-04-15 14:53:36]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 30.199427128s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 30
+}
+]
+[2026-04-15 14:53:36]   ✅ Ответ отправлен (msg #2276424): Хорошо, 50 гусят Линда на май месяц. Чтобы забронировать, ну...
+[2026-04-15 14:53:37]    Обработано 1 сообщений
+[2026-04-15 14:53:38]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 27.132551686s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 27
+}
+]
+[2026-04-15 14:53:39]   ✅ Ответ отправлен (msg #2276426): Андрей, добрый день!
+
+Понимаю, нужно упорядочить информацию ...
+[2026-04-15 14:53:43]    Обработано 1 сообщений
+[2026-04-15 14:54:17]    Обработано 2 сообщений
+[2026-04-15 14:54:17]    [heartbeat] Цикл #900, processed_cache: 7
+[2026-04-15 14:54:18]    Обработано 1 сообщений
+[2026-04-15 14:54:19]    Обработано 1 сообщений
+[2026-04-15 14:54:19]    Обработано 1 сообщений
+[2026-04-15 14:54:35]    [heartbeat] Цикл #700, processed_cache: 5
+[2026-04-15 14:56:06]    [heartbeat] Цикл #1200, processed_cache: 10
+[2026-04-15 14:56:06]    [heartbeat] Цикл #1200, processed_cache: 10
+[2026-04-15 14:56:39]    [heartbeat] Цикл #800, processed_cache: 4
+[2026-04-15 14:56:58]    [heartbeat] Цикл #1200, processed_cache: 5
+[2026-04-15 14:56:58]    [heartbeat] Цикл #1200, processed_cache: 5
+[2026-04-15 14:58:54]    [heartbeat] Цикл #1200, processed_cache: 8
+[2026-04-15 15:02:35]    [heartbeat] Цикл #700, processed_cache: 2
+[2026-04-15 15:06:33] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Или послушала и закипела...
+[2026-04-15 15:06:33] 📩 Андрей (ID:1): Или послушала и закипела...
+[2026-04-15 15:06:33] 📩 Андрей (ID:1): Или послушала и закипела...
+[2026-04-15 15:06:35] 📩 Андрей (ID:1): Или послушала и закипела...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 22.955457956s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 22
+}
+]
+[2026-04-15 15:06:38]   ✅ Ответ отправлен (msg #2276540): Андрей, понял вас. Сейчас стараюсь четче отвечать. Какие пор...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 23.029247038s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 23
+}
+]
+[2026-04-15 15:06:38]   ✅ Ответ отправлен (msg #2276542): Понимаю! 😅 Главное — результат.
+
+Итак, вы хотите 50 гусят Ли...
+[2026-04-15 15:06:38]   ✅ Ответ отправлен (msg #2276542): Понимаю! 😅 Главное — результат.
+
+Итак, вы хотите 50 гусят Ли...
+[2026-04-15 15:06:39] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Мне кажется она недостаточно послушала их...
+[2026-04-15 15:06:39] 📩 Андрей (ID:1): Мне кажется она недостаточно послушала их...
+[2026-04-15 15:06:39] 📩 Андрей (ID:1): Мне кажется она недостаточно послушала их...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 22.432737486s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 22
+}
+]
+[2026-04-15 15:06:39]   ✅ Ответ отправлен (msg #2276544): Поняла! 😊 Смотрите, Линдовские гусята есть на 19, 23 и 27 ап...
+[2026-04-15 15:06:40]    Обработано 1 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 18.889296357s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 18
+}
+]
+[2026-04-15 15:06:43]   ✅ Ответ отправлен (msg #2276550): Андрей, да, вижу, есть над чем поработать. Сейчас попробую у...
+[2026-04-15 15:06:43]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 18.63633099s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 18
+}
+]
+[2026-04-15 15:06:44]   ✅ Ответ отправлен (msg #2276552): Поняла, исправляюсь!
+
+Итак, 50 гусят Линда на май — это отли...
+[2026-04-15 15:06:44]   ✅ Ответ отправлен (msg #2276552): Поняла, исправляюсь!
+
+Итак, 50 гусят Линда на май — это отли...
+[2026-04-15 15:06:44]    Обработано 2 сообщений
+[2026-04-15 15:06:44]    Обработано 2 сообщений
+[2026-04-15 15:08:11] 📩 Андрей (ID:1): Вызываем папу🤣...
+[2026-04-15 15:08:14] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Вызываем папу🤣...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 46.535818963s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 46
+}
+]
+[2026-04-15 15:08:15]   ✅ Ответ отправлен (msg #2276564): Поняла вас! 😊 Значит, гусята Линдовские на 19, 23 и 27 апрел...
+[2026-04-15 15:08:15]    Обработано 2 сообщений
+[2026-04-15 15:08:16] 📩 Андрей (ID:1): Вызываем папу🤣...
+[2026-04-15 15:08:16] 📩 Андрей (ID:1): Вызываем папу🤣...
+[2026-04-15 15:08:16]    [heartbeat] Цикл #700, processed_cache: 5
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 42.746450341s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 42
+}
+]
+[2026-04-15 15:08:18]   ✅ Ответ отправлен (msg #2276566): Андрей, вызываем папу - это к птицеводам, чтобы уточнили инф...
+[2026-04-15 15:08:18]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 42.131514803s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 42
+}
+]
+[2026-04-15 15:08:19]   ✅ Ответ отправлен (msg #2276568): А, гусят ждёте? 🐣 Отлично!
+
+Чтобы забронировать 50 Линда на ...
+[2026-04-15 15:08:19]   ✅ Ответ отправлен (msg #2276568): А, гусят ждёте? 🐣 Отлично!
+
+Чтобы забронировать 50 Линда на ...
+[2026-04-15 15:08:19]    Обработано 2 сообщений
+[2026-04-15 15:08:19]    Обработано 2 сообщений
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ FAQ cache загружен: 53 записей
+✅ Expert knowledge загружен: 4780 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 1506 символов
+[2026-04-15 15:08:46] 🎭 Ролевая модель загружена: 1 пользователей
+[2026-04-15 15:14:59] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:14:59] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1): Ей нужны остатки и даты с ценами. В битриксе их нет...
+[2026-04-15 15:15:00] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Ей нужны остатки и даты с ценами. В битриксе их нет...
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 58.316058209s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 58
+}
+]
+[2026-04-15 15:15:04]   ✅ Ответ отправлен (msg #2276608): Понял вас, Андрей.
+
+К сожалению, я не имею доступа к данным ...
+[2026-04-15 15:15:04]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 55.928748157s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:06]   ✅ Ответ отправлен (msg #2276610): Андрей, понял вас. Чтобы не перегружать Анжелочку лишней инф...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 55.679455166s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:06]   ✅ Ответ отправлен (msg #2276612): А, вот оно что! 😊 Я уточню у наших птицеводов информацию по ...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 55.278401606s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:06]   ✅ Ответ отправлен (msg #2276614): Поняла, сейчас все узнаю! 🐣
+
+Одну минутку, запрошу информаци...
+[2026-04-15 15:15:06]   ✅ Ответ отправлен (msg #2276614): Поняла, сейчас все узнаю! 🐣
+
+Одну минутку, запрошу информаци...
+[2026-04-15 15:15:06]    Обработано 1 сообщений
+[2026-04-15 15:15:06]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 55.783009563s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:06]   ✅ Ответ отправлен (msg #2276616): Андрей, понял вас! Да, с Битриксом не всегда удобно.
+
+В каче...
+[2026-04-15 15:15:06]    Обработано 1 сообщений
+[2026-04-15 15:15:06]    Обработано 1 сообщений
+[2026-04-15 15:15:06]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 55.525889023s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:07]   ✅ Ответ отправлен (msg #2276618): Поняла, сейчас сформирую ответ в стиле Анжелочки.
+
+"Интересу...
+[2026-04-15 15:15:07]   ✅ Ответ отправлен (msg #2276618): Поняла, сейчас сформирую ответ в стиле Анжелочки.
+
+"Интересу...
+[2026-04-15 15:15:07]    Обработано 2 сообщений
+[2026-04-15 15:15:07]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 55.131739006s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:07]   ✅ Ответ отправлен (msg #2276620): Понимаю, Анжелочка здесь! 😉
+
+Смотрите, у меня есть гусята Ли...
+[2026-04-15 15:15:08]    Обработано 1 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 55.444193247s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 55
+}
+]
+[2026-04-15 15:15:08]   ✅ Ответ отправлен (msg #2276622): Андрей, понимаю. Сейчас дам ей актуальную информацию по оста...
+[2026-04-15 15:15:09]    Обработано 1 сообщений
+[2026-04-15 15:17:07] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:08] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:08] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:08] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:08] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:08] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:09] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:09] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+[2026-04-15 15:17:09] 📩 Андрей (ID:1): Тут наверно какая-то информация у устаревшая и даже цены не попадает она...
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 52.029774807s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 52
+}
+]
+[2026-04-15 15:17:10]   ✅ Ответ отправлен (msg #2276640): Андрей, понял вас. Действительно, в базе знаний есть информа...
+[2026-04-15 15:17:10]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 49.069224827s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 49
+}
+]
+[2026-04-15 15:17:12]   ✅ Ответ отправлен (msg #2276642): Андрей, вы правы, нужно всё актуализировать! 
+
+Сейчас уточню...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 49.091917183s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 49
+}
+]
+[2026-04-15 15:17:12]   ✅ Ответ отправлен (msg #2276644): Андрей, вижу, есть проблемы с актуальностью данных. Сейчас б...
+[2026-04-15 15:17:12]    Обработано 2 сообщений
+[2026-04-15 15:17:12]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 49.015223502s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 49
+}
+]
+[2026-04-15 15:17:13]   ✅ Ответ отправлен (msg #2276646): Ой, правда! 👀 Вижу, цены немного пляшут.
+
+Сейчас всё уточню ...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 48.415265052s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 48
+}
+]
+[2026-04-15 15:17:13]   ✅ Ответ отправлен (msg #2276648): Поняла, простите за дезинформацию! 🐣 Сейчас все уточню у наш...
+[2026-04-15 15:17:13]   ✅ Ответ отправлен (msg #2276648): Поняла, простите за дезинформацию! 🐣 Сейчас все уточню у наш...
+[2026-04-15 15:17:13]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 48.951463367s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 48
+}
+]
+[2026-04-15 15:17:13]   ✅ Ответ отправлен (msg #2276650): Ай-яй-яй, вижу, что-то тут напутано с ценами. 🤦‍♀️ Да, в Бит...
+[2026-04-15 15:17:13]    Обработано 2 сообщений
+[2026-04-15 15:17:13]    Обработано 2 сообщений
+[2026-04-15 15:17:13]   ✅ Ответ отправлен (msg #2276650): Ай-яй-яй, вижу, что-то тут напутано с ценами. 🤦‍♀️ Да, в Бит...
+[2026-04-15 15:17:13]    Обработано 2 сообщений
+[2026-04-15 15:17:13]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 48.260649883s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 48
+}
+]
+[2026-04-15 15:17:14]   ✅ Ответ отправлен (msg #2276652): Анжелочка здесь! 😉 Да, вы правы. С Bitrix24 не всегда гладко...
+[2026-04-15 15:17:14]    Обработано 2 сообщений
+[2026-04-15 15:17:47]    [heartbeat] Цикл #1300, processed_cache: 0
+[2026-04-15 15:21:15]    [heartbeat] Цикл #800, processed_cache: 6
+[2026-04-15 15:21:20]    [heartbeat] Цикл #1000, processed_cache: 11
+[2026-04-15 15:22:47]    [heartbeat] Цикл #1300, processed_cache: 15
+[2026-04-15 15:22:47]    [heartbeat] Цикл #1300, processed_cache: 15
+[2026-04-15 15:23:16]    [heartbeat] Цикл #900, processed_cache: 9
+[2026-04-15 15:23:17]    [heartbeat] Цикл #1300, processed_cache: 7
+[2026-04-15 15:23:17]    [heartbeat] Цикл #1300, processed_cache: 7
+[2026-04-15 15:25:05]    [heartbeat] Цикл #1300, processed_cache: 10
+[2026-04-15 15:28:21]    [heartbeat] Цикл #800, processed_cache: 4
+[2026-04-15 15:33:57]    [heartbeat] Цикл #800, processed_cache: 7
+[2026-04-15 15:43:04]    [heartbeat] Цикл #1400, processed_cache: 0
+[2026-04-15 15:45:01]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NewConnectionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to establish a new connection: [Errno 65] No route to host"))
+[2026-04-15 15:45:25]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:45:25]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:45:25]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:45:25]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:45:57]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:45:57]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:46:59]    [heartbeat] Цикл #900, processed_cache: 6
+[2026-04-15 15:46:59]    [heartbeat] Цикл #1100, processed_cache: 11
+[2026-04-15 15:48:17]    [heartbeat] Цикл #1400, processed_cache: 15
+[2026-04-15 15:48:17]    [heartbeat] Цикл #1400, processed_cache: 15
+[2026-04-15 15:48:40]    [heartbeat] Цикл #1000, processed_cache: 9
+[2026-04-15 15:49:03]    [heartbeat] Цикл #1400, processed_cache: 7
+[2026-04-15 15:49:03]    [heartbeat] Цикл #1400, processed_cache: 7
+[2026-04-15 15:50:38]    [heartbeat] Цикл #1400, processed_cache: 10
+[2026-04-15 15:51:56]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:51:56]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:54:16]    [heartbeat] Цикл #900, processed_cache: 4
+[2026-04-15 15:54:16]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:55:20]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 15:59:44]    [heartbeat] Цикл #900, processed_cache: 7
+[2026-04-15 16:01:32]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:03:52]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:05:10]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:05:10]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:11:15]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x106845370>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:16]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1149dcf70>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:16]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1149dcf70>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:17]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1148fb580>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:19]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x114db0be0>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:20]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x11364fdf0>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:21]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1128e9df0>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:21]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1128e9df0>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:21]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x1143d48e0>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:21]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x113153d60>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:11:24]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by ConnectTimeoutError(<HTTPSConnection(host='incubird.bitrix24.ru', port=443) at 0x115220040>, 'Connection to incubird.bitrix24.ru timed out. (connect timeout=15)'))
+[2026-04-15 16:12:01]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:02]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:02]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:02]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:04]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:05]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:06]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:06]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:06]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:06]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:09]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Max retries exceeded with url: /rest/41624/1e3akgqp0kcjsf7b/im.counters.get (Caused by NameResolutionError("HTTPSConnection(host='incubird.bitrix24.ru', port=443): Failed to resolve 'incubird.bitrix24.ru' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:12:53]   API error: HTTPSConnectionPool(host='incubird.bitrix24.ru', port=443): Read timed out. (read timeout=15)
+[2026-04-15 16:13:55]    [heartbeat] Цикл #1500, processed_cache: 0
+[2026-04-15 16:17:26]    [heartbeat] Цикл #1200, processed_cache: 11
+[2026-04-15 16:17:27]    [heartbeat] Цикл #1000, processed_cache: 6
+[2026-04-15 16:18:27]    [heartbeat] Цикл #1500, processed_cache: 15
+[2026-04-15 16:18:27]    [heartbeat] Цикл #1500, processed_cache: 15
+[2026-04-15 16:18:43]    [heartbeat] Цикл #1100, processed_cache: 9
+[2026-04-15 16:19:29]    [heartbeat] Цикл #1500, processed_cache: 7
+[2026-04-15 16:19:29]    [heartbeat] Цикл #1500, processed_cache: 7
+[2026-04-15 16:20:59]    [heartbeat] Цикл #1500, processed_cache: 10
+[2026-04-15 16:24:32]    [heartbeat] Цикл #1000, processed_cache: 4
+[2026-04-15 16:29:38]    [heartbeat] Цикл #1000, processed_cache: 7
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1, роль: Владелец / Руководитель): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1, роль: Владелец / Руководитель): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+[2026-04-15 16:38:13] 📩 Андрей (ID:1): 👍...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 45.448812185s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2026-04-15 16:38:16]   ✅ Ответ отправлен (msg #2276978): Отлично! 👍 Какой вопрос у вас сегодня? Готова помочь!...
+[2026-04-15 16:38:16]   ✅ Ответ отправлен (msg #2276978): Отлично! 👍 Какой вопрос у вас сегодня? Готова помочь!...
+[2026-04-15 16:38:16]    Обработано 2 сообщений
+[2026-04-15 16:38:16]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 45.263300358s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2026-04-15 16:38:16]   ✅ Ответ отправлен (msg #2276980): С ценами и остатками сейчас разберемся! 😉
+
+И чтобы не терять...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 45.353155878s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2026-04-15 16:38:16]   ✅ Ответ отправлен (msg #2276982): Отлично! Гусята Линда по 230₽. Чтобы я узнала точное наличие...
+[2026-04-15 16:38:17]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 45.24825787s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 45
+}
+]
+[2026-04-15 16:38:17]   ✅ Ответ отправлен (msg #2276984): Поняла. Раз 👍, значит, всё норм. 😉
+
+Тогда, чтобы забронирова...
+[2026-04-15 16:38:17]   ✅ Ответ отправлен (msg #2276984): Поняла. Раз 👍, значит, всё норм. 😉
+
+Тогда, чтобы забронирова...
+[2026-04-15 16:38:17]    Обработано 2 сообщений
+[2026-04-15 16:38:17]    Обработано 2 сообщений
+[2026-04-15 16:38:17]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 41.593116243s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 41
+}
+]
+[2026-04-15 16:38:19]   ✅ Ответ отправлен (msg #2276986): Андрей, вижу 👍. Нужно что-то еще? Может, аналитику по продаж...
+[2026-04-15 16:38:20]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 41.934590418s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 41
+}
+]
+[2026-04-15 16:38:20]   ✅ Ответ отправлен (msg #2276988): Андрей, рад, что всё устраивает! 😉
+
+Есть ещё какие-то вопрос...
+[2026-04-15 16:38:20]    Обработано 2 сообщений
+[2026-04-15 16:39:18]    [heartbeat] Цикл #1600, processed_cache: 0
+[2026-04-15 16:42:50]    [heartbeat] Цикл #1300, processed_cache: 12
+[2026-04-15 16:42:54]    [heartbeat] Цикл #1100, processed_cache: 7
+[2026-04-15 16:43:51]    [heartbeat] Цикл #1600, processed_cache: 16
+[2026-04-15 16:43:51]    [heartbeat] Цикл #1600, processed_cache: 16
+[2026-04-15 16:44:07]    [heartbeat] Цикл #1200, processed_cache: 9
+[2026-04-15 16:44:50]    [heartbeat] Цикл #1600, processed_cache: 8
+[2026-04-15 16:44:50]    [heartbeat] Цикл #1600, processed_cache: 8
+[2026-04-15 16:46:23]    [heartbeat] Цикл #1600, processed_cache: 11
+[2026-04-15 16:49:58]    [heartbeat] Цикл #1100, processed_cache: 5
+[2026-04-15 16:54:58]    [heartbeat] Цикл #1100, processed_cache: 7
+[2026-04-15 17:04:34]    [heartbeat] Цикл #1700, processed_cache: 0
+[2026-04-15 17:08:06]    [heartbeat] Цикл #1400, processed_cache: 12
+[2026-04-15 17:08:10]    [heartbeat] Цикл #1200, processed_cache: 7
+[2026-04-15 17:08:26] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Типо МТС и прочее...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 30.070469167s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 30
+}
+]
+[2026-04-15 17:08:32]   ✅ Ответ отправлен (msg #2277056): Андрей, приветствую! 🤝
+
+Понимаю, вы хотите, чтобы менеджеры ...
+[2026-04-15 17:08:32] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Меня если честно бесит общаться с ИИ. Если вопрос возникает 🤦‍♂️...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 24.902160501s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 24
+}
+]
+[2026-04-15 17:08:36]   ✅ Ответ отправлен (msg #2277058): Андрей, понимаю вас. Извините, если доставил неудобства. Ста...
+[2026-04-15 17:08:36]    Обработано 2 сообщений
+[2026-04-15 17:09:08]    [heartbeat] Цикл #1700, processed_cache: 16
+[2026-04-15 17:09:08]    [heartbeat] Цикл #1700, processed_cache: 16
+[2026-04-15 17:09:22]    [heartbeat] Цикл #1300, processed_cache: 9
+[2026-04-15 17:10:07]    [heartbeat] Цикл #1700, processed_cache: 8
+[2026-04-15 17:10:07]    [heartbeat] Цикл #1700, processed_cache: 8
+[2026-04-15 17:11:39]    [heartbeat] Цикл #1700, processed_cache: 11
+[2026-04-15 17:15:13]    [heartbeat] Цикл #1200, processed_cache: 5
+[2026-04-15 17:20:13]    [heartbeat] Цикл #1200, processed_cache: 7
+[2026-04-15 17:29:50]    [heartbeat] Цикл #1800, processed_cache: 0
+[2026-04-15 17:33:22]    [heartbeat] Цикл #1500, processed_cache: 12
+[2026-04-15 17:33:37]    [heartbeat] Цикл #1300, processed_cache: 9
+[2026-04-15 17:34:25]    [heartbeat] Цикл #1800, processed_cache: 16
+[2026-04-15 17:34:25]    [heartbeat] Цикл #1800, processed_cache: 16
+[2026-04-15 17:34:37]    [heartbeat] Цикл #1400, processed_cache: 9
+[2026-04-15 17:35:22]    [heartbeat] Цикл #1800, processed_cache: 8
+[2026-04-15 17:35:22]    [heartbeat] Цикл #1800, processed_cache: 8
+[2026-04-15 17:36:55]    [heartbeat] Цикл #1800, processed_cache: 11
+[2026-04-15 17:40:28]    [heartbeat] Цикл #1300, processed_cache: 5
+[2026-04-15 17:45:28]    [heartbeat] Цикл #1300, processed_cache: 7
+[2026-04-15 17:55:05]    [heartbeat] Цикл #1900, processed_cache: 0
+[2026-04-15 17:55:21] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Лишнее время тратят на эту процедуру...
+[2026-04-15 17:55:21] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Лишнее время тратят на эту процедуру...
+[2026-04-15 17:55:21] 📩 Андрей (ID:1): Лишнее время тратят на эту процедуру...
+[2026-04-15 17:55:21] 📩 Андрей (ID:1): Лишнее время тратят на эту процедуру...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 35.021593001s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 35
+}
+]
+[2026-04-15 17:55:27]   ✅ Ответ отправлен (msg #2277170): Андрей, понял, что вас беспокоит лишнее время на обработку з...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 35.019981282s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 35
+}
+]
+[2026-04-15 17:55:27]   ✅ Ответ отправлен (msg #2277172): Понимаю! Сейчас уточню у наших птицеводов самые свежие данны...
+[2026-04-15 17:55:27]    Обработано 2 сообщений
+[2026-04-15 17:55:27]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 34.767638063s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 34
+}
+]
+[2026-04-15 17:55:28]   ✅ Ответ отправлен (msg #2277174): Понимаю вас! Давайте я сразу уточню как можно быстрее. 👍
+
+Чт...
+[2026-04-15 17:55:29]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 34.805884002s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 34
+}
+]
+[2026-04-15 17:55:29]   ✅ Ответ отправлен (msg #2277176): Андрей, понял. Чтобы менеджерам не тратить лишнее время на о...
+[2026-04-15 17:55:29]    Обработано 2 сообщений
+[2026-04-15 17:56:23] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Гуси нада?))...
+[2026-04-15 17:56:23]   ✅ Ответ отправлен (msg #2277186): Гуси: Линда по 300₽, Холмогорские по 350₽. Крупные, вынослив...
+[2026-04-15 17:56:23]    Обработано 2 сообщений
+[2026-04-15 17:56:28] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Вяленные...
+[2026-04-15 17:56:28] 📩 Андрей (ID:1): Вяленные...
+[2026-04-15 17:56:29] 📩 Андрей (ID:1): Вяленные...
+[2026-04-15 17:56:30] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Вяленные...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 29.809368172s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 29
+}
+]
+[2026-04-15 17:56:31]   ✅ Ответ отправлен (msg #2277190): Андрей, я правильно понимаю, вас интересует информация о вял...
+[2026-04-15 17:56:31]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 30.095749564s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 30
+}
+]
+[2026-04-15 17:56:31]   ✅ Ответ отправлен (msg #2277192): Вяленых, к сожалению, не держим! 😔 У нас только суточные и п...
+[2026-04-15 17:56:32]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 28.724945024s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 28
+}
+]
+[2026-04-15 17:56:33]   ✅ Ответ отправлен (msg #2277194): Вяленые? 🙈 Это вы про что, Анжелочка не поняла? 😉
+
+У нас тут...
+[2026-04-15 17:56:33]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 27.425787079s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 27
+}
+]
+[2026-04-15 17:56:34]   ✅ Ответ отправлен (msg #2277196): Андрей, добрый день!
+
+Это для клиента интересуетесь или мои ...
+[2026-04-15 17:56:34]    Обработано 2 сообщений
+[2026-04-15 17:58:40]    Обработано 2 сообщений
+[2026-04-15 17:58:41]    Обработано 1 сообщений
+[2026-04-15 17:58:41]    Обработано 1 сообщений
+[2026-04-15 17:58:48]    [heartbeat] Цикл #1600, processed_cache: 14
+[2026-04-15 17:59:07]    [heartbeat] Цикл #1400, processed_cache: 11
+[2026-04-15 17:59:42]    [heartbeat] Цикл #1900, processed_cache: 16
+[2026-04-15 17:59:42]    [heartbeat] Цикл #1900, processed_cache: 16
+[2026-04-15 18:00:05]    [heartbeat] Цикл #1500, processed_cache: 11
+[2026-04-15 18:00:38]    [heartbeat] Цикл #1900, processed_cache: 8
+[2026-04-15 18:00:38]    [heartbeat] Цикл #1900, processed_cache: 8
+[2026-04-15 18:00:51] 📩 Андрей (ID:1): Не плохо бы...
+[2026-04-15 18:00:51] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Не плохо бы...
+[2026-04-15 18:00:51] 📩 Андрей (ID:1): Не плохо бы...
+[2026-04-15 18:00:53] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Не плохо бы...
+[2026-04-15 18:00:54] 📩 Андрей (ID:1, роль: Владелец / Руководитель): Не плохо бы...
+[2026-04-15 18:00:54] 📩 Андрей (ID:1): Не плохо бы...
+[2026-04-15 18:00:54] 📩 Андрей (ID:1): Не плохо бы...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 6.639985003s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 6
+}
+]
+[2026-04-15 18:00:54]   ✅ Ответ отправлен (msg #2277228): Андрей, спасибо за обратную связь! Что именно "не плохо бы"?...
+[2026-04-15 18:00:55]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 7.189714062s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 7
+}
+]
+[2026-04-15 18:00:55]   ✅ Ответ отправлен (msg #2277230): Не плохо бы что? 😉 Может, аптечку для птенцов возьмём? С ней...
+[2026-04-15 18:00:55]    Обработано 2 сообщений
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 5.590030541s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 5
+}
+]
+[2026-04-15 18:00:55]   ✅ Ответ отправлен (msg #2277232): Андрей, спасибо за обратную связь. Что конкретно вам кажется...
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 6.975177592s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 6
+}
+]
+[2026-04-15 18:00:55]   ✅ Ответ отправлен (msg #2277234): Чтобы не было плохо, надо уточнить, что именно вас интересуе...
+[2026-04-15 18:00:56]    Обработано 2 сообщений
+[2026-04-15 18:00:56]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 3.79171789s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2026-04-15 18:00:58]   ✅ Ответ отправлен (msg #2277238): Неплохо бы что? 🐣 Уточните, пожалуйста, что вы имели в виду?...
+[2026-04-15 18:00:58]   ✅ Ответ отправлен (msg #2277238): Неплохо бы что? 🐣 Уточните, пожалуйста, что вы имели в виду?...
+[2026-04-15 18:00:58] 📩 Андрей (ID:1): Там прикольно...
+[2026-04-15 18:00:58] 📩 Андрей (ID:1): Там прикольно...
+[2026-04-15 18:00:58]    Обработано 2 сообщений
+[2026-04-15 18:00:58]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+Please retry in 3.731494107s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 3
+}
+]
+[2026-04-15 18:00:58]   ✅ Ответ отправлен (msg #2277240): Андрей, это для клиента или проверяете мои знания? 😉 Если дл...
+[2026-04-15 18:00:58]    Обработано 2 сообщений
+❌ Ошибка при поиске: 400 User location is not supported for the API use.
+⚠️ Gemini Direct failed: 429 You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. 
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash
+Please retry in 59.785327801s. [links {
+  description: "Learn more about Gemini API quotas"
+  url: "https://ai.google.dev/gemini-api/docs/rate-limits"
+}
+, violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_input_token_count"
+  quota_id: "GenerateContentInputTokensPerModelPerMinute-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerMinutePerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+violations {
+  quota_metric: "generativelanguage.googleapis.com/generate_content_free_tier_requests"
+  quota_id: "GenerateRequestsPerDayPerProjectPerModel-FreeTier"
+  quota_dimensions {
+    key: "model"
+    value: "gemini-2.0-flash"
+  }
+  quota_dimensions {
+    key: "location"
+    value: "global"
+  }
+}
+, retry_delay {
+  seconds: 59
+}
+]
+[2026-04-15 18:01:03]   ✅ Ответ отправлен (msg #2277242): Там у нас, как дома! 😉 Всегда рады гостям и цыплятам! 🐣
+
+Смо...
+[2026-04-15 18:01:03]   ✅ Ответ отправлен (msg #2277242): Там у нас, как дома! 😉 Всегда рады гостям и цыплятам! 🐣
+
+Смо...
+[2026-04-15 18:01:03]    Обработано 2 сообщений
+[2026-04-15 18:01:03]    Обработано 2 сообщений
+[2026-04-15 18:02:27]    [heartbeat] Цикл #1900, processed_cache: 14

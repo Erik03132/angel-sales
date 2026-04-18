@@ -1,0 +1,247 @@
+{
+  "timestamp": "2026-04-15T09:34:19.348405",
+  "count": 25,
+  "total_amount": 3329670.0,
+  "by_manager": {
+    "Эльзара": {
+      "count": 12,
+      "total": 1881170.0
+    },
+    "Аня": {
+      "count": 7,
+      "total": 879500.0
+    },
+    "Марина Е": {
+      "count": 6,
+      "total": 569000.0
+    }
+  },
+  "deals": [
+    {
+      "id": "127600",
+      "title": "Сделка #127600",
+      "manager": "Эльзара",
+      "amount": 462000.0,
+      "days_silent": 8,
+      "stage": "NEW",
+      "last_activity": "2026-04-06"
+    },
+    {
+      "id": "124860",
+      "title": "Сделка #124860",
+      "manager": "Эльзара",
+      "amount": 360000.0,
+      "days_silent": 8,
+      "stage": "NEW",
+      "last_activity": "2026-04-06"
+    },
+    {
+      "id": "123530",
+      "title": "Сделка #123530",
+      "manager": "Эльзара",
+      "amount": 221100.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "127694",
+      "title": "Сделка #127694",
+      "manager": "Аня",
+      "amount": 205000.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "125342",
+      "title": "Сделка #125342",
+      "manager": "Марина Е",
+      "amount": 185000.0,
+      "days_silent": 11,
+      "stage": "NEW",
+      "last_activity": "2026-04-03"
+    },
+    {
+      "id": "127508",
+      "title": "Сделка #127508",
+      "manager": "Аня",
+      "amount": 140000.0,
+      "days_silent": 10,
+      "stage": "NEW",
+      "last_activity": "2026-04-04"
+    },
+    {
+      "id": "125384",
+      "title": "Сделка #125384",
+      "manager": "Аня",
+      "amount": 140000.0,
+      "days_silent": 6,
+      "stage": "8",
+      "last_activity": "2026-04-08"
+    },
+    {
+      "id": "126708",
+      "title": "Сделка #126708",
+      "manager": "Эльзара",
+      "amount": 136000.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "126344",
+      "title": "Сделка #126344",
+      "manager": "Аня",
+      "amount": 129500.0,
+      "days_silent": 6,
+      "stage": "NEW",
+      "last_activity": "2026-04-08"
+    },
+    {
+      "id": "127698",
+      "title": "Сделка #127698",
+      "manager": "Аня",
+      "amount": 120000.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "123532",
+      "title": "Сделка #123532",
+      "manager": "Эльзара",
+      "amount": 111970.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "125354",
+      "title": "Сделка #125354",
+      "manager": "Эльзара",
+      "amount": 108000.0,
+      "days_silent": 8,
+      "stage": "NEW",
+      "last_activity": "2026-04-06"
+    },
+    {
+      "id": "127738",
+      "title": "Сделка #127738",
+      "manager": "Эльзара",
+      "amount": 86500.0,
+      "days_silent": 5,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "126896",
+      "title": "Сделка #126896",
+      "manager": "Марина Е",
+      "amount": 84000.0,
+      "days_silent": 15,
+      "stage": "NEW",
+      "last_activity": "2026-03-30"
+    },
+    {
+      "id": "124698",
+      "title": "Сделка #124698",
+      "manager": "Эльзара",
+      "amount": 84000.0,
+      "days_silent": 34,
+      "stage": "NEW",
+      "last_activity": "2026-03-11"
+    },
+    {
+      "id": "126380",
+      "title": "Сделка #126380",
+      "manager": "Эльзара",
+      "amount": 80000.0,
+      "days_silent": 13,
+      "stage": "NEW",
+      "last_activity": "2026-04-01"
+    },
+    {
+      "id": "126382",
+      "title": "Сделка #126382",
+      "manager": "Эльзара",
+      "amount": 80000.0,
+      "days_silent": 13,
+      "stage": "NEW",
+      "last_activity": "2026-04-01"
+    },
+    {
+      "id": "126046",
+      "title": "Сделка #126046",
+      "manager": "Марина Е",
+      "amount": 80000.0,
+      "days_silent": 4,
+      "stage": "8",
+      "last_activity": "2026-04-10"
+    },
+    {
+      "id": "126378",
+      "title": "Сделка #126378",
+      "manager": "Эльзара",
+      "amount": 80000.0,
+      "days_silent": 13,
+      "stage": "NEW",
+      "last_activity": "2026-04-01"
+    },
+    {
+      "id": "127660",
+      "title": "Сделка #127660",
+      "manager": "Марина Е",
+      "amount": 75000.0,
+      "days_silent": 8,
+      "stage": "NEW",
+      "last_activity": "2026-04-06"
+    },
+    {
+      "id": "127658",
+      "title": "Сделка #127658",
+      "manager": "Марина Е",
+      "amount": 75000.0,
+      "days_silent": 8,
+      "stage": "NEW",
+      "last_activity": "2026-04-06"
+    },
+    {
+      "id": "127510",
+      "title": "Сделка #127510",
+      "manager": "Аня",
+      "amount": 75000.0,
+      "days_silent": 10,
+      "stage": "NEW",
+      "last_activity": "2026-04-04"
+    },
+    {
+      "id": "124430",
+      "title": "Сделка #124430",
+      "manager": "Эльзара",
+      "amount": 71600.0,
+      "days_silent": 4,
+      "stage": "NEW",
+      "last_activity": "2026-04-09"
+    },
+    {
+      "id": "125788",
+      "title": "Сделка #125788",
+      "manager": "Марина Е",
+      "amount": 70000.0,
+      "days_silent": 25,
+      "stage": "NEW",
+      "last_activity": "2026-03-20"
+    },
+    {
+      "id": "123782",
+      "title": "Сделка #123782",
+      "manager": "Аня",
+      "amount": 70000.0,
+      "days_silent": 42,
+      "stage": "NEW",
+      "last_activity": "2026-03-03"
+    }
+  ],
+  "fix_note": "v2: отфильтрованы дубли, отказы и активные стадии. Только NEW и 8."
+}

@@ -1,0 +1,187 @@
+---
+import '../styles/global.css';
+import GlobalParticles from '../components/GlobalParticles.astro';
+import Toast from '../components/Toast.astro';
+import ChatWidget from '../components/ChatWidget.astro';
+---
+
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- SEO Meta Tags -->
+		<title>ВезёмЦыплят - Качественный молодняк птицы для птицеводства</title>
+		<meta name="description" content="Купите молодняк птицы: РОСС-308, КОББ-500, Ломан Браун, утята и другие. Доступные цены, быстрая доставка по России. Свяжитесь с менеджером для оптовых заказов." />
+		<meta name="keywords" content="молодняк птицы, цыплята, утята, РОСС-308, КОББ-500, Ломан Браун, цены на молодняк, доставка птицы" />
+		
+		<!-- Open Graph Tags -->
+		<meta property="og:title" content="ВезёмЦыплят - Качественный молодняк птицы" />
+		<meta property="og:description" content="Продажа молодняка птицы с доставкой. РОСС-308, КОББ-500, Ломан Браун и другие породы." />
+		<meta property="og:type" content="business.business" />
+		<meta property="og:url" content="https://vezemcip.bitrix24.ru" />
+		<meta property="og:image" content="/Hero.png" />
+		<meta property="og:locale" content="ru_RU" />
+		
+		<!-- Twitter Card Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="ВезёмЦыплят - Качественный молодняк птицы" />
+		<meta name="twitter:description" content="Купите молодняк птицы с доставкой по России" />
+		<meta name="twitter:image" content="/Hero.png" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href="https://vezemcip.bitrix24.ru/" />
+		
+		<!-- Additional Meta -->
+		<meta name="robots" content="index, follow" />
+		<meta name="revisit-after" content="7 days" />
+		<meta name="author" content="ВезёмЦыплят — Азовский Инкубатор" />
+		<meta name="copyright" content="© 2026 ВезёмЦыплят — Азовский Инкубатор" />
+		
+		<!-- Structured Data (JSON-LD) -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "LocalBusiness",
+		  "name": "ВезёмЦыплят — Азовский Инкубатор",
+		  "description": "Продажа суточного молодняка птицы с доставкой по Крыму и Югу России. Бройлеры, несушки, утки.",
+		  "url": "https://vezemcip.bitrix24.ru",
+		  "logo": "/favicon.svg",
+		  "telephone": "+7-978-000-00-00",
+		  "address": {
+			"@type": "PostalAddress",
+			"addressCountry": "RU",
+			"addressRegion": "Республика Крым",
+			"addressLocality": "пгт. Азовское",
+			"streetAddress": "ул. Железнодорожная, 42",
+			"postalCode": "296178"
+		  },
+		  "sameAs": [
+			"https://vezemcip.bitrix24.ru"
+		  ],
+		  "priceRange": "₽₽",
+		  "image": "/Hero.png",
+		  "aggregateRating": {
+			"@type": "AggregateRating",
+			"ratingValue": "4.8",
+			"reviewCount": "150"
+		  }
+		}
+		</script>
+		
+		<!-- Organization Schema -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "Organization",
+		  "name": "ВезёмЦыплят — Азовский Инкубатор",
+		  "alternateName": "IncuBird",
+		  "url": "https://vezemcip.bitrix24.ru",
+		  "logo": "/favicon.svg",
+		  "description": "Инкубатор и продавец суточного молодняка птицы. Доставка по Крыму и Югу России по ПН и ЧТ.",
+		  "foundingDate": "2024",
+		  "contactPoint": {
+			"@type": "ContactPoint",
+			"contactType": "Customer Service",
+			"telephone": "+7-918-350-02-25",
+			"areaServed": ["Крым", "Краснодарский край", "Ростовская область", "Волгоградская область"]
+		  },
+		  "sameAs": [
+			"https://vezemcip.bitrix24.ru"
+		  ]
+		}
+		</script>
+		
+		<!-- FAQ Schema for Better SEO -->
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "FAQPage",
+		  "mainEntity": [
+			{
+			  "@type": "Question",
+			  "name": "Какова стоимость доставки молодняка птицы?",
+			  "acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Доставка осуществляется спецтранспортом с климат-контролем по Крыму и Югу России. Стоимость зависит от региона. Гарантия 100% выживаемости при доставке."
+			  }
+			},
+			{
+			  "@type": "Question",
+			  "name": "Сколько дней занимает доставка?",
+			  "acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Доставка осуществляется по понедельникам и четвергам. Дата вывода и дата доставки отличаются на 1 день. Уточняйте минимальный заказ у менеджера."
+			  }
+			},
+			{
+			  "@type": "Question",
+			  "name": "Какой молодняк вы предлагаете?",
+			  "acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Мы предлагаем суточный молодняк: бройлеры РОСС-308 и КОББ-500, цветные бройлеры (Мастер Грей, Редбро), несушки Ломан Браун и Хайсекс, Доминанты, утята и индюшата. Все с ветеринарным контролем."
+			  }
+			}
+		  ]
+		}
+		</script>
+		
+		<!-- Yandex.Metrika counter -->
+		<script type="text/javascript">
+			(function(m,e,t,r,i,k,a){
+				m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+				m[i].l=1*new Date();
+				for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+				k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+			})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104797281', 'ym');
+
+			ym(104797281, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+		</script>
+		<!-- /Yandex.Metrika counter -->
+	</head>
+	<body class="text-white relative min-h-screen w-full" style="background: linear-gradient(180deg, #020617 0%, #172554 50%, #0f172a 100%); background-attachment: fixed;">
+		<GlobalParticles />
+		<Toast />
+		<noscript>
+			<div><img src="https://mc.yandex.ru/watch/104797281" style="position:absolute; left:-9999px;" alt="" /></div>
+		</noscript>
+		<slot />
+		<ChatWidget />
+	</body>
+</html>
+
+<style is:global>
+	* {
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+	
+	body {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		overflow-x: hidden;
+	}
+	
+	section {
+		border: none !important;
+		box-shadow: none !important;
+		margin: 0 !important;
+		outline: none !important;
+		scroll-margin-top: 80px;
+		width: 100%;
+		max-width: 100%;
+		overflow-x: hidden;
+	}
+</style>

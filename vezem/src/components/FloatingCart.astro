@@ -1,0 +1,337 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<div id="floating-cart" class="fixed bottom-6 right-6 z-40">
+  <!-- Кнопка корзины -->
+  <button id="cart-btn" class="group relative flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 hover:from-blue-500 hover:via-cyan-400 hover:to-emerald-400 text-white shadow-2xl shadow-blue-500/50 hover:shadow-blue-600/70 transition-all duration-300 transform hover:scale-110">
+    <Icon name="mdi:shopping-cart" class="w-7 h-7" />
+    <!-- Бейдж с количеством -->
+    <span id="cart-count" class="absolute -top-2 -right-2 flex items-center justify-center w-6 h-6 bg-gradient-to-r from-pink-600 to-rose-500 text-white text-xs font-bold rounded-full shadow-lg">0</span>
+  </button>
+
+  <!-- Панель корзины (скрыта по умолчанию) -->
+  <div id="cart-panel" class="absolute bottom-20 right-0 w-96 max-h-[500px] bg-slate-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl hidden flex flex-col overflow-hidden transform transition-all duration-300 opacity-0 scale-95 origin-bottom-right">
+    <!-- Заголовок -->
+    <div class="flex items-center justify-between p-5 border-b border-white/10">
+      <h3 class="text-lg font-bold text-white flex items-center gap-2">
+        <Icon name="mdi:shopping-cart" class="w-5 h-5 text-cyan-400" />
+        Корзина
+      </h3>
+      <button id="close-cart" class="text-white/60 hover:text-white transition">
+        <Icon name="mdi:close" class="w-5 h-5" />
+      </button>
+    </div>
+
+    <!-- Вкладки -->
+    <div class="flex gap-2 px-4 pt-4 border-b border-white/10">
+      <button id="tab-standard" class="tab-btn active px-4 py-2 rounded-t-lg font-semibold text-sm transition duration-300 bg-gradient-to-r from-blue-600 to-cyan-600 text-white">
+        <Icon name="mdi:cart" class="w-4 h-4 inline mr-2" />Товары
+      </button>
+      <button id="tab-quotes" class="tab-btn px-4 py-2 rounded-t-lg font-semibold text-sm transition duration-300 bg-white/5 text-blue-300 hover:bg-white/10">
+        <Icon name="mdi:help-circle" class="w-4 h-4 inline mr-2" />Уточнение
+      </button>
+    </div>
+
+    <!-- Содержимое вкладок -->
+    <div class="flex-1 overflow-y-auto">
+      <!-- Вкладка: Стандартные товары -->
+      <div id="standard-items" class="p-4 space-y-3">
+        <p class="text-center text-white/50 text-sm py-8">Стандартные товары не добавлены</p>
+      </div>
+
+      <!-- Вкладка: Товары требующие уточнения -->
+      <div id="quotes-items" class="p-4 space-y-3 hidden">
+        <div class="bg-amber-500/20 border border-amber-500/50 rounded-lg p-3 mb-4">
+          <p class="text-xs text-amber-300/90 flex items-start gap-2">
+            <Icon name="mdi:alert-circle" class="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <span><strong>Уточнение по наличию и цене.</strong> Оформите заявку, и наш менеджер свяжется с вами в течение 2 часов.</span>
+          </p>
+        </div>
+        <p class="text-center text-white/50 text-sm py-8">Товары, требующие уточнения, не добавлены</p>
+      </div>
+    </div>
+
+    <!-- Итого и кнопка -->
+    <div class="border-t border-white/10 p-5 space-y-4">
+      <div class="flex justify-between items-center text-white">
+        <span class="text-lg font-semibold">Итого:</span>
+        <span id="cart-total" class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">₽0</span>
+      </div>
+      <button id="checkout-btn" onclick="window.openOrderModal()" class="w-full py-3 rounded-lg bg-gradient-to-r from-blue-600 via-cyan-500 to-emerald-500 hover:from-blue-500 hover:via-cyan-400 hover:to-emerald-400 text-white font-bold shadow-lg shadow-blue-500/30 transition-all transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" disabled>
+        Оформить заказ
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Ссылки на элементы
+  const cartBtn = document.getElementById('cart-btn');
+  const cartPanel = document.getElementById('cart-panel');
+  const closeCartBtn = document.getElementById('close-cart');
+  const cartCount = document.getElementById('cart-count');
+  const cartTotal = document.getElementById('cart-total');
+  const tabStandard = document.getElementById('tab-standard');
+  const tabQuotes = document.getElementById('tab-quotes');
+  const standardItems = document.getElementById('standard-items');
+  const quotesItems = document.getElementById('quotes-items');
+
+  // Данные корзины
+  let cart = (() => {
+    try {
+      const stored = localStorage.getItem('cart');
+      if (!stored) return { regular: [], needsQuote: [] };
+      const parsed = JSON.parse(stored);
+      // Если это старый формат (массив), конвертируем в новый
+      if (Array.isArray(parsed)) {
+        return { regular: [], needsQuote: [] };
+      }
+      // Убедимся, что оба массива существуют
+      return {
+        regular: Array.isArray(parsed.regular) ? parsed.regular : [],
+        needsQuote: Array.isArray(parsed.needsQuote) ? parsed.needsQuote : []
+      };
+    } catch (e) {
+      console.warn('Error parsing cart:', e);
+      return { regular: [], needsQuote: [] };
+    }
+  })();
+  let activeTab = 'standard';
+
+  // Функция переключения вкладок
+  function switchTab(tab) {
+    activeTab = tab;
+    if (tab === 'standard') {
+      tabStandard.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-cyan-600', 'text-white');
+      tabStandard.classList.remove('bg-white/5', 'text-blue-300');
+      
+      tabQuotes.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-cyan-600', 'text-white');
+      tabQuotes.classList.add('bg-white/5', 'text-blue-300');
+      
+      standardItems.classList.remove('hidden');
+      quotesItems.classList.add('hidden');
+    } else {
+      tabQuotes.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-cyan-600', 'text-white');
+      tabQuotes.classList.remove('bg-white/5', 'text-blue-300');
+      
+      tabStandard.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-cyan-600', 'text-white');
+      tabStandard.classList.add('bg-white/5', 'text-blue-300');
+      
+      quotesItems.classList.remove('hidden');
+      standardItems.classList.add('hidden');
+    }
+  }
+
+  // Обработчики вкладок
+  tabStandard.addEventListener('click', () => switchTab('standard'));
+  tabQuotes.addEventListener('click', () => switchTab('quotes'));
+
+  // Открыть/закрыть корзину
+  cartBtn.addEventListener('click', () => {
+    cartPanel.classList.toggle('hidden');
+    setTimeout(() => {
+      cartPanel.classList.toggle('opacity-0');
+      cartPanel.classList.toggle('scale-95');
+    }, 10);
+  });
+
+  closeCartBtn.addEventListener('click', () => {
+    cartPanel.classList.add('opacity-0', 'scale-95');
+    setTimeout(() => {
+      cartPanel.classList.add('hidden');
+    }, 300);
+  });
+
+  // Добавить товар в корзину (вызывается из других компонентов)
+  window.addToCart = function(productId, productName, price, quantity = 1, requiresQuote = false) {
+    const targetArray = requiresQuote ? cart.needsQuote : cart.regular;
+    const existingItem = targetArray.find(item => item.id === productId);
+    
+    if (existingItem) {
+      existingItem.quantity += quantity;
+      // Уведомление об увеличении количества
+      window.showToast(`${productName} × ${existingItem.quantity} шт добавлено в корзину`, 'success', 2500);
+    } else {
+      targetArray.push({
+        id: productId,
+        name: productName,
+        price: price,
+        quantity: quantity,
+        requiresQuote: requiresQuote
+      });
+      // Уведомление о добавлении нового товара
+      const priceText = price > 0 ? `${price} ₽/шт` : 'по запросу';
+      window.showToast(`✓ ${productName} (${priceText}) добавлен в корзину`, 'success', 2500);
+    }
+    
+    saveCart();
+    window.updateCartUI();
+  };
+
+  // Удалить товар из корзины
+  window.removeFromCart = function(productId) {
+    cart.regular = cart.regular.filter(item => item.id !== productId);
+    cart.needsQuote = cart.needsQuote.filter(item => item.id !== productId);
+    saveCart();
+    window.updateCartUI();
+  };
+
+  // Изменить количество
+  window.updateQuantity = function(productId, quantity) {
+    let item = cart.regular.find(item => item.id === productId);
+    if (!item) {
+      item = cart.needsQuote.find(item => item.id === productId);
+    }
+    
+    if (item) {
+      item.quantity = Math.max(0, quantity);
+      if (item.quantity === 0) {
+        removeFromCart(productId);
+      } else {
+        saveCart();
+        window.updateCartUI();
+      }
+    }
+  };
+
+  // Сохранить корзину
+  function saveCart() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }
+
+  // Обновить UI корзины (делаем глобальной для вызова из OrderForm)
+  window.updateCartUI = function() {
+    // ВАЖНО: Перечитываем корзину из localStorage при каждом обновлении
+    try {
+      const stored = localStorage.getItem('cart');
+      if (!stored) {
+        cart = { regular: [], needsQuote: [] };
+      } else {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          cart = { regular: [], needsQuote: [] };
+        } else {
+          cart = {
+            regular: Array.isArray(parsed.regular) ? parsed.regular : [],
+            needsQuote: Array.isArray(parsed.needsQuote) ? parsed.needsQuote : []
+          };
+        }
+      }
+    } catch (e) {
+      console.warn('Error parsing cart in updateCartUI:', e);
+      cart = { regular: [], needsQuote: [] };
+    }
+
+    const standardCart = cart.regular || [];
+    const quotesCart = cart.needsQuote || [];
+    
+    const totalItems = standardCart.reduce((sum, item) => sum + item.quantity, 0) + 
+                       quotesCart.reduce((sum, item) => sum + item.quantity, 0);
+    const totalPrice = standardCart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    
+    cartCount.textContent = totalItems;
+    cartTotal.textContent = `₽${totalPrice.toLocaleString('ru-RU')}`;
+
+    // Обновляем состояние кнопки "Оформить заказ"
+    const checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+      const hasItems = (standardCart.length + quotesCart.length) > 0;
+      checkoutBtn.disabled = !hasItems;
+      checkoutBtn.title = hasItems ? 'Оформить заказ' : 'Добавьте товары в корзину перед оформлением';
+    }
+
+    // Обновляем вкладку со стандартными товарами
+    if (standardCart.length === 0) {
+      standardItems.innerHTML = '<p class="text-center text-white/50 text-sm py-8">Стандартные товары не добавлены</p>';
+    } else {
+      standardItems.innerHTML = standardCart.map(item => `
+        <div class="flex items-center justify-between p-3 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition">
+          <div class="flex-1">
+            <p class="font-semibold text-white text-sm">${item.name}</p>
+            <p class="text-xs text-blue-300">₽${item.price} × ${item.quantity}</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="window.updateQuantity('${item.id}', ${item.quantity - 1})" class="p-1 hover:bg-white/10 rounded transition">
+              <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+            </button>
+            <span class="w-6 text-center text-white text-sm font-bold">${item.quantity}</span>
+            <button onclick="window.updateQuantity('${item.id}', ${item.quantity + 1})" class="p-1 hover:bg-white/10 rounded transition">
+              <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+            </button>
+            <button onclick="window.removeFromCart('${item.id}')" class="p-1 text-red-400 hover:text-red-300 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Обновляем вкладку с товарами требующими уточнения
+    if (quotesCart.length === 0) {
+      quotesItems.innerHTML = `
+        <div class="bg-amber-500/20 border border-amber-500/50 rounded-lg p-3 mb-4">
+          <p class="text-xs text-amber-300/90 flex items-start gap-2">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            <span><strong>Уточнение по наличию и цене.</strong> Оформите заявку, и наш менеджер свяжется с вами в течение 2 часов.</span>
+          </p>
+        </div>
+        <p class="text-center text-white/50 text-sm py-8">Товары, требующие уточнения, не добавлены</p>
+      `;
+    } else {
+      quotesItems.innerHTML = `
+        <div class="bg-amber-500/20 border border-amber-500/50 rounded-lg p-3 mb-4">
+          <p class="text-xs text-amber-300/90 flex items-start gap-2">
+            <svg class="w-4 h-4 mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            <span><strong>Уточнение по наличию и цене.</strong> Оформите заявку, и наш менеджер свяжется с вами в течение 2 часов.</span>
+          </p>
+        </div>
+        <div class="space-y-3">
+        ` + quotesCart.map(item => `
+          <div class="flex items-center justify-between p-3 bg-amber-500/10 rounded-lg border border-amber-500/30 hover:border-amber-500/50 transition">
+            <div class="flex-1">
+              <p class="font-semibold text-white text-sm">${item.name}</p>
+              <p class="text-xs text-amber-300">Количество: ${item.quantity} шт</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="window.updateQuantity('${item.id}', ${item.quantity - 1})" class="p-1 hover:bg-white/10 rounded transition">
+                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"/></svg>
+              </button>
+              <span class="w-6 text-center text-white text-sm font-bold">${item.quantity}</span>
+              <button onclick="window.updateQuantity('${item.id}', ${item.quantity + 1})" class="p-1 hover:bg-white/10 rounded transition">
+                <svg class="w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              </button>
+              <button onclick="window.removeFromCart('${item.id}')" class="p-1 text-red-400 hover:text-red-300 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+              </button>
+            </div>
+          </div>
+        `).join('') + `
+        </div>
+      `;
+    }
+  }
+
+  // Инициализировать корзину при загрузке
+  window.updateCartUI();
+
+  // Закрыть корзину при клике вне её
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('#floating-cart')) {
+      cartPanel.classList.add('opacity-0', 'scale-95');
+      setTimeout(() => {
+        cartPanel.classList.add('hidden');
+      }, 300);
+    }
+  });
+</script>
+
+<style>
+  #cart-panel.hidden {
+    display: none;
+  }
+
+  #cart-panel {
+    visibility: visible;
+  }
+</style>

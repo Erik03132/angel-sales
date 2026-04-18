@@ -1,0 +1,1673 @@
+[
+  {
+    "id": "bitrix_8",
+    "source": "bitrix_crm",
+    "content": "Муллард — 250₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "8",
+      "price": 250.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116584"
+    }
+  },
+  {
+    "id": "bitrix_10",
+    "source": "bitrix_crm",
+    "content": "Биг-6 — 450₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "10",
+      "price": 450.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116617"
+    }
+  },
+  {
+    "id": "bitrix_12",
+    "source": "bitrix_crm",
+    "content": "Кобб-500 — 90₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "12",
+      "price": 90.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116629",
+      "price_corrected": true,
+      "old_price": 60.0,
+      "correction_note": "Исправлено по прайсу от 15.04.2026"
+    }
+  },
+  {
+    "id": "bitrix_14",
+    "source": "bitrix_crm",
+    "content": "РОСС — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "14",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116640"
+    }
+  },
+  {
+    "id": "bitrix_16",
+    "source": "bitrix_crm",
+    "content": "Доминант Д-102 (192) — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "16",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116650"
+    }
+  },
+  {
+    "id": "bitrix_18",
+    "source": "bitrix_crm",
+    "content": "Доминант Д-104 (Сусекс) — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "18",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116662"
+    }
+  },
+  {
+    "id": "bitrix_20",
+    "source": "bitrix_crm",
+    "content": "Доминант Д-107 (Голубой) — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "20",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116672"
+    }
+  },
+  {
+    "id": "bitrix_22",
+    "source": "bitrix_crm",
+    "content": "Доминант Д-109 (Черный) — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "22",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116681"
+    }
+  },
+  {
+    "id": "bitrix_24",
+    "source": "bitrix_crm",
+    "content": "Ломан Браун — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "24",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116690"
+    }
+  },
+  {
+    "id": "bitrix_28",
+    "source": "bitrix_crm",
+    "content": "Адлерская Серебристая — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "28",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116702"
+    }
+  },
+  {
+    "id": "bitrix_30",
+    "source": "bitrix_crm",
+    "content": "Ред Бро — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "30",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116711"
+    }
+  },
+  {
+    "id": "bitrix_32",
+    "source": "bitrix_crm",
+    "content": "Мастер Грей — 65₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "32",
+      "price": 65.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116721"
+    }
+  },
+  {
+    "id": "bitrix_34",
+    "source": "bitrix_crm",
+    "content": "Голошейка — 65₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "34",
+      "price": 65.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116731"
+    }
+  },
+  {
+    "id": "bitrix_36",
+    "source": "bitrix_crm",
+    "content": "Gris Barre — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "36",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116741"
+    }
+  },
+  {
+    "id": "bitrix_38",
+    "source": "bitrix_crm",
+    "content": "Фарм Колор — 65₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "38",
+      "price": 65.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116751"
+    }
+  },
+  {
+    "id": "bitrix_46",
+    "source": "bitrix_crm",
+    "content": "Purina25 Старт Брой — 990₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "46",
+      "price": 990.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116761"
+    }
+  },
+  {
+    "id": "bitrix_48",
+    "source": "bitrix_crm",
+    "content": "Purina25 Рост Брой — 950₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "48",
+      "price": 950.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116770"
+    }
+  },
+  {
+    "id": "bitrix_50",
+    "source": "bitrix_crm",
+    "content": "Purina25 Финиш Брой — 890₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "50",
+      "price": 890.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116780"
+    }
+  },
+  {
+    "id": "bitrix_58",
+    "source": "bitrix_crm",
+    "content": "Аптечка — 200₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "58",
+      "price": 200.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116793"
+    }
+  },
+  {
+    "id": "bitrix_176",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Доминант Д-102 (192) — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "176",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116803"
+    }
+  },
+  {
+    "id": "bitrix_178",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Доминант Д-104 (Сусекс) — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "178",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116812"
+    }
+  },
+  {
+    "id": "bitrix_180",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Доминант Д-107 (Голубой) — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "180",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116821"
+    }
+  },
+  {
+    "id": "bitrix_182",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Доминант Д-109 (Черный) — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "182",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116831"
+    }
+  },
+  {
+    "id": "bitrix_184",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Ломан Браун — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "184",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116841"
+    }
+  },
+  {
+    "id": "bitrix_206",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Адлерская — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "206",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116850"
+    }
+  },
+  {
+    "id": "bitrix_208",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Ред Бро — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "208",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116859"
+    }
+  },
+  {
+    "id": "bitrix_210",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Мастер Грей — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "210",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116868"
+    }
+  },
+  {
+    "id": "bitrix_212",
+    "source": "bitrix_crm",
+    "content": "до 2х недель Голошейка — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "212",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116877"
+    }
+  },
+  {
+    "id": "bitrix_4",
+    "source": "bitrix_crm",
+    "content": "Агидель — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "4",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116886"
+    }
+  },
+  {
+    "id": "bitrix_6",
+    "source": "bitrix_crm",
+    "content": "Голубой фаворит — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "6",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116895"
+    }
+  },
+  {
+    "id": "bitrix_40",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(104) 1-1.5 мес — 100₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "40",
+      "price": 100.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116904"
+    }
+  },
+  {
+    "id": "bitrix_42",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(107) 1-1.5 мес — 145₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "42",
+      "price": 145.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116914"
+    }
+  },
+  {
+    "id": "bitrix_44",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(109) 1-1.5 мес — 145₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "44",
+      "price": 145.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116923"
+    }
+  },
+  {
+    "id": "bitrix_64",
+    "source": "bitrix_crm",
+    "content": "Hybrid Converter — 450₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "64",
+      "price": 450.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116933"
+    }
+  },
+  {
+    "id": "bitrix_66",
+    "source": "bitrix_crm",
+    "content": "Индюк Бронза — 450₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "66",
+      "price": 450.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116943"
+    }
+  },
+  {
+    "id": "bitrix_70",
+    "source": "bitrix_crm",
+    "content": "Черри Велли — 150₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "70",
+      "price": 150.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116953"
+    }
+  },
+  {
+    "id": "bitrix_72",
+    "source": "bitrix_crm",
+    "content": "Гусь линда — 230₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "72",
+      "price": 230.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116962"
+    }
+  },
+  {
+    "id": "bitrix_74",
+    "source": "bitrix_crm",
+    "content": "Цесарка серо-крапчатая — 140₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "74",
+      "price": 140.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116972"
+    }
+  },
+  {
+    "id": "bitrix_76",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(102) 1-1.5 мес — 145₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "76",
+      "price": 145.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116981"
+    }
+  },
+  {
+    "id": "bitrix_78",
+    "source": "bitrix_crm",
+    "content": "ПОДР Ломан 1-1.5 мес — 145₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "78",
+      "price": 145.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116991"
+    }
+  },
+  {
+    "id": "bitrix_82",
+    "source": "bitrix_crm",
+    "content": "Мускусная (Индоутка) — 140₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "82",
+      "price": 140.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.116999"
+    }
+  },
+  {
+    "id": "bitrix_98",
+    "source": "bitrix_crm",
+    "content": "Петух вакцина — 10₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "98",
+      "price": 10.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117009"
+    }
+  },
+  {
+    "id": "bitrix_100",
+    "source": "bitrix_crm",
+    "content": "Петух без — 10₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "100",
+      "price": 10.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117018"
+    }
+  },
+  {
+    "id": "bitrix_136",
+    "source": "bitrix_crm",
+    "content": "Purina40 несушка Старт — 1490₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "136",
+      "price": 1490.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117030"
+    }
+  },
+  {
+    "id": "bitrix_138",
+    "source": "bitrix_crm",
+    "content": "Purina40 несушка Рост — 1250₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "138",
+      "price": 1250.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117039"
+    }
+  },
+  {
+    "id": "bitrix_140",
+    "source": "bitrix_crm",
+    "content": "Purina40 несушка Финиш — 1150₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "140",
+      "price": 1150.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117048"
+    }
+  },
+  {
+    "id": "bitrix_142",
+    "source": "bitrix_crm",
+    "content": "Purina25 Предстарт Индюк — 1150₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "142",
+      "price": 1150.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117057"
+    }
+  },
+  {
+    "id": "bitrix_144",
+    "source": "bitrix_crm",
+    "content": "Purina40 Старт Индюк — 1730₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "144",
+      "price": 1730.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117066"
+    }
+  },
+  {
+    "id": "bitrix_150",
+    "source": "bitrix_crm",
+    "content": "Purina40 Старт Водопл — 1450₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "150",
+      "price": 1450.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117076"
+    }
+  },
+  {
+    "id": "bitrix_152",
+    "source": "bitrix_crm",
+    "content": "Purina40 Финиш Утка — 1290₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "152",
+      "price": 1290.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117086"
+    }
+  },
+  {
+    "id": "bitrix_154",
+    "source": "bitrix_crm",
+    "content": "Заморозка 1 кг — 70₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "154",
+      "price": 70.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117095"
+    }
+  },
+  {
+    "id": "bitrix_156",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ КОББ — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "156",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117104"
+    }
+  },
+  {
+    "id": "bitrix_158",
+    "source": "bitrix_crm",
+    "content": "Кобб-МАРЕК — 999₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "158",
+      "price": 999.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117113"
+    }
+  },
+  {
+    "id": "bitrix_160",
+    "source": "bitrix_crm",
+    "content": "РОСС-МАРЕК — 999₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "160",
+      "price": 999.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117123"
+    }
+  },
+  {
+    "id": "bitrix_162",
+    "source": "bitrix_crm",
+    "content": "ST-5 — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "162",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117132"
+    }
+  },
+  {
+    "id": "bitrix_166",
+    "source": "bitrix_crm",
+    "content": "Arbor — 53₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "166",
+      "price": 53.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117142"
+    }
+  },
+  {
+    "id": "bitrix_168",
+    "source": "bitrix_crm",
+    "content": "Arbor-МАРЕК — 999₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "168",
+      "price": 999.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117152"
+    }
+  },
+  {
+    "id": "bitrix_170",
+    "source": "bitrix_crm",
+    "content": "Индюк ПОДРОСТ — 300₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "170",
+      "price": 300.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117161"
+    }
+  },
+  {
+    "id": "bitrix_172",
+    "source": "bitrix_crm",
+    "content": "Доставка клиенту — 1000₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "172",
+      "price": 1000.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117170"
+    }
+  },
+  {
+    "id": "bitrix_174",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ РОСС — 50₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "174",
+      "price": 50.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117180"
+    }
+  },
+  {
+    "id": "bitrix_186",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(102) 1.5-2 мес — 180₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "186",
+      "price": 180.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117189"
+    }
+  },
+  {
+    "id": "bitrix_188",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(104) 1.5-2 мес — 130₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "188",
+      "price": 130.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117198"
+    }
+  },
+  {
+    "id": "bitrix_190",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(107) 1.5-2 мес — 180₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "190",
+      "price": 180.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117207"
+    }
+  },
+  {
+    "id": "bitrix_192",
+    "source": "bitrix_crm",
+    "content": "ПОДР Домин(109) 1.5-2 мес — 180₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "192",
+      "price": 180.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117217"
+    }
+  },
+  {
+    "id": "bitrix_194",
+    "source": "bitrix_crm",
+    "content": "ПОДР Ломан 1.5-2 мес — 180₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "194",
+      "price": 180.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117226"
+    }
+  },
+  {
+    "id": "bitrix_196",
+    "source": "bitrix_crm",
+    "content": "Подрост Ломан  — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "196",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117236"
+    }
+  },
+  {
+    "id": "bitrix_198",
+    "source": "bitrix_crm",
+    "content": "Подрост Адлерская — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "198",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117252"
+    }
+  },
+  {
+    "id": "bitrix_200",
+    "source": "bitrix_crm",
+    "content": "Подрост Доминант Д-104 сусекс — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "200",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117263"
+    }
+  },
+  {
+    "id": "bitrix_202",
+    "source": "bitrix_crm",
+    "content": "Подрост Доминант Д-107 голубой — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "202",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117272"
+    }
+  },
+  {
+    "id": "bitrix_204",
+    "source": "bitrix_crm",
+    "content": "Подрост Доминант Д-109 черный — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "204",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117281"
+    }
+  },
+  {
+    "id": "bitrix_214",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Агидель — 55₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "214",
+      "price": 55.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117290"
+    }
+  },
+  {
+    "id": "bitrix_216",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Гол. фаворит — 55₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "216",
+      "price": 55.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117299"
+    }
+  },
+  {
+    "id": "bitrix_218",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Черри Велли — 100₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "218",
+      "price": 100.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117308"
+    }
+  },
+  {
+    "id": "bitrix_220",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Мулард — 200₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "220",
+      "price": 200.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117330"
+    }
+  },
+  {
+    "id": "bitrix_222",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Мускусная — 160₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "222",
+      "price": 160.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117340"
+    }
+  },
+  {
+    "id": "bitrix_108",
+    "source": "bitrix_crm",
+    "content": "Гусенок суточный — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "108",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117349"
+    }
+  },
+  {
+    "id": "bitrix_110",
+    "source": "bitrix_crm",
+    "content": "Яйцо гусиное — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "110",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117358"
+    }
+  },
+  {
+    "id": "bitrix_118",
+    "source": "bitrix_crm",
+    "content": "ПОЗИЦИЯ УДАЛЕНА — 120₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "118",
+      "price": 120.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117369"
+    }
+  },
+  {
+    "id": "bitrix_224",
+    "source": "bitrix_crm",
+    "content": "сассо красный — 55₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "224",
+      "price": 55.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117379"
+    }
+  },
+  {
+    "id": "bitrix_226",
+    "source": "bitrix_crm",
+    "content": "сассо черный — 55₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "226",
+      "price": 55.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117389"
+    }
+  },
+  {
+    "id": "bitrix_228",
+    "source": "bitrix_crm",
+    "content": "сассо кремовые — 55₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "228",
+      "price": 55.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117398"
+    }
+  },
+  {
+    "id": "bitrix_232",
+    "source": "bitrix_crm",
+    "content": "сассо серый — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "232",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117407"
+    }
+  },
+  {
+    "id": "bitrix_236",
+    "source": "bitrix_crm",
+    "content": "Тест — 1₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "236",
+      "price": 1.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117417"
+    }
+  },
+  {
+    "id": "bitrix_238",
+    "source": "bitrix_crm",
+    "content": "Петух Ломан Браун — 10₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "238",
+      "price": 10.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117426"
+    }
+  },
+  {
+    "id": "bitrix_240",
+    "source": "bitrix_crm",
+    "content": "Петух Доминант 107 — 10₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "240",
+      "price": 10.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117436"
+    }
+  },
+  {
+    "id": "bitrix_242",
+    "source": "bitrix_crm",
+    "content": "Петух Доминант 109 — 10₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "242",
+      "price": 10.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117445"
+    }
+  },
+  {
+    "id": "bitrix_244",
+    "source": "bitrix_crm",
+    "content": "сассо белый — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "244",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117454"
+    }
+  },
+  {
+    "id": "bitrix_248",
+    "source": "bitrix_crm",
+    "content": "сассо кабир — 65₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "248",
+      "price": 65.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117464"
+    }
+  },
+  {
+    "id": "bitrix_250",
+    "source": "bitrix_crm",
+    "content": "Подрост РОСС — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "250",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117473"
+    }
+  },
+  {
+    "id": "bitrix_252",
+    "source": "bitrix_crm",
+    "content": "Подрост КОББ — 70₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "252",
+      "price": 70.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117481"
+    }
+  },
+  {
+    "id": "bitrix_254",
+    "source": "bitrix_crm",
+    "content": "Петух Доминант 102 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "254",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117490"
+    }
+  },
+  {
+    "id": "bitrix_256",
+    "source": "bitrix_crm",
+    "content": "ПРЕДОПЛАТА  — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "256",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117500"
+    }
+  },
+  {
+    "id": "bitrix_258",
+    "source": "bitrix_crm",
+    "content": "Подрост Доминант Д-102 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "258",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117508"
+    }
+  },
+  {
+    "id": "bitrix_260",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Доминант Д-107 голубой — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "260",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117546"
+    }
+  },
+  {
+    "id": "bitrix_262",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Доминант Д-109 черный — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "262",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117554"
+    }
+  },
+  {
+    "id": "bitrix_264",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Адлерская — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "264",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117563"
+    }
+  },
+  {
+    "id": "bitrix_266",
+    "source": "bitrix_crm",
+    "content": "Коробка картонная — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "266",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117572"
+    }
+  },
+  {
+    "id": "bitrix_268",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Доминант Д-102 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "268",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117581"
+    }
+  },
+  {
+    "id": "bitrix_270",
+    "source": "bitrix_crm",
+    "content": "Хайсекс браун — 95₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "270",
+      "price": 95.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117590"
+    }
+  },
+  {
+    "id": "bitrix_272",
+    "source": "bitrix_crm",
+    "content": "Петух Хайсекс Браун — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "272",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117599"
+    }
+  },
+  {
+    "id": "bitrix_274",
+    "source": "bitrix_crm",
+    "content": "Джа 787 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "274",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117609"
+    }
+  },
+  {
+    "id": "bitrix_276",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Мастер — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "276",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117617"
+    }
+  },
+  {
+    "id": "bitrix_278",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Гриз Бар — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "278",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117626"
+    }
+  },
+  {
+    "id": "bitrix_280",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Редбро — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "280",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117635"
+    }
+  },
+  {
+    "id": "bitrix_282",
+    "source": "bitrix_crm",
+    "content": "Грейд Мейкер — 300₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "282",
+      "price": 300.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117644"
+    }
+  },
+  {
+    "id": "bitrix_284",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Джа 787 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "284",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117652"
+    }
+  },
+  {
+    "id": "bitrix_286",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Голошейка — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "286",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117661"
+    }
+  },
+  {
+    "id": "bitrix_288",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Хайсекс Браун — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "288",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117671"
+    }
+  },
+  {
+    "id": "bitrix_290",
+    "source": "bitrix_crm",
+    "content": "Гусь ПОДРОСТ — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "290",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117681"
+    }
+  },
+  {
+    "id": "bitrix_294",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Цесарка — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "294",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117692"
+    }
+  },
+  {
+    "id": "bitrix_300",
+    "source": "bitrix_crm",
+    "content": "Голошейка черная — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "300",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117701"
+    }
+  },
+  {
+    "id": "bitrix_302",
+    "source": "bitrix_crm",
+    "content": "Голошейка красная — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "302",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117709"
+    }
+  },
+  {
+    "id": "bitrix_304",
+    "source": "bitrix_crm",
+    "content": "стар 53 — 90₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "304",
+      "price": 90.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117718"
+    }
+  },
+  {
+    "id": "bitrix_310",
+    "source": "bitrix_crm",
+    "content": "сосо белый — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "310",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117727"
+    }
+  },
+  {
+    "id": "bitrix_314",
+    "source": "bitrix_crm",
+    "content": "сосо белый — 60₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "314",
+      "price": 60.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117736"
+    }
+  },
+  {
+    "id": "bitrix_318",
+    "source": "bitrix_crm",
+    "content": "Супер Харко — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "318",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117745"
+    }
+  },
+  {
+    "id": "bitrix_322",
+    "source": "bitrix_crm",
+    "content": "Тетра ХВ color — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "322",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117755"
+    }
+  },
+  {
+    "id": "bitrix_326",
+    "source": "bitrix_crm",
+    "content": "Рейнджер (Ranger) — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "326",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117764"
+    }
+  },
+  {
+    "id": "bitrix_330",
+    "source": "bitrix_crm",
+    "content": "Тетра Х — 85₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "330",
+      "price": 85.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117773"
+    }
+  },
+  {
+    "id": "bitrix_334",
+    "source": "bitrix_crm",
+    "content": "Бройлер 3 кг — 170₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "334",
+      "price": 170.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117782"
+    }
+  },
+  {
+    "id": "bitrix_338",
+    "source": "bitrix_crm",
+    "content": "Подрост РОСС :: 52 (23.06.25)  — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "338",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117791"
+    }
+  },
+  {
+    "id": "bitrix_342",
+    "source": "bitrix_crm",
+    "content": "РOCC — 45₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "342",
+      "price": 45.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117800"
+    }
+  },
+  {
+    "id": "bitrix_344",
+    "source": "bitrix_crm",
+    "content": "гу — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "344",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117809"
+    }
+  },
+  {
+    "id": "bitrix_348",
+    "source": "bitrix_crm",
+    "content": "Гусь Линда тушка — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "348",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117818"
+    }
+  },
+  {
+    "id": "bitrix_356",
+    "source": "bitrix_crm",
+    "content": "Кучинская юбилейная — 80₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "356",
+      "price": 80.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117827"
+    }
+  },
+  {
+    "id": "bitrix_364",
+    "source": "bitrix_crm",
+    "content": "Пепельная голубая — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "364",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117836"
+    }
+  },
+  {
+    "id": "bitrix_368",
+    "source": "bitrix_crm",
+    "content": "Голошейка цветная — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "368",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117844"
+    }
+  },
+  {
+    "id": "bitrix_372",
+    "source": "bitrix_crm",
+    "content": "Русская хохлатая — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "372",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117853"
+    }
+  },
+  {
+    "id": "bitrix_376",
+    "source": "bitrix_crm",
+    "content": "Доминант 849 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "376",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117862"
+    }
+  },
+  {
+    "id": "bitrix_380",
+    "source": "bitrix_crm",
+    "content": "Доминант 959 — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "380",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117872"
+    }
+  },
+  {
+    "id": "bitrix_386",
+    "source": "bitrix_crm",
+    "content": "Легорн — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "386",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117881"
+    }
+  },
+  {
+    "id": "bitrix_390",
+    "source": "bitrix_crm",
+    "content": "Плимутрок — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "390",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117891"
+    }
+  },
+  {
+    "id": "bitrix_394",
+    "source": "bitrix_crm",
+    "content": "Чёрная Московская — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "394",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117900"
+    }
+  },
+  {
+    "id": "bitrix_402",
+    "source": "bitrix_crm",
+    "content": " Старт  д/бройлеров Agravis (25 кг) — 1550₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "402",
+      "price": 1550.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117909"
+    }
+  },
+  {
+    "id": "bitrix_406",
+    "source": "bitrix_crm",
+    "content": "Рост д/бройлеров Agravis (25 кг) — 1500₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "406",
+      "price": 1500.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117918"
+    }
+  },
+  {
+    "id": "bitrix_410",
+    "source": "bitrix_crm",
+    "content": "Старт д/несушек и водоплавающих Agravis (25 кг) — 1425₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "410",
+      "price": 1425.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117928"
+    }
+  },
+  {
+    "id": "bitrix_416",
+    "source": "bitrix_crm",
+    "content": "Легорн Серебристый — 75₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "416",
+      "price": 75.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117937"
+    }
+  },
+  {
+    "id": "bitrix_422",
+    "source": "bitrix_crm",
+    "content": "Подрост РОСС — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "422",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117946"
+    }
+  },
+  {
+    "id": "bitrix_424",
+    "source": "bitrix_crm",
+    "content": "ПОДРОСТ Хайсекс Браун — 0₽",
+    "metadata": {
+      "type": "product",
+      "bitrix_id": "424",
+      "price": 0.0,
+      "quantity": null,
+      "synced_at": "2026-04-15T17:00:54.117955"
+    }
+  }
+]

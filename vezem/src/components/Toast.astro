@@ -1,0 +1,162 @@
+---
+// Компонент красивых Toast уведомлений
+---
+
+<!-- Контейнер для уведомлений -->
+<div id="toast-container" class="fixed top-4 right-4 z-[9999] flex flex-col gap-3 max-w-sm pointer-events-none">
+</div>
+
+<style>
+  @keyframes slideIn {
+    from {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  .toast-enter {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+
+  .toast-exit {
+    animation: slideOut 0.3s ease-in forwards;
+  }
+</style>
+
+<script>
+  // Глобальная функция для показа Toast уведомлений
+  window.showToast = function(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration: number = 4000) {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+
+    // Создаём уникальный ID
+    const toastId = `toast-${Date.now()}-${Math.random()}`;
+
+    // Определяем цвета и иконки для разных типов
+    const styles = {
+      success: {
+        bg: 'from-emerald-600 to-green-600',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>`,
+        border: 'border-emerald-400/30'
+      },
+      error: {
+        bg: 'from-red-600 to-rose-600',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>`,
+        border: 'border-red-400/30'
+      },
+      info: {
+        bg: 'from-blue-600 to-cyan-600',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>`,
+        border: 'border-blue-400/30'
+      },
+      warning: {
+        bg: 'from-amber-600 to-orange-600',
+        icon: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>`,
+        border: 'border-amber-400/30'
+      }
+    };
+
+    const style = styles[type] || styles.info;
+
+    // Создаём элемент Toast
+    const toast = document.createElement('div');
+    toast.id = toastId;
+    toast.className = `pointer-events-auto toast-enter relative overflow-hidden rounded-xl border ${style.border} shadow-2xl backdrop-blur-md max-w-sm`;
+    
+    toast.innerHTML = `
+      <div class="bg-gradient-to-r ${style.bg} p-4">
+        <div class="flex items-start gap-3">
+          <div class="text-white flex-shrink-0 mt-0.5">
+            ${style.icon}
+          </div>
+          <div class="flex-1 min-w-0">
+            <p class="text-white font-medium leading-relaxed break-words">${message}</p>
+          </div>
+          <button 
+            onclick="window.closeToast('${toastId}')" 
+            class="text-white/80 hover:text-white flex-shrink-0 transition ml-2"
+            aria-label="Закрыть"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="h-1 bg-white/20">
+        <div class="h-full bg-white/60 transition-all duration-${duration} ease-linear" style="width: 100%; animation: shrink ${duration}ms linear;"></div>
+      </div>
+    `;
+
+    // Добавляем стили для анимации прогресс-бара
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = `
+      @keyframes shrink {
+        from { width: 100%; }
+        to { width: 0%; }
+      }
+    `;
+    toast.appendChild(styleSheet);
+
+    container.appendChild(toast);
+
+    // Автоматически удаляем через указанное время
+    const autoCloseTimeout = setTimeout(() => {
+      window.closeToast(toastId);
+    }, duration);
+
+    // Сохраняем таймаут для возможности отмены при ручном закрытии
+    (toast as any)._autoCloseTimeout = autoCloseTimeout;
+  };
+
+  // Функция для закрытия Toast
+  window.closeToast = function(toastId: string) {
+    const toast = document.getElementById(toastId);
+    if (!toast) return;
+
+    // Отменяем автозакрытие если оно было
+    if ((toast as any)._autoCloseTimeout) {
+      clearTimeout((toast as any)._autoCloseTimeout);
+    }
+
+    // Добавляем класс анимации выхода
+    toast.classList.remove('toast-enter');
+    toast.classList.add('toast-exit');
+
+    // Удаляем элемент после завершения анимации
+    setTimeout(() => {
+      toast.remove();
+    }, 300);
+  };
+
+  // Типизация для TypeScript
+  declare global {
+    interface Window {
+      showToast: (message: string, type?: 'success' | 'error' | 'info' | 'warning', duration?: number) => void;
+      closeToast: (toastId: string) => void;
+    }
+  }
+</script>

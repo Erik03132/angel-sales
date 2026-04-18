@@ -1,0 +1,44 @@
+{
+  "period": "2026-03-15 - 2026-04-14",
+  "managers": {
+    "Марина Е": {
+      "calls_in": 1020,
+      "calls_out": 1245,
+      "calls_total": 2265,
+      "call_duration_sec": 0,
+      "calls_short": 0,
+      "calls_long": 0,
+      "deals_new": 829,
+      "deals_won": 36,
+      "deals_lost": 45,
+      "revenue": 8921363.05,
+      "avg_deal": 0
+    },
+    "Аня": {
+      "calls_in": 730,
+      "calls_out": 645,
+      "calls_total": 1375,
+      "call_duration_sec": 0,
+      "calls_short": 0,
+      "calls_long": 0,
+      "deals_new": 363,
+      "deals_won": 24,
+      "deals_lost": 17,
+      "revenue": 5832534.949999999,
+      "avg_deal": 0
+    },
+    "Эльзара": {
+      "calls_in": 760,
+      "calls_out": 600,
+      "calls_total": 1360,
+      "call_duration_sec": 0,
+      "calls_short": 0,
+      "calls_long": 0,
+      "deals_new": 459,
+      "deals_won": 41,
+      "deals_lost": 20,
+      "revenue": 9337957.869999997,
+      "avg_deal": 0
+    }
+  }
+}

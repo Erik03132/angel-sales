@@ -1,0 +1,1001 @@
+[
+  {
+    "index": 1,
+    "phone": "+79788914972",
+    "duration": "53",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:51:00+03:00",
+    "file_id": 952028,
+    "local_path": "data/shadow_learning/calls/audio_100/001_MToxMDEwNTIzMzo1NTI6NDc3NTA2NDU2.mp3"
+  },
+  {
+    "index": 2,
+    "phone": "79786385181",
+    "duration": "47",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:48:58+03:00",
+    "file_id": 952022,
+    "local_path": "data/shadow_learning/calls/audio_100/002_MToxMDEwNTIzMzoxMjE6MTEwMTg1NzQ0Mw==.mp3"
+  },
+  {
+    "index": 3,
+    "phone": "79518731968",
+    "duration": "180",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:46:57+03:00",
+    "file_id": 952020,
+    "local_path": "data/shadow_learning/calls/audio_100/003_MToxMDEwNTIzMzo1Njg6Mjc0MTI1MTc4.mp3"
+  },
+  {
+    "index": 4,
+    "phone": "79189942018",
+    "duration": "132",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:43:52+03:00",
+    "file_id": 952010,
+    "local_path": "data/shadow_learning/calls/audio_100/004_MToxMDEwNTIzMzo1Njg6Mjc0MTIzMjIx.mp3"
+  },
+  {
+    "index": 5,
+    "phone": "79782420943",
+    "duration": "33",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:42:53+03:00",
+    "file_id": 952008,
+    "local_path": "data/shadow_learning/calls/audio_100/005_MToxMDEwNTIzMzo1ODA6MTg5NTEwMjI1.mp3"
+  },
+  {
+    "index": 6,
+    "phone": "+79785503798",
+    "duration": "43",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:38:05+03:00",
+    "file_id": 951996,
+    "local_path": "data/shadow_learning/calls/audio_100/006_MToxMDEwNTIzMzo0MjE6MTU0Mjk5MjEyOA==.mp3"
+  },
+  {
+    "index": 7,
+    "phone": "79787389979",
+    "duration": "77",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:33:26+03:00",
+    "file_id": 951990,
+    "local_path": "data/shadow_learning/calls/audio_100/007_MToxMDEwNTIzMzo1Njg6Mjc0MTE3MDU0.mp3"
+  },
+  {
+    "index": 8,
+    "phone": "79528301430",
+    "duration": "47",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:33:13+03:00",
+    "file_id": 951988,
+    "local_path": "data/shadow_learning/calls/audio_100/008_MToxMDEwNTIzMzo1NzY6MTkxMDkzNjQ2.mp3"
+  },
+  {
+    "index": 9,
+    "phone": "79784459386",
+    "duration": "177",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:27:11+03:00",
+    "file_id": 951982,
+    "local_path": "data/shadow_learning/calls/audio_100/009_MToxMDEwNTIzMzo1NTY6NDc1MTA0MDM5.mp3"
+  },
+  {
+    "index": 10,
+    "phone": "79789159560",
+    "duration": "57",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:23:59+03:00",
+    "file_id": 951976,
+    "local_path": "data/shadow_learning/calls/audio_100/010_MToxMDEwNTIzMzo1NjY6MjcxODYzMTk3.mp3"
+  },
+  {
+    "index": 11,
+    "phone": "79788343810",
+    "duration": "91",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:23:33+03:00",
+    "file_id": 951978,
+    "local_path": "data/shadow_learning/calls/audio_100/011_MToxMDEwNTIzMzo1NTQ6NDY3NDE0NDQw.mp3"
+  },
+  {
+    "index": 12,
+    "phone": "79780025937",
+    "duration": "44",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:22:40+03:00",
+    "file_id": 951972,
+    "local_path": "data/shadow_learning/calls/audio_100/012_MToxMDEwNTIzMzoyMDI6MTI3ODg3MDQ4NA==.mp3"
+  },
+  {
+    "index": 13,
+    "phone": "79782885209",
+    "duration": "70",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:21:27+03:00",
+    "file_id": 951966,
+    "local_path": "data/shadow_learning/calls/audio_100/013_MToxMDEwNTIzMzo1NzI6MjA5NzYyMTQ0.mp3"
+  },
+  {
+    "index": 14,
+    "phone": "79785347134",
+    "duration": "73",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T15:19:02+03:00",
+    "file_id": 951960,
+    "local_path": "data/shadow_learning/calls/audio_100/014_MToxMDEwNTIzMzo1NTI6NDc3NDg3MzIx.mp3"
+  },
+  {
+    "index": 15,
+    "phone": "79788343810",
+    "duration": "284",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:17:51+03:00",
+    "file_id": 951974,
+    "local_path": "data/shadow_learning/calls/audio_100/015_MToxMDEwNTIzMzo1MDI6MTIxNTczNTA3OA==.mp3"
+  },
+  {
+    "index": 16,
+    "phone": "79780135571",
+    "duration": "139",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:16:42+03:00",
+    "file_id": 951952,
+    "local_path": "data/shadow_learning/calls/audio_100/016_MToxMDEwNTIzMzo1NDg6NDQ3NDA2OTUy.mp3"
+  },
+  {
+    "index": 17,
+    "phone": "79181146287",
+    "duration": "65",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:14:25+03:00",
+    "file_id": 951942
+  },
+  {
+    "index": 18,
+    "phone": "+79788353021",
+    "duration": "58",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T15:13:25+03:00",
+    "file_id": 951938,
+    "local_path": "data/shadow_learning/calls/audio_100/018_MToxMDEwNTIzMzo1NzI6MjA5NzU2NDY4.mp3"
+  },
+  {
+    "index": 19,
+    "phone": "79780047769",
+    "duration": "129",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:12:10+03:00",
+    "file_id": 951936,
+    "local_path": "data/shadow_learning/calls/audio_100/019_MToxMDEwNTIzMzoyNjE6ODQ1NzQ1NzU3.mp3"
+  },
+  {
+    "index": 20,
+    "phone": "79788388377",
+    "duration": "94",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T15:09:33+03:00",
+    "file_id": 951930,
+    "local_path": "data/shadow_learning/calls/audio_100/020_MToxMDEwNTIzMzoxNjE6ODUxODU4MzQy.mp3"
+  },
+  {
+    "index": 21,
+    "phone": "79649021856",
+    "duration": "111",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:08:34+03:00",
+    "file_id": 951920,
+    "local_path": "data/shadow_learning/calls/audio_100/021_MToxMDEwNTIzMzoyMDI6MTI3ODg2MTQxNw==.mp3"
+  },
+  {
+    "index": 22,
+    "phone": "79064153435",
+    "duration": "34",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T15:06:34+03:00",
+    "file_id": 951908,
+    "local_path": "data/shadow_learning/calls/audio_100/022_MToxMDEwNTIzMzo1ODE6MTc5MzA1MDA4.mp3"
+  },
+  {
+    "index": 23,
+    "phone": "79780402144",
+    "duration": "208",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T15:01:25+03:00",
+    "file_id": 951904,
+    "local_path": "data/shadow_learning/calls/audio_100/023_MToxMDEwNTIzMzo1NzU6MTk2NTI2ODk1.mp3"
+  },
+  {
+    "index": 24,
+    "phone": "79518607818",
+    "duration": "313",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:57:01+03:00",
+    "file_id": 951898,
+    "local_path": "data/shadow_learning/calls/audio_100/024_MToxMDEwNTIzMzo1NzI6MjA5NzQ1Nzk1.mp3"
+  },
+  {
+    "index": 25,
+    "phone": "79787867115",
+    "duration": "39",
+    "direction": "входящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:55:00+03:00",
+    "file_id": 951868,
+    "local_path": "data/shadow_learning/calls/audio_100/025_MToxMDEwNTIzMzo1NDQ6NDgwMjU1NDQ0.mp3"
+  },
+  {
+    "index": 26,
+    "phone": "+79782168523",
+    "duration": "69",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:53:53+03:00",
+    "file_id": 951862,
+    "local_path": "data/shadow_learning/calls/audio_100/026_MToxMDEwNTIzMzoyMDI6MTI3ODg1MjUwMQ==.mp3"
+  },
+  {
+    "index": 27,
+    "phone": "79789060103",
+    "duration": "33",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:52:05+03:00",
+    "file_id": 951850,
+    "local_path": "data/shadow_learning/calls/audio_100/027_MToxMDEwNTIzMzo1NzM6MTk3NTc2NDEw.mp3"
+  },
+  {
+    "index": 28,
+    "phone": "+79184040051",
+    "duration": "33",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:51:03+03:00",
+    "file_id": 951846,
+    "local_path": "data/shadow_learning/calls/audio_100/028_MToxMDEwNTIzMzo1NzI6MjA5NzQxOTE5.mp3"
+  },
+  {
+    "index": 29,
+    "phone": "79788076404",
+    "duration": "39",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:48:19+03:00",
+    "file_id": 951834,
+    "local_path": "data/shadow_learning/calls/audio_100/029_MToxMDEwNTIzMzo1NjU6MjcwNDM3NDgw.mp3"
+  },
+  {
+    "index": 30,
+    "phone": "79783173617",
+    "duration": "54",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:45:56+03:00",
+    "file_id": 951832,
+    "local_path": "data/shadow_learning/calls/audio_100/030_MToxMDEwNTIzMzo1ODA6MTg5NDczNDM2.mp3"
+  },
+  {
+    "index": 31,
+    "phone": "79900339589",
+    "duration": "268",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:36:10+03:00",
+    "file_id": 951804,
+    "local_path": "data/shadow_learning/calls/audio_100/031_MToxMDEwNTIzMzo1NTM6NDUzNzc5Mzk1.mp3"
+  },
+  {
+    "index": 32,
+    "phone": "79787655397",
+    "duration": "34",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T14:32:35+03:00",
+    "file_id": 951794,
+    "local_path": "data/shadow_learning/calls/audio_100/032_MToxMDEwNTIzMzozMjI6MTQ0NDkzODYyMQ==.mp3"
+  },
+  {
+    "index": 33,
+    "phone": "+79787715725",
+    "duration": "31",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T14:31:26+03:00",
+    "file_id": 951792,
+    "local_path": "data/shadow_learning/calls/audio_100/033_MToxMDEwNTIzMzo1MDM6MTExMDY2NDMxMQ==.mp3"
+  },
+  {
+    "index": 34,
+    "phone": "79788727422",
+    "duration": "84",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:30:33+03:00",
+    "file_id": 951796,
+    "local_path": "data/shadow_learning/calls/audio_100/034_MToxMDEwNTIzMzo0MjE6MTU0Mjk0NDczNw==.mp3"
+  },
+  {
+    "index": 35,
+    "phone": "79528403884",
+    "duration": "34",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T14:30:17+03:00",
+    "file_id": 951788,
+    "local_path": "data/shadow_learning/calls/audio_100/035_MToxMDEwNTIzMzo1Njc6MjcyNjQ5MjEx.mp3"
+  },
+  {
+    "index": 36,
+    "phone": "79787109562",
+    "duration": "34",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T14:29:06+03:00",
+    "file_id": 951782,
+    "local_path": "data/shadow_learning/calls/audio_100/036_MToxMDEwNTIzMzo1NTM6NDUzNzc0NTg0.mp3"
+  },
+  {
+    "index": 37,
+    "phone": "79787376382",
+    "duration": "151",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T14:21:59+03:00",
+    "file_id": 951770,
+    "local_path": "data/shadow_learning/calls/audio_100/037_MToxMDEwNTIzMzo1MDY6MTA3NTA1ODU2NQ==.mp3"
+  },
+  {
+    "index": 38,
+    "phone": "79186680857",
+    "duration": "79",
+    "direction": "входящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:21:44+03:00",
+    "file_id": 951764,
+    "local_path": "data/shadow_learning/calls/audio_100/038_MToxMDEwNTIzMzo1NDQ6NDgwMjMyMDIy.mp3"
+  },
+  {
+    "index": 39,
+    "phone": "79884716120",
+    "duration": "60",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:20:23+03:00",
+    "file_id": 951756,
+    "local_path": "data/shadow_learning/calls/audio_100/039_MToxMDEwNTIzMzo1NzA6MjA4Njc2NzY3.mp3"
+  },
+  {
+    "index": 40,
+    "phone": "79883440114",
+    "duration": "52",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:18:21+03:00",
+    "file_id": 951750,
+    "local_path": "data/shadow_learning/calls/audio_100/040_MToxMDEwNTIzMzoxMDE6MTEzMzE0NTk0OQ==.mp3"
+  },
+  {
+    "index": 41,
+    "phone": "79784738870",
+    "duration": "109",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:17:52+03:00",
+    "file_id": 951748,
+    "local_path": "data/shadow_learning/calls/audio_100/041_MToxMDEwNTIzMzo1NzI6MjA5NzE5NTA0.mp3"
+  },
+  {
+    "index": 42,
+    "phone": "79772696227",
+    "duration": "55",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:17:14+03:00",
+    "file_id": 951746,
+    "local_path": "data/shadow_learning/calls/audio_100/042_MToxMDEwNTIzMzo1NTM6NDUzNzY2NzIx.mp3"
+  },
+  {
+    "index": 43,
+    "phone": "79785250800",
+    "duration": "40",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:16:35+03:00",
+    "file_id": 951736,
+    "local_path": "data/shadow_learning/calls/audio_100/043_MToxMDEwNTIzMzo1MDY6MTA3NTA1NTEyNw==.mp3"
+  },
+  {
+    "index": 44,
+    "phone": "79883237369",
+    "duration": "80",
+    "direction": "входящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:14:29+03:00",
+    "file_id": 951728,
+    "local_path": "data/shadow_learning/calls/audio_100/044_MToxMDEwNTIzMzo1NDg6NDQ3MzY2MTc0.mp3"
+  },
+  {
+    "index": 45,
+    "phone": "79788251552",
+    "duration": "46",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:14:29+03:00",
+    "file_id": 951730,
+    "local_path": "data/shadow_learning/calls/audio_100/045_MToxMDEwNTIzMzo1NzQ6MTkzMjgwMDcx.mp3"
+  },
+  {
+    "index": 46,
+    "phone": "79790421538",
+    "duration": "85",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T14:11:08+03:00",
+    "file_id": 951718,
+    "local_path": "data/shadow_learning/calls/audio_100/046_MToxMDEwNTIzMzo1NTI6NDc3NDQxMzYy.mp3"
+  },
+  {
+    "index": 47,
+    "phone": "79094299515",
+    "duration": "279",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:08:45+03:00",
+    "file_id": 951722,
+    "local_path": "data/shadow_learning/calls/audio_100/047_MToxMDEwNTIzMzo1NjU6MjcwNDEwOTk5.mp3"
+  },
+  {
+    "index": 48,
+    "phone": "79885832119",
+    "duration": "100",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:06:26+03:00",
+    "file_id": 951712,
+    "local_path": "data/shadow_learning/calls/audio_100/048_MToxMDEwNTIzMzo1NDc6NDc4Mzc0NTM5.mp3"
+  },
+  {
+    "index": 49,
+    "phone": "79785861534",
+    "duration": "46",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T14:02:00+03:00",
+    "file_id": 951708,
+    "local_path": "data/shadow_learning/calls/audio_100/049_MToxMDEwNTIzMzoxMjE6MTEwMTc4NTA4OA==.mp3"
+  },
+  {
+    "index": 50,
+    "phone": "79183799463",
+    "duration": "48",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:59:31+03:00",
+    "file_id": 951704,
+    "local_path": "data/shadow_learning/calls/audio_100/050_MToxMDEwNTIzMzo1NDg6NDQ3MzU2MzI2.mp3"
+  },
+  {
+    "index": 51,
+    "phone": "79883453177",
+    "duration": "84",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:58:16+03:00",
+    "file_id": 951706,
+    "local_path": "data/shadow_learning/calls/audio_100/051_MToxMDEwNTIzMzo1NzY6MTkxMDMxMDAy.mp3"
+  },
+  {
+    "index": 52,
+    "phone": "79184398822",
+    "duration": "38",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:56:30+03:00",
+    "file_id": 951694,
+    "local_path": "data/shadow_learning/calls/audio_100/052_MToxMDEwNTIzMzo1NTM6NDUzNzUzNTA4.mp3"
+  },
+  {
+    "index": 53,
+    "phone": "79528301430",
+    "duration": "114",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:54:18+03:00",
+    "file_id": 951698,
+    "local_path": "data/shadow_learning/calls/audio_100/053_MToxMDEwNTIzMzo1NDg6NDQ3MzUyNjY5.mp3"
+  },
+  {
+    "index": 54,
+    "phone": "79782494779",
+    "duration": "63",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:51:50+03:00",
+    "file_id": 951688,
+    "local_path": "data/shadow_learning/calls/audio_100/054_MToxMDEwNTIzMzo1NzE6MjEwMDc4NDYw.mp3"
+  },
+  {
+    "index": 55,
+    "phone": "79787800593",
+    "duration": "65",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:50:29+03:00",
+    "file_id": 951686,
+    "local_path": "data/shadow_learning/calls/audio_100/055_MToxMDEwNTIzMzo1NTU6NDYyNDE3MDI4.mp3"
+  },
+  {
+    "index": 56,
+    "phone": "79786720409",
+    "duration": "63",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:48:26+03:00",
+    "file_id": 951682,
+    "local_path": "data/shadow_learning/calls/audio_100/056_MToxMDEwNTIzMzozMjI6MTQ0NDkwOTE3NA==.mp3"
+  },
+  {
+    "index": 57,
+    "phone": "79787880742",
+    "duration": "47",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:47:52+03:00",
+    "file_id": 951678,
+    "local_path": "data/shadow_learning/calls/audio_100/057_MToxMDEwNTIzMzo1Nzk6MTkzNTM2MDc0.mp3"
+  },
+  {
+    "index": 58,
+    "phone": "79784667658",
+    "duration": "110",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:45:34+03:00",
+    "file_id": 951674,
+    "local_path": "data/shadow_learning/calls/audio_100/058_MToxMDEwNTIzMzo1NTc6NDUwMzIxNTM4.mp3"
+  },
+  {
+    "index": 59,
+    "phone": "79784667658",
+    "duration": "110",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:45:34+03:00",
+    "file_id": 951674,
+    "local_path": "data/shadow_learning/calls/audio_100/059_MToxMDEwNTIzMzo1NTc6NDUwMzIxNTM4.mp3"
+  },
+  {
+    "index": 60,
+    "phone": "79180698447",
+    "duration": "124",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:42:55+03:00",
+    "file_id": 951668,
+    "local_path": "data/shadow_learning/calls/audio_100/060_MToxMDEwNTIzMzo1Njg6Mjc0MDQ0MDQy.mp3"
+  },
+  {
+    "index": 61,
+    "phone": "79787880742",
+    "duration": "66",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:40:39+03:00",
+    "file_id": 951664,
+    "local_path": "data/shadow_learning/calls/audio_100/061_MToxMDEwNTIzMzo1NTY6NDc1MDMxNTUz.mp3"
+  },
+  {
+    "index": 62,
+    "phone": "79996367471",
+    "duration": "121",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:37:29+03:00",
+    "file_id": 951660,
+    "local_path": "data/shadow_learning/calls/audio_100/062_MToxMDEwNTIzMzo1Nzk6MTkzNTI5MzAz.mp3"
+  },
+  {
+    "index": 63,
+    "phone": "79788671839",
+    "duration": "65",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:35:29+03:00",
+    "file_id": 951658,
+    "local_path": "data/shadow_learning/calls/audio_100/063_MToxMDEwNTIzMzo1NzY6MTkxMDE1NTQ4.mp3"
+  },
+  {
+    "index": 64,
+    "phone": "79790681459",
+    "duration": "39",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:31:00+03:00",
+    "file_id": 951652,
+    "local_path": "data/shadow_learning/calls/audio_100/064_MToxMDEwNTIzMzo1NzQ6MTkzMjUyODk2.mp3"
+  },
+  {
+    "index": 65,
+    "phone": "79788405246",
+    "duration": "191",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:28:07+03:00",
+    "file_id": 951648,
+    "local_path": "data/shadow_learning/calls/audio_100/065_MToxMDEwNTIzMzo1NzE6MjEwMDYyMDM1.mp3"
+  },
+  {
+    "index": 66,
+    "phone": "79780253461",
+    "duration": "33",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:27:34+03:00",
+    "file_id": 951642,
+    "local_path": "data/shadow_learning/calls/audio_100/066_MToxMDEwNTIzMzo1NDQ6NDgwMTk1Mjg4.mp3"
+  },
+  {
+    "index": 67,
+    "phone": "79892595200",
+    "duration": "35",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:26:09+03:00",
+    "file_id": 951640,
+    "local_path": "data/shadow_learning/calls/audio_100/067_MToxMDEwNTIzMzo1NzI6MjA5NjgzODE2.mp3"
+  },
+  {
+    "index": 68,
+    "phone": "+79788448095",
+    "duration": "56",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:23:51+03:00",
+    "file_id": 951634,
+    "local_path": "data/shadow_learning/calls/audio_100/068_MToxMDEwNTIzMzo1NDg6NDQ3MzM0MDIz.mp3"
+  },
+  {
+    "index": 69,
+    "phone": "79649307053",
+    "duration": "105",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:18:41+03:00",
+    "file_id": 951630,
+    "local_path": "data/shadow_learning/calls/audio_100/069_MToxMDEwNTIzMzoyMjE6MTEwMzk5Nzg0Mw==.mp3"
+  },
+  {
+    "index": 70,
+    "phone": "79788804527",
+    "duration": "39",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:15:45+03:00",
+    "file_id": 951626,
+    "local_path": "data/shadow_learning/calls/audio_100/070_MToxMDEwNTIzMzo1NzI6MjA5Njc3MTE3.mp3"
+  },
+  {
+    "index": 71,
+    "phone": "+79184398822",
+    "duration": "230",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:11:33+03:00",
+    "file_id": 951624,
+    "local_path": "data/shadow_learning/calls/audio_100/071_MToxMDEwNTIzMzo1NzE6MjEwMDUxMDkz.mp3"
+  },
+  {
+    "index": 72,
+    "phone": "+79782890295",
+    "duration": "292",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:02:52+03:00",
+    "file_id": 951618,
+    "local_path": "data/shadow_learning/calls/audio_100/072_MToxMDEwNTIzMzo1MDI6MTIxNTY0NTM2OA==.mp3"
+  },
+  {
+    "index": 73,
+    "phone": "79003074754",
+    "duration": "112",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T13:00:21+03:00",
+    "file_id": 951614,
+    "local_path": "data/shadow_learning/calls/audio_100/073_MToxMDEwNTIzMzo1NTI6NDc3MzkzODA3.mp3"
+  },
+  {
+    "index": 74,
+    "phone": "79787776314",
+    "duration": "120",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:57:47+03:00",
+    "file_id": 951610,
+    "local_path": "data/shadow_learning/calls/audio_100/074_MToxMDEwNTIzMzo1NTY6NDc1MDAyMDA1.mp3"
+  },
+  {
+    "index": 75,
+    "phone": "79780985737",
+    "duration": "43",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:56:36+03:00",
+    "file_id": 951612,
+    "local_path": "data/shadow_learning/calls/audio_100/075_MToxMDEwNTIzMzo1Nzc6MTkwMDcxNjU0.mp3"
+  },
+  {
+    "index": 76,
+    "phone": "79379106113",
+    "duration": "137",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:54:21+03:00",
+    "file_id": 951604,
+    "local_path": "data/shadow_learning/calls/audio_100/076_MToxMDEwNTIzMzo1NzQ6MTkzMjI2NzI1.mp3"
+  },
+  {
+    "index": 77,
+    "phone": "79785160125",
+    "duration": "85",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T12:50:02+03:00",
+    "file_id": 951598,
+    "local_path": "data/shadow_learning/calls/audio_100/077_MToxMDEwNTIzMzo1MDI6MTIxNTYzNjE2Ng==.mp3"
+  },
+  {
+    "index": 78,
+    "phone": "79787092056",
+    "duration": "33",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T12:28:35+03:00",
+    "file_id": 951586,
+    "local_path": "data/shadow_learning/calls/audio_100/078_MToxMDEwNTIzMzo1NTc6NDUwMjY5Mzkx.mp3"
+  },
+  {
+    "index": 79,
+    "phone": "79043471859",
+    "duration": "61",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T12:27:16+03:00",
+    "file_id": 951584,
+    "local_path": "data/shadow_learning/calls/audio_100/079_MToxMDEwNTIzMzoxMjE6MTEwMTcxODEzNQ==.mp3"
+  },
+  {
+    "index": 80,
+    "phone": "79787248842",
+    "duration": "36",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T12:24:10+03:00",
+    "file_id": 951572,
+    "local_path": "data/shadow_learning/calls/audio_100/080_MToxMDEwNTIzMzoyMDI6MTI3ODc1NDQzOQ==.mp3"
+  },
+  {
+    "index": 81,
+    "phone": "79781112463",
+    "duration": "59",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:04:20+03:00",
+    "file_id": 951562,
+    "local_path": "data/shadow_learning/calls/audio_100/081_MToxMDEwNTIzMzoyNjE6ODQ1NjA3NTkw.mp3"
+  },
+  {
+    "index": 82,
+    "phone": "79515646133",
+    "duration": "115",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:02:38+03:00",
+    "file_id": 951558,
+    "local_path": "data/shadow_learning/calls/audio_100/082_MToxMDEwNTIzMzo1NDM6NDc3NDAzNjQy.mp3"
+  },
+  {
+    "index": 83,
+    "phone": "79066593373",
+    "duration": "79",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T12:00:57+03:00",
+    "file_id": 951554,
+    "local_path": "data/shadow_learning/calls/audio_100/083_MToxMDEwNTIzMzo1NTQ6NDY3Mjc2Nzk2.mp3"
+  },
+  {
+    "index": 84,
+    "phone": "79788002853",
+    "duration": "82",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:58:27+03:00",
+    "file_id": 951548,
+    "local_path": "data/shadow_learning/calls/audio_100/084_MToxMDEwNTIzMzo1Nzk6MTkzNDYxMDkw.mp3"
+  },
+  {
+    "index": 85,
+    "phone": "79785220396",
+    "duration": "53",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T11:57:13+03:00",
+    "file_id": 951546,
+    "local_path": "data/shadow_learning/calls/audio_100/085_MToxMDEwNTIzMzo1NzY6MTkwOTQ5Mzcy.mp3"
+  },
+  {
+    "index": 86,
+    "phone": "79787891617",
+    "duration": "61",
+    "direction": "исходящий",
+    "manager_id": "1528",
+    "date": "2026-04-15T11:56:22+03:00",
+    "file_id": 951542,
+    "local_path": "data/shadow_learning/calls/audio_100/086_MToxMDEwNTIzMzo0MjE6MTU0MjgzMzA1Nw==.mp3"
+  },
+  {
+    "index": 87,
+    "phone": "79185043461",
+    "duration": "170",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:54:59+03:00",
+    "file_id": 951538,
+    "local_path": "data/shadow_learning/calls/audio_100/087_MToxMDEwNTIzMzo1NTI6NDc3MzQ2OTYy.mp3"
+  },
+  {
+    "index": 88,
+    "phone": "79883381115",
+    "duration": "101",
+    "direction": "входящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T11:53:04+03:00",
+    "file_id": 951530,
+    "local_path": "data/shadow_learning/calls/audio_100/088_MToxMDEwNTIzMzo1NjY6MjcxNzIxNzM3.mp3"
+  },
+  {
+    "index": 89,
+    "phone": "+79781684558",
+    "duration": "55",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:51:36+03:00",
+    "file_id": 951526,
+    "local_path": "data/shadow_learning/calls/audio_100/089_MToxMDEwNTIzMzozMjI6MTQ0NDgyNzgwNQ==.mp3"
+  },
+  {
+    "index": 90,
+    "phone": "79787212716",
+    "duration": "123",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:48:37+03:00",
+    "file_id": 951518,
+    "local_path": "data/shadow_learning/calls/audio_100/090_MToxMDEwNTIzMzo1NzY6MTkwOTQzMTU1.mp3"
+  },
+  {
+    "index": 91,
+    "phone": "79009326679",
+    "duration": "222",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:44:02+03:00",
+    "file_id": 951514,
+    "local_path": "data/shadow_learning/calls/audio_100/091_MToxMDEwNTIzMzo1NDQ6NDgwMTE4NDIw.mp3"
+  },
+  {
+    "index": 92,
+    "phone": "+79788104678",
+    "duration": "121",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:40:55+03:00",
+    "file_id": 951510,
+    "local_path": "data/shadow_learning/calls/audio_100/092_MToxMDEwNTIzMzo1ODE6MTc5MTY4MDA5.mp3"
+  },
+  {
+    "index": 93,
+    "phone": "79785010165",
+    "duration": "305",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:35:03+03:00",
+    "file_id": 951506,
+    "local_path": "data/shadow_learning/calls/audio_100/093_MToxMDEwNTIzMzo1Njg6MjczOTU1MTQy.mp3"
+  },
+  {
+    "index": 94,
+    "phone": "79183331993",
+    "duration": "40",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:33:59+03:00",
+    "file_id": 951500,
+    "local_path": "data/shadow_learning/calls/audio_100/094_MToxMDEwNTIzMzo1Njg6MjczOTU0MzM5.mp3"
+  },
+  {
+    "index": 95,
+    "phone": "79286040717",
+    "duration": "134",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T11:30:48+03:00",
+    "file_id": 951502,
+    "local_path": "data/shadow_learning/calls/audio_100/095_MToxMDEwNTIzMzo1NjY6MjcxNzA0MzQ0.mp3"
+  },
+  {
+    "index": 96,
+    "phone": "79529554233",
+    "duration": "72",
+    "direction": "исходящий",
+    "manager_id": "4388",
+    "date": "2026-04-15T11:28:17+03:00",
+    "file_id": 951490,
+    "local_path": "data/shadow_learning/calls/audio_100/096_MToxMDEwNTIzMzo1Njg6MjczOTUwMzUw.mp3"
+  },
+  {
+    "index": 97,
+    "phone": "79785586944",
+    "duration": "75",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:28:01+03:00",
+    "file_id": 951492,
+    "local_path": "data/shadow_learning/calls/audio_100/097_MToxMDEwNTIzMzo1MDY6MTA3NDk0MTY1Mg==.mp3"
+  },
+  {
+    "index": 98,
+    "phone": "79185472903",
+    "duration": "33",
+    "direction": "входящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:23:43+03:00",
+    "file_id": 951482,
+    "local_path": "data/shadow_learning/calls/audio_100/098_MToxMDEwNTIzMzo1NzQ6MTkzMTU5OTIy.mp3"
+  },
+  {
+    "index": 99,
+    "phone": "79785031889",
+    "duration": "67",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:21:32+03:00",
+    "file_id": 951480,
+    "local_path": "data/shadow_learning/calls/audio_100/099_MToxMDEwNTIzMzo1MDM6MTExMDUzMjgzNA==.mp3"
+  },
+  {
+    "index": 100,
+    "phone": "79788879061",
+    "duration": "100",
+    "direction": "исходящий",
+    "manager_id": "40318",
+    "date": "2026-04-15T11:19:21+03:00",
+    "file_id": 951474,
+    "local_path": "data/shadow_learning/calls/audio_100/100_MToxMDEwNTIzMzo1NzM6MTk3NDI3OTk4.mp3"
+  }
+]

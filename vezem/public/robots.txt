@@ -1,0 +1,22 @@
+# robots.txt для ВеzemЦыплят
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /admin/
+
+# Задержка между запросами (в секундах)
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://vezemcip.bitrix24.ru/sitemap.xml
+
+# Google
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+# Yandex
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 1

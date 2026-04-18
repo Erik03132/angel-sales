@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐣 Уведомления о доставке — Азовский Инкубатор</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f1117;
+            --bg-secondary: #1a1d27;
+            --bg-card: #22263280;
+            --bg-card-solid: #222632;
+            --border: #2d3348;
+            --text-primary: #e8eaed;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --accent: #f59e0b;
+            --accent-glow: rgba(245, 158, 11, 0.15);
+            --green: #10b981;
+            --green-glow: rgba(16, 185, 129, 0.15);
+            --red: #ef4444;
+            --red-glow: rgba(239, 68, 68, 0.15);
+            --blue: #3b82f6;
+            --blue-glow: rgba(59, 130, 246, 0.15);
+            --radius: 12px;
+            --radius-lg: 16px;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 20px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(12px);
+        }
+        .header-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-title .icon { font-size: 28px; }
+        .header-title h1 {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header-title .sub {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 6px var(--green);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ===== LAYOUT ===== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px;
+            display: grid;
+            gap: 20px;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.3s;
+        }
+        .card:hover { border-color: #3d4558; }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-title .emoji { font-size: 18px; }
+
+        /* ===== UPLOAD ZONE ===== */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: var(--radius);
+            padding: 40px 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: transparent;
+        }
+        .upload-zone:hover, .upload-zone.dragover {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .upload-zone .icon { font-size: 36px; margin-bottom: 8px; }
+        .upload-zone .label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .upload-zone .hint {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .upload-zone.loaded {
+            border-color: var(--green);
+            border-style: solid;
+            background: var(--green-glow);
+        }
+        input[type="file"] { display: none; }
+
+        /* ===== TABLE ===== */
+        .table-wrap {
+            overflow-x: auto;
+            max-height: 350px;
+            overflow-y: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        thead th {
+            background: var(--bg-secondary);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        tbody td {
+            padding: 10px 14px;
+            border-top: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+        tbody tr:hover { background: rgba(255,255,255,0.02); }
+        .phone-cell {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ===== TEMPLATE EDITOR ===== */
+        .template-editor {
+            width: 100%;
+            min-height: 140px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 14px;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            resize: vertical;
+            line-height: 1.6;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .template-editor:focus { border-color: var(--accent); }
+        
+        .vars-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .var-tag {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--blue-glow);
+            color: var(--blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .var-tag:hover { background: var(--blue); color: white; }
+
+        /* ===== PREVIEW ===== */
+        .sms-preview {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: var(--text-secondary);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .sms-meta {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* ===== PROVIDER SELECT ===== */
+        .provider-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .provider-card {
+            padding: 14px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            background: transparent;
+        }
+        .provider-card:hover { border-color: #4a5568; }
+        .provider-card.selected {
+            border-color: var(--accent);
+            background: var(--accent-glow);
+        }
+        .provider-card .name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+        .provider-card .price {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .api-key-input {
+            width: 100%;
+            padding: 10px 14px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-primary);
+            font-size: 13px;
+            margin-top: 12px;
+            outline: none;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+        .api-key-input:focus { border-color: var(--accent); }
+        .api-key-input::placeholder { color: var(--text-muted); }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #d97706);
+            color: #000;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+        .btn-primary:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-secondary {
+            background: var(--bg-card-solid);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .btn-secondary:hover { background: #2a2f3f; }
+        .btn-danger {
+            background: linear-gradient(135deg, var(--red), #dc2626);
+            color: white;
+        }
+
+        /* ===== PROGRESS ===== */
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: var(--bg-primary);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 12px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--green));
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        /* ===== RESULTS ===== */
+        .result-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: var(--bg-primary);
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        .result-item .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .result-status {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        .result-status.ok { background: var(--green-glow); }
+        .result-status.fail { background: var(--red-glow); }
+
+        /* ===== STATS ===== */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .stat-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+        }
+        .stat-value.gold { color: var(--accent); }
+        .stat-value.green { color: var(--green); }
+        .stat-value.red { color: var(--red); }
+        .stat-value.blue { color: var(--blue); }
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        /* ===== STEP INDICATORS ===== */
+        .steps {
+            display: flex;
+            gap: 0;
+            margin-bottom: 24px;
+        }
+        .step {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 18px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            position: relative;
+            transition: all 0.3s;
+        }
+        .step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+        .step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+        .step.active { border-color: var(--accent); background: var(--accent-glow); }
+        .step.done { border-color: var(--green); background: var(--green-glow); }
+        .step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .step.active .step-num { background: var(--accent); color: #000; }
+        .step.done .step-num { background: var(--green); color: #fff; }
+        .step-text { font-size: 13px; font-weight: 500; }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .sending-animation .btn-primary {
+            animation: sendPulse 1.5s infinite;
+        }
+        @keyframes sendPulse {
+            0%, 100% { box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 4px 24px rgba(245, 158, 11, 0.6); }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .provider-cards { grid-template-columns: 1fr; }
+            .steps { flex-direction: column; }
+            .step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+            .step:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <div class="header-title">
+            <span class="icon">🐣</span>
+            <div>
+                <h1>Уведомления о доставке</h1>
+                <span class="sub">Азовский Инкубатор — система SMS-рассылки</span>
+            </div>
+        </div>
+        <div class="header-status">
+            <div class="status-badge">
+                <span class="status-dot"></span>
+                <span id="modeLabel">Тест-режим</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- STEPS -->
+        <div class="steps">
+            <div class="step active" id="step1">
+                <span class="step-num">1</span>
+                <span class="step-text">Загрузка таблицы</span>
+            </div>
+            <div class="step" id="step2">
+                <span class="step-num">2</span>
+                <span class="step-text">Шаблон SMS</span>
+            </div>
+            <div class="step" id="step3">
+                <span class="step-num">3</span>
+                <span class="step-text">Провайдер</span>
+            </div>
+            <div class="step" id="step4">
+                <span class="step-num">4</span>
+                <span class="step-text">Отправка</span>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-row" id="statsRow" style="display:none">
+            <div class="stat-card">
+                <div class="stat-value gold" id="statTotal">0</div>
+                <div class="stat-label">Клиентов</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value blue" id="statSMS">0</div>
+                <div class="stat-label">SMS к отправке</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green" id="statSent">0</div>
+                <div class="stat-label">Отправлено</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value red" id="statFailed">0</div>
+                <div class="stat-label">Ошибки</div>
+            </div>
+        </div>
+
+        <!-- ROW 1: Upload + Template -->
+        <div class="grid-2">
+            <!-- UPLOAD -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><span class="emoji">📂</span> Таблица клиентов</div>
+                </div>
+                <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+                    <div class="icon">📋</div>
+                    <div class="label">Перетащите Excel-файл сюда</div>
+                    <div class="hint">или кликните для выбора (.xlsx)</div>
+                </div>
+                <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this.files[0])">
+                
+                <div id="clientsTable" style="display:none; margin-top:16px" class="fade-in">
+                    <div class="table-wrap">
+                        <table>
+                            <thead><tr id="tableHead"></tr></thead>
+                            <tbody id="tableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEMPLATE -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><span class="emoji">📝</span> Шаблон сообщения</div>
+                    <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px" onclick="resetTemplate()">Сбросить</button>
+                </div>
+                <textarea class="template-editor" id="templateEditor" oninput="updatePreview()">Здравствуйте, {name}! 🐣
+Ваш заказ ({order}) будет доставлен:
+📍 {address}
+🕐 {time}
+Азовский Инкубатор | 8-978-XXX-XX-XX</textarea>
+                
+                <div class="vars-row">
+                    <span class="var-tag" onclick="insertVar('{name}')">&#123;name&#125;</span>
+                    <span class="var-tag" onclick="insertVar('{phone}')">&#123;phone&#125;</span>
+                    <span class="var-tag" onclick="insertVar('{order}')">&#123;order&#125;</span>
+                    <span class="var-tag" onclick="insertVar('{address}')">&#123;address&#125;</span>
+                    <span class="var-tag" onclick="insertVar('{time}')">&#123;time&#125;</span>
+                </div>
+
+                <div style="margin-top:16px">
+                    <div class="card-title" style="margin-bottom:8px"><span class="emoji">👁</span> Предпросмотр</div>
+                    <div class="sms-preview" id="smsPreview">Загрузите таблицу для предпросмотра...</div>
+                    <div class="sms-meta">
+                        <span id="charCount">0 символов</span>
+                        <span id="smsCount">0 SMS</span>
+                        <span id="costEstimate">~0₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2: Provider + Send -->
+        <div class="grid-2">
+            <!-- PROVIDER -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><span class="emoji">📡</span> SMS-провайдер</div>
+                </div>
+                <div class="provider-cards">
+                    <div class="provider-card selected" onclick="selectProvider('dryrun')" id="prov-dryrun">
+                        <div>🧪</div>
+                        <div class="name">Тест</div>
+                        <div class="price">Бесплатно</div>
+                    </div>
+                    <div class="provider-card" onclick="selectProvider('smsru')" id="prov-smsru">
+                        <div>📱</div>
+                        <div class="name">SMS.ru</div>
+                        <div class="price">~2-3₽/SMS</div>
+                    </div>
+                    <div class="provider-card" onclick="selectProvider('smsc')" id="prov-smsc">
+                        <div>⚡</div>
+                        <div class="name">SMSC.ru</div>
+                        <div class="price">~2-3₽/SMS</div>
+                    </div>
+                </div>
+                <div id="providerConfig" style="display:none; margin-top:12px" class="fade-in">
+                    <input type="text" class="api-key-input" id="apiKeyInput" placeholder="API-ключ...">
+                </div>
+                <div id="smscConfig" style="display:none; margin-top:12px" class="fade-in">
+                    <input type="text" class="api-key-input" id="smscLogin" placeholder="Логин SMSC" style="margin-bottom:8px">
+                    <input type="password" class="api-key-input" id="smscPassword" placeholder="Пароль SMSC">
+                </div>
+            </div>
+
+            <!-- SEND -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title"><span class="emoji">🚀</span> Отправка</div>
+                </div>
+                <div style="text-align:center; padding: 16px 0">
+                    <div style="margin-bottom:16px; color: var(--text-secondary); font-size: 14px" id="sendInfo">
+                        Загрузите таблицу для начала
+                    </div>
+                    <button class="btn btn-primary" id="sendBtn" disabled onclick="startSending()">
+                        <span>📤</span> Отправить SMS
+                    </button>
+                    <div class="progress-bar" id="progressBar" style="display:none">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div id="sendStatus" style="margin-top:12px; font-size:13px; color:var(--text-muted)"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="card" id="resultsCard" style="display:none">
+            <div class="card-header">
+                <div class="card-title"><span class="emoji">📊</span> Результаты рассылки</div>
+                <button class="btn btn-secondary" style="font-size:12px; padding:6px 12px" onclick="downloadResults()">📥 Скачать лог</button>
+            </div>
+            <div id="resultsList"></div>
+        </div>
+    </div>
+
+    <script>
+    // ===================== STATE =====================
+    let clients = [];
+    let results = [];
+    let selectedProvider = 'dryrun';
+    const API = window.location.origin;
+    const DEFAULT_TEMPLATE = `Здравствуйте, {name}! 🐣\nВаш заказ ({order}) будет доставлен:\n📍 {address}\n🕐 {time}\nАзовский Инкубатор | 8-978-XXX-XX-XX`;
+
+    // ===================== UPLOAD =====================
+    const uploadZone = document.getElementById('uploadZone');
+
+    uploadZone.addEventListener('dragover', e => {
+        e.preventDefault();
+        uploadZone.classList.add('dragover');
+    });
+    uploadZone.addEventListener('dragleave', () => {
+        uploadZone.classList.remove('dragover');
+    });
+    uploadZone.addEventListener('drop', e => {
+        e.preventDefault();
+        uploadZone.classList.remove('dragover');
+        handleFile(e.dataTransfer.files[0]);
+    });
+
+    function handleFile(file) {
+        if (!file) return;
+        
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        uploadZone.innerHTML = '<div class="icon">⏳</div><div class="label">Загрузка...</div>';
+        
+        fetch(`${API}/api/upload`, {
+            method: 'POST',
+            body: formData
+        })
+        .then(r => r.json())
+        .then(data => {
+            if (data.error) {
+                uploadZone.innerHTML = `<div class="icon">❌</div><div class="label">${data.error}</div>`;
+                return;
+            }
+            
+            clients = data.clients;
+            
+            uploadZone.classList.add('loaded');
+            uploadZone.innerHTML = `
+                <div class="icon">✅</div>
+                <div class="label">${file.name}</div>
+                <div class="hint">${clients.length} клиентов загружено</div>
+            `;
+            
+            renderTable();
+            updatePreview();
+            updateStats();
+            setStep(2);
+            
+            document.getElementById('sendBtn').disabled = false;
+            document.getElementById('sendInfo').textContent = `Готово к отправке: ${clients.length} SMS`;
+        })
+        .catch(err => {
+            uploadZone.innerHTML = `<div class="icon">❌</div><div class="label">Ошибка: ${err.message}</div>`;
+        });
+    }
+
+    function renderTable() {
+        const head = document.getElementById('tableHead');
+        const body = document.getElementById('tableBody');
+        
+        head.innerHTML = '<th>#</th><th>Имя</th><th>Телефон</th><th>Заказ</th><th>Адрес</th><th>Время</th>';
+        
+        body.innerHTML = clients.map((c, i) => `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${esc(c.name)}</td>
+                <td class="phone-cell">${formatPhone(c.phone)}</td>
+                <td>${esc(c.order || '—')}</td>
+                <td>${esc(c.address || '—')}</td>
+                <td>${esc(c.time || '—')}</td>
+            </tr>
+        `).join('');
+        
+        document.getElementById('clientsTable').style.display = 'block';
+    }
+
+    // ===================== TEMPLATE =====================
+    function insertVar(v) {
+        const ta = document.getElementById('templateEditor');
+        const start = ta.selectionStart;
+        ta.value = ta.value.substring(0, start) + v + ta.value.substring(ta.selectionEnd);
+        ta.focus();
+        ta.selectionStart = ta.selectionEnd = start + v.length;
+        updatePreview();
+    }
+
+    function resetTemplate() {
+        document.getElementById('templateEditor').value = DEFAULT_TEMPLATE;
+        updatePreview();
+    }
+
+    function updatePreview() {
+        const template = document.getElementById('templateEditor').value;
+        const preview = document.getElementById('smsPreview');
+        
+        if (clients.length === 0) {
+            // Показываем шаблон с заглушками
+            let example = template;
+            example = example.replace('{name}', 'Иван');
+            example = example.replace('{phone}', '79991234567');
+            example = example.replace('{order}', 'Кобб-500, 100 шт');
+            example = example.replace('{address}', 'Краснодар, ул. Ленина 1');
+            example = example.replace('{time}', '16 апреля, 10:00');
+            preview.textContent = example;
+        } else {
+            // Показываем для первого клиента
+            let msg = template;
+            const c = clients[0];
+            msg = msg.replace('{name}', c.name || '—');
+            msg = msg.replace('{phone}', c.phone || '—');
+            msg = msg.replace('{order}', c.order || '—');
+            msg = msg.replace('{address}', c.address || '—');
+            msg = msg.replace('{time}', c.time || '—');
+            preview.textContent = msg;
+        }
+        
+        const chars = preview.textContent.length;
+        const smsParts = Math.ceil(chars / 70); // Кириллица = 70 символов
+        const cost = smsParts * 2.5 * Math.max(clients.length, 1);
+        
+        document.getElementById('charCount').textContent = `${chars} символов`;
+        document.getElementById('smsCount').textContent = `${smsParts} SMS/клиент`;
+        document.getElementById('costEstimate').textContent = clients.length > 0 
+            ? `~${Math.round(cost)}₽ (≈${(2.5 * smsParts).toFixed(1)}₽ × ${clients.length})` 
+            : '~0₽';
+    }
+
+    // ===================== PROVIDER =====================
+    function selectProvider(name) {
+        selectedProvider = name;
+        document.querySelectorAll('.provider-card').forEach(c => c.classList.remove('selected'));
+        document.getElementById(`prov-${name}`).classList.add('selected');
+        
+        document.getElementById('providerConfig').style.display = name === 'smsru' ? 'block' : 'none';
+        document.getElementById('smscConfig').style.display = name === 'smsc' ? 'block' : 'none';
+        document.getElementById('modeLabel').textContent = name === 'dryrun' ? 'Тест-режим' : 'Боевой режим';
+        
+        setStep(3);
+    }
+
+    // ===================== SEND =====================
+    function startSending() {
+        if (clients.length === 0) return;
+        
+        const template = document.getElementById('templateEditor').value;
+        const config = {};
+        
+        if (selectedProvider === 'smsru') {
+            config.api_key = document.getElementById('apiKeyInput').value;
+            if (!config.api_key) { alert('Введите API-ключ SMS.ru'); return; }
+        } else if (selectedProvider === 'smsc') {
+            config.login = document.getElementById('smscLogin').value;
+            config.password = document.getElementById('smscPassword').value;
+            if (!config.login || !config.password) { alert('Введите логин и пароль SMSC'); return; }
+        }
+        
+        if (selectedProvider !== 'dryrun') {
+            if (!confirm(`Отправить ${clients.length} SMS через ${selectedProvider.toUpperCase()}?\n\nЭто РЕАЛЬНАЯ отправка за деньги!`)) return;
+        }
+        
+        setStep(4);
+        
+        const btn = document.getElementById('sendBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳</span> Отправка...';
+        
+        document.getElementById('progressBar').style.display = 'block';
+        document.getElementById('progressFill').style.width = '10%';
+        document.getElementById('sendStatus').textContent = 'Отправляем...';
+        
+        fetch(`${API}/api/send`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                template,
+                provider: selectedProvider,
+                config,
+                delay: 0.5
+            })
+        })
+        .then(r => r.json())
+        .then(data => {
+            document.getElementById('progressFill').style.width = '100%';
+            
+            if (data.error) {
+                document.getElementById('sendStatus').innerHTML = `<span style="color:var(--red)">❌ Ошибка: ${data.error}</span>`;
+                btn.disabled = false;
+                btn.innerHTML = '<span>📤</span> Повторить';
+                return;
+            }
+            
+            results = data.results || [];
+            
+            btn.innerHTML = `<span>✅</span> Готово!`;
+            document.getElementById('sendStatus').innerHTML = 
+                `<span style="color:var(--green)">Отправлено: ${data.sent}</span> | ` +
+                `<span style="color:var(--red)">Ошибок: ${data.failed}</span>`;
+            
+            if (data.balance >= 0) {
+                document.getElementById('sendStatus').innerHTML += ` | Баланс: ${data.balance}₽`;
+            }
+            
+            document.getElementById('statSent').textContent = data.sent;
+            document.getElementById('statFailed').textContent = data.failed;
+            
+            renderResults();
+            
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.innerHTML = '<span>📤</span> Отправить ещё раз';
+            }, 3000);
+        })
+        .catch(err => {
+            document.getElementById('sendStatus').innerHTML = `<span style="color:var(--red)">❌ ${err.message}</span>`;
+            btn.disabled = false;
+            btn.innerHTML = '<span>📤</span> Повторить';
+        });
+    }
+
+    function renderResults() {
+        const card = document.getElementById('resultsCard');
+        const list = document.getElementById('resultsList');
+        card.style.display = 'block';
+        
+        list.innerHTML = results.map(r => `
+            <div class="result-item">
+                <div class="left">
+                    <div class="result-status ${r.success ? 'ok' : 'fail'}">${r.success ? '✅' : '❌'}</div>
+                    <div>
+                        <strong>${esc(r.name)}</strong>
+                        <span style="color:var(--text-muted); margin-left:8px">${formatPhone(r.phone)}</span>
+                    </div>
+                </div>
+                <div style="font-size:12px; color:var(--text-muted)">
+                    ${r.success ? (r.message_id || 'OK') : esc(r.error)}
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function downloadResults() {
+        const blob = new Blob([JSON.stringify(results, null, 2)], {type: 'application/json'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `sms_results_${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+    }
+
+    // ===================== HELPERS =====================
+    function updateStats() {
+        document.getElementById('statsRow').style.display = 'grid';
+        document.getElementById('statTotal').textContent = clients.length;
+        document.getElementById('statSMS').textContent = clients.length;
+    }
+
+    function setStep(n) {
+        for (let i = 1; i <= 4; i++) {
+            const el = document.getElementById(`step${i}`);
+            el.classList.remove('active', 'done');
+            if (i < n) el.classList.add('done');
+            if (i === n) el.classList.add('active');
+        }
+    }
+
+    function formatPhone(p) {
+        if (!p || p.length !== 11) return p;
+        return `+${p[0]} (${p.slice(1,4)}) ${p.slice(4,7)}-${p.slice(7,9)}-${p.slice(9)}`;
+    }
+
+    function esc(s) {
+        if (!s) return '';
+        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Init
+    updatePreview();
+    </script>
+</body>
+</html>

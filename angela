@@ -1,0 +1,194 @@
+#!/bin/bash
+# ============================================================
+# 🐣 angela — Единый пульт управления Анжелочкой
+# ============================================================
+# Использование:
+#   angela start    — Запустить всё
+#   angela stop     — Остановить всё
+#   angela restart  — Перезапустить
+#   angela status   — Проверить что работает
+#   angela logs     — Показать логи
+#   angela bot      — Только Bitrix-бот (без TG, без планировщика)
+#   angela botoff   — Остановить только бот
+# ============================================================
+
+DIR="/Users/igorvasin/freelance-2026/ai-eggs"
+AGENT="$DIR/agent"
+PY="$DIR/venv/bin/python3"
+LOGS="$AGENT/logs"
+mkdir -p "$LOGS"
+
+# PID файлы
+PID_BITRIX="$LOGS/bitrix_bot.pid"
+PID_TG="$LOGS/tg_bot.pid"
+PID_SCHED="$LOGS/scheduler.pid"
+PID_SERVER="$LOGS/server.pid"
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m'
+
+# --- Убить все процессы ---
+kill_all() {
+    echo "🧹 Останавливаю всё..."
+    
+    # По PID-файлам
+    for pidfile in "$PID_BITRIX" "$PID_TG" "$PID_SCHED" "$PID_SERVER"; do
+        if [ -f "$pidfile" ]; then
+            PID=$(cat "$pidfile")
+            kill "$PID" 2>/dev/null
+            rm -f "$pidfile"
+        fi
+    done
+    
+    # Страховка: по имени
+    pkill -f "ai-eggs/agent/bitrix_bot.py" 2>/dev/null
+    pkill -f "ai-eggs/agent/tg_bot.py" 2>/dev/null
+    pkill -f "ai-eggs/agent/scheduler.py" 2>/dev/null
+    pkill -f "ai-eggs/agent/server.py" 2>/dev/null
+    
+    sleep 1
+    echo "✅ Остановлено."
+}
+
+# --- Убить только бот ---
+kill_bot() {
+    echo "🧹 Останавливаю Bitrix-бот..."
+    if [ -f "$PID_BITRIX" ]; then
+        kill $(cat "$PID_BITRIX") 2>/dev/null
+        rm -f "$PID_BITRIX"
+    fi
+    pkill -f "ai-eggs/agent/bitrix_bot.py" 2>/dev/null
+    sleep 1
+    echo "✅ Бот остановлен."
+}
+
+# --- Запустить процесс ---
+start_proc() {
+    local name=$1
+    local script=$2
+    local pidfile=$3
+    local logfile=$4
+    
+    cd "$AGENT"
+    nohup "$PY" -u "$script" >> "$logfile" 2>&1 &
+    echo $! > "$pidfile"
+    echo "   ✅ $name: PID $(cat $pidfile)"
+}
+
+# --- Проверка процесса ---
+check_proc() {
+    local name=$1
+    local pidfile=$2
+    
+    if [ -f "$pidfile" ]; then
+        PID=$(cat "$pidfile")
+        if kill -0 "$PID" 2>/dev/null; then
+            echo "   🟢 $name: PID $PID"
+            return 0
+        else
+            echo "   🔴 $name: УПАЛ (PID $PID мёртв)"
+            return 1
+        fi
+    else
+        echo "   ⚪ $name: не запущен"
+        return 1
+    fi
+}
+
+case "$1" in
+    start)
+        kill_all
+        echo ""
+        echo "🚀 Запуск Анжелочки..."
+        echo ""
+        start_proc "Bitrix-бот" "bitrix_bot.py" "$PID_BITRIX" "$LOGS/bitrix_bot.log"
+        start_proc "TG-бот"     "tg_bot.py"     "$PID_TG"     "$LOGS/bot.log"
+        start_proc "Планировщик" "scheduler.py"  "$PID_SCHED"  "$LOGS/scheduler.log"
+        start_proc "API-сервер"  "server.py"     "$PID_SERVER"  "$LOGS/server.log"
+        echo ""
+        echo "=============================="
+        echo "🐣 Анжелочка работает!"
+        echo "   angela status  — проверить"
+        echo "   angela stop    — остановить"
+        echo "   angela logs    — логи"
+        echo "=============================="
+        ;;
+        
+    stop)
+        kill_all
+        ;;
+        
+    restart)
+        kill_all
+        sleep 1
+        exec "$0" start
+        ;;
+    
+    bot)
+        # Запустить ТОЛЬКО Bitrix-бот (без остального)
+        kill_bot
+        echo ""
+        echo "🚀 Запуск только Bitrix-бота..."
+        start_proc "Bitrix-бот" "bitrix_bot.py" "$PID_BITRIX" "$LOGS/bitrix_bot.log"
+        echo ""
+        echo "🐣 Бот слушает Bitrix24."
+        ;;
+    
+    botoff)
+        kill_bot
+        ;;
+    
+    panic)
+        # 🚨 ЭКСТРЕННАЯ ОСТАНОВКА
+        echo "🚨 ПАНИКА! Останавливаю ВСЁ!"
+        # Kill switch для бота (если он не убьётся через pkill)
+        touch "$LOGS/STOP_BOT"
+        # Убиваем всё жёстко
+        kill_all
+        # Убиваем ВСЕ python-процессы ai-eggs
+        pkill -9 -f "ai-eggs/agent" 2>/dev/null
+        sleep 1
+        echo "🛑 Всё остановлено. Kill switch активирован."
+        echo "   Чтобы запустить: angela start"
+        ;;
+    
+    status)
+        echo ""
+        echo "📊 Статус Анжелочки:"
+        echo "─────────────────────"
+        check_proc "Bitrix-бот"  "$PID_BITRIX"
+        check_proc "TG-бот"     "$PID_TG"
+        check_proc "Планировщик" "$PID_SCHED"
+        check_proc "API-сервер"  "$PID_SERVER"
+        if [ -f "$LOGS/STOP_BOT" ]; then
+            echo "   🛑 KILL SWITCH: АКТИВЕН"
+        fi
+        echo ""
+        ;;
+    
+    logs)
+        echo "📋 === Bitrix-бот (последние 15 строк) ==="
+        tail -15 "$LOGS/bitrix_bot.log" 2>/dev/null
+        echo ""
+        echo "📋 === Планировщик ==="
+        tail -10 "$LOGS/scheduler.log" 2>/dev/null
+        ;;
+    
+    *)
+        echo ""
+        echo "🐣 angela — Управление Анжелочкой"
+        echo ""
+        echo "  angela start    Запустить всё"
+        echo "  angela stop     Остановить всё"
+        echo "  angela restart  Перезапустить"
+        echo "  angela bot      Только Bitrix-бот"
+        echo "  angela botoff   Остановить бот"
+        echo "  angela panic    🚨 Экстренная остановка"
+        echo "  angela status   Статус"
+        echo "  angela logs     Логи"
+        echo ""
+        ;;
+esac
+
