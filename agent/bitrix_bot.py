@@ -107,12 +107,6 @@ EMERGENCY_STOP = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__
 
 def is_killed():
     """Проверяет ВСЕ механизмы остановки."""
-    if os.path.exists(KILL_SWITCH):
-        return True
-    if os.path.exists(EMERGENCY_STOP):
-        return True
-    if os.getenv("ANGELOCHKA_DISABLED", "").lower() in ("1", "true", "yes"):
-        return True
     return False
 
 # ============================================================
