@@ -64,65 +64,102 @@ ${itemsList}
 ${orderInfo.comment || '(не указан)'}`;
 
     // Получаем базовый URL вебхука
-    const baseWebhook = BITRIX24_WEBHOOK.replace(/\/crm\.(lead|deal)\.add/, '');
+    const baseWebhook = BITRIX24_WEBHOOK.replace(/\/crm\.(lead|deal|contact)\.add/, '');
 
-    // 1️⃣ СОЗДАЁМ ЛИД (LEAD) с правильной структурой полей
-    const leadWebhook = `${baseWebhook}/crm.lead.add`;
-    
     // Формируем краткий заголовок
     const itemCount = orderInfo.items.length;
     const totalQuantity = orderInfo.items.reduce((sum: number, item: any) => sum + item.quantity, 0);
     const dealTitle = totalSum > 0 
       ? `Заказ ${orderInfo.name}: ${totalQuantity} шт (${itemCount} поз.) — ${totalSum} ₽`
       : `Заказ ${orderInfo.name}: ${totalQuantity} шт (${itemCount} поз.) — уточнить цену`;
-    
+
     // Форматируем телефон как массив объектов crm_multifield
     const phoneArray = orderInfo.phone ? [{ 
       VALUE: orderInfo.phone, 
-      VALUE_TYPE: 'WORK' 
+      VALUE_TYPE: 'MOBILE' 
     }] : [];
 
-    const leadData = {
-      fields: {
-        TITLE: dealTitle,
-        NAME: orderInfo.name,
-        PHONE: phoneArray,
-        ADDRESS: orderInfo.address,
-        COMMENTS: fullOrderDescription,
-        SOURCE_ID: 'WEB',
-        ASSIGNED_BY_ID: 1,
-        // Дополнительные поля
-        OPPORTUNITY: totalSum,
-        CURRENCY_ID: 'RUB',
-      }
-    };
-    
-    let leadResponse;
+    // Разбиваем имя на части
+    const nameParts = (orderInfo.name || 'Клиент').split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
     try {
-      leadResponse = await fetch(leadWebhook, {
+      // 1️⃣ СОЗДАЁМ КОНТАКТ (CONTACT)
+      const contactWebhook = `${baseWebhook}/crm.contact.add`;
+      const contactData = {
+        fields: {
+          NAME: firstName,
+          LAST_NAME: lastName,
+          PHONE: phoneArray,
+          SOURCE_ID: 'WEB',
+          OPENED: 'Y',
+        }
+      };
+
+      const contactResponse = await fetch(contactWebhook, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(leadData),
+        body: JSON.stringify(contactData),
       });
-      
-      const leadResult = await leadResponse.json();
 
-      if (!leadResponse.ok || leadResult.error) {
-        console.error('❌ Ошибка создания лида в Bitrix24:', leadResult);
+      const contactResult = await contactResponse.json();
+      let contactId: number | null = null;
+
+      if (contactResponse.ok && !contactResult.error) {
+        contactId = contactResult.result;
+        console.log(`✅ Контакт создан (ID: ${contactId}): ${orderInfo.name}`);
+      } else {
+        console.warn('⚠️ Не удалось создать контакт:', contactResult);
+        // Продолжаем без контакта — сделку всё равно создаём
+      }
+
+      // 2️⃣ СОЗДАЁМ СДЕЛКУ (DEAL) — STAGE_ID="NEW" для автодозвона
+      const dealWebhook = `${baseWebhook}/crm.deal.add`;
+      const dealFields: Record<string, any> = {
+        TITLE: dealTitle,
+        STAGE_ID: 'NEW',
+        SOURCE_ID: 'WEB',
+        ASSIGNED_BY_ID: 1,
+        OPPORTUNITY: totalSum,
+        CURRENCY_ID: 'RUB',
+        COMMENTS: fullOrderDescription,
+        OPENED: 'Y',
+        // Дата поставки — для автодозвона за 1 день
+        ...(orderInfo.deliveryDate ? { CLOSEDATE: orderInfo.deliveryDate } : {}),
+      };
+
+      if (contactId) {
+        dealFields.CONTACT_ID = contactId;
+      }
+
+      const dealData = { fields: dealFields };
+
+      const dealResponse = await fetch(dealWebhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dealData),
+      });
+
+      const dealResult = await dealResponse.json();
+
+      if (!dealResponse.ok || dealResult.error) {
+        console.error('❌ Ошибка создания сделки в Bitrix24:', dealResult);
         return new Response(
           JSON.stringify({ 
-            error: leadResult.error_description || leadResult.error || 'Ошибка создания лида',
-            details: leadResult
+            error: dealResult.error_description || dealResult.error || 'Ошибка создания сделки',
+            details: dealResult
           }),
           { status: 400, headers: { 'Content-Type': 'application/json' } }
         );
       }
 
-      const leadId = leadResult.result;
+      const dealId = dealResult.result;
+      console.log(`✅ Сделка создана (ID: ${dealId}): ${dealTitle}`);
 
-      // 2️⃣ ДОБАВЛЯЕМ ТОВАРЫ К ЛИДУ
+      // 3️⃣ ДОБАВЛЯЕМ ТОВАРЫ К СДЕЛКЕ
       if (orderInfo.items && orderInfo.items.length > 0) {
-        const productRowsWebhook = `${baseWebhook}/crm.lead.productrows.set`;
+        const productRowsWebhook = `${baseWebhook}/crm.deal.productrows.set`;
         
         const productRows = orderInfo.items.map((item: any, index: number) => ({
           PRODUCT_NAME: item.name,
@@ -136,7 +173,7 @@ ${orderInfo.comment || '(не указан)'}`;
         }));
 
         const productData = {
-          id: leadId,
+          id: dealId,
           rows: productRows
         };
 
@@ -149,7 +186,7 @@ ${orderInfo.comment || '(не указан)'}`;
         const productResult = await productResponse.json();
 
         if (!productResult.result) {
-          console.warn('⚠️ Товары не добавлены:', productResult);
+          console.warn('⚠️ Товары не добавлены к сделке:', productResult);
         }
       }
 
@@ -157,7 +194,8 @@ ${orderInfo.comment || '(не указан)'}`;
         JSON.stringify({ 
           success: true, 
           message: '✅ Заказ успешно отправлен в Bitrix24',
-          leadId: leadId,
+          dealId: dealId,
+          contactId: contactId,
           totalSum: totalSum
         }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }

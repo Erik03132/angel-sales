@@ -15,21 +15,20 @@ API-сервер (для веб-панели):
 
 v1.0 — 15.04.2026
 """
-import os
-import sys
-import json
-import re
 import argparse
+import json
+import os
+import re
+import sys
 import time
 from datetime import datetime
 from http.server import HTTPServer, SimpleHTTPRequestHandler
-from urllib.parse import parse_qs, urlparse
-import io
+from urllib.parse import urlparse
 
 # Добавляем путь к модулям
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from sms_providers import get_provider, DryRunProvider
+from sms_providers import get_provider
 
 # ============================================================
 # 📊 Чтение Excel
@@ -442,7 +441,7 @@ def main():
     # Режим сервера
     if args.server:
         print(f"🌐 Веб-панель: http://localhost:{args.port}")
-        print(f"   Открой в браузере для управления рассылкой")
+        print("   Открой в браузере для управления рассылкой")
         server = HTTPServer(("0.0.0.0", args.port), NotifierHandler)
         try:
             server.serve_forever()
@@ -491,7 +490,7 @@ def main():
         print(f"   Баланс: {balance}₽")
     
     # Предпросмотр первого
-    print(f"\n📝 Пример сообщения:")
+    print("\n📝 Пример сообщения:")
     print(f"   {render_message(template, clients[0])}")
     print()
     

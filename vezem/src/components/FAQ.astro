@@ -1,0 +1,117 @@
+---
+import { Icon } from 'astro-icon/components';
+
+import dynamicFaq from '../data/dynamic_faq.json';
+
+const staticFaqs = [
+  {
+    question: "Как подготовиться к приезду суточных цыплят?",
+    answer: "Перед приездом необходимо подготовить брудер: продезинфицировать, постелить чистую подстилку (опилки или пеленки), установить обогрев (температура 32-35°C в первые дни), поставить вакуумную поилку с чистой водой и кормушку со стартовым комбикормом."
+  },
+  {
+    question: "Какая температура должна быть в брудере?",
+    answer: "В первую неделю температура под лампой должна быть 33-35°C, в помещении 28-30°C. Каждую неделю температуру снижают на 2-3 градуса, доводя к месячному возрасту до 20-22°C."
+  },
+  {
+    question: "Чем кормить суточных бройлеров?",
+    answer: "С первых дней жизни лучше всего использовать полнорационный комбикорм 'Старт' для бройлеров (например, Purina). Он содержит все необходимые витамины, минералы и кокцидиостатик для профилактики заболеваний."
+  },
+  {
+    question: "Нужно ли пропаивать цыплят антибиотиками?",
+    answer: "В первые дни жизни рекомендуется дать витаминный комплекс (например, Чиктоник). Антибиотики применяют только по показаниям при признаках заболеваний. У нас вы можете приобрести готовую 'Аптечку' с подробной схемой выпойки."
+  },
+  {
+    question: "Как определить, что цыплятам холодно или жарко?",
+    answer: "Если цыплята сбились в кучу под лампой и пищат — им холодно. Если они разошлись по углам брудера, тяжело дышат с открытыми клювами — им жарко. При комфортной температуре они равномерно распределены по брудеру, активно едят и спят."
+  },
+  {
+    question: "Когда бройлеров можно переводить на улицу?",
+    answer: "Перевод на улицу или в неотапливаемое помещение возможен после полного оперения (обычно в возрасте около месяца) и при условии, что ночная температура не опускается ниже 16-18°C."
+  },
+  {
+    question: "Почему цыплята падают на ноги?",
+    answer: "Причинами могут быть: недостаток кальция и витамина D3 (рахит), быстрый набор веса (особенно у бройлеров), инфекционные заболевания или неправильно подобранный скользкий пол (например, газета вместо пеленок в первые дни)."
+  },
+  {
+    question: "Каким должен быть световой режим для бройлеров?",
+    answer: "В первые 7 дней освещение должно быть круглосуточным (24 часа). Со второй недели световой день постепенно сокращают до 18-20 часов, чтобы птица могла отдыхать в темноте."
+  },
+  {
+    question: "Как осуществляется доставка птицы?",
+    answer: "Мы доставляем птицу специализированным транспортом с поддержанием правильного температурного режима и вентиляции. Доставка осуществляется по графику в Ставропольский, Краснодарский край и Ростовскую область."
+  },
+  {
+    question: "Какая гарантия выживаемости при доставке?",
+    answer: "Мы гарантируем выживаемость 95% при транспортировке. Птица проходит строгий ветеринарный контроль перед отправкой."
+  }
+];
+
+// Превращаем динамические вопросы в формат FAQ
+const liveFaqs = (dynamicFaq?.faq || []).map(item => ({
+  question: item.question,
+  answer: item.answer,
+  isLive: true,
+  date: item.last_updated
+}));
+
+// Объединяем: сначала живые (топ-5), потом статические
+const faqs = [...liveFaqs.slice(0, 5), ...staticFaqs];
+---
+
+<section id="faq" class="py-12 sm:py-20 relative">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="inline-block mb-4 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/50 backdrop-blur-md">
+        <span class="text-sm font-semibold bg-gradient-to-r from-blue-300 to-cyan-300 bg-clip-text text-transparent">FAQ & БАЗА ЗНАНИЙ</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
+        Ответы на <span class="bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">частые вопросы</span>
+      </h2>
+      <p class="text-blue-100/90 text-sm sm:text-lg">Самые популярные вопросы от наших птицеводов об уходе за молодняком и условиях заказа.</p>
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <div class="faq-item bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-cyan-400/30 transition-all duration-300">
+          <button class="faq-button w-full px-6 py-4 text-left flex justify-between items-center bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 pr-4">
+              <span class="text-white font-semibold text-base sm:text-lg">{faq.question}</span>
+              {faq.isLive && (
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 animate-pulse">
+                  АКТУАЛЬНО ИЗ ЗВОНКОВ
+                </span>
+              )}
+            </div>
+            <Icon name="mdi:chevron-down" class="w-6 h-6 text-cyan-400 transform transition-transform duration-300 faq-icon flex-shrink-0" />
+          </button>
+          <div class="faq-answer hidden px-6 pb-5 pt-1">
+            <p class="text-blue-100/80 leading-relaxed text-sm sm:text-base border-t border-white/10 pt-4">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.faq-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const parent = button.parentElement;
+      const answer = parent.querySelector('.faq-answer');
+      const icon = button.querySelector('.faq-icon');
+      
+      const isExpanded = !answer.classList.contains('hidden');
+      
+      // Close all other FAQs
+      document.querySelectorAll('.faq-answer').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(el => el.classList.remove('rotate-180'));
+      
+      if (!isExpanded) {
+        answer.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      }
+    });
+  });
+</script>

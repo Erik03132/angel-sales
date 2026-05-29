@@ -27,10 +27,20 @@ case "$1" in
         ${VENV} "${SCRIPT_DIR}/daily_report.py" >> "${LOG_DIR}/report.log" 2>&1
         echo "[$(date)] Отчёт отправлен." >> "${LOG_DIR}/cron.log"
         ;;
+    learn)
+        echo "[$(date)] Запуск обучения (анализ звонков + FAQ)..." >> "${LOG_DIR}/cron.log"
+        ${VENV} "${SCRIPT_DIR}/call_learner.py" --days 2 >> "${LOG_DIR}/learner.log" 2>&1
+        ${VENV} "${SCRIPT_DIR}/gen_faq.py" >> "${LOG_DIR}/learner.log" 2>&1
+        echo "[$(date)] Обучение и FAQ обновлены." >> "${LOG_DIR}/cron.log"
+        ;;
     *)
-        echo "Usage: $0 {scan|report}"
+        echo "Usage: $0 {scan|report|learn}"
         echo "  scan   — сканировать Bitrix24 (каждые 3 часа)"
         echo "  report — отчёт Андрею в Telegram (в 20:00)"
+        echo "  learn  — обучение и генерация FAQ (ночью)"
         exit 1
         ;;
 esac
+
+# Добавляем задачу для обучения из транскриптов (Фаза 14.2)
+# 30 3 * * * /Users/igorvasin/freelance-2026/ai-eggs/agent/call_learner.py >> /Users/igorvasin/freelance-2026/ai-eggs/agent/logs/call_learner.log 2>&1

@@ -1,0 +1,190 @@
+{
+  "scan_time": "2026-04-27T21:21:18.092036",
+  "since": "2026-04-25T11:46:30.064357",
+  "users": {
+    "1": "Гусь Лапчатый",
+    "15": "Анжела Птенчикова",
+    "16": "Петя Крымский Хан"
+  },
+  "deals": {
+    "count": 2,
+    "items": [
+      {
+        "ID": "16",
+        "TITLE": "Сделка #16",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "5320.00000000",
+        "ASSIGNED_BY_ID": "15",
+        "DATE_CREATE": "2026-04-25T21:17:46+03:00",
+        "CONTACT_ID": "16",
+        "COMPANY_ID": null,
+        "COMMENTS": "Заявка из чата на сайте.\n\nКонтекст разговора: Здравствуйте! Я Анжелочка, менеджер Азовского Инкубатора",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "14",
+        "TITLE": "Сделка #14",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "67500.00000000",
+        "ASSIGNED_BY_ID": "15",
+        "DATE_CREATE": "2026-04-25T21:12:34+03:00",
+        "CONTACT_ID": "14",
+        "COMPANY_ID": null,
+        "COMMENTS": "Если ты видишь этот лид - значит мы в Песочнице! 150 индюшат Биг-6.",
+        "CLOSED": "N"
+      }
+    ],
+    "total_amount": 72820.0
+  },
+  "activities": {
+    "total": 0,
+    "calls_count": 0,
+    "chats_ol_count": 0,
+    "sms_count": 0,
+    "emails_count": 0,
+    "webforms_count": 0,
+    "other_count": 0,
+    "calls": []
+  },
+  "tasks": {
+    "open": 7,
+    "closed": 0,
+    "items": [
+      {
+        "id": "22",
+        "title": "🚀 INCUBIRD 2.0: ГЕНЕРАЛЬНЫЙ ПЛАН ПРОДВИЖЕНИЯ",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:51:37+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "2"
+      },
+      {
+        "id": "20",
+        "title": "[ПРОМО] Реактивация: Массовая рассылка по 'спящей' базе",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:53+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "2"
+      },
+      {
+        "id": "18",
+        "title": "[ПРОМО] SEO: Schema.org разметка (Product/Offer) на vezemcip.ru",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:52+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "-3"
+      },
+      {
+        "id": "16",
+        "title": "[ПРОМО] VK Mini App: Финальный деплой и проверка калькулятора",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:52+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "-1"
+      },
+      {
+        "id": "14",
+        "title": "[ПРОМО] Авито Sniper Shot: Оффер Индюки БИГ-6",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:51+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "-1"
+      },
+      {
+        "id": "12",
+        "title": "[ПРОМО] Авито Sniper Shot: А/В Тест Бройлер КОББ-500",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:50+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "2"
+      },
+      {
+        "id": "10",
+        "title": "[ПРОМО] Публикация в Dзен: 5 ошибок при покупке цыплят",
+        "responsibleId": "15",
+        "createdDate": "2026-04-25T19:45:49+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/144/c0120a8d7c10d63c83e32398d1ec4d9e/main/e84/e84092e613a4d2d3712b82ae85d080df/angela_ptenchikova_avatar_1777050524525.png",
+          "workPosition": null
+        },
+        "subStatus": "-1"
+      }
+    ]
+  },
+  "products": {
+    "count": 0,
+    "items": [],
+    "low_stock": []
+  },
+  "manager_stats": {
+    "Анжела Птенчикова": {
+      "deals": 2,
+      "amount": 72820.0
+    }
+  },
+  "forgotten_deals": {
+    "count": 0,
+    "total_amount": 0,
+    "deals": []
+  }
+}

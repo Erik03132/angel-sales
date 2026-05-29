@@ -1,4 +1,3 @@
-import re
 
 with open("tg_bot.py", "r") as f:
     code = f.read()

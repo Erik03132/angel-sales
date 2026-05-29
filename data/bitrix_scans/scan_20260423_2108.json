@@ -1,0 +1,54 @@
+{
+  "scan_time": "2026-04-23T21:08:24.401871",
+  "since": "2026-04-22T21:23:00.063582",
+  "users": {},
+  "deals": {
+    "count": 1,
+    "items": [
+      {
+        "ID": "12",
+        "TITLE": "Сделка #12",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "1",
+        "DATE_CREATE": "2026-04-23T09:35:09+03:00",
+        "CONTACT_ID": "12",
+        "COMPANY_ID": null,
+        "COMMENTS": "Заявка из чата на сайте.\n\nКонтекст разговора: 89859234644",
+        "CLOSED": "N"
+      }
+    ],
+    "total_amount": 0.0
+  },
+  "activities": {
+    "total": 0,
+    "calls_count": 0,
+    "chats_ol_count": 0,
+    "sms_count": 0,
+    "emails_count": 0,
+    "webforms_count": 0,
+    "other_count": 0,
+    "calls": []
+  },
+  "tasks": {
+    "open": 0,
+    "closed": 0,
+    "items": []
+  },
+  "products": {
+    "count": 0,
+    "items": [],
+    "low_stock": []
+  },
+  "manager_stats": {
+    "User #1": {
+      "deals": 1,
+      "amount": 0.0
+    }
+  },
+  "forgotten_deals": {
+    "count": 0,
+    "total_amount": 0,
+    "deals": []
+  }
+}

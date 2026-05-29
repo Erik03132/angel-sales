@@ -1,0 +1,157 @@
+{
+  "scan_time": "2026-04-22T21:16:03.491306",
+  "since": "2026-04-17T23:04:45.591899",
+  "users": {
+    "1": "Igor Vasin",
+    "15": "Анжела Птенчикова",
+    "16": "Иван Иванов"
+  },
+  "deals": {
+    "count": 6,
+    "items": [
+      {
+        "ID": "10",
+        "TITLE": "Сделка #10",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "1",
+        "DATE_CREATE": "2026-04-21T21:20:16+03:00",
+        "CONTACT_ID": "10",
+        "COMPANY_ID": null,
+        "COMMENTS": "Заявка из чата на сайте.\n\nКонтекст разговора: 89859234644",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "8",
+        "TITLE": "Сделка #8",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "1",
+        "DATE_CREATE": "2026-04-21T21:12:36+03:00",
+        "CONTACT_ID": "8",
+        "COMPANY_ID": null,
+        "COMMENTS": "Заявка из чата на сайте.\n\nКонтекст разговора: 89859234644",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "6",
+        "TITLE": "Сделка #6",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "1",
+        "DATE_CREATE": "2026-04-21T21:09:30+03:00",
+        "CONTACT_ID": "6",
+        "COMPANY_ID": null,
+        "COMMENTS": "Заявка из чата на сайте.\n\nКонтекст разговора: 89851233456",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "4",
+        "TITLE": "Сделка #4",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "15",
+        "DATE_CREATE": "2026-04-21T13:51:47+03:00",
+        "CONTACT_ID": "4",
+        "COMPANY_ID": null,
+        "COMMENTS": "Тестовый лид из чата Анжелочки. Проверка цепочки.",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "2",
+        "TITLE": "Сделка #2",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "15",
+        "DATE_CREATE": "2026-04-19T22:59:23+03:00",
+        "CONTACT_ID": "2",
+        "COMPANY_ID": null,
+        "COMMENTS": "Товар: Кобб-500 (бройлер суточный)\nКоличество: 200 шт\nЖелаемая дата доставки: 2026-04-25\nАдрес: Краснодар, ул. Красная 15\nКомментарий: Нужна доставка утром до 10:00",
+        "CLOSED": "N"
+      },
+      {
+        "ID": "1",
+        "TITLE": "Сделка #1",
+        "STAGE_ID": "NEW",
+        "OPPORTUNITY": "0.00000000",
+        "ASSIGNED_BY_ID": "1",
+        "DATE_CREATE": "2026-04-19T13:58:06+03:00",
+        "CONTACT_ID": "1",
+        "COMPANY_ID": null,
+        "COMMENTS": "Это тестовая сделка. Проверка вебхука пройдена успешно!",
+        "CLOSED": "N"
+      }
+    ],
+    "total_amount": 0.0
+  },
+  "activities": {
+    "total": 1,
+    "calls_count": 0,
+    "chats_ol_count": 0,
+    "sms_count": 0,
+    "emails_count": 0,
+    "webforms_count": 0,
+    "other_count": 0,
+    "calls": []
+  },
+  "tasks": {
+    "open": 1,
+    "closed": 0,
+    "items": [
+      {
+        "id": "2",
+        "title": "🚛 Доставка: Василий Петров — Кобб-500 (бройлер суточный) x200",
+        "responsibleId": "15",
+        "createdDate": "2026-04-19T22:59:24+03:00",
+        "closedDate": null,
+        "status": "2",
+        "group": [],
+        "responsible": {
+          "id": "15",
+          "name": "Анжела Птенчикова",
+          "link": "/company/personal/user/15/",
+          "icon": "https://b24-mjxvhq.bitrix24.ru/b37641642/resize_cache/113/c0120a8d7c10d63c83e32398d1ec4d9e/main/791/79184dabed72ad272819101cacb66419/angelochka_avatar_bitrix.png",
+          "workPosition": null
+        },
+        "subStatus": "-2"
+      }
+    ]
+  },
+  "products": {
+    "count": 0,
+    "items": [],
+    "low_stock": []
+  },
+  "manager_stats": {
+    "Igor Vasin": {
+      "deals": 4,
+      "amount": 0.0
+    },
+    "Анжела Птенчикова": {
+      "deals": 2,
+      "amount": 0.0
+    }
+  },
+  "forgotten_deals": {
+    "count": 2,
+    "total_amount": 0.0,
+    "deals": [
+      {
+        "id": "2",
+        "title": "Сделка #2",
+        "manager": "Анжела Птенчикова",
+        "amount": 0.0,
+        "days_silent": 3,
+        "stage": "NEW"
+      },
+      {
+        "id": "1",
+        "title": "Сделка #1",
+        "manager": "Igor Vasin",
+        "amount": 0.0,
+        "days_silent": 3,
+        "stage": "NEW"
+      }
+    ]
+  }
+}

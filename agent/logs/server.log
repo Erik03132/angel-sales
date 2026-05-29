@@ -1525,3 +1525,212 @@ INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [13965]
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 0 в кэше, 7 отслеживается
+✅ Expert knowledge загружен: 13542 символов
+✅ CRM отчёт загружен: 1336 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 1506 символов
+INFO:     Started server process [2544]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2544]
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 1 в кэше, 8 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ CRM отчёт загружен: 1336 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [92335]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 1 в кэше, 8 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ CRM отчёт загружен: 1336 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [92461]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 1 в кэше, 8 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ CRM отчёт загружен: 1336 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [95068]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 1 в кэше, 8 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ CRM отчёт загружен: 1336 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [95168]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [84652]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [84851]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 13562 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [85210]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 13565 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+⚠️ PersistentHistory: не удалось создать таблицу: connection to server at "ep-rough-heart-annhg25a-pooler.c-6.us-east-1.aws.neon.tech" (35.173.20.131), port 5432 failed: SSL SYSCALL error: Undefined error: 0
+
+INFO:     Started server process [29195]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 13565 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [31858]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 48] error while attempting to bind on address ('0.0.0.0', 8002): address already in use
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [92335]
+/Users/igorvasin/freelance-2026/ai-eggs/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ Neon VectorDB: пул инициализирован
+✅ Граф памяти: 5 узлов, 1 клиентов
+✅ Векторный поиск: 9 эмбеддингов (gemini-embedding-2-preview)
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Expert knowledge загружен: 6517 символов
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6210 символов
+INFO:     Started server process [16177]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [16177]

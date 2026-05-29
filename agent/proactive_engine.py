@@ -18,10 +18,9 @@ v1.0 — 15.04.2026
 """
 import os
 import sys
-import json
-import time
-import requests
 from datetime import datetime, timedelta
+
+import requests
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -241,7 +240,7 @@ def run_proactive_cycle():
     
     # 5. Публикуем инсайты в A2A шину
     try:
-        from a2a_protocol import report_insight, notify
+        from a2a_protocol import notify, report_insight
         
         if forgotten:
             report_insight("proactive", f"Найдено {len(forgotten)} забытых сделок в CRM", {

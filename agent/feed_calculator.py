@@ -2,10 +2,10 @@
 Калькулятор кормов и товарные наборы для Анжелочки.
 Автоматический расчёт: порода + кол-во → корм + мешки + стоимость.
 """
-import os
-import re
 import json
 import math
+import os
+import re
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'data')

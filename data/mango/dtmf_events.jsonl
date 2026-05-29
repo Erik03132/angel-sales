@@ -1,0 +1,3 @@
+{"timestamp": "2026-05-24T22:13:44.279201", "call_id": "t1", "digit": "1", "phone": "+79001234567", "deal_id": "999", "action": "confirmed"}
+{"timestamp": "2026-05-24T22:13:45.988278", "call_id": "t2", "digit": "0", "phone": "+79007654321", "deal_id": "888", "action": "cancelled"}
+{"timestamp": "2026-05-24T22:13:48.351295", "call_id": "t3", "digit": "1", "phone": "+79009876543", "deal_id": "777", "action": "confirmed"}

@@ -7,6 +7,7 @@ Google AI Trend #2: Model Context Protocol —
 Единый интерфейс для всех агентов к CRM данным.
 """
 import os
+
 import requests
 from dotenv import load_dotenv
 

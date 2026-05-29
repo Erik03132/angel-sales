@@ -14,11 +14,12 @@ Google AI Trend #1: «10x Marketing Manager —
 
 v1.0 — 15.04.2026
 """
+import json
 import os
 import sys
-import json
-import requests
 from datetime import datetime
+
+import requests
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

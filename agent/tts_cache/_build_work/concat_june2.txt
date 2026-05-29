@@ -1,0 +1,4 @@
+file '/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/_build_work/lead_7s.wav'
+file '/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/_build_work/msg_june2.wav'
+file '/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/_build_work/beep.wav'
+file '/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/_build_work/tail_10s.wav'

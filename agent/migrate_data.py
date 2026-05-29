@@ -1,6 +1,8 @@
-import os
 import json
+import os
+
 from vector_db import AngelochkaVectorDB
+
 
 def run_migration():
     vdb = AngelochkaVectorDB()

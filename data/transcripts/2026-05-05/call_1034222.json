@@ -1,0 +1,24 @@
+{
+  "call_id": "1034222",
+  "call_date": "2026-05-05T11:14:43+03:00",
+  "phone": "79787132590",
+  "duration_sec": 11,
+  "direction": "outgoing",
+  "crm_entity_type": "CONTACT",
+  "crm_entity_id": "30906",
+  "crm_activity_id": "1277160",
+  "manager_user_id": "4388",
+  "processed_at": "2026-05-08T20:33:42.058488+03:00",
+  "transcript": "МЕНЕДЖЕР: Алло. Добрый день. с инкубатором.\nКЛИЕНТ: Ага. Ну, спасибо, что позвонили, мы решили этот вопрос. Спасибо, извините.\nМЕНЕДЖЕР: Ага.",
+  "summary": "Менеджер инициировал исходящий звонок. Клиент сообщил, что вопрос, по которому был звонок, уже решен им самостоятельно. Разговор был очень коротким и завершился благодарностью и извинениями со стороны клиента.",
+  "client_questions": [],
+  "agreements": [],
+  "manager_score": {
+    "total": 1,
+    "named_self": false,
+    "asked_city": false,
+    "gave_price_scale": false,
+    "offered_upsell": false,
+    "set_next_step": false
+  }
+}

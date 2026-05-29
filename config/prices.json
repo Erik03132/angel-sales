@@ -1,0 +1,354 @@
+{
+  "_meta": {
+    "version": "2.1",
+    "primary_source": "https://vk.com/incubird (wall.get -162359356)",
+    "vk_group_id": "-162359356",
+    "vk_screen_name": "incubird",
+    "updated_at": "2026-05-23T13:05:00",
+    "updated_by": "manual_from_vk_post_1777408478",
+    "note": "⚠️ ЕДИНСТВЕННЫЙ источник цен для Заботкиной. Цены менять ТОЛЬКО здесь — не в коде!"
+  },
+
+  "contacts": {
+    "phone_primary": "+7 (918) 047-5107",
+    "phone_secondary": "+7 (365) 277-7654",
+    "email": "incubird@yandex.ru",
+    "address": "296178, Республика Крым, Джанкойский р-н, пгт. Азовское, ул. Железнодорожная, 42",
+    "avito": "https://www.avito.ru/incubird"
+  },
+
+  "socials": {
+    "site": "https://incubird.ru",
+    "max_community": "https://web.max.ru/-71730715329921",
+    "max_join": "https://max.ru/join/G4dmJmx2aox263kyl5HZSVW94bDOWQ99PTA3fInzih4",
+    "telegram_channel": "https://t.me/AzovskyIncubator",
+    "telegram_bot": "https://t.me/incubird_bot",
+    "vk_community": "https://vk.com/incubird",
+    "vk_screen_name": "incubird",
+    "ok": "https://ok.ru/profile/576387731611"
+  },
+
+  "site_pages": {
+    "schedule":    "https://incubird.ru/realizacija-grafik-azovskij-inkubator.html",
+    "chickens":    "https://incubird.ru/cypljata-azovskij-inkubator.html",
+    "turkeys":     "https://incubird.ru/indjushata-azovskij-inkubator.html",
+    "ducks":       "https://incubird.ru/utjata-azovskij-inkubator.html",
+    "geese":       "https://incubird.ru/gusjata-azovskij-inkubator.html",
+    "guinea_fowl": "https://incubird.ru/cesarki-azovskij-inkubator.html",
+    "blog":        "https://incubird.ru/blog-azovskij-inkubator.html"
+  },
+
+  "categories": {
+    "broilers": {
+      "label": "БРОЙЛЕРЫ",
+      "min_order": 50,
+      "items": {
+        "Кобб-500": {
+          "url": "https://incubird.ru/cypljata-brojlernye-KOBB-500.html",
+          "price": 65,
+          "price_from_note": "от 65₽ (свежий пост VK 26.05.2026)",
+          "description": "Та самая «жёлтая тушка» и мощная грудка"
+        },
+        "Росс-308": {
+          "url": "https://incubird.ru/cypljata-brojlernye-ROSS-308.html",
+          "price": 65,
+          "price_from_note": "от 65₽ (свежий пост VK 26.05.2026)",
+          "description": "Универсальный кросс, лидер по скорости роста"
+        }
+      }
+    },
+    "meat_egg": {
+      "label": "МЯСОЯИЧНЫЕ",
+      "min_order": 20,
+      "items": {
+        "Мастер Грей": {
+          "url": "https://incubird.ru/cypljata-brojler-cvetnoj-Master-Gris.html",
+          "price": 65,
+          "description": "Используется как источник яиц и для забоя. Яйценоскость 300 яиц/год"
+        },
+        "Ред Бро": {
+          "url": "https://incubird.ru/cypljata-mjasojaichnye-Redbro.html",
+          "price": 80,
+          "description": "Универсальная, неприхотливая порода. Высокая яйценоскость + диетическое мясо"
+        },
+        "Голошейка (Naked Neck)": {
+          "url": "https://incubird.ru/cypljata-mjasojaichnye-Neked-Nek.html",
+          "price": 65,
+          "description": "Мясояичная. Яйценоскость 300 яиц, вес яйца 65-70г"
+        },
+        "Farm Color": {
+          "url": "https://incubird.ru/cypljata-mjasojaichnye-Farm-color.html",
+          "price": 60,
+          "description": "Сочетает качества бройлеров и несушек"
+        },
+        "Гриз Бар (Gris Barre)": {
+          "url": "https://incubird.ru/cypljata-mjasojaichnye-Gris-Bar.html",
+          "price": 65,
+          "description": "Мясо близко к домашней курице, нежнее и душистее"
+        },
+        "Адлерская серебристая": {
+          "url": "https://incubird.ru/cypljata-mjasojaichnye-Adlerskaja-serebristaja.html",
+          "price": 75,
+          "description": "Крупная, быстрорастущая птица со стабильной яйценоскостью"
+        }
+      }
+    },
+    "layers": {
+      "label": "НЕСУШКИ",
+      "min_order": 20,
+      "items": {
+        "Доминант Д-102": {
+          "url": "https://incubird.ru/cypljata-jaichnye-Dominant-kurochka.html",
+          "price": 60,
+          "description": "Чешская несушка. ~310 яиц/год, вес яйца до 70г (категория отборного)"
+        },
+        "Доминант Д-104 (Сусекс)": {"price": 60},
+        "Доминант Д-107 (Голубой)": {
+          "url": "https://incubird.ru/cypljata-jaichnye-Dominant-D107-D109.html",
+          "price": 75,
+          "description": "Высокая адаптивность к климату и продуктивность"
+        },
+        "Доминант Д-109 (Чёрный)": {
+          "url": "https://incubird.ru/cypljata-jaichnye-Dominant-D107-D109.html",
+          "price": 60
+        },
+        "Ломан Браун": {
+          "url": "https://incubird.ru/cypljata-jaichnye-Loman-Braun-kurochka.html",
+          "price": 60,
+          "description": "Выживаемость птенцов до 98%. Легко приспосабливается к любому климату"
+        },
+        "Хайсекс Браун": {"price": 95},
+        "Легорн": {"price": 75},
+        "Кучинская": {"price": 80},
+        "Чёрная Московская": {"price": 75},
+        "Плимутрок": {"price": 75},
+        "Петушки Ломан/Доминант": {
+          "url": "https://incubird.ru/cypljata-Loman-Braun-petushki.html",
+          "price": 10,
+          "description": "Привитые (для выращивания) и непривитые (на корм). Уточнять наличие"
+        }
+      }
+    },
+    "turkeys": {
+      "label": "ИНДЮШАТА",
+      "min_order": 10,
+      "items": {
+        "Биг-6": {
+          "url": "https://incubird.ru/indjushata-BIG-6.html",
+          "price": 450,
+          "description": "Подходит для домашних хозяйств. Много мяса, экономически выгодны"
+        },
+        "Бронза-708": {
+          "url": "https://incubird.ru/indjushata-Bronze-708.html",
+          "price": 550,
+          "description": "Устойчивы к заболеваниям, быстро взрослеют. Деликатесное мясо"
+        },
+        "Хайбрид Конвертер": {
+          "url": "https://incubird.ru/indjushata-Hajbrid-konverter.html",
+          "price": 500,
+          "description": "Для тех, кто хочет птицу с большой массой тела и максимальной прибыльностью"
+        },
+        "Грейд Мейкер": {
+          "url": "https://incubird.ru/indjushata-Hajbrid-Grejd-Mejker.html",
+          "price": 450,
+          "description": "Быстрый рост, отличная иммунная система"
+        }
+      }
+    },
+    "ducks": {
+      "label": "УТЯТА",
+      "min_order": 10,
+      "items": {
+        "Мулард": {
+          "url": "https://incubird.ru/utjata-Mulard.html",
+          "price": 80,
+          "price_from_note": "от 80₽ (свежий пост VK 26.05.2026)",
+          "description": "Диететическое нежирное мясо и знаменитая печень"
+        },
+        "Агидель": {
+          "url": "https://incubird.ru/utjata-Agidel.html",
+          "price": 80,
+          "price_from_note": "от 80₽ (свежий пост VK 26.05.2026)",
+          "description": "Самая выносливая порода, отличные вкусовые качества"
+        },
+        "Голубой фаворит": {
+          "url": "https://incubird.ru/utjata-Goluboj-favorit.html",
+          "price": 80,
+          "price_from_note": "от 80₽ (свежий пост VK 26.05.2026)",
+          "description": "Высокие показатели по мясу и яйцам. Селезень 5-6кг, утка 4-5кг"
+        },
+        "Черри Велли": {
+          "url": "https://incubird.ru/utjata-Cherri-Velli.html",
+          "price": 100,
+          "description": "Неприхотливы. Вес к 7 неделям 2.6-3.5кг. Выход мяса 66-68%"
+        }
+      }
+    },
+    "geese": {
+      "label": "ГУСЯТА",
+      "min_order": 10,
+      "items": {
+        "Линда": {"price": 300}
+      }
+    },
+    "guinea_fowl": {
+      "label": "ЦЕСАРКИ",
+      "min_order": 10,
+      "items": {
+        "Серо-крапчатая": {
+          "url": "https://incubird.ru/cesarki-azovskij-inkubator.html",
+          "price": 120
+        }
+      }
+    }
+  },
+
+  "delivery": {
+    "days": "ПН и ЧТ",
+    "geography": "по Крыму и Югу России",
+    "transport": "Климат-контроль",
+    "pickup_address": "Краснодарский край, Динской р-н, с. Примаки, 1В",
+    "process": "Менеджер перезвонит → подтвердит кол-во, дату, место. За 1 день — уточнит время. В день — водитель свяжется"
+  },
+
+  "schedule": {
+    "_meta": {
+      "source": "https://incubird.ru/realizacija-grafik-azovskij-inkubator.html",
+      "updated": "2026-01-14",
+      "note": "⚠️ Сайт обновлён 14.01.2026. Июль–Декабрь: только бройлеры. Остальные породы — уточнять по телефону."
+    },
+    "broilers": {
+      "label": "Бройлер КОББ-500 / РОСС-308",
+      "months": {
+        "1":  [29],
+        "2":  [12, 19, 26],
+        "3":  [5, 12, 19, 26],
+        "4":  [2, 9, 16, 23, 30],
+        "5":  [7, 14, 21, 28],
+        "6":  [4, 11, 18, 25],
+        "7":  [2, 9, 16, 23, 30],
+        "8":  [7, 14, 21, 28],
+        "9":  [3, 10, 17, 24],
+        "10": [1, 8, 15, 22, 29],
+        "11": [6, 13, 20, 27],
+        "12": [4, 18]
+      }
+    },
+    "broilers_color": {
+      "label": "Цветной бройлер (Мастер Грей, Ред Бро, Гриз Бар, Голошейка, Рейнджер, Харко)",
+      "months": {"3": [5, 12, 26], "4": [2, 16, 23], "5": [7, 14, 28]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "meat_egg": {
+      "label": "Мясояичные (Кучинская, Пепельно-голубая, Голошейная, Русская Хохлатая)",
+      "months": {"3": [5, 19], "4": [2, 16, 30], "5": [14]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "loman_brown": {
+      "label": "Несушка Ломан Браун",
+      "months": {"3": [12, 16], "4": [9, 23], "5": [14], "6": [4]},
+      "note": "Июль–Декабрь: не поставляется"
+    },
+    "highsex_brown": {
+      "label": "Несушка Хайсекс Браун",
+      "months": {"2": [12, 26], "3": [12, 16], "4": [9, 23], "5": [14], "6": [4]},
+      "note": "Июль–Декабрь: не поставляется"
+    },
+    "dominant": {
+      "label": "Несушка Доминант Д-107, Д-849, Д-859",
+      "months": {"3": [19], "4": [9, 23], "5": [7, 21]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "adler": {
+      "label": "Адлерская серебристая",
+      "months": {"2": [26], "3": [19], "4": [16], "5": [7, 21]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "turkeys": {
+      "label": "Индюшата (БИГ-6, Хайбрид Конвертер, Бронза-708)",
+      "months": {"3": [26], "4": [9, 25], "5": [7, 28]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "mulard": {
+      "label": "Утята Мулард",
+      "months": {"4": [6, 20], "5": [4, 18], "6": [8, 15]},
+      "note": "Июль–Декабрь: не поставляется"
+    },
+    "ducks_ru": {
+      "label": "Утята Агидель / Голубой фаворит / СТ-5",
+      "months": {"3": [26], "4": [13, 27], "5": [11, 25], "6": [4, 18]},
+      "note": "Июль–Декабрь: не поставляется"
+    },
+    "geese": {
+      "label": "Гусята Линдовские",
+      "months": {"4": [2, 16, 30], "5": [14]},
+      "note": "Июнь–Декабрь: не поставляется"
+    },
+    "guinea_fowl": {
+      "label": "Цесарки серо-крапчатые",
+      "months": {},
+      "note": "Даты уточнять по телефону +7 (918) 047-5107"
+    }
+  },
+
+  "knowledge_update": {
+    "last_crawl": null,
+    "schedule_days": 3,
+    "sources": [
+      {
+        "id": "vk_community",
+        "name": "ВКонтакте — сообщество incubird",
+        "url": "https://vk.com/incubird",
+        "screen_name": "incubird",
+        "type": "prices_and_news",
+        "priority": 1,
+        "access": "vk_api",
+        "note": "⭐ ГЛАВНЫЙ источник актуальных цен! Нужен VK_TOKEN (сервисный ключ) + VK_PRICE_GROUP_ID (получить через VK API utils.resolveScreenName?screen_name=incubird)"
+      },
+      {
+        "id": "telegram_channel",
+        "name": "Telegram — @AzovskyIncubator",
+        "url": "https://t.me/AzovskyIncubator",
+        "type": "prices_and_news",
+        "priority": 1,
+        "access": "telethon_or_bot_admin",
+        "note": "⭐ ГЛАВНЫЙ источник! Нужен: 1) telethon (pip install telethon + номер телефона), ИЛИ 2) добавить бота Анжелы как администратора канала"
+      },
+      {
+        "id": "max_community",
+        "name": "MAX — сообщество Азовского инкубатора",
+        "url": "https://web.max.ru/-71730715329921",
+        "type": "prices_and_news",
+        "priority": 2,
+        "access": "max_api",
+        "note": "SPA-приложение, требует авторизацию. MAX API пока не публичный."
+      },
+      {
+        "id": "incubird_schedule",
+        "name": "incubird.ru — график реализации",
+        "url": "https://incubird.ru/realizacija-grafik-azovskij-inkubator.html",
+        "type": "schedule",
+        "priority": 3,
+        "access": "open_http",
+        "note": "Запасной источник. Статичная страница, обновляется редко (последний раз 14.01.2026)"
+      },
+      {
+        "id": "incubird_blog",
+        "name": "incubird.ru — блог / полезная информация",
+        "url": "https://incubird.ru/blog-azovskij-inkubator.html",
+        "type": "knowledge",
+        "priority": 3,
+        "access": "open_http",
+        "note": "Статьи по выращиванию птицы — для базы знаний Заботкиной"
+      },
+      {
+        "id": "ok_group",
+        "name": "Одноклассники",
+        "url": "https://ok.ru/profile/576387731611",
+        "type": "news",
+        "priority": 4,
+        "access": "ok_api"
+      }
+    ]
+  }
+}

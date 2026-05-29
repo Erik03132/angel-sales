@@ -16,8 +16,8 @@ Google AI Trend #3: «Hi, Elizaveta. I see you're calling about the blue sweater
     context = memory.recall("tg_123456")
     memory.remember("tg_123456", {"action": "запрос", "breed": "КОББ-500", "qty": 100})
 """
-import os
 import json
+import os
 import re
 from datetime import datetime
 

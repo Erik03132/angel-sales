@@ -101,8 +101,10 @@ ssh ${SSH_OPTS} "${VPS_USER}@${VPS_IP}" << 'REMOTE_SETUP'
     
     # Проверяем есть ли ecosystem.config.js
     if [ -f "ecosystem.config.js" ]; then
-        echo "⚙️  Запуск через ecosystem.config.js..."
-        pm2 start ecosystem.config.js --only angela-scheduler
+        # Копируем в .cjs чтобы избежать конфликта с "type": "module" в package.json
+        cp ecosystem.config.js ecosystem.config.cjs
+        echo "⚙️  Запуск через ecosystem.config.cjs..."
+        pm2 start ecosystem.config.cjs
     else
         echo "⚙️  Запуск через CLI..."
         pm2 start scheduler.py \
@@ -112,11 +114,16 @@ ssh ${SSH_OPTS} "${VPS_USER}@${VPS_IP}" << 'REMOTE_SETUP'
             -- 
     fi
     
-    # Перезапускаем основного бота (если есть)
-    pm2 restart angelochka 2>/dev/null || \
-    pm2 restart angela 2>/dev/null || \
-    pm2 restart angela-zabotkina 2>/dev/null || \
-    echo "ℹ️  Основной бот не найден в PM2 (это ок если он не настроен)"
+    # Перезапускаем angela-bot и angela-autopilot
+    pm2 restart angela-bot 2>/dev/null || echo "ℹ️  angela-bot: запускаем через ecosystem"
+    pm2 restart angela-autopilot 2>/dev/null || echo "ℹ️  angela-autopilot: уже в ecosystem"
+    
+    # Также перезапускаем корневой ecosystem (ptenchikova, angela-server, vezem-web)
+    if [ -f "/root/antigravity/ecosystem.config.cjs" ]; then
+        pm2 start /root/antigravity/ecosystem.config.cjs
+    fi
+    
+    pm2 save
 
     # Сохраняем PM2 для автозапуска после reboot
     pm2 save
@@ -169,8 +176,7 @@ WD
      echo "10 20 * * * $VENV_PYTHON $REPORTER >> $LOG_DIR/report_cron_fallback.log 2>&1"; \
      echo "# === LEVEL 2: Fallback отчёт по звонкам 20:12 ==="; \
      echo "12 20 * * * $VENV_PYTHON $CALL_QUALITY >> $LOG_DIR/call_quality_cron_fallback.log 2>&1"; \
-     echo "# === LEVEL 3: Health Monitor каждые 30 мин ==="; \
-     echo "*/30 * * * * $VENV_PYTHON /root/antigravity/ai-eggs/agent/health_monitor.py >> $LOG_DIR/health_monitor.log 2>&1") | crontab -
+     echo "# health_monitor ОТКЛЮЧЁН") | crontab -
     
     echo "✅ Cron настроен:"
     crontab -l

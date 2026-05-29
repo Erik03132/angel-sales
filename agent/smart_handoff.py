@@ -16,7 +16,6 @@ v1.0 — 15.04.2026
 """
 import re
 
-
 # Негативные паттерны
 NEGATIVE_PATTERNS = [
     r'жало[бв]', r'ужас', r'обман', r'мошенник', r'верн[иу].*деньг',
@@ -116,7 +115,7 @@ class SmartHandoff:
                 return {
                     "reason": "repeat",
                     "urgency": 3,
-                    "summary": f"Клиент переспрашивает 3+ раза — скорее всего не понимает объяснения AI.",
+                    "summary": "Клиент переспрашивает 3+ раза — скорее всего не понимает объяснения AI.",
                     "recommendation": "Позвонить и объяснить голосом."
                 }
         
@@ -131,7 +130,7 @@ class SmartHandoff:
         
         lines = [
             f"📋 ПЕРЕДАЧА МЕНЕДЖЕРУ | {urgency_label}",
-            f"",
+            "",
             f"👤 {user_name}",
         ]
         
@@ -139,10 +138,10 @@ class SmartHandoff:
             lines.append(f"📝 {client_context}")
         
         lines.extend([
-            f"",
+            "",
             f"📌 Причина: {handoff['reason']}",
             f"💬 {handoff['summary']}",
-            f"",
+            "",
             f"⚡ {handoff['recommendation']}"
         ])
         

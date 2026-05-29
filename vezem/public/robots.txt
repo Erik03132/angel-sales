@@ -9,7 +9,7 @@ Disallow: /admin/
 Crawl-delay: 1
 
 # Sitemap
-Sitemap: https://vezemcip.bitrix24.ru/sitemap.xml
+Sitemap: https://vezemcip.ru/sitemap.xml
 
 # Google
 User-agent: Googlebot

@@ -1,0 +1,74 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://vezemcip.ru/#organization",
+      "name": "Азовский Инкубатор (IncuBird)",
+      "description": "Инкубатор в Крыму. Продажа и доставка суточного молодняка птицы (бройлеры, несушки, индюки, утки, гуси) по Югу России.",
+      "url": "https://vezemcip.ru",
+      "telephone": "+79180000000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Железнодорожная, 42",
+        "addressLocality": "пгт. Азовское",
+        "addressRegion": "Крым",
+        "addressCountry": "RU"
+      },
+      "areaServed": [
+        "Крым",
+        "Краснодарский край",
+        "Ростовская область",
+        "Воронежская область"
+      ],
+      "priceRange": "₽"
+    },
+    {
+      "@type": "Product",
+      "name": "Суточный бройлер КОББ-500",
+      "image": "https://vezemcip.ru/assets/cobb500.jpg",
+      "description": "Быстрорастущий мясной кросс бройлера КОББ-500. Гарантия выживаемости при доставке.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Азовский Инкубатор"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://vezemcip.ru/catalog",
+        "priceCurrency": "RUB",
+        "lowPrice": "80",
+        "highPrice": "90",
+        "offerCount": "100"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Доставляете ли вы в сёла?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Нет, наша машина движется строго по расписанию вдоль основной трассы. Мы встречаемся на остановках или АЗС."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Нужна ли предоплата?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для средних заказов (менее 500 голов) предоплата не требуется. Вы оплачиваете птицу при получении водителю."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Что если цыплята погибнут в дороге?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Мы используем специальный транспорт с климат-контролем и гарантируем 100% выживаемость. Если в коробке оказался падеж, водитель сразу вернет деньги или сделает замену."
+          }
+        }
+      ]
+    }
+  ]
+}

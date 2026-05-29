@@ -6,9 +6,10 @@ SMS-провайдеры для системы уведомлений Азовс
     provider = get_provider("smsru", api_key="YOUR_KEY")
     result = provider.send("79991234567", "Текст сообщения")
 """
-import requests
 import time
 from abc import ABC, abstractmethod
+
+import requests
 
 
 class SMSProvider(ABC):

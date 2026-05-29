@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 0 40px;
+    background-color: #ffffff;
+}
+
+h1, h2, h3, h4 {
+    color: #111827;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.3em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #2563eb;
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 0.2em;
+}
+
+blockquote {
+    border-left: 4px solid #3b82f6;
+    background: #eff6ff;
+    padding: 15px 20px;
+    margin: 20px 0;
+    color: #1e40af;
+    border-radius: 0 8px 8px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.95em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    color: #475569;
+}
+
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+code {
+    background: #f1f5f9;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.9em;
+    color: #ef4444;
+}
+
+.title {
+    margin-bottom: 10px;
+}
+
+.author, .date {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+#TOC {
+    background: #fdfdfd;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+#TOC ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+#TOC a {
+    text-decoration: none;
+    color: #4b5563;
+}
+
+#TOC a:hover {
+    color: #2563eb;
+}

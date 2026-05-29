@@ -6,6 +6,7 @@
   lead_id = create_lead(name="Иван", phone="+7...", comment="Хочет 100 бройлеров")
 """
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -16,7 +17,8 @@ BITRIX_URL = os.getenv("BITRIX_WEBHOOK_URL", "").rstrip("/")
 
 
 def create_lead(name: str, phone: str = "", email: str = "",
-                comment: str = "", source: str = "WEB_CHAT"):
+                comment: str = "", source: str = "WEB_CHAT",
+                amount: float = None, assigned_by_id: int = 15):
     """
     Создаёт лид в Bitrix24 CRM.
     
@@ -26,6 +28,8 @@ def create_lead(name: str, phone: str = "", email: str = "",
         email: Email (если есть)
         comment: Комментарий (детали заявки, что хочет купить)
         source: Источник лида (WEB_CHAT, TELEGRAM и т.д.)
+        amount: Сумма заявки в рублях (OPPORTUNITY)
+        assigned_by_id: ID ответственного (15 - Анжела в песочнице, 1 - Андрей)
     
     Returns:
         dict: {"success": True, "lead_id": 123} или {"success": False, "error": "..."}
@@ -42,8 +46,11 @@ def create_lead(name: str, phone: str = "", email: str = "",
         "SOURCE_DESCRIPTION": f"Чат-бот Анжелочка ({source})",
         "STATUS_ID": "NEW",
         "OPENED": "Y",
-        "ASSIGNED_BY_ID": 1,  # Андрей
+        "ASSIGNED_BY_ID": assigned_by_id,  # Анжела по умолчанию
     }
+    if amount is not None:
+        fields["OPPORTUNITY"] = amount
+        fields["CURRENCY_ID"] = "RUB"
     
     # Фамилия (если есть)
     name_parts = name.split()
@@ -62,7 +69,8 @@ def create_lead(name: str, phone: str = "", email: str = "",
         resp = requests.post(
             f"{BITRIX_URL}/crm.lead.add.json",
             json={"fields": fields},
-            timeout=15
+            timeout=15,
+            proxies={"http": None, "https": None}
         )
         data = resp.json()
         

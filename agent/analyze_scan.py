@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Анализ самого богатого скана Bitrix24 — для итогового отчёта."""
-import json, os, glob
-from datetime import datetime
+import glob
+import json
+import os
 from collections import defaultdict
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,7 @@ def analyze():
     with open(path, 'r', encoding='utf-8') as f:
         scan = json.load(f)
     
-    print(f"=== BITRIX24 CRM ANALYSIS ===")
+    print("=== BITRIX24 CRM ANALYSIS ===")
     print(f"Scan file: {os.path.basename(path)}")
     print(f"Scan time: {scan.get('scan_time', '?')}")
     print(f"Data since: {scan.get('since', '?')}")
@@ -51,7 +52,7 @@ def analyze():
     
     # ACTIVITIES
     acts = scan.get("activities", {})
-    print(f"ACTIVITIES:")
+    print("ACTIVITIES:")
     print(f"  Calls: {acts.get('calls_count', 0)}")
     print(f"  Chats (OL): {acts.get('chats_ol_count', 0)}")
     print(f"  SMS: {acts.get('sms_count', 0)}")

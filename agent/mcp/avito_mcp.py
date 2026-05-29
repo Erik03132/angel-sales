@@ -5,6 +5,7 @@
 Пока: заглушки + готовая логика авторизации.
 """
 import os
+
 import requests
 from dotenv import load_dotenv
 
@@ -74,7 +75,7 @@ class AvitoMCP:
     
     def get_items(self, status: str = "active", per_page: int = 100) -> list:
         """Получить объявления."""
-        data = self._api("GET", f"core/v1/items", params={
+        data = self._api("GET", "core/v1/items", params={
             "per_page": per_page,
             "status": status
         })

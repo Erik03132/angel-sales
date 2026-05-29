@@ -1,7 +1,7 @@
-import os
-import requests
 import subprocess
-import time
+
+import requests
+
 
 def run_check():
     report = ["🛡️ **Ежедневная проверка системы:**"]

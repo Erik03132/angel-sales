@@ -2,10 +2,11 @@
 Синхронизация товаров из Bitrix24 → angelochka_unified_brain.json
 Обновляет каталог Анжелочки актуальными ценами и остатками.
 """
-import os
 import json
-import requests
+import os
 from datetime import datetime
+
+import requests
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -36,7 +37,7 @@ def fetch_bitrix_products():
 
 def sync_products():
     """Синхронизирует товары Bitrix → brain."""
-    print(f"📦 Загружаю товары из Bitrix24...")
+    print("📦 Загружаю товары из Bitrix24...")
     products = fetch_bitrix_products()
     print(f"   ✅ Получено {len(products)} товаров")
 

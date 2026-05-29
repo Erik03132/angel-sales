@@ -32,3 +32,78 @@
 
 ---
 *Обновлено Antigravity 16 апреля 2026.*
+
+---
+
+## 🎭 Inworld Realtime TTS-2 (Cloud, Research Preview)
+**Источник:** https://inworld.ai/blog/realtime-tts-2
+**Дата добавления:** 7 мая 2026
+
+**Статус:** #1 на [Artificial Analysis Speech Arena](https://artificialanalysis.ai/text-to-speech/arena), обогнал Google и ElevenLabs.
+
+**4 уникальных возможности:**
+
+### 1. Conversational Awareness (главная фишка!)
+- Модель слышит **реальное аудио предыдущих реплик**, не только транскрипт
+- Автоматически подстраивает тон, темп, эмоцию под собеседника
+- Одна и та же фраза звучит по-разному после шутки vs после плохих новостей
+- **Это то, чего НЕТ у VoxCPM и Gemini Flash TTS**
+
+### 2. Voice Direction (режиссура голосом)
+- Управление через natural language, не через enum/слайдеры
+- `[speak tired but warm, like she just got home]` — и модель понимает
+- Inline маркеры: `[laugh]`, `[sigh]`, `[breathe]`, `[cough]`
+- Дисфлюенции: естественные "э-э", "ну", "то есть" — модель сама расставляет
+
+### 3. Crosslingual (100+ языков)
+- Один голос на ВСЕХ языках, включая переключение mid-sentence
+- `"I'll grab a coffee. ¿Quieres uno? お疲れさま。"` — один вызов API
+- Не нужна per-language voice library
+
+### 4. Advanced Voice Design
+- Генерация голоса из текстового описания (без reference audio!)
+- `"warm low-pitch female with slight rasp, late-30s, intimate radio-host quality"`
+- 3 режима стабильности: Expressive / Balanced / Stable
+
+**Технические характеристики:**
+- **Latency:** sub-200ms first-chunk
+- **API:** REST + WebSocket (Realtime API, совместим с OpenAI Realtime protocol)
+- **SDK:** Python (`pip install inworld-tts`), Node.js
+- **Audio:** PCM16, 24kHz mono
+- **Провайдеры:** Cloudflare, DeepInfra, LiveKit, GMI Cloud
+
+**Как использовать в наших проектах:**
+1. **Анжелочка голосовая:** Conversational Awareness — модель будет подстраиваться под тон клиента (усталый → мягче, возбуждённый → энергичнее)
+2. **Voice Direction:** `[speak as a friendly farm consultant, confident but warm]`
+3. **Клонирование голоса Анжелы:** 5-15 секунд reference audio → уникальный голос бренда
+4. **Мультиязычность:** Один голос для RU/EN — если масштабируем за рубеж
+
+**Ценообразование:** Pay-as-you-go по времени аудио, volume tiers. Точные цены: https://inworld.ai/pricing
+
+**Вердикт:** 🏆 Лучший голосовой движок для **разговорных** AI на май 2026.
+В отличие от Gemini Flash TTS (который быстрый, но "плоский") — Inworld реально "слушает" собеседника.
+
+---
+
+## 📊 Сравнение голосовых движков (май 2026)
+
+| Параметр | VoxCPM2 | Gemini 3.1 Flash TTS | Inworld TTS-2 | Jarvis/Piper |
+|----------|---------|----------------------|----------------|--------------|
+| **Тип** | Open-source | Cloud (Google) | Cloud (Inworld) | Open-source |
+| **Задержка** | Средняя | Низкая | sub-200ms | Низкая |
+| **Conversational Awareness** | ❌ | ❌ | ✅ | ❌ |
+| **Voice Direction** | ❌ | Частично | ✅ Natural language | ❌ |
+| **Клонирование** | ✅ | ❌ | ✅ (5-15с audio) | ✅ (Chatterbox) |
+| **Языки** | ~10 | ~30 | 100+ | ~20 |
+| **Локально** | ✅ (GPU) | ❌ | ❌ | ✅ |
+| **Цена** | Бесплатно | Free tier + платно | Pay-as-you-go | Бесплатно |
+| **Качество (Arena rank)** | Нет данных | ТОП-3 | **#1** | Среднее |
+
+### Рекомендация: Каскад голосов (аналогия с LLM каскадом)
+1. **Основной:** Inworld TTS-2 (лучшее качество, conversational awareness)
+2. **Бэкап:** Gemini Flash TTS (быстрый, бесплатный tier)
+3. **Оффлайн:** Piper TTS (локальный, без интернета)
+
+---
+*Обновлено Antigravity 7 мая 2026.*
+

@@ -1,10 +1,18 @@
 """
-Планировщик Анжелочки v3.0 — НАДЁЖНЫЙ.
+Планировщик Анжелочки v4.0 — ЧИСТЫЙ.
 Замена cron. Работает как фоновый демон под PM2.
 
-Расписание:
-  - Вечерний аудит CRM: 19:00
-  - Ежедневный отчёт: 20:00
+═══════════════════════════════════════════════════
+⚠️ УТВЕРЖДЁННЫЕ ОТЧЁТЫ В TG (решение от 12.05.2026):
+  ВСЕ ОТЧЁТЫ — ТОЛЬКО ИГОРЮ (176203333)!
+  АНДРЕЮ — НИЧЕГО В TG!
+
+  1. 19:00 — Вечерний аудит CRM (скан)
+  2. 20:00 — Заботкина: CRM-отчёт (строго по REPORTS_FORMAT.md)
+  3. 20:05 — Птенчикова: отчёт по проекту INCUBIRD 2.0 (произвольная форма)
+  4. ~03:30 — Заботкина: качество звонков (после ночной транскрипции)
+  БОЛЬШЕ НИКАКИХ ОТЧЁТОВ В ТГ!
+═══════════════════════════════════════════════════
 
 КЛЮЧЕВЫЕ УЛУЧШЕНИЯ v3.0:
   - PID-lock: не допускает дублей инстансов
@@ -16,14 +24,14 @@
 Запуск через PM2:
   pm2 start scheduler.py --name angela-scheduler --interpreter /root/antigravity/ai-eggs/venv/bin/python3
 """
-import time
+import fcntl
+import json
+import os
+import signal
 import subprocess
 import sys
-import os
-import json
-import signal
-import fcntl
-from datetime import datetime, timezone, timedelta
+import time
+from datetime import datetime, timedelta, timezone
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(SCRIPT_DIR)
@@ -43,9 +51,13 @@ HEARTBEAT_FILE = os.path.join(LOG_DIR, "scheduler_heartbeat.json")
 MSK = timezone(timedelta(hours=3))
 
 # Расписание (часы MSK):
-SCAN_HOUR = 19      # Вечерний скан CRM
-REPORT_HOUR = 20    # Вечерний отчёт
-REPORT_MAX_RETRIES = 3  # Максимум повторов отправки отчёта
+DIGEST_HOUR      = 9     # Утренний дайджест Хабра
+SCAN_HOUR        = 19    # Вечерний скан CRM
+TRANSCRIBE_HOUR  = 3     # Ночная транскрипция звонков (03:00 MSK — после night_audit в 02:00)
+REPORT_MAX_RETRIES = 3   # Попыток для отправки отчёта
+REPORT_HOUR = 20  # Ежедневный отчёт в 20:00 MSK
+MORNING_REPORT_HOUR = 8  # Утренний отчёт ночного аудита (08:00 MSK)
+AUTOCALL_HOUR = 9  # Автодозвон за 1 день до поставки (09:00 MSK)
 
 
 def now_msk():
@@ -185,16 +197,52 @@ def task_report():
         except Exception:
             pass
 
-    # === Отчёт по качеству звонков (Топ-5 значимых) ===
-    log("📞 ГЕНЕРАЦИЯ ОТЧЁТА ПО КАЧЕСТВУ ЗВОНКОВ (Топ-5)...")
-    time.sleep(30)  # Пауза 30 сек, чтобы сообщения не слиплись в TG
-    call_ok = run_script("call_quality_report.py", timeout=120)
-    if call_ok:
-        log("📞 Отчёт по звонкам отправлен!")
-    else:
-        log("⚠️ Отчёт по звонкам не удалось отправить (не критично)")
-
     write_heartbeat("alive", "report")
+
+
+def task_call_report():
+    """Отчёт по качеству звонков — ТОЛЬКО если есть содержание.
+    
+    HEARTBEAT RULE: Не слать мусорный отчёт с голыми ID без транскрипций.
+    """
+    log("📞 Проверка звонков (топ-5)...")
+    
+    # Проверяем, есть ли транскрипты
+    shadow_dir = os.path.join(BASE_DIR, "data", "shadow_learning")
+    has_transcripts = False
+    if os.path.isdir(shadow_dir):
+        for f in os.listdir(shadow_dir):
+            if f.endswith(".json"):
+                has_transcripts = True
+                break
+    
+    if has_transcripts:
+        log("  📞 Транскрипты найдены — генерирую отчёт по звонкам")
+        call_ok = run_script("call_quality_report.py", timeout=120)
+        if call_ok:
+            log("  ✅ Отчёт по звонкам отправлен")
+        else:
+            log("  ⚠️ Отчёт по звонкам не удалось отправить")
+    else:
+        log("  🤫 Транскриптов нет — отчёт по звонкам пропущен (heartbeat rules)")
+
+
+def task_autocall():
+    """Задача: Автодозвон для подтверждения поставок завтра."""
+    log("📞 АВТОДОЗВОН: звонки для поставок завтра...")
+    # Напоминание: проверить/обновить WAV для завтрашней даты
+    from datetime import timedelta
+    tomorrow = (now_msk() + timedelta(days=1)).strftime("%d.%m.%Y")
+    _send_error_notification(
+        f"📞 Автодозвон запускается!\n"
+        f"📅 Поставка: {tomorrow}\n"
+        f"🎤 Проверьте актуальность WAV-файла!\n"
+        f"Если дата в аудио не совпадает — обновите WAV и запустите вручную."
+    )
+    run_script("auto_confirm_call.py", timeout=600)
+    write_heartbeat("alive", "autocall")
+
+
 
 
 def _send_error_notification(message):
@@ -249,8 +297,8 @@ def main():
     log("🕐 ПЛАНИРОВЩИК АНЖЕЛОЧКИ v3.0 (Надёжный)")
     log(f"   PID: {os.getpid()}")
     log(f"   Python: {VENV_PYTHON}")
-    log(f"   Расписание: {SCAN_HOUR}:00 (Скан) → {REPORT_HOUR}:00 (Отчёт)")
-    log(f"   Таймзона: MSK (UTC+3)")
+    log(f"   Расписание: {SCAN_HOUR}:00 (Скан) | {REPORT_HOUR}:00 (Отчёт) | {AUTOCALL_HOUR}:00 (Автодозвон)")
+    log("   Таймзона: MSK (UTC+3)")
     log("═" * 50)
 
     write_heartbeat("started")
@@ -274,24 +322,69 @@ def main():
             hour = now.hour
             minute = now.minute
 
-            # --- ВЕЧЕРНИЙ АУДИТ (19:00 MSK) ---
+            # --- УТРЕННИЙ ДАЙДЖЕСТ ХАБРА (09:00 MSK) → ТОЛЬКО Игорю ---
+            task_key = f"{today}-habr"
+            if hour == DIGEST_HOUR and minute < 5 and task_key not in executed_today:
+                log("📰 HABR DIGEST (→ Игорю)...")
+                run_script("habr_digest.py", timeout=120)
+                executed_today.add(task_key)
+
+            # --- УТРЕННИЙ ОТЧЁТ НОЧНОГО АУДИТА (08:00 MSK) → Игорю ---
+            # Объединяет: CRM + транскрибация звонков + ночной аудит
+            task_key = f"{today}-morning-audit"
+            if hour == MORNING_REPORT_HOUR and minute < 5 and task_key not in executed_today:
+                log("🌞 UNIFIED MORNING REPORT (CRM + звонки + аудит → Игорю)...")
+                run_script("unified_morning_report.py", timeout=120)
+                executed_today.add(task_key)
+
+            # --- АВТОДОЗВОН: звонок за 1 день до поставки (09:00 MSK) ---
+            task_key = f"{today}-autocall"
+            if hour == AUTOCALL_HOUR and minute < 5 and task_key not in executed_today:
+                task_autocall()
+                executed_today.add(task_key)
+
+            # --- ВЕЧЕРНИЙ АУДИТ CRM (19:00 MSK) ---
             task_key = f"{today}-scan"
             if hour == SCAN_HOUR and minute < 5 and task_key not in executed_today:
                 task_scan()
                 executed_today.add(task_key)
 
-            # --- DAILY REPORT (20:00 MSK) ---
+            # ═══════════════════════════════════════════════
+            # ОТЧЁТ 1: Заботкина CRM (20:00 MSK) → ТОЛЬКО Игорю
+            # ОТЧЁТ 2: Птенчикова проект (20:05 MSK) → ТОЛЬКО Игорю
+            # АНДРЕЮ — НИЧЕГО! (решение от 12.05.2026)
+            # ═══════════════════════════════════════════════
             task_key = f"{today}-report"
             if hour == REPORT_HOUR and minute < 5 and task_key not in executed_today:
                 task_report()
+                # 20:05 — Отчёт Птенчиковой по проекту
+                time.sleep(120)
+                log("📋 ОТЧЁТ ПТЕНЧИКОВОЙ ПО ПРОЕКТУ INCUBIRD 2.0...")
+                run_script("project_report.py", timeout=120)
                 executed_today.add(task_key)
+
+            # ═══════════════════════════════════════════════
+            # НОЧНАЯ ТРАНСКРИПЦИЯ + ОТЧЁТ 3: качество звонков
+            # (03:00 MSK → транскрипция → отчёт по готовности)
+            # ═══════════════════════════════════════════════
+            task_key = f"{today}-transcribe"
+            if hour == TRANSCRIBE_HOUR and minute < 5 and task_key not in executed_today:
+                log("📞 ТРАНСКРИПЦИЯ ЗВОНКОВ (вчерашние)...")
+                run_script("call_transcriber.py", args=["--days", "1"], timeout=1800)  # 30 мин макс
+                run_script("call_learner.py", timeout=300)  # Извлечение фактов
+                # ОТЧЁТ 3: Заботкина — качество звонков → ТОЛЬКО Игорю
+                log("📞 ОТЧЁТ ПО КАЧЕСТВУ ЗВОНКОВ (Заботкина)...")
+                task_call_report()
+                executed_today.add(task_key)
+                write_heartbeat("alive", "transcribe+quality_report")
 
             # --- ПОЛНОЧНАЯ ОЧИСТКА (00:00 MSK) ---
             task_key = f"{today}-cleanup"
             if hour == 0 and minute < 5 and task_key not in executed_today:
+                log("🌙 Наступил новый день. Сброс задач.")
                 executed_today.clear()
                 task_cleanup()
-                executed_today.add(f"{today}-cleanup")  # Не запускать повторно
+                executed_today.add(task_key)
 
             # --- HEARTBEAT (каждые 5 минут) ---
             current_time = time.time()

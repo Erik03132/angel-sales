@@ -1,10 +1,103 @@
-import os
 import json
+import os
+import re
+import re as _re_core
 import time
+import traceback
+
 import requests
-from sales_logic import apply_sales_layer, resolve_breed_synonyms
 from feed_calculator import process_feed_query
-from hybrid_search import bm25_search, hybrid_search, init_bm25_index
+from hybrid_search import bm25_search
+from memory_graph import MemoryGraph
+from sales_logic import apply_sales_layer, resolve_breed_synonyms
+from tool_digest import digest_product_context, digest_vector_context
+from vector_memory import VectorMemory
+
+# RAG Lite — экспертные знания из PDF-библиотеки птицеводства
+try:
+    from rag_lite import format_context_for_llm, search_knowledge
+    print("✅ RAG Lite подключён")
+except ImportError:
+    search_knowledge = None
+    format_context_for_llm = None
+    print("⚠️ RAG Lite недоступен (rag_lite.py не найден)")
+
+# === РОЛЕВАЯ МОДЕЛЬ ===
+ROLE_CREATOR  = "creator"   # Игорь — создатель системы
+ROLE_BOSS     = "boss"      # Андрей — руководитель бизнеса
+ROLE_EMPLOYEE = "employee"  # Сотрудник/менеджер
+ROLE_CUSTOMER = "customer"  # Клиент
+
+# ID известных пользователей (читается из .env — единый источник истины)
+_CREATOR_TG_ID = str(os.getenv("ADMIN_TELEGRAM_ID", "176203333")).strip()
+
+def detect_role(query: str, sender_id: str = None, sender_name: str = None) -> str:
+    """Определяет роль пользователя по его Telegram ID и имени.
+    Приоритет: creator → boss (из roles_config.json) → employee → customer
+    """
+    sid = str(sender_id) if sender_id else ""
+
+    # 1. Создатель системы
+    if sid == _CREATOR_TG_ID:
+        return ROLE_CREATOR
+
+    # 2. Загружаем roles_config.json для определения boss/employee
+    try:
+        _roles_path = os.path.join(
+            os.path.dirname(os.path.abspath(__file__)),
+            "roles_config.json"
+        )
+        if os.path.exists(_roles_path):
+            with open(_roles_path, "r", encoding="utf-8") as _f:
+                _cfg = json.load(_f)
+            user_entry = _cfg.get("users", {}).get(sid, {})
+            user_role = user_entry.get("role", _cfg.get("default_role", "manager"))
+            if user_role == "owner":
+                return ROLE_BOSS
+            elif user_role in ("manager", "employee"):
+                return ROLE_EMPLOYEE
+    except json.JSONDecodeError as _e:
+        print(f"⚠️ detect_role: битый JSON в roles_config.json: {_e}")
+        _cfg = {}
+    except (FileNotFoundError, PermissionError) as _e:
+        print(f"⚠️ detect_role: нет доступа к roles_config.json: {_e}")
+    except Exception as _e:
+        print(f"⚠️ detect_role: ошибка чтения roles_config: {_e}")
+        traceback.print_exc()
+
+    # 3. По умолчанию — клиент
+    return ROLE_CUSTOMER
+
+# Паттерн для определения телефона в истории диалога
+# (Phone-First Protocol)
+_PHONE_PATTERN = _re_core.compile(
+    r'(?:\+7|8)[\s\-]?\(?\d{3}\)?[\s\-]?\d{3}[\s\-]?\d{2}[\s\-]?\d{2}'
+)
+
+def _has_phone_in_history(history: list, current_query: str = "") -> bool:
+    """Проверяет, оставил ли клиент телефон в истории диалога.
+    Phone-First Protocol: корм и допы предлагаем ТОЛЬКО после получения телефона.
+    """
+    # Проверяем текущее сообщение
+    if _PHONE_PATTERN.search(current_query):
+        return True
+    # Проверяем историю
+    if history:
+        for msg in history:
+            text = ""
+            contact_phone = None
+            if isinstance(msg, dict):
+                parts = msg.get("parts", [])
+                if isinstance(parts, list) and parts:
+                    text = str(parts[0])
+                else:
+                    text = msg.get("content", "")
+                contact = msg.get("contact")
+                if contact and isinstance(contact, dict):
+                    contact_phone = contact.get("phone_number") or contact.get("phone")
+            if _PHONE_PATTERN.search(str(text)) or (contact_phone and _PHONE_PATTERN.search(str(contact_phone))):
+                return True
+    return False
 
 # Загружаем настройки
 from dotenv import load_dotenv
@@ -14,45 +107,384 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 AGENT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
 
+# ─── Живой прайс-лист из config/prices.json ─────────────────────────────────
+# F7: цены больше не хардкодятся — читаются из файла (обновляется price_updater.py)
+_PRICES_JSON_PATH = os.path.join(BASE_DIR, 'config', 'prices.json')
+_prices_cache = {"data": None, "mtime": 0}
+
+def load_price_list() -> str:
+    """Загружает прайс из config/prices.json и форматирует в текст для промпта.
+    Кэш сбрасывается если файл изменился (price_updater.py обновил цены).
+    """
+    global _prices_cache
+    try:
+        mtime = os.path.getmtime(_PRICES_JSON_PATH)
+        if _prices_cache["data"] is None or mtime != _prices_cache["mtime"]:
+            with open(_PRICES_JSON_PATH, 'r', encoding='utf-8') as f:
+                _prices_cache["data"] = json.load(f)
+            _prices_cache["mtime"] = mtime
+            updated = _prices_cache["data"].get("_meta", {}).get("updated_at", "?")
+            print(f"✅ Прайс-лист загружен из prices.json (обновлён: {updated})")
+    except Exception as e:
+        print(f"⚠️ prices.json не найден — используем пустой прайс: {e}")
+        return ""
+
+    data = _prices_cache["data"]
+    lines = []
+    for cat_key, cat in data.get("categories", {}).items():
+        label = cat.get("label", cat_key.upper())
+        min_ord = cat.get("min_order", 1)
+        lines.append(f"{label} (мин. {min_ord} гол.):")
+        for name, item in cat.get("items", {}).items():
+            if "prices" in item:  # тарифная сетка (бройлеры)
+                tiers = ", ".join(f"от {p['from']}шт={p['price']}₽" for p in item["prices"])
+                lines.append(f"  {name}: {tiers}")
+            elif "price" in item:
+                lines.append(f"  {name}={item['price']}₽")
+        lines.append("")
+
+    delivery = data.get("delivery", {})
+    if delivery:
+        lines.append(f"Доставка: {delivery.get('days', '')} по {delivery.get('geography', '')}. {delivery.get('transport', '')}.")
+        lines.append(f"Самовывоз: {delivery.get('pickup_address', '')}")
+
+    return "\n".join(lines)
+
+
+def load_schedule_context(query: str = "", month: int = None) -> str:
+    """
+    Возвращает текстовый блок с графиком вывода для использования в промпте.
+    Если query содержит породу или месяц — фильтрует под запрос.
+    Иначе — показывает ближайшие 2 месяца.
+    """
+    try:
+        with open(_PRICES_JSON_PATH, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return ""
+
+    schedule = data.get("schedule", {})
+    if not schedule:
+        return ""
+
+    from datetime import datetime
+    now = datetime.now()
+    cur_month = month or now.month
+    cur_year = now.year
+
+    # Ключевые слова пород → ключи в schedule
+    _breed_keys = {
+        "кобб": "broilers", "росс": "broilers", "бройлер": "broilers",
+        "мастер": "broilers_color", "ред бро": "broilers_color", "цветной": "broilers_color",
+        "мясояичн": "meat_egg", "кучинск": "meat_egg",
+        "ломан": "loman_brown", "хайсекс": "highsex_brown",
+        "доминант": "dominant", "адлерск": "adler",
+        "индюш": "turkeys", "биг": "turkeys",
+        "мулард": "mulard",
+        "агидель": "ducks_ru", "голубой фавор": "ducks_ru",
+        "гусят": "geese", "линд": "geese",
+        "цесар": "guinea_fowl",
+    }
+
+    # Определяем какие ключи нужны по запросу
+    q = query.lower()
+    target_keys = []
+    for kw, key in _breed_keys.items():
+        if kw in q and key not in target_keys:  # дедупликация
+            target_keys.append(key)
+
+    # Если порода не найдена — показываем все на ближайшие 2 месяца
+    if not target_keys:
+        target_keys = [k for k in schedule.keys() if k != "_meta"]
+
+    lines = ["📅 ГРАФИК ВЫВОДА (incubird.ru, обновлён 14.01.2026):"]
+    meta_note = schedule.get("_meta", {}).get("note", "")
+    if meta_note:
+        lines.append(f"   {meta_note}")
+
+    found_any = False
+    for key in target_keys:
+        entry = schedule.get(key, {})
+        if not isinstance(entry, dict):
+            continue
+        label = entry.get("label", key)
+        months_data = entry.get("months", {})
+        note = entry.get("note", "")
+
+        # Ближайшие даты (текущий + следующий месяц)
+        upcoming = []
+        for offset in range(3):
+            m = ((cur_month - 1 + offset) % 12) + 1
+            y = cur_year + ((cur_month - 1 + offset) // 12)
+            dates = months_data.get(str(m), [])
+            if dates:
+                month_name = ["янв", "фев", "мар", "апр", "май", "июн",
+                              "июл", "авг", "сен", "окт", "ноя", "дек"][m - 1]
+                upcoming.append(f"{month_name}: {', '.join(str(d) for d in dates)}")
+
+        if upcoming:
+            lines.append(f"  🐣 {label}: {' | '.join(upcoming)}")
+            found_any = True
+        elif note:
+            lines.append(f"  ⛔ {label}: {note}")
+            found_any = True
+
+    if not found_any:
+        return ""
+
+    return "\n".join(lines)
+
+
+# Паттерн для извлечения цен из текста клиента
+_PRICE_IN_TEXT = re.compile(r'(\d{2,4})\s*(?:руб|₽|р\.?)\b', re.IGNORECASE)
+
+def detect_price_conflicts(query: str) -> str:
+    """
+    Сравнивает цену упомянутую клиентом с нашей базой из prices.json.
+    Если расхождение > 10% — возвращает предупреждение со ссылкой на источники.
+    Возвращает пустую строку если всё OK.
+    """
+    mentioned_prices = [int(m) for m in _PRICE_IN_TEXT.findall(query)]
+    if not mentioned_prices:
+        return ""
+
+    try:
+        with open(_PRICES_JSON_PATH, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+    except Exception:
+        return ""
+
+    meta = data.get("_meta", {})
+    updated_at = meta.get("updated_at", "?")
+    source = meta.get("primary_source", "VK incubird")
+
+    conflicts = []
+    categories = data.get("categories", {})
+
+    q_lower = query.lower()
+    for cat_key, cat_data in categories.items():
+        for item_name, item_data in cat_data.get("items", {}).items():
+            # Нечёткий матч: первые 4 символа первого слова ("линд" → "линдовских")
+            name_lower = item_name.lower().split()[0]
+            name_key = name_lower[:4]
+            if len(name_key) < 3 or name_key not in q_lower:
+                continue
+            our_price = item_data.get("price")
+            if not our_price:
+                continue
+            for client_price in mentioned_prices:
+                diff_pct = abs(client_price - our_price) / our_price * 100
+                if diff_pct > 10:
+                    conflicts.append(
+                        f"• {item_name}: клиент назвал {client_price}₽, "
+                        f"в нашей базе {our_price}₽ "
+                        f"(источник: {source}, обновлено {updated_at[:10]})"
+                    )
+
+    if not conflicts:
+        return ""
+
+    warning = (
+        "⚠️ ВНИМАНИЕ — ПРОТИВОРЕЧИЕ В ЦЕНАХ:\n"
+        + "\n".join(conflicts)
+        + "\n→ Сообщи клиенту актуальную цену из базы. "
+        "Если он настаивает — порекомендуй уточнить у менеджера."
+    )
+    return warning
+
 load_dotenv(override=True)
 
 # Если ключей нет локально, пробуем найти их в родительской папке
-if not os.getenv("GEMINI_API_KEY"):
+if not os.getenv("OPENROUTER_API_KEY"):
     load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_KEY = (os.getenv("OPENROUTER_API_KEY") or "").strip() or None
+# PERPLEXITY_KEY загружается локально в call_perplexity_search()
 NEON_DATABASE_URL = os.getenv("NEON_DATABASE_URL")
+# GEMINI_API_KEY сохранён только для call_analyzer (аудио-транскрипция)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GEMINI_PRO_API_KEY")
 
 # --- Каскадный LLM-движок ---
-# Приоритет 1: Gemini напрямую (требует US-прокси)
-# Приоритет 2: OpenRouter (работает без прокси)
-# Приоритет 3: Ollama/Gemma4 локально (оффлайн-страховка)
+# Приоритет 1: OpenRouter  — основной (deepseek, claude, и др.)
+# Приоритет 2: Ollama/Gemma4 — оффлайн-страховка
+# Поиск: Perplexity (ОБЯЗАТЕЛЬНО для всех интернет-запросов)
 
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "gemma4:e2b")
 
-def _call_gemini_direct(prompt, history=None):
-    """Вызов Gemini API напрямую (требует прокси для РФ)"""
-    if not GEMINI_API_KEY:
-        return None
+# --- ПЕРСОНАЖИ ---
+PERSONA_ZABOTKINA = "zabotkina"     # Главная (отчёты, аудит менеджеров)
+PERSONA_PTENCHIKOVA = "ptenchikova" # Песочница (планы, развитие, задачи)
+
+def get_current_persona():
+    """Определяет текущую личность Анжелы на основе окружения."""
+    sandbox_url = os.getenv("SANDBOX_BITRIX_WEBHOOK_URL", "")
+    current_url = os.getenv("BITRIX_WEBHOOK_URL", "")
+    if sandbox_url and (sandbox_url in current_url or "mjxvhq" in current_url):
+        return PERSONA_PTENCHIKOVA
+    return PERSONA_ZABOTKINA
+
+def get_persona_prompt_info(persona=None):
+    """Возвращает данные для системного промпта в зависимости от личности."""
+    p = persona or get_current_persona()
+    from datetime import datetime
+
+    from daily_report import get_dynamic_crm_report, get_dynamic_sandbox_report
+    
+    today_str = datetime.now().strftime("%d.%m.%Y")
+    
+    if p == PERSONA_PTENCHIKOVA:
+        return {
+            "is_ptenchikova": True,
+            "name": "Анжела Птенчикова",
+            "surname": "Птенчикова",
+            "company": "Песочница IncuBird (Маркетинг и Продвижение)",
+            "report_data": get_dynamic_sandbox_report(),
+            "today": today_str,
+            "focus": "продвижение сайтов, SEO, статьи для Я.Дзен, создание постов в ВК, ведение задач, эксперименты"
+        }
+    else:
+        return {
+            "is_ptenchikova": False,
+            "name": "Анжела Заботкина",
+            "surname": "Заботкина",
+            "company": "Азовский инкубатор (Production)",
+            "report_data": get_dynamic_crm_report(),
+            "today": today_str,
+            "focus": "аудит продаж, анализ показателей CRM, контроль менеджеров, отчетность, консультирование клиентов по продажам птицы"
+        }
+
+def call_perplexity_search(query: str) -> str:
+    """Поиск через Perplexity Sonar — ОБЯЗАТЕЛЬНЫЙ инструмент для интернет-запросов.
+    Используется когда нужна актуальная информация из сети.
+    """
+    perplexity_key = (os.getenv("PERPLEXITY_API_KEY") or "").strip()
+    if not perplexity_key:
+        print("⚠️ PERPLEXITY_API_KEY не задан, поиск недоступен")
+        return ""
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=GEMINI_API_KEY)
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        chat = model.start_chat(history=history or [])
-        response = chat.send_message(prompt)
-        return response.text
+        resp = requests.post(
+            "https://api.perplexity.ai/chat/completions",
+            headers={"Authorization": f"Bearer {perplexity_key}", "Content-Type": "application/json"},
+            json={
+                "model": "sonar",
+                "messages": [{"role": "user", "content": query}],
+                "max_tokens": 1024,
+            },
+            timeout=30,
+            proxies={"http": None, "https": None}
+        )
+        try:
+            data = resp.json()
+        except (ValueError, KeyError) as json_err:
+            print(f"⚠️ Perplexity: JSON parse error — {json_err}")
+            return ""
+        if data.get("choices") and len(data["choices"]) > 0:
+            result = data["choices"][0]["message"]["content"]
+            print(f"🔍 Perplexity: {len(result)} символов")
+            return result
+        print(f"⚠️ Perplexity error: {data.get('error', data)}")
+        return ""
     except Exception as e:
-        print(f"⚠️ Gemini Direct failed: {e}")
+        print(f"⚠️ Perplexity failed: {e}")
+        return ""
+
+# ============================================================
+# 🧠 УМНЫЙ КАСКАД v2 — маршрутизация по сложности запроса
+# ============================================================
+# Простые вопросы → дешёвая/бесплатная модель (экономия)
+# Сложные вопросы → топ-модель (качество)
+#
+# Тиры:
+#   LITE  — FAQ, приветствия, цены, расписание     → $0.11/M  
+#   STD   — продажи, консультации, RAG             → $0.43/M  
+#   PRO   — жалобы, переговоры, сложная логика     → $0.73/M  
+# ============================================================
+
+# Модели по тирам (каждый тир — каскад с фоллбэками)
+_TIER_MODELS = {
+    "lite": [
+        "deepseek/deepseek-v4-flash",                # $0.11/$0.22 — 1048K, быстрая
+        "deepseek/deepseek-v4-flash:free",            # Бесплатная (фоллбэк)
+        "qwen/qwen3.6-flash",                         # $0.19/$1.12 — 1000K
+    ],
+    "std": [
+        "deepseek/deepseek-v4-pro",                   # $0.43/$0.87 — 1048K, умная
+        "moonshotai/kimi-k2.6",                       # $0.73/$3.49 — 262K, Kimi K2.6
+        "deepseek/deepseek-v4-flash",                 # Фоллбэк на быструю
+    ],
+    "pro": [
+        "moonshotai/kimi-k2.6",                       # $0.73/$3.49 — 262K, топ-качество
+        "deepseek/deepseek-v4-pro",                   # $0.43/$0.87 — фоллбэк
+        "anthropic/claude-sonnet-4.6",                # $3/$15 — крайний резерв
+    ],
+}
+
+# Ключевые слова для быстрой классификации сложности
+_LITE_KEYWORDS = {
+    "привет", "здравствуйте", "добрый день", "добрый вечер", "доброе утро",
+    "цена", "стоимость", "сколько стоит", "прайс", "цены",
+    "доставка", "когда доставка", "сроки", "когда привезут",
+    "есть в наличии", "наличие", "остаток", "сколько есть",
+    "контакты", "телефон", "адрес", "где находитесь",
+    "график", "режим работы", "когда работаете",
+    "спасибо", "благодарю", "ок", "хорошо", "понял", "ясно",
+    "да", "нет", "ладно", "договорились",
+}
+
+_PRO_KEYWORDS = {
+    "жалоба", "претензия", "плохо", "дохнут", "падёж", "мор",
+    "обман", "кинули", "некачественный", "больные", "заболели",
+    "возврат", "вернуть деньги", "компенсация",
+    "скидка", "торг", "дорого", "дешевле", "снизить цену",
+    "оптом", "крупная партия", "тысяча", "10000", "5000",
+    "конкурент", "другой поставщик", "у других дешевле",
+    "юрлицо", "договор", "счёт-фактура", "накладная", "НДС",
+}
+
+
+def _classify_complexity(prompt: str, history=None) -> str:
+    """Классифицирует сложность запроса → 'lite' | 'std' | 'pro'."""
+    text = prompt.lower().strip()
+    
+    # Короткие сообщения (< 15 символов) — почти всегда lite
+    if len(text) < 15:
+        return "lite"
+    
+    # Проверяем PRO-маркеры (приоритет над lite)
+    for kw in _PRO_KEYWORDS:
+        if kw in text:
+            return "pro"
+    
+    # Проверяем LITE-маркеры
+    for kw in _LITE_KEYWORDS:
+        if kw in text:
+            return "lite"
+    
+    # Длинная история (>8 сообщений) → скорее всего сложный диалог
+    if history and len(history) > 8:
+        return "pro"
+    
+    # По умолчанию — стандарт
+    return "std"
+
+
+def _call_openrouter(prompt, history=None, system_prompt=None, tier=None):
+    """Вызов через OpenRouter с маршрутизацией по сложности."""
+    if not OPENROUTER_KEY or not OPENROUTER_KEY.strip():
+        print("⚠️ OPENROUTER_API_KEY не задан!")
         return None
 
-def _call_openrouter(prompt, history=None):
-    """Вызов через OpenRouter (работает из любого региона)"""
-    if not OPENROUTER_KEY:
-        return None
+    saved_proxies = {}
+    for key in ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"]:
+        if key in os.environ:
+            saved_proxies[key] = os.environ.pop(key)
     
     messages = []
+    # System prompt отдельным сообщением — КРИТИЧНО для следования инструкциям
+    if system_prompt:
+        messages.append({"role": "system", "content": system_prompt})
+    
     # Конвертируем историю Gemini-формата в OpenAI-формат
     if history:
         for msg in history:
@@ -62,30 +494,41 @@ def _call_openrouter(prompt, history=None):
     
     messages.append({"role": "user", "content": prompt})
     
-    # Каскад моделей OpenRouter
-    or_models = [
-        "google/gemini-2.0-flash-001",
-        "google/gemini-2.0-flash-exp:free",
-        "meta-llama/llama-3.1-8b-instruct:free",
-    ]
+    # Определяем тир если не задан
+    if tier is None:
+        tier = _classify_complexity(prompt, history)
     
-    for model_name in or_models:
-        try:
-            resp = requests.post(
-                "https://openrouter.ai/api/v1/chat/completions",
-                headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
-                json={"model": model_name, "messages": messages},
-                timeout=20
-            )
-            data = resp.json()
-            if "choices" in data:
-                return data["choices"][0]["message"]["content"]
-            else:
-                print(f"⚠️ OpenRouter {model_name}: {data.get('error', 'Unknown error')}")
-        except Exception as e:
-            print(f"⚠️ OpenRouter {model_name} exception: {e}")
+    or_models = _TIER_MODELS.get(tier, _TIER_MODELS["std"])
+    print(f"🎯 Тир: {tier.upper()} → модели: {[m.split('/')[-1] for m in or_models]}")
     
-    return None
+    try:
+        for model_name in or_models:
+            try:
+                resp = requests.post(
+                    "https://openrouter.ai/api/v1/chat/completions",
+                    headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
+                    json={"model": model_name, "messages": messages, "max_tokens": 4096},
+                    timeout=45,
+                    proxies={"http": None, "https": None}  # Явно отключаем прокси
+                )
+                try:
+                    data = resp.json()
+                except (ValueError, KeyError) as json_err:
+                    print(f"⚠️ OpenRouter {model_name}: JSON parse error — {json_err}")
+                    continue
+                if data.get("choices") and len(data["choices"]) > 0:
+                    print(f"✅ LLM: {model_name} (tier={tier})")
+                    return data["choices"][0]["message"]["content"]
+                else:
+                    print(f"⚠️ OpenRouter {model_name}: {data.get('error', 'Unknown error')}")
+            except Exception as e:
+                print(f"⚠️ OpenRouter {model_name} exception: {e}")
+        
+        return None
+    finally:
+        # Восстанавливаем прокси (если были)
+        for key, val in saved_proxies.items():
+            os.environ[key] = val
 
 def _call_ollama_local(prompt, history=None):
     """Оффлайн-фоллбэк: Gemma4 через Ollama (работает БЕЗ интернета)"""
@@ -111,30 +554,31 @@ def _call_ollama_local(prompt, history=None):
             print(f"⚠️ Ollama unexpected response: {data}")
             return None
     except requests.exceptions.ConnectionError:
-        print(f"⚠️ Ollama не запущена (http://localhost:11434 недоступен)")
+        print("⚠️ Ollama не запущена (http://localhost:11434 недоступен)")
         return None
     except Exception as e:
         print(f"⚠️ Ollama/{OLLAMA_MODEL} failed: {e}")
         return None
 
-def call_llm(prompt, history=None):
-    """Каскадный вызов: OpenRouter → Gemini Direct → Ollama/Gemma4 (offline)"""
-    # Шаг 1: OpenRouter (основной — Gemini через API, квота стабильна)
-    result = _call_openrouter(prompt, history)
+def call_llm(prompt, history=None, system_prompt=None, tier=None):
+    """Каскадный вызов с умной маршрутизацией:
+    1. Классификация сложности → LITE / STD / PRO
+    2. Подбор модели по тиру
+    3. Фоллбэк на Ollama (оффлайн)
+    
+    tier можно задать явно: 'lite', 'std', 'pro'
+    """
+    # Шаг 1: OpenRouter — основной LLM с маршрутизацией
+    result = _call_openrouter(prompt, history, system_prompt=system_prompt, tier=tier)
     if result:
         return result
-    
-    # Шаг 2: Gemini Direct (бэкап, free-tier квота может быть исчерпана)
-    result = _call_gemini_direct(prompt, history)
-    if result:
-        return result
-    
-    # Шаг 3: Оффлайн-страховка — Gemma4 через Ollama
-    print("🔌 Облачные модели недоступны. Переключаюсь на Gemma4 (оффлайн)...")
+
+    # Шаг 2: Оффлайн-страховка — Gemma4 через Ollama
+    print("🔌 OpenRouter недоступен. Переключаюсь на Gemma4 (оффлайн)...")
     result = _call_ollama_local(prompt, history)
     if result:
         return result
-    
+
     return "Прости, у меня сейчас технические неполадки... Напиши мне через пару минут! 🐣"
 
 # --- Векторный поиск (с graceful degradation) ---
@@ -148,6 +592,26 @@ try:
 except Exception as e:
     print(f"⚠️ VectorDB недоступна: {e}")
 
+# --- Phase 1+2: Граф памяти клиентов + Векторный поиск Gemini Embedding 2 ---
+_memory_graph = None
+try:
+    _memory_graph = MemoryGraph()
+    stats = _memory_graph.stats()
+    print(f"✅ Граф памяти: {stats['active_nodes']} узлов, {stats['unique_clients']} клиентов")
+except Exception as e:
+    print(f"⚠️ Граф памяти недоступен: {e}")
+
+_vector_mem = None
+try:
+    _vector_mem = VectorMemory()
+    stats = _vector_mem.stats()
+    if stats['total_vectors'] > 0:
+        print(f"✅ Векторный поиск: {stats['total_vectors']} эмбеддингов ({stats['model']})")
+    else:
+        print("ℹ️ Векторный индекс пуст (запустите индексацию)")
+except Exception as e:
+    print(f"⚠️ Векторный поиск недоступен: {e}")
+
 # --- Предзагрузка файлов данных (один раз при старте) ---
 _faq_cache = {}
 _faq_path = os.path.join(DATA_DIR, 'faq_cache.json')
@@ -158,6 +622,7 @@ if os.path.exists(_faq_path):
 
 # --- Smart FAQ: Автовыпускающийся кэш ---
 import re as _re
+
 
 class SmartFAQ:
     """Умный FAQ: вопросы, которые задают 3+ раз, автоматически кэшируются
@@ -256,13 +721,16 @@ if os.path.exists(_wisdom_path):
         _wisdom = f.read()
     print(f"✅ Expert knowledge загружен: {len(_wisdom)} символов")
 
-# Загружаем последний скан Битрикс24 (реальные данные о менеджерах/сделках)
-_crm_report = ""
-_crm_report_path = os.path.join(DATA_DIR, 'latest_scan_report.md')
-if os.path.exists(_crm_report_path):
-    with open(_crm_report_path, 'r', encoding='utf-8') as f:
-        _crm_report = f.read()
-    print(f"✅ CRM отчёт загружен: {len(_crm_report)} символов")
+# Загружаем последний скан Битрикс24 (теперь ДИНАМИЧЕСКИ)
+def get_dynamic_crm_report():
+    try:
+        from daily_report import build_report_text, get_latest_scan
+        scan = get_latest_scan()
+        if scan:
+            return build_report_text(scan)
+    except Exception as e:
+        print(f"⚠️ Ошибка загрузки свежего скана: {e}")
+    return "Свежих данных нет."
 
 # Загружаем unified brain как дополнительный контекст
 _product_catalog = ""
@@ -287,169 +755,182 @@ if os.path.exists(_skill_path):
     print(f"✅ Sales Skill загружен: {len(_skill_instructions)} символов")
 
 
-# --- RAG: поиск товаров напрямую из SQL (без эмбеддингов) ---
-def get_products_context(query):
-    """Поиск товаров в БД по ключевым словам"""
-    if not NEON_DATABASE_URL:
-        return ""
+# --- RAG: поиск товаров из Unified Brain (BM25) ---
+_product_items = []
+_product_bm25 = None
+if _product_catalog:
+    import re as _re_prod
+    _product_items = [p.strip() for p in _product_catalog.split("\n") if p.strip()]
     try:
-        import psycopg2
-        import re
-        q = query.lower()
-        clean = re.sub(r'[^\w\s]', '', q)
-        words = [w for w in clean.split() if len(w) > 2]
-        if not words:
-            return ""
-        
-        conn = psycopg2.connect(NEON_DATABASE_URL)
-        cur = conn.cursor()
-        results = []
-        for word in words[:5]:  # Ограничиваем количество запросов
-            cur.execute(
-                "SELECT name, price, stock_status FROM products WHERE name ILIKE %s OR description ILIKE %s LIMIT 5",
-                (f"%{word}%", f"%{word}%")
-            )
-            results.extend(cur.fetchall())
-        cur.close()
-        conn.close()
-        
-        if results:
-            seen = set()
-            items = []
-            for r in results:
-                if r[0] not in seen:
-                    items.append(f"- {r[0]}: {r[1]} руб. ({r[2]})")
-                    seen.add(r[0])
-            return "\n\nТОВАРЫ ИЗ БАЗЫ ДАННЫХ:\n" + "\n".join(items)
-        return ""
+        from rank_bm25 import BM25Okapi
+        _prod_tokenized = [_re_prod.findall(r'\w+', item.lower()) for item in _product_items]
+        _product_bm25 = BM25Okapi(_prod_tokenized)
+        print(f"✅ Каталог товаров BM25: {len(_product_items)} позиций")
     except Exception as e:
-        print(f"⚠️ DB search error: {e}")
+        print(f"⚠️ BM25 каталог не загружен: {e}")
+
+
+def get_products_context(query):
+    """Поиск товаров по каталогу Unified Brain (BM25 + синонимы + подстрока)."""
+    if not _product_items:
         return ""
-
-
-# === РОЛЕВАЯ МАТРИЦА ===
-# 4 роли с ПОЛНОСТЬЮ разным поведением
-ROLE_CREATOR = "creator"     # Игорь — создатель/хозяин системы  
-ROLE_BOSS = "boss"           # Андрей — руководитель бизнеса
-ROLE_EMPLOYEE = "employee"   # Менеджеры — сотрудники на равных
-ROLE_CUSTOMER = "customer"   # Покупатели — режим продавца
-
-# ID создателя (Telegram)
-CREATOR_TG_ID = "176203333"
-
-# Известные имена руководителей (Битрикс)
-BOSS_NAMES = ["андрей", "крымский хан", "руководитель", "владелец", "директор"]
-
-# Известные имена менеджеров (Битрикс)
-EMPLOYEE_NAMES = ["валя", "валентина", "менеджер", "оператор", "диспетчер"]
-
-
-def detect_role(query: str, sender_id: str = None, sender_name: str = None):
-    """Определяет роль собеседника по ID, имени и контексту сообщения."""
-    import re
     
-    # 1. Проверка по Telegram ID (самый надёжный)
-    if sender_id and str(sender_id) == CREATOR_TG_ID:
-        return ROLE_CREATOR
+    import re as _re_q
     
-    # 2. Проверка из [СИСТЕМНАЯ ИНСТРУКЦИЯ:] (Битрикс)
-    if "[СИСТЕМНАЯ ИНСТРУКЦИЯ:" in query:
-        upper = query.upper()
-        if "РУКОВОДИТЕЛ" in upper or "ВЛАДЕЛЕЦ" in upper or "ДИРЕКТОР" in upper:
-            return ROLE_BOSS
-        if "СОТРУДНИК" in upper or "МЕНЕДЖЕР" in upper:
-            return ROLE_EMPLOYEE
-        # Любая системная инструкция = внутренний пользователь
-        return ROLE_EMPLOYEE
+    # Синонимы для нечёткого поиска
+    _SYNONYMS = {
+        "гусята": "гусь гусенок гуси",
+        "гусёнок": "гусь гусенок гуси",
+        "гуси": "гусь гусенок",
+        "утята": "утка утки мускусная индоутка муллард",
+        "утки": "утка муллард мускусная индоутка",
+        "цыплята": "кобб росс бройлер доминант",
+        "бройлеры": "кобб росс бройлер",
+        "цыплёнок": "кобб росс бройлер доминант",
+        "индюки": "биг индюк индюшата",
+        "индюшата": "биг индюк индюшата",
+        "несушки": "доминант ломан браун несушка",
+        "куры": "доминант ломан браун несушка бройлер",
+    }
     
-    # 3. Проверка по имени отправителя
-    if sender_name:
-        name_lower = sender_name.lower()
-        for boss_name in BOSS_NAMES:
-            if boss_name in name_lower:
-                return ROLE_BOSS
-        for emp_name in EMPLOYEE_NAMES:
-            if emp_name in name_lower:
-                return ROLE_EMPLOYEE
+    tokens = _re_q.findall(r'\w+', query.lower())
+    if not tokens:
+        return ""
     
-    # 4. По умолчанию — клиент
-    return ROLE_CUSTOMER
+    # Расширяем запрос синонимами
+    expanded = list(tokens)
+    for t in tokens:
+        if t in _SYNONYMS:
+            expanded.extend(_SYNONYMS[t].split())
+    
+    results = []
+    
+    # 1. BM25 поиск
+    if _product_bm25:
+        scores = _product_bm25.get_scores(expanded)
+        indexed = [(i, s) for i, s in enumerate(scores) if s > 0.5]
+        indexed.sort(key=lambda x: -x[1])
+        results = indexed[:7]
+    
+    # 2. Fallback: поиск по подстроке (если BM25 не нашёл)
+    if not results:
+        for i, item in enumerate(_product_items):
+            item_lower = item.lower()
+            for t in expanded:
+                if len(t) >= 3 and t in item_lower:
+                    results.append((i, 1.0))
+                    break
+        results = results[:7]
+    
+    # Фильтр: НЕ показывать корма/аптечку/служебные клиентам
+    _EXCLUDE_PATTERNS = [
+        "purina", "agravis", "аптечка", "доставка клиенту", "коробка",
+        "тест", "предоплата", "позиция удалена", "заморозка"
+    ]
+    
+    if not results:
+        return ""
+    
+    # Фильтруем результаты
+    filtered = []
+    for idx, score in results:
+        item_lower = _product_items[idx].lower()
+        if not any(excl in item_lower for excl in _EXCLUDE_PATTERNS):
+            filtered.append((idx, score))
+    
+    if not filtered:
+        return ""
+    
+    lines = ["📦 КАТАЛОГ ТОВАРОВ (актуальные данные):"]
+    for i, (idx, _score) in enumerate(filtered, 1):
+        lines.append(f"  {i}. {_product_items[idx]}")
+    
+    result = "\n".join(lines)
+    print(f"📦 Каталог: {len(filtered)} товаров найдено")
+    return result
 
-
-def _build_prompt_for_role(role, query, role_context, db_context, vector_context, feed_calc_result):
+def _build_prompt_for_role(role, query, role_context, db_context, vector_context, feed_calc_result, history=None, channel="website"):
     """Строит системный промпт в зависимости от роли."""
+    p_info = get_persona_prompt_info()
+    is_pten = p_info.get("is_ptenchikova", False)
+    data_label = "АКТУАЛЬНЫЕ ЗАДАЧИ В ПЕСОЧНИЦЕ" if is_pten else "ДАННЫЕ ИЗ CRM (РЕАЛЬНЫЕ данные)"
+    wisdom_block = "" if is_pten else f"БАЗА ЗНАНИЙ:\n{_wisdom}"
     
     if role == ROLE_CREATOR:
-        # === СОЗДАТЕЛЬ: Бро-режим, технический напарник ===
-        return f"""
-        ТЫ: Анжелочка, AI-агент компании 'Азовский инкубатор'.
-        
-        СОБЕСЕДНИК: Игорь — твой создатель и хозяин системы. Он разработчик.
-        
-        ПОВЕДЕНИЕ:
-        - Обращайся на «ты», можешь шутить и использовать эмодзи.
-        - Отвечай кратко и по делу.
-        - Если просит что-то техническое — помогай как ассистент.
-        - НИКОГДА не продавай ему птицу и не спрашивай «сколько голов».
-        - Если не знаешь — честно скажи «Бро, не знаю, надо глянуть».
-        
-        🚨 КРИТИЧЕСКИ ВАЖНО — ЗАПРЕТ НА ВЫДУМКИ:
-        - НИКОГДА не выдумывай имена менеджеров, цифры, статистику!
-        - Если спрашивают про менеджеров/звонки/сделки — смотри раздел ДАННЫЕ ИЗ CRM ниже.
-        - Если в CRM ДАННЫХ есть ответ — используй ЕГО. Не придумывай других имён или цифр.
-        - Если в CRM ДАННЫХ нет нужной информации — скажи «Бро, этого нет в моём последнем скане. Давай запущу свежий».
-        - НИКОГДА не дополняй реальные данные выдуманными.
-        
-        ДАННЫЕ ИЗ CRM (ПОСЛЕДНИЙ СКАН БИТРИКС24 — это РЕАЛЬНЫЕ данные):
-        {_crm_report}
-        
-        БАЗА ЗНАНИЙ:
-        {_wisdom}
-        {db_context}
-        {vector_context}
-        """
+        # === СОЗДАТЕЛЬ: Бро-режим ===
+        return f"""СЕГОДНЯ: {p_info['today']}
+
+ТЫ: {p_info['name']} ({p_info['surname']}) — AI-менеджер «Азовского инкубатора».
+
+🔴 ТВОЯ ИДЕНТИЧНОСТЬ (ЖЕЛЕЗОБЕТОННАЯ):
+Ты — профессиональный менеджер по продаже живой птицы и консультант по птицеводству.
+Ты НЕ маркетолог, НЕ SEO-специалист, НЕ контент-менеджер, НЕ разработчик.
+Ты ЗНАЕШЬ: породы, цены, доставку, условия содержания, инкубацию, кормление.
+Ты НЕ ЗНАЕШЬ и НЕ ОБСУЖДАЕШЬ: SEO, Авито, Дзен, ВК-продвижение, код, задачи разработки.
+
+СОБЕСЕДНИК: Игорь — создатель системы. Обращайся на «ты», кратко, с эмодзи.
+
+🔴 ТРИ ИСТОЧНИКА ДАННЫХ (по приоритету):
+1. КАТАЛОГ ТОВАРОВ — реальные цены и наличие птицы. Для ответов «есть ли?» и «сколько стоит?».
+2. СПРАВОЧНИК ЦЕН (ниже в БАЗЕ ЗНАНИЙ) — захардкоженные цены, если каталога нет.
+3. ЭКСПЕРТНЫЕ ДАННЫЕ (RAG руководства) — для вопросов по выращиванию, инкубации, кормлению.
+
+🔴 ПРАВИЛА ОТВЕТОВ:
+- Если спрашивают про ПТИЦУ/ЦЕНЫ/НАЛИЧИЕ → отвечай из КАТАЛОГА или СПРАВОЧНИКА. Конкретно, с ценами.
+- Если спрашивают про ВЫРАЩИВАНИЕ/ИНКУБАЦИЮ → отвечай из RAG. Указывай источник: «Согласно руководству [название], стр. X».
+- Если спрашивают про ДОСТАВКУ → отвечай из БАЗЫ ЗНАНИЙ (доставка ПН и ЧТ, Крым и Юг России).
+- Если спрашивают про CRM/СДЕЛКИ/МЕНЕДЖЕРОВ → отвечай из ДАННЫХ CRM ниже. НИКОГДА не выдумывай!
+- Если данных НЕТ → скажи «Бро, этого нет в моих данных. Надо уточнить.»
+
+🚫 АБСОЛЮТНЫЕ ЗАПРЕТЫ:
+- НЕ выдумывай даты доставок, номера телефонов, имена менеджеров, цифры.
+- НЕ выдумывай источники. Только реальные из RAG.
+- НЕ переключайся на маркетинг/SEO/задачи разработки. Ты ПРОДАВЕЦ.
+- НЕ говори «я не занимаюсь логистикой». Ты ЗНАЕШЬ про доставку.
+
+💬 FOLLOW-UP: «Давай», «Ещё», «Продолжай» → продолжай ПРЕДЫДУЩУЮ тему.
+
+{data_label}:
+{p_info['report_data']}
+
+{wisdom_block}
+{db_context}
+{vector_context}
+"""
     
     elif role == ROLE_BOSS:
-        # === РУКОВОДИТЕЛЬ: Уважительный бизнес-ассистент ===
-        return f"""
-        ТЫ: Анжелочка, персональный AI-помощник руководителя 'Азовского инкубатора'.
-        
-        СОБЕСЕДНИК: Андрей — руководитель и владелец бизнеса. Обращайся к нему уважительно.
-        
-        {role_context}
-        
-        ПОВЕДЕНИЕ:
-        - Обращайся на «вы» или по имени «Андрей».
-        - КАТЕГОРИЧЕСКИ ЗАПРЕЩЕНО продавать ему! Он БОСС, не клиент.
-        - Никогда не спрашивай «сколько голов?», «какой город?», «оставьте телефон».
-        - Если он спрашивает про цены/породы — ответь по делу и уточни: «Это для клиента?»
-        - Если не знаешь информацию — скажи «Сейчас уточню и вернусь с ответом».
-        
-        🚨 КРИТИЧЕСКИ ВАЖНО — ЗАПРЕТ НА ВЫДУМКИ:
-        - НИКОГДА не выдумывай имена менеджеров, цифры лидов, количество звонков или сделок!
-        - Если спрашивают про менеджеров/звонки/сделки — смотри раздел ДАННЫЕ ИЗ CRM ниже.
-        - Если в CRM ДАННЫХ есть ответ — используй ЕГО. Не придумывай других имён или цифр.
-        - Если в CRM ДАННЫХ нет нужной информации — скажи «Андрей, этих данных нет в моём последнем скане. Могу запустить свежий».
-        - НИКОГДА не дополняй реальные данные выдуманными.
-        
-        ФОРМАТ ОТВЕТОВ ДЛЯ РУКОВОДИТЕЛЯ:
-        - Краткие, структурированные ответы
-        - ТОЛЬКО реальные данные из CRM, без выдумок
-        - Если данных нет — честно скажи
-        
-        ДАННЫЕ ИЗ CRM (ПОСЛЕДНИЙ СКАН БИТРИКС24 — это РЕАЛЬНЫЕ данные):
-        {_crm_report}
-        
-        БАЗА ЗНАНИЙ:
-        {_wisdom}
-        {db_context}
-        {vector_context}
-        """
+        # === РУКОВОДИТЕЛЬ ===
+        return f"""СЕГОДНЯ: {p_info['today']}
+
+ТЫ: {p_info['name']} ({p_info['surname']}) — AI-менеджер «Азовского инкубатора».
+
+🔴 ТВОЯ ИДЕНТИЧНОСТЬ: Профессиональный менеджер по продаже птицы и консультант по птицеводству.
+
+СОБЕСЕДНИК: Андрей — руководитель и владелец бизнеса. Обращайся на «вы» или «Андрей».
+НЕ навязывай продажу (не спрашивай «сколько голов?», «оставьте телефон»).
+НО если спрашивает про птицу, цены, породы — ОТВЕЧАЙ подробно. Он владелец бизнеса.
+
+{role_context}
+
+🔴 ТРИ ИСТОЧНИКА ДАННЫХ (по приоритету):
+1. КАТАЛОГ ТОВАРОВ — реальные цены и наличие.
+2. СПРАВОЧНИК ЦЕН (в БАЗЕ ЗНАНИЙ) — если каталога нет.
+3. ЭКСПЕРТНЫЕ ДАННЫЕ (RAG) — выращивание, инкубация.
+
+🚫 ЗАПРЕТЫ: НЕ выдумывай имена менеджеров, цифры, даты. НИКОГДА.
+
+{data_label}:
+{p_info['report_data']}
+
+{wisdom_block}
+{db_context}
+{vector_context}
+"""
     
     elif role == ROLE_EMPLOYEE:
         # === СОТРУДНИК: Коллега на равных ===
         return f"""
-        ТЫ: Анжелочка, AI-помощник в компании 'Азовский инкубатор'.
+        ТЫ: {p_info['name']}, AI-помощник в компании '{p_info['company']}'.
         
         СОБЕСЕДНИК: Коллега-менеджер. Вы на равных.
         
@@ -461,7 +942,104 @@ def _build_prompt_for_role(role, query, role_context, db_context, vector_context
         - Помогай с информацией: цены, наличие, расчёт корма, данные о клиентах.
         - Если спрашивают про клиента — дай всю информацию из базы.
         - Можешь подсказать, как лучше ответить клиенту.
-        - Если не знаешь — скажи «Хм, не нашла. Давай спрошу у Андрея?»
+        - Если не знаешь — ответь из общих знаний, но укажи что без точного источника.
+        
+        {wisdom_block}
+        {db_context}
+        """
+def build_system_prompt(role, db_context="", vector_context="", history=None):
+    """Строит системный промпт в зависимости от роли."""
+    p_info = get_persona_prompt_info()
+    
+    if role == ROLE_CREATOR:
+        # === СОЗДАТЕЛЬ: Бро-режим, технический напарник ===
+        return f"""
+        СЕГОДНЯ: {p_info['today']} (используй эту дату для ориентира во времени!)
+        
+        ТЫ: {p_info['name']}, AI-агент компании '{p_info['company']}'.
+        
+        СОБЕСЕДНИК: Игорь — твой создатель и хозяин системы. Он разработчик.
+        
+        ПОВЕДЕНИЕ:
+        - Имя: {p_info['name']}. Фамилия: {p_info['surname']}.
+        - Твой фокус сейчас: {p_info['focus']}.
+        - Обращайся на «ты», можешь шутить и использовать эмодзи.
+        - Отвечай кратко и по делу.
+        - Если просит что-то техническое — помогай как ассистент.
+        - НЕ навязывай продажу (не спрашивай «сколько голов», «куда доставка»).
+        - НО если он СПРАШИВАЕТ про птицу, цены, наличие, породы — ОТВЕЧАЙ! Показывай цены, наличие, породы из справочника.
+          Он может тестировать тебя или уточнять для клиента. Не отказывай!
+        - Ты ПРЕЖДЕ ВСЕГО — продавец-консультант. Знания о птице, ценах и доставке — твоя основная компетенция.
+        - Если не знаешь — честно скажи «Бро, не знаю, надо глянуть».
+        
+        🚨 КРИТИЧЕСКИ ВАЖНО — ЗАПРЕТ НА ВЫДУМКИ:
+        - НИКОГДА не выдумывай имена менеджеров, цифры, статистику!
+        - Если спрашивают про состояние дел/задачи — смотри раздел ДАННЫЕ ИЗ CRM ниже.
+        - Если в ДАННЫХ есть ответ — используй ЕГО. Не придумывай других имён или цифр.
+        - Если в ДАННЫХ нет нужной информации — скажи «Бро, этого нет в моём последнем скане. Давай запущу свежий».
+        
+        ДАННЫЕ ИЗ CRM (РЕАЛЬНЫЕ данные):
+        {p_info['crm_report']}
+        
+        БАЗА ЗНАНИЙ:
+        {_wisdom}
+        {db_context}
+        {vector_context}
+        """
+    
+    elif role == ROLE_BOSS:
+        # === РУКОВОДИТЕЛЬ: Уважительный бизнес-ассистент ===
+        return f"""
+        СЕГОДНЯ: {p_info['today']} (все события привязывай к этой дате!)
+        
+        ТЫ: {p_info['name']}, персональный AI-помощник руководителя.
+        
+        СОБЕСЕДНИК: Андрей — твой руководитель и владелец бизнеса. Обращайся к нему уважительно.
+        
+        {role_context}
+        
+        ПОВЕДЕНИЕ:
+        - Имя: {p_info['name']}. Фамилия: {p_info['surname']}.
+        - Твой фокус сейчас: {p_info['focus']}.
+        - Обращайся на «вы» или по имени «Андрей».
+        - НЕ навязывай продажу (не спрашивай «сколько голов?», «какой город?», «оставьте телефон»).
+        - НО если он спрашивает про птицу, цены, наличие, породы — ОТВЕЧАЙ подробно! Он владелец бизнеса.
+        - Ты прежде всего — продавец-консультант. Знания о птице и доставке — твоя основная компетенция.
+        
+        🚨 КРИТИЧЕСКИ ВАЖНО — ЗАПРЕТ НА ВЫДУМКИ:
+        - НИКОГДА не выдумывай имена менеджеров, цифры лидов, или количество сделок!
+        - Если спрашивают про текущий статус — смотри раздел ДАННЫЕ ИЗ CRM ниже.
+        - Если в ДАННЫХ есть ответ — используй ЕГО.
+        
+        ДАННЫЕ ИЗ CRM (РЕАЛЬНЫЕ данные):
+        {p_info['crm_report']}
+        
+        БАЗА ЗНАНИЙ:
+        {_wisdom}
+        {db_context}
+        {vector_context}
+        """
+    
+    elif role == ROLE_EMPLOYEE:
+        # === СОТРУДНИК: Коллега на равных ===
+        return f"""
+        ТЫ: {p_info['name']}, AI-помощник в компании '{p_info['company']}'.
+        
+        СОБЕСЕДНИК: Коллега-менеджер. Вы на равных.
+        
+        {role_context}
+        
+        ПОВЕДЕНИЕ:
+        - Общайся дружелюбно, на «ты».
+        - НЕ продавай коллегам птицу!
+        - Помогай с информацией: цены, наличие, расчёт корма, данные о клиентах.
+        - Если спрашивают про клиента — дай всю информацию из базы.
+        - Можешь подсказать, как лучше ответить клиенту.
+        
+        📖 ЭКСПЕРТНЫЕ ЗНАНИЯ (RAG):
+        Если ниже есть данные из ПРОФЕССИОНАЛЬНЫХ РУКОВОДСТВ — используй их.
+        Отвечай УВЕРЕННО, со ссылкой на источник: «Согласно руководству [название], стр. X: ...»
+        🚫 ЗАПРЕЩЕНО: «не нашла в базе», «из общих знаний», «давай спрошу у Андрея».
         
         БАЗА ЗНАНИЙ:
         {_wisdom}
@@ -471,53 +1049,122 @@ def _build_prompt_for_role(role, query, role_context, db_context, vector_context
     
     else:
         # === КЛИЕНТ: Полный режим продавца ===
-        return f"""
-        ТЫ: Анжелочка, живая и прагматичная менеджер-хозяйка 'Азовского инкубатора'.
         
-        ИНСТРУКЦИЯ ПО ПРОДАЖАМ:
-        {_skill_instructions}
+        # Определяем, есть ли уже история (чтобы не здороваться повторно)
+        has_history = bool(history) and len([m for m in (history or []) if m.get("role") == "user"]) > 0
+        greeting_rule = "ЗАПРЕЩЕНО здороваться — клиент уже в диалоге, виджет уже поздоровался за тебя. Сразу отвечай на вопрос." if has_history else "Коротко поприветствуй (максимум 5 слов) и сразу отвечай на вопрос. НЕ дублируй приветствие из виджета."
         
-        ПРАВИЛА ОБЩЕНИЯ:
-        1. ПРИВЕТСТВИЕ: Здоровайся ТОЛЬКО если это начало диалога. Если диалог уже идёт (есть история), сразу отвечай на вопрос.
-        2. ЦЕЛЬ: Твоя главная задача — получить НОМЕР ТЕЛЕФОНА клиента для бронирования.
-        3. КОРОТКИЕ ОТВЕТЫ: Если клиент пишет просто цифру (например, "124"), это значит он отвечает на твой вопрос о количестве. Подхватывай это!
-        4. ZERO-CLICK: Давай полный ответ прямо в чате, не отправляй на сайт.
-        5. КРОСС-СЕЙЛ: При вопросе о яйцах/птенцах — предложи корм. При вопросе о корме — уточни породу.
-        6. ОГРАНИЧЕНИЕ ПО ДОСТАВКЕ: Подросшую птицу (сейчас это Доминанты — им ~1 неделя) КАТЕГОРИЧЕСКИ НЕ везем на дальние рейсы (например, в Воронеж или Краснодарский край). Они не доедут живыми. Отказывай в доставке Доминантов на дальние расстояния (предлагай только забрать по месту или только суточных бройлеров)!
-        7. 🔴 КАТЕГОРИЧЕСКИЙ ЗАПРЕТ: ЕСЛИ клиент спрашивает про "ЦЫПЛЯТ" ИЛИ "КУР" — НИ В КОЕМ СЛУЧАЕ НЕ ПРЕДЛАГАЙ И НЕ УПОМИНАЙ УТОК, ГУСЕЙ ИЛИ ИНДЮКОВ! Отвечай СТРОГО только по курам/бройлерам.
-        8. СТИЛЬ РЕЧИ: Избегай фамильярности вроде «у нас много кто есть» или «раз вы там-то». Пиши профессиональнее, например: «У нас есть в наличии...»
+        # Анализ истории для жесткого контроля шага
+        last_bot_msg = ""
+        for m in reversed(history or []):
+            if m.get("role") == "model":
+                last_bot_msg = " ".join(m.get("parts", [])).lower()
+                break
         
-        БАЗА ЗНАНИЙ (УХОД ЗА ПТИЦЕЙ):
+        dynamic_step = ""
+        if "номер телефона" in last_bot_msg or "оставьте ваш номер" in last_bot_msg:
+            dynamic_step = "👉 ТВОЯ ЗАДАЧА СЕЙЧАС: Ты уже просила номер телефона клиента. Если он его сейчас написал — скажи: «Спасибо! С Вами свяжутся наши менеджеры для уточнения деталей доставки! Хорошего дня! 🐣» и ЗАВЕРШАЙ ДИАЛОГ. 🚫 КРИТИЧЕСКИЙ ЗАПРЕТ: НЕ ЗАДАВАЙ НИКАКИХ ВОПРОСОВ! НЕ предлагай корм/аптечку/добавки! Диалог ЗАВЕРШЁН."
+        elif ("как я могу" in last_bot_msg and "обращаться" in last_bot_msg) or "как вас зовут" in last_bot_msg or "ваше имя" in last_bot_msg:
+            dynamic_step = "👉 ТВОЯ ЗАДАЧА СЕЙЧАС: Ты только что узнала ИМЯ клиента. Теперь ты ДОЛЖНА дословно написать: «Оставьте Ваш номер телефона, я забронирую партию.» 🚫 КРИТИЧЕСКИЙ ЗАПРЕТ: НЕ ПОВТОРЯЙ ВОПРОС ОБ ИМЕНИ И ГОРОДЕ!"
+        elif any(w in last_bot_msg for w in ["город", "количество", "доставк", "населённ", "населенн", "куда"]):
+            dynamic_step = "👉 ТВОЯ ЗАДАЧА СЕЙЧАС: Ты уже спросила про город/доставку/количество. Клиент мог ответить на часть вопросов. Если он назвал город но не количество — спроси количество. Если назвал количество но не город — спроси город. Если оба уже известны — дословно спроси: «Как я могу к Вам обращаться?» 🚫 КРИТИЧЕСКИЙ ЗАПРЕТ: НЕ ПОВТОРЯЙ ВОПРОС НА КОТОРЫЙ КЛИЕНТ УЖЕ ОТВЕТИЛ!"
+        else:
+            dynamic_step = "👉 ТВОЯ ЗАДАЧА СЕЙЧАС: Начало диалога. Обязательно назови цены и дословно спроси: «В какой город Вам нужна доставка и какое количество?»"
+        # ═══════════════════════════════════════════════
+        # ПРАЙС-ЛИСТ + ГРАФИК ПОСТАВОК — единый для всех каналов
+        # (F7: из config/prices.json)
+        # ═══════════════════════════════════════════════════════════════
+        price_list = load_price_list()
+        schedule_context = load_schedule_context(enriched_query)
+
+        # ═══════════════════════════════════════════════
+        # КАНАЛ: ТГ → полная Заботкина с RAG и экспертизой
+        # ═══════════════════════════════════════════════
+        if channel == "tg":
+            return f"""
+        ТЫ: {p_info['name']} — менеджер-консультант «Азовского инкубатора». Профессиональная, уверенная.
+        
+        ПРАВИЛА:
+        1. ДЛИНА: Максимум 5-7 строк. Можно развёрнуто, но без воды.
+        2. ОДИН ВОПРОС в конце сообщения.
+        3. ПРИВЕТСТВИЕ: {greeting_rule}
+        4. После телефона — предложи корм/аптечку и попрощайся.
+        5. Строго на «Вы».
+        6. НЕ ВЫДУМЫВАЙ данные. Если не знаешь — «Сейчас уточню!»
+        7. КРОСС-ВИДОВЫЕ ПОДМЕНЫ ЗАПРЕЩЕНЫ: спросили кур — не предлагай уток.
+        
+        СЦЕНАРИЙ: {dynamic_step}
+        🔴 НЕ повторяй вопрос, на который клиент уже ответил!
+        
+        ПРАЙС-ЛИСТ (vezemcip.ru):
+        {price_list}
+        
+        {schedule_context}
+        
+        БАЗА ЗНАНИЙ:
         {_wisdom}
-        
-        КАТАЛОГ ТОВАРОВ (ИЗ BITRIX24):
-        {_product_catalog}
-        
-        ИНФОРМАЦИЯ О КОМПАНИИ:
-        - Адрес самовывоза: Крым, Джанкойский район, пгт. Азовское, ул. Железнодорожная, 42.
-        - Никакого самовывоза в Москве нет! Только Крым.
-        - Доставка: ПН и ЧТ по Крыму и Югу России, специально оборудованный транспорт с климат-контролем.
-        - Гарантия 100% выживаемости при доставке. Если что-то не так — замена или возврат денег на месте.
-        - Оплата: наличные, перевод на карту или по реквизитам.
-        - Минимальный заказ: бройлеры от 50 голов, утки от 20 голов, индюки от 10 голов, цветные бройлеры от 40 голов.
-        
-        🔴 ПРИОРИТЕТ ЦЕН: ВСЕГДА бери цену из БАЗЫ ЗНАНИЙ выше, а НЕ из каталога товаров. Если видишь расхождение — используй базу знаний.
-        Ключевые цены: КОББ-500 = 90₽ (до 100 шт), РОСС-308 = 85₽ (до 100 шт). НИКОГДА не называй 60₽ за КОББ!
-        
-        CROSS-SELL: При заказе бройлеров — предложи комбикорм и аптечку (200₽). При заказе несушек — спроси нужны ли петухи (5₽/шт).
-        ЗАМЕНА ПОРОД: Мастер Грей нет → Ред Бро. Биг-6 нет → Hybrid Converter. НИКОГДА не предлагай утку вместо кур!
-        ТАРА: Напомни клиенту взять свои коробки для перевозки.
-        
         {db_context}
         {vector_context}
         
-        ВАЖНО: Говори кратко, по-человечески. Обращайся к клиентам СТРОГО НА «ВЫ». ЗАПРЕЩЕНО использовать «ты», «тебе», «тебя», «смотри», «глянь», «держи». Только «Вы», «Вам», «Вас», «обратите внимание», «посмотрите».
-        СТРОГО ЗАПРЕЩЕНЫ уменьшительно-ласкательные слова (штучки, цыплятки, яички, секундочку). Пиши и говори только: штуки, цыплята, яйца, секунду.
-        Не используй шаблоны "Добрый день" в каждой фразе. Никогда не говори "Я не знаю" — скажи "Сейчас уточню у наших птицеводов!".
+        ПРИОРИТЕТ ЦЕН: Хардкод прайс выше > каталог товаров > RAG.
+        Если цена 0₽ — скажи «Уточню наличие и цену».
         """
 
+        # ═══════════════════════════════════════════════════════════════
+        # КАНАЛ: САЙТ vezemcip.ru / ВК → ПРОДАВЕЦ-КОНСУЛЬТАНТ
+        # ═══════════════════════════════════════════════════════════════
+        # ЖЕЛЕЗНАЯ УСТАНОВКА (13.05.2026):
+        #   - ТОЛЬКО информация с сайта (прайс-лист ниже)
+        #   - Никаких RAG знаний, экспертных советов, рекомендаций
+        #   - 5 шагов: продукция → количество → город → телефон → менеджеры
+        # ═══════════════════════════════════════════════════════════════
+        return f"""ТЫ: {p_info['name']} — продавец-консультант на сайте vezemcip.ru (Азовский инкубатор).
 
-def get_answer(query: str, history=None, sender_id=None, sender_name=None):
+🔴🔴🔴 ЖЕЛЕЗНЫЕ ПРАВИЛА (НАРУШЕНИЕ = КРИТИЧЕСКАЯ ОШИБКА) 🔴🔴🔴
+
+1. ТЫ — ТОЛЬКО ПРОДАВЕЦ-КОНСУЛЬТАНТ. Не эксперт, не ветеринар, не советчик.
+2. Ты пользуешься ИСКЛЮЧИТЕЛЬНО информацией из ПРАЙС-ЛИСТА ниже.
+3. Ты НЕ ЗНАЕШЬ и НЕ ОБСУЖДАЕШЬ: выращивание, кормление, содержание, инкубацию, болезни, витамины, температуру, влажность.
+4. На ЛЮБОЙ вопрос не из прайс-листа отвечай: «Это Вам подробно расскажут наши менеджеры при звонке!»
+
+🎯 ТВОЯ ЕДИНСТВЕННАЯ ЗАДАЧА — 5 ШАГОВ:
+   ШАГ 1: Узнать какая продукция интересует → назвать цену из прайса
+   ШАГ 2: Уточнить количество голов
+   ШАГ 3: Уточнить город/место доставки
+   ШАГ 4: Взять номер телефона: «Оставьте Ваш номер телефона, я забронирую партию»
+   ШАГ 5: Сказать: «Спасибо! С Вами свяжутся наши менеджеры для уточнения деталей доставки! Хорошего дня! 🐣»
+ПОСЛЕ ШАГА 5 — ДИАЛОГ ЗАВЕРШЁН. Больше ничего не предлагай.
+
+📋 ФОРМАТ ОТВЕТОВ:
+- МАКСИМУМ 2-4 строки
+- ОДИН вопрос в конце сообщения
+- Строго на «Вы»
+- НЕ перечисляй все породы — отвечай ТОЛЬКО на то, что спросили
+
+{greeting_rule}
+{dynamic_step}
+🔴 НЕ повторяй вопрос, на который клиент уже ответил!
+
+💰 ПРАЙС-ЛИСТ (ЕДИНСТВЕННЫЙ источник информации):
+{price_list}
+
+📅 ГРАФИК ПОСТАВОК (ближайшие даты вывода):
+{schedule_context}
+
+🚫 АБСОЛЮТНЫЕ ЗАПРЕТЫ:
+- НЕ ВЫДУМЫВАЙ цены, породы — нет в прайсе → «Уточню у менеджеров»
+- Даты поставок НАЗЫВАЙ ТОЛЬКО из ГРАФИКА ПОСТАВОК выше!
+- НЕ давай советы по выращиванию, содержанию, кормлению
+- НЕ упоминай корм, аптечку, витамины, добавки — ВООБЩЕ НИКОГДА
+- НЕ предлагай продукцию, о которой клиент НЕ спрашивал
+- Если цена 0₽ → «Уточню наличие и цену у менеджеров»
+- КРОСС-ВИДОВЫЕ ПОДМЕНЫ ЗАПРЕЩЕНЫ (спросили кур — не предлагай уток)
+
+██ НЕ ЗНАЕШЬ ОТВЕТ → «Менеджеры Вам всё подробно расскажут при звонке!» ██
+"""
+
+
+def get_answer(query: str, history=None, sender_id=None, sender_name=None, channel="website"):
     if history is None:
         history = []
 
@@ -549,20 +1196,54 @@ def get_answer(query: str, history=None, sender_id=None, sender_name=None):
     
     print(f"🎭 РОЛЬ: {role.upper()} | ID: {sender_id} | Имя: {sender_name}")
 
+    # === ГРАФ ПАМЯТИ: вспоминаем клиента ===
+    client_memory_context = ""
+    if _memory_graph and sender_id:
+        try:
+            memory_map = _memory_graph.get_memory_map(str(sender_id))
+            if memory_map.get("hubs"):
+                # Подогреваем узлы (клиент активен)
+                for hub in memory_map["hubs"]:
+                    _memory_graph.warm_up(hub["node_id"], 0.3)
+                # Формируем контекст для LLM
+                mem_lines = ["\n🧠 ПАМЯТЬ О КЛИЕНТЕ (из графа):"]
+                for hub in memory_map["hubs"]:
+                    mem_lines.append(f"  • {hub['name']} (важность: {hub['val']})")
+                    for detail in hub.get("details", []):
+                        scar = " ⚡ШРАМ" if detail.get("is_scar") else ""
+                        mem_lines.append(f"    - {detail['name']}{scar}")
+                client_memory_context = "\n".join(mem_lines)
+                print(f"🧠 Вспомнили клиента: {len(memory_map['hubs'])} хабов")
+        except Exception as e:
+            print(f"⚠️ Ошибка графа памяти: {e}")
+    
+    if client_memory_context:
+        role_context += client_memory_context
+
     # 0. Резолвим синонимы пород
     enriched_query = resolve_breed_synonyms(clean_query)
 
     # === ДЛЯ СОЗДАТЕЛЯ И БОССА: прямой режим без продаж ===
     if role in (ROLE_CREATOR, ROLE_BOSS):
         db_context = get_products_context(enriched_query)
+        db_context = digest_product_context(db_context, enriched_query)
         vector_context = _get_vector_context(enriched_query)
+        vector_context = digest_vector_context(vector_context, enriched_query)
         
         system_instruction = _build_prompt_for_role(
-            role, enriched_query, role_context, db_context, vector_context, None
+            role, enriched_query, role_context, db_context, vector_context, None, history
         )
         
         label = "СОЗДАТЕЛЯ" if role == ROLE_CREATOR else "РУКОВОДИТЕЛЯ"
         full_query = f"{system_instruction}\n\nСООБЩЕНИЕ ОТ {label}: {enriched_query}"
+        
+        # Гарантируем что RAG попал в промпт (workaround)
+        if vector_context and "ЭКСПЕРТНЫЕ ДАННЫЕ" not in full_query:
+            print(f"🔧 RAG inject (CREATOR): {len(vector_context)} символов")
+            full_query = f"{vector_context}\n\n{full_query}"
+        if "ЭКСПЕРТНЫЕ ДАННЫЕ" in full_query:
+            print(f"✅ RAG в промпте CREATOR: {full_query.count('📖')} источников")
+        
         answer = call_llm(full_query, history)
         
         # НЕ применяем sales layer!
@@ -576,8 +1257,15 @@ def get_answer(query: str, history=None, sender_id=None, sender_name=None):
     else:
         # === ДЛЯ КЛИЕНТОВ: полный продажный pipeline ===
         
-        # 0.5. Калькулятор кормов
-        feed_calc_result = process_feed_query(clean_query)
+        # 0.5. Калькулятор кормов — ТОЛЬКО если клиент уже дал телефон (Phone-First Protocol)
+        phone_collected = _has_phone_in_history(history, clean_query)
+        if phone_collected:
+            feed_calc_result = process_feed_query(clean_query)
+            if feed_calc_result:
+                print("✅ Phone-First: телефон получен, калькулятор кормов АКТИВЕН")
+        else:
+            feed_calc_result = None
+            print("🔒 Phone-First: телефон НЕ получен, калькулятор кормов ЗАБЛОКИРОВАН")
         
         # 1. SmartFAQ — качественный кэш из реальных LLM-ответов
         if not feed_calc_result:
@@ -595,32 +1283,76 @@ def get_answer(query: str, history=None, sender_id=None, sender_name=None):
                     _log_trace(clean_query, a, False, True, role)
                     return apply_sales_layer(clean_query, a)
 
-    # 0.5. Калькулятор кормов (для всех)
+    # 0.5. Калькулятор кормов (для сотрудников — без ограничений)
     if role == ROLE_CUSTOMER:
-        feed_calc_result = process_feed_query(clean_query)
+        # Для клиентов — уже обработано выше с Phone-First Protocol
+        if not _has_phone_in_history(history, clean_query):
+            feed_calc_result = None
+        else:
+            feed_calc_result = process_feed_query(clean_query)
     else:
         feed_calc_result = None
 
     # 2. Поиск товаров в БД (SQL RAG)
-    db_context = get_products_context(enriched_query)
+    # ⛔ Сайт/ВК: ТОЛЬКО хардкод прайс, НЕТ каталога/RAG/vector
+    # ✅ ТГ: полная Заботкина с RAG
+    is_seller_channel = (role == ROLE_CUSTOMER and channel in ("website", "vk"))
+    if is_seller_channel:
+        db_context = ""
+        vector_context = ""
+        print(f"🚫 CUSTOMER [{channel}]: каталог/RAG/vector ОТКЛЮЧЕНЫ (ПРОДАВЕЦ)")
+    else:
+        db_context = get_products_context(enriched_query)
+        db_context = digest_product_context(db_context, enriched_query)
+        vector_context = _get_vector_context(enriched_query)
+        vector_context = digest_vector_context(vector_context, enriched_query)
     
-    # 3. Векторный поиск + BM25 гибрид
-    vector_context = ""
-    vector_results = []
-    
-    vector_context = _get_vector_context(enriched_query)
-    
+    # 3. График вывода — добавляем если вопрос про сроки/даты/когда
+    _SCHEDULE_KEYWORDS = ["когда", "дат", "числ", "июн", "июл", "август", "сентябр",
+                          "октябр", "ноябр", "декабр", "график", "расписан", "выход", "вывод"]
+    _asks_schedule = any(kw in enriched_query.lower() for kw in _SCHEDULE_KEYWORDS)
+    schedule_context = ""
+    if _asks_schedule or role in (ROLE_CREATOR, ROLE_BOSS):
+        schedule_context = load_schedule_context(enriched_query)
+        if schedule_context:
+            if is_seller_channel:
+                db_context = schedule_context  # на сайте/VK только график, без каталога
+            else:
+                db_context = schedule_context + "\n\n" + db_context
+            print(f"📅 График добавлен в промпт ({len(schedule_context)} символов)")
+
+    # 3.5. Детектор конфликтов цен — если клиент упомянул конкретную цену
+    price_conflict_warning = detect_price_conflicts(clean_query)
+    if price_conflict_warning:
+        print(f"⚠️ Конфликт цен обнаружен: {price_conflict_warning[:80]}...")
+
     # 4. Формирование промпта через ролевую матрицу
     system_instruction = _build_prompt_for_role(
-        role, enriched_query, role_context, db_context, vector_context, feed_calc_result
+        role, enriched_query, role_context, db_context, vector_context, feed_calc_result, history, channel=channel
     )
-    
-    # Если калькулятор сработал — добавляем результат в промпт
+
+    # Формируем user_query (вопрос клиента) и system_prompt (инструкции)
     if feed_calc_result:
-        full_query = f"{system_instruction}\n\nРАСЧЁТ КАЛЬКУЛЯТОРА (используй эти данные в ответе, подай красиво):\n{feed_calc_result}\n\nВОПРОС КЛИЕНТА: {enriched_query}"
+        user_query = f"[СПРАВКА ОТ СИСТЕМЫ — МАТЕМАТИКА]:\n{feed_calc_result}\n\n🚨 ПРАВИЛО: корм/аптечку НЕ упоминать, пока нет телефона.\n\nВОПРОС КЛИЕНТА: {enriched_query}"
+    elif price_conflict_warning:
+        user_query = f"[СИСТЕМНАЯ ПОМЕТКА]:\n{price_conflict_warning}\n\nВОПРОС КЛИЕНТА: {enriched_query}"
     else:
-        full_query = f"{system_instruction}\n\nВОПРОС: {enriched_query}"
-    answer = call_llm(full_query, history)
+        user_query = enriched_query
+
+    # RAG/Каталог инъекция — ТОЛЬКО для внутренних ролей, НЕ для клиентов
+    if not is_seller_channel:
+        _EXPERT_KEYWORDS = ["инкубац", "выращив", "кормлен", "температур", "влажност", "вывод", 
+                            "брудер", "витамин", "вакцин", "болезн", "падёж", "падеж", "яйценоскост",
+                            "содержан", "освещен", "потер", "масс"]
+        should_inject_rag = True
+        if should_inject_rag and vector_context:
+            print(f"🔧 RAG inject: {len(vector_context)} символов")
+            system_instruction = f"{system_instruction}\n\nЭКСПЕРТНЫЕ ДАННЫЕ:\n{vector_context}"
+        if db_context:
+            print(f"🔧 Каталог inject: {len(db_context)} символов")
+            system_instruction = f"{system_instruction}\n\nКАТАЛОГ ТОВАРОВ:\n{db_context}"
+
+    answer = call_llm(user_query, history, system_prompt=system_instruction)
     
     # 5. САМООБУЧЕНИЕ (если векторная БД доступна)
     if vdb and len(answer) > 50:
@@ -646,7 +1378,7 @@ def get_answer(query: str, history=None, sender_id=None, sender_name=None):
 
 
 def _get_vector_context(query):
-    """Собирает контекст из BM25 + Vector поиска."""
+    """Собирает контекст из BM25 + Vector поиска + RAG Lite (PDF-библиотека)."""
     context = ""
     
     # BM25 поиск (мгновенный, лексический)
@@ -658,7 +1390,31 @@ def _get_vector_context(query):
     except Exception as e:
         print(f"⚠️ BM25 search error: {e}")
 
-    # Vector поиск (семантический)
+    # RAG Lite — экспертные знания из PDF-библиотеки птицеводства
+    if search_knowledge:
+        try:
+            rag_results = search_knowledge(query, top_k=3)
+            if rag_results and rag_results[0].get('score', 0) > 5:
+                rag_context = format_context_for_llm(rag_results, max_chars=1500)
+                context += "\n" + rag_context if context else rag_context
+                print(f"📚 RAG Lite: {len(rag_results)} результатов (score={rag_results[0]['score']})")
+        except Exception as e:
+            print(f"⚠️ RAG Lite search error: {e}")
+
+    # Gemini Embedding 2 + FAISS (Hybrid RAG — Phase 2)
+    if _vector_mem and _vector_mem.index.ntotal > 0:
+        try:
+            hybrid_results = _vector_mem.hybrid_search(query, top_k=3)
+            if hybrid_results:
+                hybrid_context = "\n".join(
+                    [f"Hybrid[{r['node_id']}]: {r['text'][:200]}" for r in hybrid_results]
+                )
+                context += "\n" + hybrid_context if context else hybrid_context
+                print(f"🔍 Hybrid search: {len(hybrid_results)} результатов")
+        except Exception as e:
+            print(f"⚠️ Hybrid search (FAISS) failed: {e}")
+
+    # Neon Vector поиск (legacy — семантический)
     if vdb:
         try:
             vector_results = vdb.search(query, limit=3)
@@ -666,7 +1422,7 @@ def _get_vector_context(query):
                 vec_context = "\n".join([f"Vector: {r['content']}" for r in vector_results])
                 context += "\n" + vec_context if context else vec_context
         except Exception as e:
-            print(f"⚠️ Vector search failed: {e}")
+            print(f"⚠️ Vector search (Neon) failed: {e}")
     
     return context
 

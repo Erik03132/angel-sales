@@ -4,10 +4,10 @@ BM25 отлично ищет точные названия: «Д-107», «Биг
 Vector ищет по смыслу: «хочу птицу на мясо побольше» → индюки.
 Результаты объединяются по формуле RRF (Reciprocal Rank Fusion).
 """
-import os
-import re
 import json
 import math
+import os
+import re
 from collections import defaultdict
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

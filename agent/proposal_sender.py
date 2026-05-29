@@ -2,9 +2,10 @@
 Отправка одного предложения в день из очереди.
 Вызывается планировщиком в 20:00 после daily_report.
 """
-import os
 import json
+import os
 from datetime import datetime
+
 from send_to_bitrix import send_bitrix_message
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

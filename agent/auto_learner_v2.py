@@ -3,10 +3,11 @@
 🧠 AI LEARNER V2 — Извлечение мудрости из всех каналов (Звонки, Чаты, Лиды).
 Автор: Анжелочка
 """
-import os
 import json
+import os
+from datetime import datetime
+
 import requests
-from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -17,22 +18,33 @@ SHADOW_DIR = os.path.join(DATA_DIR, "shadow_learning")
 LEARNING_PATH = os.path.join(DATA_DIR, "daily_learning.json")
 EXPERT_WISDOM_PATH = os.path.join(DATA_DIR, "expert_knowledge.md")
 
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY")
 
 def log(msg):
     print(f"[{datetime.now().strftime('%H:%M:%S')}] 🎓 {msg}", flush=True)
 
-def api_call_gemini(prompt):
-    """Вызывает Gemini для анализа данных."""
-    if not GEMINI_API_KEY:
+def api_call_llm(prompt):
+    """Вызывает OpenRouter для анализа данных."""
+    if not OPENROUTER_KEY:
         return None
     try:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
-        payload = {"contents": [{"parts": [{"text": prompt}]}]}
-        r = requests.post(url, json=payload, timeout=60)
-        return r.json()['candidates'][0]['content']['parts'][0]['text']
+        resp = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
+            json={
+                "model": "deepseek/deepseek-chat",
+                "messages": [{"role": "user", "content": prompt}],
+                "max_tokens": 2048,
+            },
+            timeout=60,
+            proxies={"http": None, "https": None}
+        )
+        data = resp.json()
+        if "choices" in data:
+            return data["choices"][0]["message"]["content"]
+        return None
     except Exception as e:
-        log(f"Gemini Error: {e}")
+        log(f"OpenRouter Error: {e}")
         return None
 
 def collect_raw_evidence():
@@ -80,8 +92,8 @@ def run_deep_learning():
 {evidence}
 """
     
-    log("Отправка на анализ в Gemini...")
-    result_raw = api_call_gemini(prompt)
+    log("Отправка на анализ в OpenRouter...")
+    result_raw = api_call_llm(prompt)
     if not result_raw:
         return
 

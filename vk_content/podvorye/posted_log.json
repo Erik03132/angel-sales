@@ -1,0 +1,102 @@
+{
+  "1": {
+    "post_id": 36,
+    "published_at": "2026-05-06T10:00:00",
+    "scheduled": true,
+    "title": "Пост 1 (emoji fix, Imagen 4)"
+  },
+  "2": {
+    "post_id": 37,
+    "published_at": "2026-05-07T10:00:00",
+    "scheduled": true,
+    "title": "Пост 2 (emoji fix, Imagen 4)"
+  },
+  "3": {
+    "post_id": 38,
+    "published_at": "2026-05-08T10:00:00",
+    "scheduled": true,
+    "title": "Пост 3 (emoji fix, Imagen 4)"
+  },
+  "4": {
+    "post_id": 39,
+    "published_at": "2026-05-09T10:00:00",
+    "scheduled": true,
+    "title": "Пост 4 (emoji fix, Imagen 4)"
+  },
+  "5": {
+    "post_id": 40,
+    "published_at": "2026-05-10T10:00:00",
+    "scheduled": true,
+    "title": "Пост 5 (emoji fix, Imagen 4)"
+  },
+  "6": {
+    "post_id": 41,
+    "published_at": "2026-05-11T10:00:00",
+    "scheduled": true,
+    "title": "Пост 6 (emoji fix, Imagen 4)"
+  },
+  "7": {
+    "post_id": 42,
+    "published_at": "2026-05-12T10:00:00",
+    "scheduled": true,
+    "title": "Пост 7 (emoji fix, Imagen 4)"
+  },
+  "8": {
+    "post_id": 55,
+    "url": "https://vk.com/wall-238230663_55",
+    "posted_at": "2026-05-11T20:07:37.344872",
+    "source_file": "week0_and_week2_posts.md",
+    "text_preview": "🐐 Козье молоко — сколько реально зарабатывают в 2026?\n\nРазберём на цифрах. Без р",
+    "has_photo": true,
+    "photo_fixed": true
+  },
+  "_keys": [
+    "ec2aecd66957",
+    "87ea651a2f98",
+    "tikhon_12",
+    "e8b32ff9ee05",
+    "tikhon_13",
+    "dd758db9cefa"
+  ],
+  "9": {
+    "post_id": 56,
+    "url": "https://vk.com/wall-238230663_56",
+    "posted_at": "2026-05-11T20:11:11.234254",
+    "source_file": "week0_and_week2_posts.md",
+    "text_preview": "📹 ТЗ ДЛЯ ВИДЕО (VK Clip, 30-60 сек):\n\nНазвание: «Кобб или Росс? Смотри как отлич",
+    "has_photo": false
+  },
+  "10": {
+    "post_id": 57,
+    "url": "https://vk.com/wall-238230663_57",
+    "posted_at": "2026-05-11T20:14:31.063810",
+    "source_file": "week0_and_week2_posts.md",
+    "text_preview": "🔬 Инкубаторы для дома: «Несушка» vs «Золушка» — честное сравнение\n\nДва самых поп",
+    "has_photo": false
+  },
+  "11": {
+    "post_id": 58,
+    "url": "https://vk.com/wall-238230663_58",
+    "posted_at": "2026-05-11T20:15:31.686567",
+    "source_file": "week0_and_week2_posts.md",
+    "text_preview": "📰 Дайджест «Своего Подворья» — неделя 2\n\nЧто полезного было на этой неделе:\n\n🐣 П",
+    "has_photo": true,
+    "photo_fixed": true
+  },
+  "12": {
+    "post_id": 59,
+    "url": "https://vk.com/wall-238230663_59",
+    "posted_at": "2026-05-12T09:26:09.999657",
+    "source_file": "tikhon_2026_05_12.md",
+    "text_preview": "🐣 Кокцидиоз в мае — как я потерял 40 цыплят и что теперь делаю иначе\n\nНарод, тем",
+    "has_photo": true
+  },
+  "13": {
+    "post_id": 60,
+    "url": "https://vk.com/wall-238230663_60",
+    "posted_at": "2026-05-12T09:26:27.246059",
+    "source_file": "tikhon_2026_05_12.md",
+    "text_preview": "💰 Честная себестоимость бройлера в мае 2026 — считаем каждый рубль\n\nКаждый сезон",
+    "has_photo": true
+  }
+}

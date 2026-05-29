@@ -19,11 +19,11 @@
 v1.0 — 16.04.2026
 """
 import os
-import sys
 import re
-import json
+import sys
 import time
 from datetime import datetime
+
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,14 +32,22 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 # Импортируем существующие модули
-from bitrix_bot import (
-    bitrix_call, get_recent_dialogs, get_unread_messages,
-    get_user_name, send_reply, mark_all_read, forward_to_owner,
-    acquire_lock, is_killed, rate_limit_ok,
-    BITRIX_URL, ANGELOCHKA_USER_ID, LOG_DIR,
-    processed_messages, user_histories
-)
 from angelochka_core import get_answer
+from bitrix_bot import (
+    ANGELOCHKA_USER_ID,
+    BITRIX_URL,
+    LOG_DIR,
+    bitrix_call,
+    forward_to_owner,
+    get_unread_messages,
+    get_user_name,
+    is_killed,
+    mark_all_read,
+    processed_messages,
+    rate_limit_ok,
+    send_reply,
+    user_histories,
+)
 
 POLL_INTERVAL = 15
 ENV_PATH = os.path.join(BASE_DIR, '.env')
@@ -90,7 +98,7 @@ def is_avito_key_message(text):
 
 def save_avito_keys(client_id, client_secret):
     """Сохраняет API-ключи Авито в .env файл."""
-    log(f"  💾 Сохраняю API-ключи Авито в .env...")
+    log("  💾 Сохраняю API-ключи Авито в .env...")
     
     # Читаем текущий .env
     with open(ENV_PATH, 'r', encoding='utf-8') as f:
@@ -176,7 +184,7 @@ def process_message_with_avito_detection(msg, dialog_id):
     
     if keys:
         client_id, client_secret = keys
-        log(f"🔑 ОБНАРУЖЕНЫ API-КЛЮЧИ АВИТО!")
+        log("🔑 ОБНАРУЖЕНЫ API-КЛЮЧИ АВИТО!")
         
         # Сохраняем ключи
         save_avito_keys(client_id, client_secret)
@@ -236,7 +244,7 @@ def process_message_with_avito_detection(msg, dialog_id):
         if msg_result:
             log(f"  ✅ Ответ: {response[:60]}...")
         else:
-            log(f"  ⚠️ Не удалось отправить ответ")
+            log("  ⚠️ Не удалось отправить ответ")
         
         forward_to_owner(user_name, text, response)
         
@@ -299,7 +307,7 @@ def main():
     log(f"   PID: {os.getpid()}")
     log(f"   Bitrix URL: {BITRIX_URL[:50]}...")
     log(f"   Интервал: {POLL_INTERVAL} сек")
-    log(f"   🔑 Авито-детекция: АКТИВНА")
+    log("   🔑 Авито-детекция: АКТИВНА")
     log(f"   📝 Текущий AVITO_CLIENT_ID: {os.getenv('AVITO_CLIENT_ID', 'НЕ ЗАДАН')[:10]}...")
     log("")
     log("   Жду сообщения... Когда Андрей пришлёт ключ Авито — запущу аудит.")

@@ -1,9 +1,9 @@
 import paramiko
 import os
 
-ip = "185.39.206.145"
+ip = "72.56.38.19"
 user = "root"
-password = "fN-mUzVuWt_7F3"
+password = "zE4qDJb-+Y+rv+"
 
 client = paramiko.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())

@@ -7,6 +7,7 @@
 """
 import os
 import sys
+
 import requests
 from dotenv import load_dotenv
 

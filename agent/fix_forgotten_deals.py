@@ -3,13 +3,16 @@
 1. Ответить Андрею в Битрикс — принять замечание
 2. Пересчитать забытые сделки с правильными фильтрами
 """
-import os, sys, json, requests
+import json
+import os
+import sys
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, "agent"))
 
 from dotenv import load_dotenv
+
 load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 from send_to_bitrix import send_bitrix_message
@@ -94,6 +97,7 @@ print(f"   УБРАНО: {old_count - new_count} ложных срабатыва
 
 # 3. По стадиям — что убрали
 from collections import Counter
+
 removed = [d for d in data["deals"] if d.get("stage") not in TRULY_FORGOTTEN_STAGES]
 stage_counts = Counter(d.get("stage", "?") for d in removed)
 print("\n   Убранные стадии:")
@@ -120,5 +124,5 @@ data["by_manager"] = by_mgr
 with open(os.path.join(BASE_DIR, "data", "forgotten_deals.json"), "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=2, default=str)
 
-print(f"\n   Файл forgotten_deals.json обновлен")
-print(f"\n=== ГОТОВО ===")
+print("\n   Файл forgotten_deals.json обновлен")
+print("\n=== ГОТОВО ===")

@@ -11,6 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE_DIR, "agent"))
 
 from dotenv import load_dotenv
+
 load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 from send_to_bitrix import send_bitrix_message

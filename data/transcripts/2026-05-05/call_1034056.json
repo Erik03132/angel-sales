@@ -1,0 +1,24 @@
+{
+  "call_id": "1034056",
+  "call_date": "2026-05-05T09:31:42+03:00",
+  "phone": "79185472903",
+  "duration_sec": 70,
+  "direction": "incoming",
+  "crm_entity_type": "CONTACT",
+  "crm_entity_id": "23746",
+  "crm_activity_id": "1276986",
+  "manager_user_id": "40318",
+  "processed_at": "2026-05-08T20:11:19.963179+03:00",
+  "transcript": "СИСТЕМА: Пожалуйста, подождите завершения обработки.",
+  "summary": "Предоставленный фрагмент звонка содержит только автоматическое системное сообщение. Фактического разговора между менеджером и клиентом не состоялось, поэтому никаких вопросов не было задано и никаких договорённостей достигнуто не было.",
+  "client_questions": [],
+  "agreements": [],
+  "manager_score": {
+    "total": 1,
+    "named_self": false,
+    "asked_city": false,
+    "gave_price_scale": false,
+    "offered_upsell": false,
+    "set_next_step": false
+  }
+}

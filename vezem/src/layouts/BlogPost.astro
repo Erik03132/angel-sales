@@ -1,0 +1,133 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Layout from './Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, date, image, tags, vk_channel } = post.data;
+const { Content } = await post.render();
+
+const dateStr = new Date(date).toLocaleDateString('ru-RU', {
+  day: 'numeric', month: 'long', year: 'numeric'
+});
+
+const channelLabel = vk_channel === 'podvorye' ? 'Своё Подворье' : 'ВезёмЦыплят';
+const channelUrl = vk_channel === 'podvorye'
+  ? 'https://vk.com/club238230663'
+  : 'https://vk.com/club238316002';
+---
+
+<Layout>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 min-h-screen">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-blue-200/60 mb-8">
+      <a href="/" class="hover:text-emerald-400 transition-colors">Главная</a>
+      <span>/</span>
+      <a href="/blog" class="hover:text-emerald-400 transition-colors">Блог</a>
+      <span>/</span>
+      <span class="text-white/60 truncate">{title}</span>
+    </nav>
+
+    <article>
+      <!-- Заголовок -->
+      <header class="mb-10">
+        {image && (
+          <div class="rounded-2xl overflow-hidden mb-8 aspect-video">
+            <img
+              src={image}
+              alt={title}
+              class="w-full h-full object-cover"
+              loading="eager"
+            />
+          </div>
+        )}
+
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          {tags.map((tag: string) => (
+            <span class="px-3 py-1 text-xs font-semibold bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 rounded-full">
+              #{tag}
+            </span>
+          ))}
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
+          {title}
+        </h1>
+
+        <p class="text-blue-100/80 text-lg leading-relaxed mb-6">{description}</p>
+
+        <div class="flex items-center gap-6 text-sm text-blue-200/60 border-t border-white/10 pt-5">
+          <span>📅 {dateStr}</span>
+          <a
+            href={channelUrl}
+            target="_blank"
+            rel="noopener"
+            class="flex items-center gap-1.5 hover:text-emerald-400 transition-colors"
+          >
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.123h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C5.29 11.55 4.692 9.914 4.692 9.15c0-.254.102-.491.593-.491h1.744c.44 0 .61.203.78.677.864 2.49 2.303 4.675 2.897 4.675.22 0 .322-.102.322-.66V11.15c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.44-.407h2.743c.373 0 .508.203.508.643v3.473c0 .373.17.508.271.508.22 0 .407-.135.814-.542 1.27-1.422 2.168-3.607 2.168-3.607.119-.254.322-.491.762-.491h1.744c.525 0 .643.27.525.643-.22 1.017-2.354 4.031-2.354 4.031-.186.305-.254.44 0 .78.186.254.796.78 1.203 1.253.745.847 1.32 1.558 1.473 2.05.17.49-.085.745-.576.745z"/>
+            </svg>
+            {channelLabel}
+          </a>
+        </div>
+      </header>
+
+      <!-- Контент статьи -->
+      <div class="
+        prose prose-invert prose-lg max-w-none
+        prose-headings:text-white prose-headings:font-bold
+        prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
+        prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+        prose-p:text-blue-100/90 prose-p:leading-relaxed
+        prose-strong:text-white prose-strong:font-semibold
+        prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300
+        prose-ul:text-blue-100/90 prose-li:my-1
+        prose-blockquote:border-emerald-500 prose-blockquote:bg-white/5 prose-blockquote:rounded-r-lg prose-blockquote:py-2
+      ">
+        <Content />
+      </div>
+
+      <!-- CTA внизу -->
+      <div class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-emerald-900/40 to-cyan-900/40 border border-emerald-400/30 text-center">
+        <p class="text-white font-bold text-xl mb-2">Хотите заказать молодняк?</p>
+        <p class="text-blue-100/80 mb-6">Пишите в ВК или звоните — ответим за 30 минут</p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a
+            href={channelUrl}
+            target="_blank"
+            class="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-xl transition-colors"
+          >
+            Написать в ВК
+          </a>
+          <a
+            href="tel:+79183500225"
+            class="px-6 py-3 bg-white/10 hover:bg-white/20 text-white font-bold rounded-xl transition-colors border border-white/20"
+          >
+            +7 (918) 350-02-25
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Назад к блогу -->
+    <div class="mt-12 text-center">
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+      >
+        ← Все статьи
+      </a>
+    </div>
+
+  </main>
+
+  <Footer />
+</Layout>

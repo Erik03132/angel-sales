@@ -1,8 +1,8 @@
 import os
-import psycopg2
-from psycopg2.extras import RealDictCursor, Json
-from psycopg2 import pool
+
 from dotenv import load_dotenv
+from psycopg2 import pool
+from psycopg2.extras import Json, RealDictCursor
 
 # Загружаем настройки из локального .env
 load_dotenv()
@@ -14,6 +14,13 @@ if not os.getenv("GEMINI_API_KEY"):
 
 # --- Lazy-import Gemini (может упасть без прокси) ---
 _genai = None
+
+# Применяем прокси для Google API
+GOOGLE_PROXY = os.getenv("TELEGRAM_PROXY", "socks5h://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469")
+if GOOGLE_PROXY:
+    os.environ["HTTP_PROXY"] = GOOGLE_PROXY
+    os.environ["HTTPS_PROXY"] = GOOGLE_PROXY
+
 def _get_genai():
     global _genai
     if _genai is None:

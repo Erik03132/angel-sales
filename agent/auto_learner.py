@@ -9,9 +9,9 @@
 3. Извлекает лучшие Q&A пары
 4. Добавляет в faq_drafts.json (черновики, требуют модерации)
 """
+import json
 import os
 import re
-import json
 from datetime import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

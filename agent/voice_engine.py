@@ -9,14 +9,14 @@
     from voice_engine import generate_voice
     await generate_voice("Привет! Я Анжелочка.", "output.wav")
 """
-import os
 import asyncio
 import logging
+import os
 import re
-from num2words import num2words
-import torch
+
 import soundfile as sf
-import urllib.request
+import torch
+from num2words import num2words
 
 logger = logging.getLogger(__name__)
 

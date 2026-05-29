@@ -1,8 +1,9 @@
 import os
-from flask import Flask, render_template_string
+
+import markdown2
 import psycopg2
 from dotenv import load_dotenv
-import markdown2
+from flask import Flask, render_template_string
 
 load_dotenv()
 

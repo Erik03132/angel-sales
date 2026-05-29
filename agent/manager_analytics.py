@@ -2,9 +2,13 @@
 Аналитика менеджеров за последний месяц.
 Собирает звонки, сделки, конверсию.
 """
-import os, json, requests, time
-from datetime import datetime, timedelta
+import json
+import os
+import time
 from collections import defaultdict
+from datetime import datetime, timedelta
+
+import requests
 from dotenv import load_dotenv
 
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'), override=True)
@@ -104,7 +108,7 @@ for d in deals:
 
 # Отчёт
 print(f"\n{'='*70}")
-print(f"📊 АНАЛИТИКА МЕНЕДЖЕРОВ — последние 30 дней")
+print("📊 АНАЛИТИКА МЕНЕДЖЕРОВ — последние 30 дней")
 print(f"{'='*70}\n")
 
 sorted_mgrs = sorted(stats.items(), key=lambda x: x[1]["calls_total"], reverse=True)
@@ -123,7 +127,7 @@ for mgr_id, s in sorted_mgrs:
 
 # Рейтинг
 print(f"{'='*70}")
-print(f"🏆 РЕЙТИНГ:")
+print("🏆 РЕЙТИНГ:")
 by_calls = sorted(sorted_mgrs, key=lambda x: x[1]["calls_total"], reverse=True)
 by_revenue = sorted(sorted_mgrs, key=lambda x: x[1]["revenue"], reverse=True)
 by_deals = sorted(sorted_mgrs, key=lambda x: x[1]["deals_new"], reverse=True)
@@ -138,4 +142,4 @@ for mgr_id, s in sorted_mgrs:
     report_data[users.get(mgr_id, mgr_id)] = s
 with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "manager_analytics.json"), "w", encoding="utf-8") as f:
     json.dump({"period": f"{since[:10]} - {datetime.now().strftime('%Y-%m-%d')}", "managers": report_data}, f, ensure_ascii=False, indent=2)
-print(f"\n💾 Сохранено: data/manager_analytics.json")
+print("\n💾 Сохранено: data/manager_analytics.json")

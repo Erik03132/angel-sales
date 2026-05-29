@@ -1,286 +1,707 @@
 #!/usr/bin/env python3
 """
-call_quality_report.py — Отчёт «Топ-5 значимых звонков дня».
-Запускается сразу после основного daily_report.py (20:01 MSK).
+call_quality_report.py — Отчёт по качеству телефонных разговоров менеджеров.
 
-Логика:
-  1. Забирает звонки за сегодня из последнего скана Bitrix24
-     (scan_*.json — поле activities.calls_items) или из
-     data/shadow_learning/calls/ (транскрипты).
-  2. Ранжирует по «значимости»: длительность, ключевые слова в резюме.
-  3. Формирует компактный TG-отчёт: общее кол-во звонков + 5 самых ярких.
-  4. Отправляет Андрею (Заботкиной) и Игорю (контроль).
+Анализирует bitrixgpt_summary каждого звонка из CRM-скана и формирует:
+  1. Профиль каждого менеджера (результативные / в работе / пустые)
+  2. Сводная таблица (звонков, % результативности, не взяли контакт)
+  3. Повторяющиеся проблемы дня
+  4. ТОП-3 лучших + ТОП-5 проблемных звонков
+  5. AI-рекомендации
 
-Запуск: python3 call_quality_report.py
+Источник данных: bitrix_scanner.py → scan_*.json → activities.calls[]
+
+Запуск:
+    python3 call_quality_report.py               # Сформировать + показать
+    python3 call_quality_report.py --send         # + отправить в Telegram
+    python3 call_quality_report.py --preview      # Только превью
+
+Утверждён: 06.05.2026 | v3 — маркерный анализ из bitrixgpt_summary
 """
 
+import glob
+import json
 import os
 import sys
-import json
-import re
-import glob
-from datetime import datetime, timezone, timedelta
-from dotenv import load_dotenv
-import requests
+from collections import defaultdict
+from datetime import datetime, timedelta, timezone
 
-# ─────────────────────────────────────────────
-# Конфигурация
-# ─────────────────────────────────────────────
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
+MSK = timezone(timedelta(hours=3))
+
+
+def _load_env(env_path):
+    """Ручной парсер .env — не требует python-dotenv."""
+    if not os.path.exists(env_path):
+        return
+    with open(env_path, 'r') as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, _, value = line.partition('=')
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in os.environ:
+                os.environ[key] = value
+
+
+_load_env(os.path.join(BASE_DIR, '.env'))
 
 TELEGRAM_TOKEN = os.getenv("ANGELOCHKA_BOT_TOKEN")
-ADMIN_ID = 444248782    # Андрей (Заботкина)
-OWNER_ID = 176203333    # Игорь
-PROXY_URL = os.getenv("TELEGRAM_PROXY", "")
-BITRIX_URL = os.getenv("BITRIX_WEBHOOK_URL", "").rstrip("/")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+ANDREY_ID = 444248782
+IGOR_ID = 176203333
+PROXY_URL = os.getenv("TELEGRAM_PROXY")
 
-MSK = timezone(timedelta(hours=3))
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, "data")
-SCAN_DIR = os.path.join(DATA_DIR, "bitrix_scans")
-CALLS_DIR = os.path.join(DATA_DIR, "shadow_learning", "calls")
+SCAN_DIR = os.path.join(BASE_DIR, "data", "bitrix_scans")
+REPORTS_DIR = os.path.join(BASE_DIR, "data", "call_quality_reports")
+os.makedirs(REPORTS_DIR, exist_ok=True)
 
 
-# ─────────────────────────────────────────────
-# Имена менеджеров
-# ─────────────────────────────────────────────
-# Маппинг ID → Имя (кэшируется при первом вызове)
-_MANAGER_CACHE = {}
+# ════════════════════════════════════════════
+# МАРКЕРЫ ДЛЯ АНАЛИЗА bitrixgpt_summary
+# ════════════════════════════════════════════
 
-def get_manager_names() -> dict:
-    """Получаем имена менеджеров из Bitrix24 API."""
-    global _MANAGER_CACHE
-    if _MANAGER_CACHE:
-        return _MANAGER_CACHE
-    if not BITRIX_URL:
-        return {}
-    try:
-        resp = requests.get(
-            f"{BITRIX_URL}/user.get.json",
-            params={"auth": os.getenv("BITRIX24_TOKEN", "")},
-            timeout=15,
-            proxies={"http": "", "https": ""}
-        )
-        resp.raise_for_status()
-        data = resp.json()
-        for u in data.get("result", []):
-            uid = str(u.get("ID"))
-            name = f"{u.get('NAME', '')} {u.get('LAST_NAME', '')}".strip()
-            _MANAGER_CACHE[uid] = name if name else f"ID_{uid}"
-    except Exception as e:
-        print(f"⚠️ Не удалось получить имена менеджеров: {e}")
-    return _MANAGER_CACHE
+# Результативные (заказ/доставка подтверждены)
+MARKERS_SUCCESS = [
+    "заказ подтвержден", "заказ подтверждён", "заказ оформлен",
+    "доставка запланирована", "доставка подтверждена",
+    "оплата получена", "оплата подтверждена",
+    "заказано", "подтвердил доставку", "подтвердила доставку",
+    "согласовано", "бронирование подтверждено",
+]
+
+# В работе (клиент думает / перезвонит)
+MARKERS_PENDING = [
+    "ожидается повторное обращение", "обещает перезвонить",
+    "обещал перезвонить", "обещала перезвонить",
+    "клиент подумает", "будет принято после",
+    "ожидается до", "рассматривает", "планирует",
+    "на стадии предварительного", "предварительный запрос",
+    "окончательное решение", "уточнение",
+]
+
+# Пустые / безрезультатные
+MARKERS_EMPTY = [
+    "диалог не содержит достаточной информации",
+    "диалог не содержит достаточного объема",
+    "проверка слышимости", "разговор ограничивается",
+    "информации для заполнения карточки",
+    "не содержит достаточн",
+]
+
+# Контакт не взят
+MARKERS_NO_CONTACT = [
+    "контактные данные не предоставлены",
+    "контактная информация не предоставлена",
+    "адрес не был указан", "email не был указан",
+    "email не указан", "фио не указан",
+    "данные не зафиксированы",
+]
+
+# Отказ клиента
+MARKERS_REJECTION = [
+    "отказался", "отказалась", "отказ клиента",
+    "нет планов", "не заинтересован", "не нуждается",
+    "отменил заказ", "отменила заказ",
+]
+
+# Заказ не оформлен (упущенная возможность)
+MARKERS_MISSED_SALE = [
+    "заказ не оформлен", "сделка не заключена",
+    "не оформлен окончательно",
+]
+
+# Проблемные ключевые слова (конфликты, жалобы)
+MARKERS_PROBLEM = [
+    "груб", "негатив", "проблем", "жалоб", "скандал",
+    "компенсац", "недоволен", "недовольна", "ругается",
+    "кричит", "бросил трубку", "претензия", "хамство",
+]
+
+# Апселл (допродажи)
+MARKERS_UPSELL = [
+    "петуш", "корм", "аптечк", "добавки", "витамин", 
+    "всего по пять", "дополнительно", "в подарок",
+]
 
 
-# ─────────────────────────────────────────────
-# Источники звонков
-# ─────────────────────────────────────────────
-def get_calls_from_scan() -> list:
-    """Берём звонки из последнего скана CRM (activities → calls_items)."""
-    scan_files = sorted(glob.glob(os.path.join(SCAN_DIR, "scan_*.json")))
-    if not scan_files:
-        return []
-    try:
-        with open(scan_files[-1], 'r', encoding='utf-8') as f:
-            scan = json.load(f)
-        # В скане звонки хранятся в activities.calls_items или manager_stats.*.calls_items
+def classify_call(summary: str) -> dict:
+    """Классифицирует звонок по маркерам из bitrixgpt_summary.
+
+    Возвращает dict:
+        category: 'success' | 'pending' | 'empty' | 'rejection' | 'missed_sale' | 'unknown'
+        flags: list[str] — сработавшие флаги
+        icon: str — иконка
+    """
+    s = summary.lower()
+    flags = []
+    category = "unknown"
+    icon = "⚪"
+
+    # Приоритет: success > rejection > missed_sale > empty > pending > unknown
+
+    # Проблемный (критический уровень)
+    for m in MARKERS_PROBLEM:
+        if m in s:
+            flags.append("🔴 КРИТИЧНО: конфликт/жалоба")
+            category = "problem"
+            icon = "☢️"
+            break
+
+    # Апселл (допродажа)
+    for m in MARKERS_UPSELL:
+        if m in s:
+            flags.append("💰 Апселл (предложен доп)")
+            break
+
+    # Пустой
+    for m in MARKERS_EMPTY:
+        if m in s:
+            category = "empty"
+            icon = "⚫"
+            flags.append("пустой звонок")
+            break
+
+    # Отказ
+    if category == "unknown":
+        for m in MARKERS_REJECTION:
+            if m in s:
+                category = "rejection"
+                icon = "🔴"
+                flags.append("отказ")
+                break
+
+    # Заказ не оформлен
+    if category == "unknown":
+        for m in MARKERS_MISSED_SALE:
+            if m in s:
+                category = "missed_sale"
+                icon = "🟠"
+                flags.append("заказ не оформлен")
+                break
+
+    # Успех
+    if category == "unknown":
+        for m in MARKERS_SUCCESS:
+            if m in s:
+                category = "success"
+                icon = "🟢"
+                flags.append("успешная продажа")
+                break
+
+    # В работе
+    if category == "unknown":
+        for m in MARKERS_PENDING:
+            if m in s:
+                category = "pending"
+                icon = "🟡"
+                flags.append("клиент думает")
+                break
+
+    # Контакт не взят (дополнительный флаг, не категория)
+    for m in MARKERS_NO_CONTACT:
+        if m in s:
+            flags.append("контакт не взят")
+            break
+
+    return {"category": category, "flags": flags, "icon": icon}
+
+
+# ════════════════════════════════════════════
+# СБОР ДАННЫХ
+# ════════════════════════════════════════════
+
+def load_calls_from_scan(target_date=None):
+    """Загружает звонки из последнего CRM-скана."""
+    if target_date:
+        pattern = os.path.join(SCAN_DIR, f"scan_{target_date}*.json")
+    else:
+        pattern = os.path.join(SCAN_DIR, "scan_*.json")
+
+    files = sorted(glob.glob(pattern))
+    if not files:
+        return [], None, {}
+
+    scan_path = files[-1]
+    with open(scan_path, 'r', encoding='utf-8') as f:
+        scan = json.load(f)
+
+    calls = scan.get("activities", {}).get("calls", [])
+    if not calls:
         calls = scan.get("activities", {}).get("calls_items", [])
-        if calls:
-            return calls
-        # Альтернативно — собираем из manager_stats
-        managers = scan.get("manager_stats", {})
-        all_calls = []
-        for name, stats in managers.items():
-            for c in stats.get("calls_items", []):
-                c["_manager_name"] = name
-                all_calls.append(c)
-        return all_calls
-    except Exception as e:
-        print(f"⚠️ Ошибка чтения скана: {e}")
-        return []
+
+    users = scan.get("users", {})
+    scan_info = os.path.basename(scan_path)
+    return calls, scan_info, users
 
 
-def get_calls_from_transcripts() -> list:
-    """Берём звонки из транскрибированных файлов (shadow_learning)."""
-    today = datetime.now(MSK).strftime("%Y%m%d")
-    # Ищем файл за сегодня
-    candidates = sorted(glob.glob(os.path.join(CALLS_DIR, f"calls_{today}*.json")))
-    if not candidates:
-        # Если за сегодня нет — берём самый свежий
-        candidates = sorted(glob.glob(os.path.join(CALLS_DIR, "calls_*.json")))
-    if not candidates:
-        return []
-    try:
-        with open(candidates[-1], 'r', encoding='utf-8') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"⚠️ Ошибка чтения транскриптов: {e}")
-        return []
+def is_missed(call):
+    """Определяет пропущенный звонок.
+
+    ВАЖНО: поле DURATION не приходит в скане (bitrix_scanner.py
+    не запрашивает его в crm.activity.list). Поэтому определяем
+    только по SUBJECT и RESULT_STATUS.
+    Сканер уже фильтрует пропущенные, в скане только состоявшиеся.
+    """
+    subj = (call.get("SUBJECT") or "").lower()
+    if "пропущен" in subj or "missed" in subj:
+        return True
+    # RESULT_STATUS: 4 = missed в некоторых версиях Bitrix
+    if str(call.get("RESULT_STATUS", "")) == "4":
+        return True
+    return False
 
 
-def get_all_calls() -> list:
-    """Объединяем звонки из обоих источников, предпочитая скан."""
-    scan_calls = get_calls_from_scan()
-    if scan_calls:
-        return scan_calls
-    return get_calls_from_transcripts()
+# ════════════════════════════════════════════
+# ПОСТРОЕНИЕ ОТЧЁТА
+# ════════════════════════════════════════════
 
+def build_quality_report(calls, scan_info, users):
+    """Формирует полный отчёт по качеству звонков."""
+    now = datetime.now(MSK)
+    date_str = now.strftime("%d.%m.%Y")
 
-# ─────────────────────────────────────────────
-# Анализ звонков
-# ─────────────────────────────────────────────
-def extract_summary(call: dict) -> str:
-    """Извлечь краткое содержание (РЕЗЮМЕ) из транскрипта."""
-    transcript = call.get("transcript", "")
-    if not transcript:
-        return ""
-    m = re.search(r"РЕЗЮМЕ:\s*(.+?)(?=\n\n|$)", transcript, re.DOTALL)
-    if m:
-        return re.sub(r"\s+", " ", m.group(1).strip())
-    # Альтернативно — берём description/subject
-    desc = call.get("DESCRIPTION", call.get("description", ""))
-    subj = call.get("SUBJECT", call.get("subject", ""))
-    return desc or subj or ""
-
-
-def significance_score(call: dict) -> float:
-    """Чем выше — тем значимее звонок. Используется для ранжирования."""
-    score = 0.0
-    # Длительность
-    dur = int(call.get("duration", call.get("DURATION", 0)))
-    score += min(dur / 30, 10)  # макс +10 за длительность
-
-    # Ключевые слова в резюме/описании
-    summary = extract_summary(call).lower()
-    bad_kw = ["груб", "негатив", "проблем", "требуется уточн", "жалоб", "отказ", "скандал"]
-    good_kw = ["заказ", "оплат", "доставк", "подтверд", "оптов"]
-    for kw in bad_kw:
-        if kw in summary:
-            score += 5  # проблемные звонки — в топ
-    for kw in good_kw:
-        if kw in summary:
-            score += 2
-
-    return score
-
-
-def build_quality_report(calls: list) -> str:
-    """Формирует текст TG-сообщения: кол-во + топ-5."""
-    now_str = datetime.now(MSK).strftime("%d.%m.%Y")
-    total = len(calls)
-    manager_names = get_manager_names()
-
-    # Ранжируем
-    scored = []
+    # Разделяем: состоявшиеся vs пропущенные
+    completed = []
+    missed_count = 0
     for c in calls:
-        s = significance_score(c)
-        c["_score"] = s
-        scored.append(c)
-    scored.sort(key=lambda x: x["_score"], reverse=True)
-    top5 = scored[:5]
+        if is_missed(c):
+            missed_count += 1
+        else:
+            completed.append(c)
 
+    # Звонки с содержанием (bitrixgpt_summary)
+    with_content = [c for c in completed if c.get("bitrixgpt_summary")]
+
+    # ── КЛАССИФИКАЦИЯ ──
+    for c in with_content:
+        c["_classification"] = classify_call(c.get("bitrixgpt_summary", ""))
+
+    # ── ПО МЕНЕДЖЕРАМ ──
+    mgr_profiles = defaultdict(lambda: {
+        "total": 0,          # всего звонков (состоявшихся)
+        "with_content": 0,   # с содержанием
+        "missed": 0,         # пропущенных
+        "incoming": 0,
+        "outgoing": 0,
+        "success": 0,
+        "pending": 0,
+        "empty": 0,
+        "rejection": 0,
+        "missed_sale": 0,
+        "unknown": 0,
+        "no_contact": 0,     # не взяли контакт
+        "problem": 0,        # проблемные
+        "calls": [],         # все звонки с содержанием
+    })
+
+    # Считаем пропущенные по менеджерам
+    for c in calls:
+        mgr = c.get("manager_name", "")
+        if not mgr or mgr.startswith("ID_"):
+            mgr_id = str(c.get("RESPONSIBLE_ID", ""))
+            mgr = users.get(mgr_id, f"ID_{mgr_id}")
+        if is_missed(c):
+            mgr_profiles[mgr]["missed"] += 1
+
+    # Считаем состоявшиеся
+    for c in completed:
+        mgr = c.get("manager_name", "")
+        if not mgr or mgr.startswith("ID_"):
+            mgr_id = str(c.get("RESPONSIBLE_ID", ""))
+            mgr = users.get(mgr_id, f"ID_{mgr_id}")
+        mgr_profiles[mgr]["total"] += 1
+        # DIRECTION: 1=входящий, 2=исходящий (Bitrix CRM стандарт)
+        direction = str(c.get("DIRECTION", ""))
+        if direction == "1":
+            mgr_profiles[mgr]["incoming"] += 1
+        elif direction == "2":
+            mgr_profiles[mgr]["outgoing"] += 1
+
+    # Классификация по менеджерам
+    for c in with_content:
+        mgr = c.get("manager_name", "")
+        if not mgr or mgr.startswith("ID_"):
+            mgr_id = str(c.get("RESPONSIBLE_ID", ""))
+            mgr = users.get(mgr_id, f"ID_{mgr_id}")
+        cl = c["_classification"]
+        mgr_profiles[mgr]["with_content"] += 1
+        mgr_profiles[mgr][cl["category"]] += 1
+        mgr_profiles[mgr]["calls"].append(c)
+        if "контакт не взят" in cl["flags"]:
+            mgr_profiles[mgr]["no_contact"] += 1
+        if "🔴 проблемный" in cl["flags"]:
+            mgr_profiles[mgr]["problem"] += 1
+
+    # Фильтруем системных
+    skip = {"СРМ Б24", "Служебный", "Admin", "ID_", ""}
+    mgr_profiles = {k: v for k, v in mgr_profiles.items()
+                    if k not in skip and not k.startswith("ID_")}
+
+    # ── ПОСТРОЕНИЕ ТЕКСТА ──
     lines = [
-        f"📞 АНАЛИЗ ЗВОНКОВ — {now_str}",
-        f"━━━━━━━━━━━━━━━━━━━━━",
-        f"",
-        f"📊 Всего звонков за день: {total}",
-        f"",
+        f"{'═' * 42}",
+        f"📞 КАЧЕСТВО ЗВОНКОВ — {date_str}",
+        f"   Проанализировано: {len(with_content)} из {len(calls)} звонков",
+        f"   Источник: {scan_info}",
+        f"{'═' * 42}",
+        "",
     ]
 
-    if not top5:
-        lines.append("ℹ️ Нет звонков для анализа.")
-    else:
-        lines.append("🔥 ТОП-5 ЗНАЧИМЫХ ЗВОНКОВ:")
+    # ПРОФИЛИ МЕНЕДЖЕРОВ
+    for mgr_name in sorted(mgr_profiles.keys(),
+                            key=lambda x: mgr_profiles[x]["with_content"],
+                            reverse=True):
+        p = mgr_profiles[mgr_name]
+        if p["with_content"] == 0 and p["total"] == 0:
+            continue
+
+        lines.append(f"👩‍💼 {mgr_name.upper()} ({p['with_content']} звонков с содержанием)")
+        lines.append(f"   {'─' * 36}")
+        lines.append(f"   📊 Вх: {p['incoming']} | Исх: {p['outgoing']} | Пропущ: {p['missed']}")
         lines.append("")
-        for i, c in enumerate(top5, 1):
-            # Определяем менеджера
-            mgr_id = str(c.get("manager_id", c.get("ASSIGNED_BY_ID", "")))
-            mgr_name = c.get("_manager_name", "")
-            if not mgr_name:
-                mgr_name = manager_names.get(mgr_id, f"ID_{mgr_id}")
 
-            # Длительность
-            dur = int(c.get("duration", c.get("DURATION", 0)))
-            dur_str = f"{dur // 60}м{dur % 60}с" if dur > 0 else "—"
-
-            # Краткое содержание
-            summary = extract_summary(c)
-            if not summary:
-                summary = "Описание отсутствует"
-            # Ограничиваем длину
-            if len(summary) > 200:
-                summary = summary[:197] + "..."
-
-            call_id = c.get("call_id", c.get("ID", "-"))
-
-            icon = "🔴" if c["_score"] >= 8 else "🟡" if c["_score"] >= 4 else "🟢"
-            lines.append(f"{icon} {i}. [{call_id}] — {mgr_name} ({dur_str})")
-            lines.append(f"   {summary}")
+        # Категории
+        if p["with_content"] > 0:
+            lines.append(f"   ✅ Результативные (заказ/доставка): {p['success']}")
+            lines.append(f"   🟡 В работе (клиент думает): {p['pending']}")
+            lines.append(f"   🟠 Заказ не оформлен: {p['missed_sale']}")
+            lines.append(f"   🔴 Отказы клиентов: {p['rejection']}")
+            lines.append(f"   ⚫ Пустые/тестовые: {p['empty']}")
+            if p["unknown"] > 0:
+                lines.append(f"   ⚪ Прочие: {p['unknown']}")
             lines.append("")
 
-    lines.append("━━━━━━━━━━━━━━━━━━━━━")
-    lines.append("Отчёт: Анжелочка — Контроль качества 🐣")
+            # Не взяли контакт
+            if p["no_contact"] > 0:
+                lines.append(f"   ❌ Контакт не взят: {p['no_contact']} звонков")
+
+            # Проблемные
+            if p["problem"] > 0:
+                lines.append(f"   🔴 Проблемные (негатив/жалобы): {p['problem']}")
+
+            # Процент результативности
+            if p["with_content"] > 0:
+                pct = p["success"] / p["with_content"] * 100
+                lines.append(f"   📈 Результативность: {pct:.0f}%")
+            lines.append("")
+
+            # Примеры хороших звонков
+            good = [c for c in p["calls"]
+                    if c["_classification"]["category"] == "success"]
+            if good:
+                best = good[0]
+                summary = best.get("bitrixgpt_summary", "")[:150]
+                lines.append(f"   🟢 Лучший: «{summary}»")
+
+            # Примеры проблемных
+            bad = [c for c in p["calls"]
+                   if c["_classification"]["category"] in ("empty", "rejection")
+                   or "контакт не взят" in c["_classification"]["flags"]]
+            if bad:
+                worst = bad[0]
+                summary = worst.get("bitrixgpt_summary", "")[:150]
+                lines.append(f"   🔴 Проблемный: «{summary}»")
+
+        lines.append("")
+        lines.append(f"{'─' * 42}")
+        lines.append("")
+
+    # ── СВОДНАЯ ТАБЛИЦА ──
+    lines.append("📊 СВОДКА ДНЯ")
+    lines.append("")
+    header = f"   {'Менеджер':<12} | Звон. | Успех | %Рез. | ❌Конт | ⭐Рейтинг"
+    lines.append(header)
+    lines.append(f"   {'─' * 12}-+-{'─' * 5}-+-{'─' * 5}-+-{'─' * 5}-+-{'─' * 5}-+-{'─' * 8}")
+    for mgr_name in sorted(mgr_profiles.keys(),
+                            key=lambda x: mgr_profiles[x]["with_content"],
+                            reverse=True):
+        p = mgr_profiles[mgr_name]
+        if p["with_content"] == 0:
+            continue
+        pct_val = p['success'] / p['with_content'] * 100 if p["with_content"] > 0 else 0
+        pct = f"{pct_val:.0f}%"
+        
+        # Расчет рейтинга (субъективно-математический)
+        # База 3 звезды. +1 за высокую рез (>35%), -1 за низкую (<25%), -1 за много "без контакта" (>20%)
+        stars = 3
+        if pct_val > 35: stars += 1
+        if pct_val > 50: stars += 1
+        if pct_val < 25: stars -= 1
+        
+        no_contact_pct = (p['no_contact'] / p['with_content'] * 100) if p['with_content'] > 0 else 0
+        if no_contact_pct > 20: stars -= 1
+        if p['problem'] > 0: stars -= 2
+        
+        stars = max(1, min(5, stars))
+        rating_str = "⭐" * stars
+        
+        short_name = mgr_name[:12]
+        lines.append(f"   {short_name:<12} | {p['with_content']:>5} | {p['success']:>5} | {pct:>5} | {p['no_contact']:>5} | {rating_str}")
+    lines.append("")
+    lines.append(f"{'─' * 42}")
+    lines.append("")
+
+    # ── ПОВТОРЯЮЩИЕСЯ ПРОБЛЕМЫ ──
+    # Подсчёт маркеров по всем звонкам
+    problem_counts = defaultdict(int)
+    for c in with_content:
+        cl = c["_classification"]
+        if cl["category"] == "empty":
+            problem_counts["Пустые звонки (тест слышимости)"] += 1
+        if "контакт не взят" in cl["flags"]:
+            problem_counts["Контакт не взят (нет email/телефона)"] += 1
+        if cl["category"] == "pending":
+            problem_counts["Клиент обещает перезвонить (нет фиксации даты)"] += 1
+        if cl["category"] == "missed_sale":
+            problem_counts["Заказ не оформлен (упущенная продажа)"] += 1
+        if cl["category"] == "rejection":
+            problem_counts["Отказ клиента"] += 1
+
+    if problem_counts:
+        lines.append("🔍 ПОВТОРЯЮЩИЕСЯ ПРОБЛЕМЫ:")
+        for problem, count in sorted(problem_counts.items(), key=lambda x: -x[1]):
+            if count >= 2:
+                lines.append(f"   {count}× {problem}")
+        lines.append("")
+        lines.append(f"{'─' * 42}")
+        lines.append("")
+
+    # ── ТОП-3 ЛУЧШИХ (дедуплицированные по содержанию) ──
+    all_success = [c for c in with_content
+                   if c["_classification"]["category"] == "success"]
+    # Дедупликация: одно саммари = один звонок в ТОП
+    seen_summaries = set()
+    unique_success = []
+    for c in all_success:
+        s = c.get("bitrixgpt_summary", "")[:100]
+        if s not in seen_summaries:
+            seen_summaries.add(s)
+            unique_success.append(c)
+
+    if unique_success:
+        lines.append("🏆 ТОП-3 ЛУЧШИХ ЗВОНКА:")
+        for i, c in enumerate(unique_success[:3], 1):
+            mgr = c.get("manager_name", "?")
+            subj = c.get("SUBJECT", "")
+            summary = c.get("bitrixgpt_summary", "")[:180]
+            lines.append(f"   🟢 {i}. {mgr} [{subj}]")
+            lines.append(f"      «{summary}»")
+        lines.append("")
+
+    # ── ТОП-5 ПРОБЛЕМНЫХ (дедуплицированные) ──
+    # Ранжируем: problem > rejection > empty > missed_sale > no_contact
+    def problem_score(c):
+        cl = c["_classification"]
+        s = 0
+        if "🔴 проблемный" in cl["flags"]:
+            s += 10
+        if cl["category"] == "rejection":
+            s += 5
+        if cl["category"] == "empty":
+            s += 4
+        if cl["category"] == "missed_sale":
+            s += 3
+        if "контакт не взят" in cl["flags"]:
+            s += 2
+        return s
+
+    problem_calls = [c for c in with_content if problem_score(c) > 0]
+    problem_calls.sort(key=problem_score, reverse=True)
+
+    # Дедупликация проблемных
+    seen_p = set()
+    unique_problems = []
+    for c in problem_calls:
+        s = c.get("bitrixgpt_summary", "")[:100]
+        if s not in seen_p:
+            seen_p.add(s)
+            unique_problems.append(c)
+
+    if unique_problems:
+        lines.append("🔴 ТОП-5 ПРОБЛЕМНЫХ ЗВОНКОВ:")
+        for i, c in enumerate(unique_problems[:5], 1):
+            mgr = c.get("manager_name", "?")
+            subj = c.get("SUBJECT", "")
+            cl = c["_classification"]
+            summary = c.get("bitrixgpt_summary", "")[:180]
+            icon = cl["icon"]
+            flags_str = ", ".join(cl["flags"])
+            lines.append(f"   {icon} {i}. {mgr} [{subj}] ({flags_str})")
+            lines.append(f"      «{summary}»")
+        lines.append("")
+
+    lines.append(f"{'─' * 42}")
+    lines.append("")
+
+    # ── РЕКОМЕНДАЦИИ (на основе маркеров) ──
+    lines.append("💡 РЕКОМЕНДАЦИИ:")
+    recommendations = []
+    total_no_contact = sum(p["no_contact"] for p in mgr_profiles.values())
+    total_pending = sum(p["pending"] for p in mgr_profiles.values())
+    total_empty = sum(p["empty"] for p in mgr_profiles.values())
+    total_missed_sale = sum(p["missed_sale"] for p in mgr_profiles.values())
+    total_success = sum(p["success"] for p in mgr_profiles.values())
+    total_with_content = sum(p["with_content"] for p in mgr_profiles.values())
+
+    if total_no_contact >= 3:
+        recommendations.append(
+            f"   1. Фиксировать email/телефон в КАЖДОМ разговоре "
+            f"({total_no_contact} звонков без контакта)")
+    if total_pending >= 3:
+        recommendations.append(
+            f"   2. При «клиент подумает» — назначать дату перезвона "
+            f"({total_pending} звонков «клиент обещает перезвонить»)")
+    if total_empty >= 2:
+        recommendations.append(
+            f"   3. Сократить пустые звонки — {total_empty} тестовых/бессодержательных")
+    if total_missed_sale >= 2:
+        recommendations.append(
+            f"   4. Предлагать альтернативу при отсутствии товара "
+            f"({total_missed_sale} неоформленных заказов)")
+    if total_with_content > 0:
+        pct = total_success / total_with_content * 100
+        if pct < 30:
+            recommendations.append(
+                f"   5. Общая результативность {pct:.0f}% — ниже нормы (цель: 35%+)")
+
+    if not recommendations:
+        recommendations.append("   Критичных проблем не выявлено 👍")
+
+    lines.extend(recommendations)
+    lines.append("")
+    lines.append(f"{'═' * 42}")
+    lines.append("📞 Анализ: Анжела Заботкина | IncuBird v2")
+    lines.append("")
 
     return "\n".join(lines)
 
 
-# ─────────────────────────────────────────────
-# Отправка в Telegram
-# ─────────────────────────────────────────────
-def _send_tg(chat_id: int, text: str, label: str = "") -> bool:
-    """Отправляет сообщение через Telegram Bot API."""
+# ════════════════════════════════════════════
+# TELEGRAM
+# ════════════════════════════════════════════
+
+def send_to_telegram(text, chat_id, label=""):
+    """Отправка в Telegram."""
     if not TELEGRAM_TOKEN:
-        print("❌ ANGELOCHKA_BOT_TOKEN не задан!")
+        print("   ⚠️ TELEGRAM_TOKEN не задан — отправка невозможна")
         return False
+
+    import requests
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    proxies = {}
-    if PROXY_URL:
-        proxy = PROXY_URL.replace("socks5://", "socks5h://")
-        proxies = {"https": proxy, "http": proxy}
-    try:
-        resp = requests.post(url, json={
-            "chat_id": chat_id,
-            "text": text,
-        }, proxies=proxies, timeout=15)
-        if resp.status_code == 200:
-            print(f"✅ Отчёт по звонкам отправлен {label} (chat_id={chat_id})")
-            return True
-        else:
-            print(f"⚠️ TG error [{label}]: {resp.status_code} — {resp.text[:200]}")
-            return False
-    except Exception as e:
-        print(f"❌ TG send error [{label}]: {e}")
+
+    # Telegram limit: 4096 chars — разбиваем если надо
+    chunks = []
+    if len(text) <= 4000:
+        chunks = [text]
+    else:
+        # Разбиваем по строкам
+        current = ""
+        for line in text.split("\n"):
+            if len(current) + len(line) + 1 > 3900:
+                chunks.append(current)
+                current = line + "\n"
+            else:
+                current += line + "\n"
+        if current:
+            chunks.append(current)
+
+    for i, chunk in enumerate(chunks):
+        if len(chunks) > 1:
+            chunk = f"[{i+1}/{len(chunks)}]\n{chunk}"
+
+        payload = {"chat_id": chat_id, "text": chunk}
+
+        # Попытка 1: напрямую
+        try:
+            resp = requests.post(url, json=payload, timeout=10)
+            if resp.status_code == 200:
+                print(f"   ✅ Отправлено {label} (direct) chunk {i+1}")
+                continue
+        except Exception:
+            pass
+
+        # Попытка 2: через прокси
+        if PROXY_URL:
+            try:
+                p = PROXY_URL.replace("socks5://", "socks5h://")
+                resp = requests.post(url, json=payload,
+                                     proxies={"https": p, "http": p}, timeout=15)
+                if resp.status_code == 200:
+                    print(f"   ✅ Отправлено {label} (proxy) chunk {i+1}")
+                    continue
+                else:
+                    print(f"   ⚠️ TG [{label}]: {resp.status_code}")
+                    return False
+            except Exception as e:
+                print(f"   ❌ TG [{label}] proxy: {e}")
+                return False
+
+        print(f"   ❌ TG [{label}]: не удалось отправить")
         return False
 
+    return True
 
-# ─────────────────────────────────────────────
-# main
-# ─────────────────────────────────────────────
-def run_call_quality_report():
-    """Основная функция: собрать, проанализировать, отправить."""
-    print(f"\n{'='*50}")
-    print(f"📞 CALL QUALITY REPORT — {datetime.now(MSK).strftime('%Y-%m-%d %H:%M MSK')}")
-    print(f"{'='*50}\n")
 
-    calls = get_all_calls()
-    print(f"📊 Найдено звонков: {len(calls)}")
+# ════════════════════════════════════════════
+# MAIN
+# ════════════════════════════════════════════
+
+def main():
+    args = sys.argv[1:]
+    do_send = "--send" in args
+    preview_only = "--preview" in args
+
+    target_date = None
+    if "--date" in args:
+        idx = args.index("--date")
+        if idx + 1 < len(args):
+            target_date = args[idx + 1]
+
+    print()
+    print("📞 Собираю данные для отчёта по качеству звонков...")
+    if target_date:
+        print(f"   📅 Целевая дата: {target_date}")
+    print()
+
+    calls, scan_info, users = load_calls_from_scan(target_date)
 
     if not calls:
-        print("ℹ️ Звонков не найдено. Пропускаю генерацию отчёта.")
+        print("❌ Звонков не найдено в скане.")
         return
 
-    report = build_quality_report(calls)
-    print(f"\n{report}\n")
+    print(f"   📊 Звонков в скане: {len(calls)}")
+    with_content = [c for c in calls if c.get("bitrixgpt_summary")]
+    print(f"   🤖 С содержанием (bitrixgpt_summary): {len(with_content)}")
+    print()
 
-    # Отправляем Андрею (Заботкиной)
-    _send_tg(ADMIN_ID, report, label="Андрей/Заботкина")
+    report = build_quality_report(calls, scan_info, users)
 
-    # Копия Игорю
-    _send_tg(OWNER_ID, f"🔍 КОНТРОЛЬ КАЧЕСТВА ЗВОНКОВ\n{'─'*30}\n\n{report}", label="Игорь/Owner")
+    # Показываем
+    print(report)
 
-    print("✅ Отчёт по качеству звонков завершён!")
+    if preview_only:
+        print("👀 Режим превью — файл не сохранён, не отправлен.")
+        return
+
+    # Сохраняем
+    now = datetime.now(MSK)
+    filename = f"quality_{now.strftime('%Y%m%d_%H%M')}.md"
+    filepath = os.path.join(REPORTS_DIR, filename)
+    with open(filepath, 'w', encoding='utf-8') as f:
+        f.write(report)
+    print(f"💾 Сохранён: {filepath}")
+
+    if do_send:
+        print()
+        print("📤 Отправляю в Telegram (ТОЛЬКО Игорю)...")
+        # ⛔ Андрею — НИКАКИХ отчётов в TG! (решение от 12.05.2026)
+        send_to_telegram(report, IGOR_ID, "Игорь")
+
+    print("✅ Готово!")
 
 
 if __name__ == "__main__":
-    run_call_quality_report()
+    main()

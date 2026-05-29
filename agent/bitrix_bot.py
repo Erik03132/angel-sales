@@ -14,14 +14,15 @@
 
 v1.1 — 15.04.2026
 """
+import fcntl
+import json
 import os
+import re
 import sys
 import time
-import json
-import re
-import requests
-import fcntl
 from datetime import datetime
+
+import requests
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -87,7 +88,7 @@ def acquire_lock():
         _lock_fp.flush()
     except (IOError, OSError):
         print(f"🚫 ОШИБКА: Бот уже запущен! (lock: {LOCK_FILE})")
-        print(f"   Остановите старый процесс перед запуском нового.")
+        print("   Остановите старый процесс перед запуском нового.")
         sys.exit(1)
     
     # Шаг 3: Записываем PID
@@ -214,11 +215,32 @@ def send_reply(dialog_id, text):
     return None
 
 
+def post_to_feed(text, title="📢 Новости Инкубатора"):
+    """Публикация в Живую ленту Битрикс24."""
+    try:
+        # Метод log.blogpost.add для публикации в ленту
+        resp = requests.post(f"{BITRIX_URL}/log.blogpost.add.json", json={
+            "POST_TITLE": title,
+            "POST_MESSAGE": text,
+            "DEST": ["UA"] # Всем сотрудникам
+        }, timeout=15)
+        data = resp.json()
+        if resp.status_code == 200 and data.get("result"):
+            log(f"  🚀 Пост опубликован в Живую ленту! (ID: {data['result']})")
+            return True
+        else:
+            log(f"  ⚠️ Ошибка публикации в ленту: {data}")
+    except Exception as e:
+        log(f"  ❌ Ошибка post_to_feed: {e}")
+    return False
+
+
 def forward_to_owner(user_name, question, answer):
     """Пересылаем разговор Игорю в Телеграм (шпионский мониторинг)."""
     try:
-        from tg_bot import bot, ADMIN_ID
         import asyncio
+
+        from tg_bot import ADMIN_ID, bot
         
         spy_msg = f"🕵️ Битрикс | {user_name}: {question}\n\n🤖 {answer}"
         if len(spy_msg) > 4000:
@@ -268,7 +290,35 @@ def process_message(msg, dialog_id):
     role_prompt = role_config.get('system_prompt_addon', '')
     
     log(f"📩 {user_name} (ID:{author_id}, роль: {role_label}): {text[:80]}...")
-    
+
+    # === ТРИГГЕР: "ОДОБРЕНО" ===
+    if text.strip().lower() == "одобрено" and role_name in ["owner", "admin"]:
+        log(f"🎯 Получен триггер ОДОБРЕНО от {user_name}!")
+        
+        # Находим последний пост
+        article_path = os.path.join(BASE_DIR, "angel-sales", "content", "articles", "dzen_article_1_mistakes.md")
+        if os.path.exists(article_path):
+            with open(article_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Извлекаем заголовок из первой строки (если есть #)
+            title = "📢 Новости Инкубатора"
+            if content.startswith("#"):
+                lines = content.split('\n')
+                title = lines[0].replace("#", "").strip()
+                content = '\n'.join(lines[1:]).strip()
+            
+            success = post_to_feed(content, title)
+            if success:
+                send_reply(dialog_id, "✅ Пост успешно опубликован в Живую ленту!")
+                return
+            else:
+                send_reply(dialog_id, "❌ Не удалось опубликовать пост. Проверь логи.")
+                return
+        else:
+            send_reply(dialog_id, "⚠️ Ошибка: файл с постом не найден.")
+            return
+
     # Получаем или инициализируем историю
     if author_id not in user_histories:
         user_histories[author_id] = []
@@ -298,7 +348,7 @@ def process_message(msg, dialog_id):
         if msg_result:
             log(f"  ✅ Ответ отправлен (msg #{msg_result}): {response[:60]}...")
         else:
-            log(f"  ⚠️ Не удалось отправить ответ")
+            log("  ⚠️ Не удалось отправить ответ")
         
         # Шпионский мониторинг — пересылаем Игорю
         forward_to_owner(user_name, text, response)
@@ -403,9 +453,9 @@ def main():
     log(f"   🔒 Lock: {LOCK_FILE}")
     log(f"   🛑 Kill switch: touch {KILL_SWITCH}")
     log(f"   🛑 Emergency:   touch {EMERGENCY_STOP}")
-    log(f"   🛑 Env var:     ANGELOCHKA_DISABLED=1")
+    log("   🛑 Env var:     ANGELOCHKA_DISABLED=1")
     log(f"   🚦 Rate limit: {MAX_RESPONSES_PER_MINUTE}/мин")
-    log(f"   Ядро: angelochka_core.get_answer()")
+    log("   Ядро: angelochka_core.get_answer()")
     
     # Помечаем старые сообщения как прочитанные
     mark_all_read()
@@ -419,7 +469,7 @@ def main():
             # 🛑 Kill Switch: ПЕРВАЯ проверка в каждом цикле
             if is_killed():
                 log("🛑 KILL SWITCH АКТИВИРОВАН! Бот остановлен.")
-                log(f"   Удалите STOP_BOT файл(ы) и перезапустите.")
+                log("   Удалите STOP_BOT файл(ы) и перезапустите.")
                 break
             
             # 🚦 Rate Limiter: не обрабатываем если лимит исчерпан

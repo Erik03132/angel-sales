@@ -1,0 +1,9 @@
+/Users/igorvasin/freelance-2026/ai-eggs/agent/logs/history.md
+/Users/igorvasin/freelance-2026/ai-eggs/agent/logs/bitrix_history.md
+/Users/igorvasin/freelance-2026/ai-eggs/agent/delivery_notifier/dashboard.html
+/Users/igorvasin/freelance-2026/ai-eggs/agent/data/latest_scan_report.md
+/Users/igorvasin/freelance-2026/ai-eggs/agent/data/expert_knowledge.md
+/Users/igorvasin/freelance-2026/ai-eggs/agent/temp_voices/voice_inna_reactivation.ogg.ogg
+/Users/igorvasin/freelance-2026/ai-eggs/agent/temp_voices/voice_test_user.wav
+/Users/igorvasin/freelance-2026/ai-eggs/agent/temp_voices/voice_test_user.ogg
+/Users/igorvasin/freelance-2026/ai-eggs/agent/temp_voices/voice_test_audio.ogg

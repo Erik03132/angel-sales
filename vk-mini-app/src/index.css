@@ -1,0 +1,527 @@
+/* ===== VK Mini App — ВезёмЦыплят ===== */
+/* Кастомные стили поверх VKUI */
+
+:root {
+  --vezemcip-primary: #FF6B00;
+  --vezemcip-primary-hover: #E85D00;
+  --vezemcip-green: #27AE60;
+  --vezemcip-green-hover: #219A52;
+  --vezemcip-bg: #F5F5F5;
+  --vezemcip-card: #FFFFFF;
+  --vezemcip-text: #2C3E50;
+  --vezemcip-muted: #7F8C8D;
+  --vezemcip-danger: #E74C3C;
+  --vezemcip-badge: #FF4757;
+}
+
+/* Баннер на главной */
+.hero-banner {
+  background: linear-gradient(135deg, #FF6B00 0%, #FF8E3C 50%, #FFB347 100%);
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin: 12px 16px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-banner::after {
+  content: '🐣';
+  position: absolute;
+  right: -10px;
+  bottom: -15px;
+  font-size: 120px;
+  opacity: 0.15;
+  transform: rotate(-15deg);
+}
+
+.hero-banner h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.hero-banner p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.hero-btn {
+  background: rgba(255,255,255,0.25);
+  border: 2px solid white;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.hero-btn:hover {
+  background: rgba(255,255,255,0.4);
+  transform: translateY(-1px);
+}
+
+/* Карточки товаров */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: 0 16px;
+}
+
+.product-card {
+  background: var(--vezemcip-card);
+  border-radius: 16px;
+  padding: 16px 12px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.product-card:active {
+  transform: scale(0.97);
+}
+
+.product-card .emoji {
+  font-size: 48px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.product-card .product-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.product-card .name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vezemcip-text);
+  margin-bottom: 2px;
+}
+
+.product-card .breed-type {
+  font-size: 11px;
+  color: var(--vezemcip-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.product-card .price-tag {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vezemcip-primary);
+}
+
+.product-card .price-tag small {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--vezemcip-muted);
+}
+
+.product-card .min-order {
+  font-size: 11px;
+  color: var(--vezemcip-muted);
+  margin-top: 4px;
+}
+
+/* Кнопка добавления */
+.add-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-btn.primary {
+  background: var(--vezemcip-primary);
+  color: white;
+}
+
+.add-btn.primary:hover {
+  background: var(--vezemcip-primary-hover);
+}
+
+.add-btn.in-cart {
+  background: var(--vezemcip-green);
+  color: white;
+}
+
+/* Qty controls */
+.qty-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.qty-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--vezemcip-primary);
+  background: white;
+  color: var(--vezemcip-primary);
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.qty-btn:active {
+  background: var(--vezemcip-primary);
+  color: white;
+}
+
+.qty-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vezemcip-text);
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Секция заголовок */
+.section-header {
+  padding: 20px 16px 8px;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--vezemcip-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Корзина badge */
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--vezemcip-badge);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Корзина — карточка товара */
+.cart-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: white;
+  margin: 0 16px 8px;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.cart-item .item-emoji {
+  font-size: 32px;
+  margin-right: 12px;
+}
+
+.cart-item .cart-item-img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
+.cart-item .item-info {
+  flex: 1;
+}
+
+.cart-item .item-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--vezemcip-text);
+}
+
+.cart-item .item-price {
+  font-size: 13px;
+  color: var(--vezemcip-muted);
+}
+
+.cart-item .item-subtotal {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vezemcip-primary);
+  margin-left: 12px;
+}
+
+/* Калькулятор кормов */
+.feed-calc {
+  background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
+  border-radius: 14px;
+  padding: 16px;
+  margin: 8px 16px;
+}
+
+.feed-calc h3 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #2E7D32;
+}
+
+.feed-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.feed-row .label {
+  color: #555;
+}
+
+.feed-row .value {
+  font-weight: 600;
+  color: #2E7D32;
+}
+
+/* Итого */
+.total-bar {
+  background: white;
+  position: sticky;
+  bottom: 0;
+  padding: 16px;
+  border-top: 1px solid #EEE;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.06);
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.total-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--vezemcip-text);
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--vezemcip-primary);
+}
+
+.order-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: var(--vezemcip-green);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.order-btn:hover {
+  background: var(--vezemcip-green-hover);
+}
+
+.order-btn:disabled {
+  background: #BDC3C7;
+  cursor: not-allowed;
+}
+
+/* Успех */
+.success-screen {
+  text-align: center;
+  padding: 60px 24px 40px;
+}
+
+.success-screen .check {
+  font-size: 80px;
+  margin-bottom: 16px;
+  animation: popIn 0.5s ease;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.success-screen h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--vezemcip-text);
+  margin-bottom: 8px;
+}
+
+.success-screen p {
+  font-size: 15px;
+  color: var(--vezemcip-muted);
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.success-screen .order-num {
+  font-size: 14px;
+  color: var(--vezemcip-green);
+  font-weight: 600;
+  background: #E8F5E9;
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+/* Навигация панели */
+.panel-back {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--vezemcip-primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Пустая корзина */
+.empty-cart {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+.empty-cart .emoji-big {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.empty-cart h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--vezemcip-text);
+  margin-bottom: 8px;
+}
+
+.empty-cart p {
+  font-size: 14px;
+  color: var(--vezemcip-muted);
+}
+
+/* Доставка */
+.delivery-form {
+  padding: 0 16px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vezemcip-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group select, .form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #E0E0E0;
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--vezemcip-text);
+  background: white;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s;
+}
+
+.form-group select:focus, .form-group input:focus {
+  outline: none;
+  border-color: var(--vezemcip-primary);
+}
+
+/* Табы категорий */
+.category-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-tab {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.category-tab.active {
+  background: var(--vezemcip-primary);
+  color: white;
+}
+
+.category-tab:not(.active) {
+  background: #F0F0F0;
+  color: var(--vezemcip-muted);
+}
+
+/* Удалить из корзины */
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--vezemcip-danger);
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* Info bar */
+.info-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  margin: 8px 16px;
+  background: #FFF3E0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #E65100;
+}

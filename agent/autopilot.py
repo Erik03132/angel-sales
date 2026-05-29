@@ -1,88 +1,71 @@
+"""
+Автопилот Анжелочки v3.1 — Только утренний пинг.
+═══════════════════════════════════════════════════
+Расписание (MSK):
+  09:00 — Утренний чек (пинг владельцу)
+═══════════════════════════════════════════════════
+"""
 import os
-import sys
 import time
-import schedule
-import requests
 from datetime import datetime
 
-# Загружаем .env (как это делает tg_bot.py)
+import requests
+import schedule
 from dotenv import load_dotenv
-load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
-# Добавляем папку routines в путь
-sys.path.insert(0, os.path.dirname(__file__))
-from routines import system_check
+load_dotenv(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '.env'), override=True)
 
-# Конфиг Телеграма — берём ПРАВИЛЬНОЕ имя переменной
 BOT_TOKEN = os.getenv("ANGELOCHKA_BOT_TOKEN")
-ADMIN_ID = os.getenv("ADMIN_ID", "176203333")
-PROXY = os.getenv("TELEGRAM_PROXY")
+PROXY_URL = os.getenv("TELEGRAM_PROXY")
+OWNER_ID = 176203333  # Игорь
 
-def send_to_admin(text):
-    """Отправить сообщение админу через Telegram бота Анжелочки."""
+def send_to_owner(text, parse_mode="HTML"):
+    """Отправить сообщение владельцу (Игорь)."""
     if not BOT_TOKEN:
-        print("❌ ANGELOCHKA_BOT_TOKEN не найден в .env!")
-        return False
-    
+        print("⚠️ BOT_TOKEN не задан, пропускаю отправку")
+        return
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
     proxies = {}
-    if PROXY:
-        proxies = {"https": PROXY, "http": PROXY}
+    if PROXY_URL:
+        p = PROXY_URL.replace("socks5://", "socks5h://")
+        proxies = {"https": p, "http": p}
     
     try:
-        resp = requests.post(
-            url,
-            json={"chat_id": ADMIN_ID, "text": text, "parse_mode": "Markdown"},
-            proxies=proxies,
-            timeout=10
-        )
-        if resp.status_code == 200:
-            print(f"✅ Отчёт отправлен в Telegram (Admin ID: {ADMIN_ID})")
-            return True
-        else:
-            print(f"❌ Telegram API ошибка: {resp.status_code} — {resp.text[:200]}")
-            return False
+        requests.post(url, json={
+            "chat_id": OWNER_ID, 
+            "text": text, 
+            "parse_mode": parse_mode
+        }, proxies=proxies, timeout=15)
     except Exception as e:
-        print(f"❌ Не удалось отправить в Telegram: {e}")
-        return False
-
-def get_timed_greeting():
-    hour = datetime.now().hour
-    if 5 <= hour < 12: return "Доброе утро"
-    if 12 <= hour < 18: return "Добрый день"
-    if 18 <= hour < 23: return "Добрый вечер"
-    return "Доброй ночи"
+        print(f"⚠️ TG send error ({OWNER_ID}): {e}")
 
 def morning_job(is_startup=False):
-    """Утренняя рутина или отчет о запуске."""
+    """Утренний пинг — система жива."""
     status = "запущена" if is_startup else "по расписанию"
-    print(f"🌅 Запуск рутины ({status})...")
-    report = system_check.run_check()
+    now = datetime.now().strftime("%d.%m.%Y %H:%M")
+    print(f"🌅 Утренний чек ({status}) — {now}")
     
-    if is_startup:
-        greeting = "🐣 Система перезагружена и готова к работе!"
-    else:
-        greeting = f"🐣 {get_timed_greeting()}, бро!"
-        
-    send_to_admin(f"{greeting}\n\n{report}")
+    msg = f"🐣 {'Система запущена!' if is_startup else 'Доброе утро, команда!'}\n"
+    msg += f"📅 {now}\n"
+    msg += "✅ Автопилот v3.1 работает. Только утренний пинг."
+    send_to_owner(msg)
 
-def evening_job():
-    """Вечерняя рутина: итоги дня."""
-    print("🌙 Запуск вечернего отчёта...")
-    report = system_check.run_check()
-    send_to_admin(f"🌙 Бро, день закончен.\n\n{report}\n\nОтдыхай, завтра продолжим!")
 
-# Расписание
+
+# ═══════════════════════════════════════════════
+# РАСПИСАНИЕ (время сервера = MSK)
+# ═══════════════════════════════════════════════
 schedule.every().day.at("09:00").do(morning_job)
-schedule.every().day.at("21:00").do(evening_job)
 
 if __name__ == "__main__":
-    print("🚀 Автопилот Antigravity запущен...")
-    print(f"   BOT_TOKEN: {'✅ Найден' if BOT_TOKEN else '❌ НЕ НАЙДЕН'}")
-    print(f"   ADMIN_ID: {ADMIN_ID}")
-    print(f"   PROXY: {'✅ ' + PROXY[:20] + '...' if PROXY else '❌ Нет'}")
+    print("═" * 50)
+    print("🚀 АВТОПИЛОТ v3.1 — Только утренний пинг")
+    print("═" * 50)
+    print("   09:00 — Пинг владельцу в TG")
+    print(f"   Время сервера: {datetime.now().strftime('%H:%M %Z')}")
+    print("═" * 50)
     
-    # Тестовый запуск при старте (с нейтральным сообщением)
+    # Утренний пинг при запуске
     morning_job(is_startup=True)
     
     while True:

@@ -4,11 +4,11 @@
 Генерирует HTML-отчёт с оценкой качества.
 """
 
-import requests
-import json
-import time
 import html
+import time
 from datetime import datetime
+
+import requests
 
 API_URL = "http://localhost:8001/api/chat"
 
@@ -55,7 +55,7 @@ def test_angelochka():
     results = []
     total_time = 0
     
-    print(f"\n🧪 Стресс-тест Анжелочки v9.0")
+    print("\n🧪 Стресс-тест Анжелочки v9.0")
     print(f"   Вопросов: {len(QUESTIONS)}")
     print(f"   API: {API_URL}")
     print(f"   Время: {datetime.now().strftime('%d.%m.%Y %H:%M')}\n")

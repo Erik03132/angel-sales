@@ -11,12 +11,13 @@
 
 Запуск: python3 avitolog.py
 """
+import json
 import os
 import sys
-import json
 import time
-import requests
 from datetime import datetime, timedelta
+
+import requests
 from dotenv import load_dotenv
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -192,7 +193,7 @@ class Avitolog:
         with open(os.path.join(DATA_DIR, "raw_items.json"), "w", encoding="utf-8") as f:
             json.dump(self.items, f, ensure_ascii=False, indent=2)
         
-        log(f"💾 Сохранено в data/avito/raw_items.json")
+        log("💾 Сохранено в data/avito/raw_items.json")
         return True
     
     def phase2_analyze(self):
@@ -299,13 +300,13 @@ class Avitolog:
         mid = sum(1 for r in self.audit_results if "СРЕДНЕ" in r["grade"] or "МАЛО" in r["grade"])
         good = sum(1 for r in self.audit_results if "РАБОТАЕТ" in r["grade"])
         
-        log(f"")
-        log(f"🎯 РЕЗУЛЬТАТ АУДИТА:")
+        log("")
+        log("🎯 РЕЗУЛЬТАТ АУДИТА:")
         log(f"  🟢 Работает: {good}")
         log(f"  🟡 Нужна оптимизация: {mid}")
         log(f"  🔴 Неэффективные: {bad}")
         log(f"  🔴 Мёртвые (0 просмотров): {dead}")
-        log(f"")
+        log("")
         
         return True
     
@@ -327,8 +328,8 @@ class Avitolog:
         good = [r for r in self.audit_results if "РАБОТАЕТ" in r["grade"]]
         
         report_lines.append("## 📊 Сводка\n")
-        report_lines.append(f"| Категория | Кол-во | % |")
-        report_lines.append(f"|---|---|---|")
+        report_lines.append("| Категория | Кол-во | % |")
+        report_lines.append("|---|---|---|")
         total = len(self.audit_results) or 1
         report_lines.append(f"| 🟢 Работает | {len(good)} | {len(good)/total*100:.0f}% |")
         report_lines.append(f"| 🟡 Нужна оптимизация | {len(mid)} | {len(mid)/total*100:.0f}% |")
@@ -343,8 +344,8 @@ class Avitolog:
                                        ("🟢 МАСШТАБИРОВАТЬ", good)]:
             if items:
                 report_lines.append(f"\n## {category_name}\n")
-                report_lines.append(f"| # | Объявление | Цена | Просм./мес | Контакты | CVR% | Действие |")
-                report_lines.append(f"|---|---|---|---|---|---|---|")
+                report_lines.append("| # | Объявление | Цена | Просм./мес | Контакты | CVR% | Действие |")
+                report_lines.append("|---|---|---|---|---|---|---|")
                 for i, r in enumerate(items, 1):
                     title = r['title'][:40] + ('...' if len(r['title']) > 40 else '')
                     report_lines.append(

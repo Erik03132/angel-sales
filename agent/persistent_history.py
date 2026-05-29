@@ -16,11 +16,10 @@
     chat_db.save_message(user_id=123456, role="model", content="90₽ за штуку!")
 """
 
-import os
-import json
 import logging
-from datetime import datetime, timedelta
-from typing import List, Dict, Optional
+import os
+from datetime import datetime
+from typing import Dict, List
 
 logger = logging.getLogger(__name__)
 

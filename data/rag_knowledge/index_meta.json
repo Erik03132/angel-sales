@@ -1,0 +1,85 @@
+{
+  "indexed_at": "2026-05-06T23:49:02.018029",
+  "source_dir": "/Users/igorvasin/Documents/Литература-по-птицеводству",
+  "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+  "chunk_size": 500,
+  "chunk_overlap": 100,
+  "stats": {
+    "files": [
+      {
+        "name": "03RSHowTo3MeasureEggShellTemperature-RU.pdf",
+        "chunks": 24
+      },
+      {
+        "name": "AVIA-BestPractice-HatcheryTransfer-2015-RU.pdf",
+        "chunks": 53
+      },
+      {
+        "name": "HatcheryTips-EN.pdf",
+        "chunks": 626
+      },
+      {
+        "name": "Ross-Tech-Investigating-Hatchery-Practice_RUS.pdf",
+        "chunks": 256
+      },
+      {
+        "name": "RossxRoss308_BroilerPerformanceObjectives2022_RU.pdf",
+        "chunks": 36
+      },
+      {
+        "name": "Russian Hatchery Guide 2020.pdf",
+        "chunks": 615
+      },
+      {
+        "name": "ross.pdf",
+        "chunks": 179
+      },
+      {
+        "name": "ross308-spravochnik.pdf",
+        "chunks": 1034
+      },
+      {
+        "name": "rukovodstvo_kobb500.pdf",
+        "chunks": 385
+      },
+      {
+        "name": "Приложение к руководству по выращиванию бройлеров 2022.pdf",
+        "chunks": 27
+      },
+      {
+        "name": "Приложение к руководству по содержанию родительских стад 2025 COBB-1.pdf",
+        "chunks": 59
+      },
+      {
+        "name": "Приложение к руководству по содержанию родительских стад 2025 COBB.pdf",
+        "chunks": 59
+      },
+      {
+        "name": "Руководство по выращиванию РС Cobb 2021.pdf",
+        "chunks": 1365
+      },
+      {
+        "name": "Руководство по выращиванию бройлеров 2022.pdf",
+        "chunks": 695
+      },
+      {
+        "name": "Руководство по процедуре вакцинации 2021 2.pdf",
+        "chunks": 186
+      },
+      {
+        "name": "Руководство по процедуре вакцинации 2021.pdf",
+        "chunks": 186
+      },
+      {
+        "name": "Руководство по рм и рс Orvia.pdf",
+        "chunks": 112
+      },
+      {
+        "name": "черри вэлли руководство.pdf",
+        "chunks": 298
+      }
+    ],
+    "total_chunks": 6195,
+    "total_chars": 6195
+  }
+}

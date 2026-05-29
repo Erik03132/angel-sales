@@ -1,0 +1,164 @@
+{
+  "1": {
+    "post_id": 23,
+    "published_at": "2026-05-05T19:45:00",
+    "scheduled": true,
+    "title": "Пост A.1"
+  },
+  "2": {
+    "post_id": 24,
+    "published_at": "2026-05-06T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.2"
+  },
+  "3": {
+    "post_id": 25,
+    "published_at": "2026-05-07T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.3"
+  },
+  "4": {
+    "post_id": 26,
+    "published_at": "2026-05-08T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.4"
+  },
+  "5": {
+    "post_id": 27,
+    "published_at": "2026-05-09T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.5"
+  },
+  "6": {
+    "post_id": 28,
+    "published_at": "2026-05-10T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.6"
+  },
+  "7": {
+    "post_id": 29,
+    "published_at": "2026-05-11T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.7"
+  },
+  "8": {
+    "post_id": 30,
+    "published_at": "2026-05-12T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.8"
+  },
+  "9": {
+    "post_id": 31,
+    "published_at": "2026-05-13T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.9"
+  },
+  "10": {
+    "post_id": 32,
+    "published_at": "2026-05-14T10:00:00",
+    "scheduled": true,
+    "title": "Пост A.10"
+  },
+  "11": {
+    "post_id": 34,
+    "published_at": "2026-05-15T10:00:00",
+    "scheduled": true,
+    "title": "Пост 11 (15-31 мая)"
+  },
+  "12": {
+    "post_id": 35,
+    "published_at": "2026-05-16T10:00:00",
+    "scheduled": true,
+    "title": "Пост 12 (15-31 мая)"
+  },
+  "13": {
+    "post_id": 36,
+    "published_at": "2026-05-17T10:00:00",
+    "scheduled": true,
+    "title": "Пост 13 (15-31 мая)"
+  },
+  "14": {
+    "post_id": 37,
+    "published_at": "2026-05-18T10:00:00",
+    "scheduled": true,
+    "title": "Пост 14 (15-31 мая)"
+  },
+  "15": {
+    "post_id": 38,
+    "published_at": "2026-05-19T10:00:00",
+    "scheduled": true,
+    "title": "Пост 15 (15-31 мая)"
+  },
+  "16": {
+    "post_id": 39,
+    "published_at": "2026-05-20T10:00:00",
+    "scheduled": true,
+    "title": "Пост 16 (15-31 мая)"
+  },
+  "17": {
+    "post_id": 40,
+    "published_at": "2026-05-21T10:00:00",
+    "scheduled": true,
+    "title": "Пост 17 (15-31 мая)"
+  },
+  "18": {
+    "post_id": 41,
+    "published_at": "2026-05-22T10:00:00",
+    "scheduled": true,
+    "title": "Пост 18 (15-31 мая)"
+  },
+  "19": {
+    "post_id": 42,
+    "published_at": "2026-05-23T10:00:00",
+    "scheduled": true,
+    "title": "Пост 19 (15-31 мая)"
+  },
+  "20": {
+    "post_id": 43,
+    "published_at": "2026-05-24T10:00:00",
+    "scheduled": true,
+    "title": "Пост 20 (15-31 мая)"
+  },
+  "21": {
+    "post_id": 44,
+    "published_at": "2026-05-25T10:00:00",
+    "scheduled": true,
+    "title": "Пост 21 (15-31 мая)"
+  },
+  "22": {
+    "post_id": 45,
+    "published_at": "2026-05-26T10:00:00",
+    "scheduled": true,
+    "title": "Пост 22 (15-31 мая)"
+  },
+  "23": {
+    "post_id": 46,
+    "published_at": "2026-05-27T10:00:00",
+    "scheduled": true,
+    "title": "Пост 23 (15-31 мая)"
+  },
+  "24": {
+    "post_id": 47,
+    "published_at": "2026-05-28T10:00:00",
+    "scheduled": true,
+    "title": "Пост 24 (15-31 мая)"
+  },
+  "25": {
+    "post_id": 48,
+    "published_at": "2026-05-29T10:00:00",
+    "scheduled": true,
+    "title": "Пост 25 (15-31 мая)"
+  },
+  "26": {
+    "post_id": 49,
+    "published_at": "2026-05-30T10:00:00",
+    "scheduled": true,
+    "title": "Пост 26 (15-31 мая)"
+  },
+  "27": {
+    "post_id": 50,
+    "published_at": "2026-05-31T10:00:00",
+    "scheduled": true,
+    "title": "Пост 27 (15-31 мая)"
+  }
+}

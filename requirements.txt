@@ -11,3 +11,5 @@ aiogram==3.13.1
 psycopg2-binary==2.9.9
 flask==3.0.0
 markdown2==2.4.12
+schedule==1.2.1
+pysocks==1.7.1

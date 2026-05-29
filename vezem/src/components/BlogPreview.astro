@@ -1,0 +1,184 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const posts = [
+  {
+    id: "blog-june-schedule",
+    title: "График выводов и доставки на июнь 2026",
+    category: "Новости",
+    date: "7 мая",
+    description: "Публикуем расписание выводов на июнь: Кобб-500, Росс-308, Доминант, БИГ-6, Ломан Браун и новинка — цесарки! Бронируйте заранее.",
+    fullText: `<p class="mb-4">Друзья, июнь — <strong>идеальный месяц для старта</strong>! Тепло, длинный световой день, бесплатная зелень на выгуле. Публикуем полное расписание выводов.</p>
+<p class="mb-3"><strong>📅 Расписание выводов:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li><strong>2 июня:</strong> Кобб-500 + Доминант (Д-104, Д-107, Д-109)</li>
+  <li><strong>9 июня:</strong> Росс-308 + БИГ-6 (индюки)</li>
+  <li><strong>16 июня:</strong> Кобб-500 + Ломан Браун + Линда (гуси)</li>
+  <li><strong>~15 июня:</strong> 🆕 ЦЕСАРКИ — первый вывод!</li>
+  <li><strong>23 июня:</strong> Росс-308 + Черри Велли (утки)</li>
+</ul>
+<p class="mb-3"><strong>📍 Маршруты доставки:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li>Крым — через 1-2 дня после вывода (бесплатно от 50 голов)</li>
+  <li>Краснодар, Ростов — через 2-3 дня</li>
+  <li>Ставрополь — через 3-4 дня</li>
+  <li>Москва и МО — доставка за 4 дня (от 100 голов)</li>
+</ul>
+<p class="mb-4">При заказе от 300 голов бройлеров — <strong>скидка 5 руб/шт</strong>. При заказе от 500 голов — <strong>бесплатная доставка</strong>!</p>
+<p class="mb-4">⚡ <strong>Почему июнь — лучший месяц:</strong> минимальные затраты на обогрев, максимальный световой день (16 часов!), свежая крапива и одуванчик — бесплатные витамины для молодняка.</p>
+<p>📞 Бронируйте: <a href="tel:+79183500225" class="text-emerald-400 underline">+7 (918) 350-02-25</a> или пишите в сообщения ВКонтакте.</p>`,
+    image: "/blog_delivery.png",
+  },
+  {
+    id: "blog-chicks-care",
+    title: "Схема пропойки суточных цыплят: первые 10 дней",
+    category: "Уход",
+    date: "5 мая",
+    description: "Проверенная схема пропойки, которой пользуются наши лучшие клиенты — падёж менее 3%. День за днём: что давать, зачем и в каких дозах.",
+    fullText: `<p class="mb-4">Получили цыплят — а дальше что? Вот <strong>проверенная схема</strong>, которой пользуются наши лучшие клиенты (падёж менее 3%):</p>
+<p class="mb-3"><strong>📋 День за днём:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li><strong>День 1 (прибытие):</strong> Вода + глюкоза (5%) + аскорбиновая кислота → снять стресс после перевозки</li>
+  <li><strong>Дни 2-5:</strong> Вода + Чиктоник (1 мл на 1 л) → аминокислоты + витамины для иммунитета</li>
+  <li><strong>Дни 6-8:</strong> Чистая вода (перерыв) → дать организму усвоить витамины</li>
+  <li><strong>Дни 9-10:</strong> Вода + Байтрил (0,5 мл на 1 л) или Энрофлон → профилактика инфекций</li>
+</ul>
+<p class="mb-3"><strong>🌡 Температурный режим:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li>1-3 день: 33-35°C прямо под лампой</li>
+  <li>4-7 день: 30-32°C</li>
+  <li>2-я неделя: 28-29°C</li>
+  <li>3-я неделя: 24-26°C</li>
+  <li>С 4-й недели: 20-22°C (комнатная)</li>
+</ul>
+<p class="mb-3"><strong>⚠️ Критичные ошибки:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li>❌ Антибиотик в 1-й день — сначала витамины!</li>
+  <li>❌ Холодная вода из-под крана — только тёплая (20-22°С)</li>
+  <li>❌ Смешивать Чиктоник + антибиотик в один день</li>
+  <li>❌ Газета вместо подстилки — скользко, лапки разъезжаются</li>
+</ul>
+<p class="mb-4">✅ Меняйте воду 2-3 раза в день — бактерии размножаются быстро! Наши цыплята уже пропоены в инкубатории, но дома — продолжайте схему.</p>
+<p>📞 Нужна консультация? Пишите бесплатно: <a href="tel:+79183500225" class="text-emerald-400 underline">+7 (918) 350-02-25</a></p>`,
+    image: "/blog_chicks.png",
+  },
+  {
+    id: "blog-guinea-fowl",
+    title: "Новинка: цесарки — птица, которую в России недооценивают",
+    category: "Породы",
+    date: "1 мая",
+    description: "В июне стартует вывод цесарок! Мясо как у дичи (0,5% жира), яйца с толстой скорлупой и бонус — цесарки едят колорадских жуков!",
+    fullText: `<p class="mb-4">Друзья, рады сообщить — <strong>в июне мы впервые выводим цесарок</strong>! Это птица, которую в России пока разводят единицы, а зря.</p>
+<p class="mb-3"><strong>🐔 Что такое цесарка:</strong></p>
+<p class="mb-4">Не курица и не фазан — золотая середина. Мясо как у дичи, яйца с толстой скорлупой (хранятся до 6 месяцев!), и характер — «ходячая сигнализация» от хищников.</p>
+<p class="mb-3"><strong>📊 Характеристики:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li>Вес взрослой: 1,5-2,2 кг</li>
+  <li>Яйценоскость: 120-150 яиц/год</li>
+  <li>Масса яйца: 40-45 г (толстая скорлупа!)</li>
+  <li>Мясо: диетическое, <strong>0,5-1% жира</strong> (у курицы — 8-13%)</li>
+  <li>Забой: в 5-6 месяцев</li>
+</ul>
+<p class="mb-3"><strong>💰 Почему это выгодно:</strong></p>
+<ul class="list-disc list-inside mb-4 space-y-1">
+  <li>Мясо цесарки: <strong>800-1200 руб/кг</strong> на рынке (курица — 250-350)</li>
+  <li>Яйцо: 15-25 руб/шт (куриное — 8-12)</li>
+  <li>Рестораны и фермерские лавки скупают ВСЁ</li>
+  <li>Конкуренция почти нулевая — мало кто разводит!</li>
+</ul>
+<p class="mb-3"><strong>🌿 Бонус для огородников:</strong></p>
+<p class="mb-4">Цесарки едят <strong>колорадских жуков, слизней и клещей</strong>! Выпустите их в огород — и забудьте про химию.</p>
+<p class="mb-4"><strong>📅 Первый вывод:</strong> ~15 июня. Цена: 300 руб/шт (от 30 голов — 270 руб).</p>
+<p>📞 Предзаказ: <a href="tel:+79183500225" class="text-emerald-400 underline">+7 (918) 350-02-25</a> — количество ограничено!</p>`,
+    image: "/blog_dominant.png",
+  }
+];
+---
+
+<section id="blog" class="py-12 sm:py-20 relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 sm:mb-14">
+      <div class="inline-block mb-4 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-400/50 backdrop-blur-md">
+        <span class="text-sm font-semibold bg-gradient-to-r from-emerald-300 to-cyan-300 bg-clip-text text-transparent">БЛОГ И НОВОСТИ</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 sm:mb-6 leading-tight">
+        Полезные <span class="bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent">статьи и новости</span>
+      </h2>
+      <p class="text-blue-100/90 text-sm sm:text-lg max-w-2xl mx-auto">Советы экспертов по уходу за молодняком и свежие новости Азовского инкубатора.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      {posts.map(post => (
+        <article class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/10 group" id={post.id}>
+          <div class="h-48 sm:h-56 overflow-hidden relative">
+            <img src={post.image} alt={post.title} class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 z-20">
+              <span class="bg-black/60 backdrop-blur-md text-emerald-300 text-xs font-bold px-3 py-1.5 rounded-lg border border-white/10 tracking-wide uppercase">
+                {post.category}
+              </span>
+            </div>
+          </div>
+          <div class="p-6 sm:p-8">
+            <div class="flex items-center gap-2 text-blue-200/60 text-sm mb-3">
+              <Icon name="mdi:calendar-text" class="w-4 h-4" />
+              <span>{post.date}</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-white mb-3 leading-tight group-hover:text-emerald-300 transition-colors">
+              {post.title}
+            </h3>
+            <p class="text-blue-100/80 text-sm sm:text-base leading-relaxed line-clamp-3 blog-preview-text">
+              {post.description}
+            </p>
+            
+            <!-- Полный текст (скрыт) -->
+            <div class="blog-full-text hidden mt-4 text-blue-100/80 text-sm sm:text-base leading-relaxed" set:html={post.fullText} />
+            
+            <button 
+              class="blog-toggle-btn mt-6 flex items-center text-emerald-400 font-semibold text-sm hover:text-emerald-300 transition-colors cursor-pointer"
+              data-target={post.id}
+            >
+              <span class="blog-toggle-label">Читать далее</span>
+              <svg class="w-4 h-4 ml-1 transform transition-transform blog-toggle-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.blog-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const article = btn.closest('article');
+      const preview = article.querySelector('.blog-preview-text');
+      const fullText = article.querySelector('.blog-full-text');
+      const label = btn.querySelector('.blog-toggle-label');
+      const arrow = btn.querySelector('.blog-toggle-arrow');
+      
+      if (fullText.classList.contains('hidden')) {
+        // Раскрыть
+        preview.classList.add('hidden');
+        fullText.classList.remove('hidden');
+        fullText.style.animation = 'fadeIn 0.3s ease-out';
+        label.textContent = 'Свернуть';
+        arrow.style.transform = 'rotate(90deg)';
+      } else {
+        // Свернуть
+        preview.classList.remove('hidden');
+        fullText.classList.add('hidden');
+        label.textContent = 'Читать далее';
+        arrow.style.transform = 'rotate(0deg)';
+      }
+    });
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

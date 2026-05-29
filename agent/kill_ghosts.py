@@ -1,5 +1,5 @@
+
 import psutil
-import os
 
 print("PID: name (cmdline)")
 killed = 0
