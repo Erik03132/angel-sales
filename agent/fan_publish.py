@@ -354,32 +354,50 @@ def _save_to_ok(pending: dict, env: dict) -> bool:
     return True
 
 
+# --- Определение типа поста ---
+def _is_poultry_post(text: str) -> bool:
+    """Проверяет, относится ли пост к цыплятам/утятам/птице."""
+    import re
+    poultry_keywords = [
+        r"\bцыплят", r"\bутят", r"\bбройлер", r"\bкуриц", r"\bкурам",
+        r"\bкуры\b", r"\bпетух", r"\bнесушк", r"\bиндюк", r"\bиндейк",
+        r"\bпород\w*\s+кур", r"\bинкубатор", r"\bвылуп", r"\bсуточн.*цып",
+        r"\bкормление.*цып", r"\bзабивать.*бройлер", r"\bубой.*бройлер",
+        r"\bутк\w*\s+на\s+мясо", r"\bптицевод",
+    ]
+    clean = text.lower()
+    for pattern in poultry_keywords:
+        if re.search(pattern, clean):
+            return True
+    return False
+
+
 # --- Публикация на сайт (ВезёмЦыплят) ---
 def _publish_site(pending: dict, env: dict) -> bool:
-    """Создаёт файл для публикации на vezemcip.ru (Astro)."""
+    """Создаёт файл для публикации на vezemcip.ru (только для птицы)."""
     from datetime import datetime
 
     post = pending["post"]
+    text = post["text"]
+
+    if not _is_poultry_post(text):
+        print("   ⏭️ Сайт: только для постов про цыплят/утят — пропущен")
+        return True
+
     now = datetime.now()
     slug = f"post-{now.strftime('%Y%m%d-%H%M')}"
 
-    # Создаём markdown-файл для Astro
-    site_content_dir = os.path.join(BASE_DIR, "..", "angel-web", "src", "content", "blog")
-    if not os.path.exists(site_content_dir):
-        # Fallback — сохраняем локально
-        site_content_dir = os.path.join(BASE_DIR, "data", "site_posts")
-        os.makedirs(site_content_dir, exist_ok=True)
+    site_content_dir = os.path.join(BASE_DIR, "data", "site_posts")
+    os.makedirs(site_content_dir, exist_ok=True)
 
     filepath = os.path.join(site_content_dir, f"{slug}.md")
 
-    # Извлекаем заголовок из первой строки
-    lines = post["text"].split("\n")
+    lines = text.split("\n")
     title = lines[0].strip()[:100] if lines else "Новый пост"
-    # Убираем эмодзи для SEO-friendly title
     import re
     clean_title = re.sub(r'[^\w\s\-,.:!?]', '', title).strip()
 
-    body = "\n".join(lines[1:]).strip() if len(lines) > 1 else post["text"]
+    body = "\n".join(lines[1:]).strip() if len(lines) > 1 else text
 
     content = f"""---
 title: "{clean_title}"

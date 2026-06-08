@@ -50,7 +50,7 @@ BRANDS = {
         "dzen_bridge": ENV.get("DZEN_BRIDGE_CHANNEL_ID", "@podvorye_dzen"),
         "vk_group_id": ENV.get("VK_PODVORYE_GROUP_ID", ""),
         "vk_token": ENV.get("VK_PODVORYE_TOKEN", ""),
-        "platforms": ["tg", "vk", "dzen", "ok"],
+        "platforms": ["tg", "vk", "dzen", "ok", "site"],
         "generator": "tikhon",
     },
     "vezemcyp": {
