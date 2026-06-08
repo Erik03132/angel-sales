@@ -325,7 +325,7 @@ def _publish_vk(pending: dict, env: dict) -> bool:
 
 # --- Сохранение в OK (для ручного размещения) ---
 def _save_to_ok(pending: dict, env: dict) -> bool:
-    """Сохраняет пост в ok/ для ручной публикации в Одноклассниках."""
+    """Сохраняет пост в data/ok_posts/ для ручной публикации в ОК."""
     from datetime import datetime
 
     post = pending["post"]
@@ -334,17 +334,15 @@ def _save_to_ok(pending: dict, env: dict) -> bool:
     folder_name = now.strftime("%Y-%m-%d_%H%M")
     brand_key = pending.get("brand", "podvorye")
 
-    ok_dir = os.path.join(BASE_DIR, "..", "ok", brand_key, folder_name)
+    ok_dir = os.path.join(BASE_DIR, "data", "ok_posts", brand_key, folder_name)
     os.makedirs(ok_dir, exist_ok=True)
 
     lines = post["text"].split("\n")
     title = lines[0].strip()[:100] if lines else "Новый пост"
     body = "\n".join(lines[1:]).strip() if len(lines) > 1 else post["text"]
-    content = f"{title}\n\n{body}"
 
-    post_path = os.path.join(ok_dir, "post.txt")
-    with open(post_path, "w", encoding="utf-8") as f:
-        f.write(content)
+    with open(os.path.join(ok_dir, "post.txt"), "w", encoding="utf-8") as f:
+        f.write(f"{title}\n\n{body}")
 
     if photo_path and os.path.exists(photo_path):
         import shutil
