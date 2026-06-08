@@ -83,12 +83,17 @@ def _publish_tg(pending: dict, env: dict) -> bool:
     caption = post["text"][:1024]
     base_url = f"https://api.telegram.org/bot{bot_token}"
 
+    PROXY = env.get("TELEGRAM_PROXY", "")
+    PROXY_FLAG = ["--proxy", PROXY] if PROXY else []
+    RESOLVE = ["--resolve", "api.telegram.org:443:149.154.167.220"]
+
     try:
         if photo_path and os.path.exists(photo_path):
             cmd = [
                 "curl", "-s", "--max-time", "30",
-                "-F", f"chat_id={channel_id}",
-                "-F", f"caption={caption}",
+                *RESOLVE, *PROXY_FLAG,
+                "--form-string", f"chat_id={channel_id}",
+                "--form-string", f"caption={caption}",
                 "-F", "parse_mode=HTML",
                 "-F", f"photo=@{photo_path}",
                 f"{base_url}/sendPhoto",
@@ -101,6 +106,7 @@ def _publish_tg(pending: dict, env: dict) -> bool:
             })
             cmd = [
                 "curl", "-s", "--max-time", "15",
+                *RESOLVE, *PROXY_FLAG,
                 "-H", "Content-Type: application/json",
                 "-d", body,
                 f"{base_url}/sendMessage",
@@ -145,36 +151,45 @@ def _publish_dzen(pending: dict, env: dict) -> bool:
     caption = text[:1024]
     base_url = f"https://api.telegram.org/bot{bot_token}"
 
+    PROXY = env.get("TELEGRAM_PROXY", "")
+    PROXY_FLAG = ["--proxy", PROXY] if PROXY else []
+    RESOLVE = ["--resolve", "api.telegram.org:443:149.154.167.220"]
+
     try:
         if photo_path and os.path.exists(photo_path):
-            cmd = [
+            cmd_photo = [
                 "curl", "-s", "--max-time", "30",
-                "-F", f"chat_id={dzen_channel}",
-                "-F", f"caption={caption}",
-                "-F", "parse_mode=HTML",
+                *RESOLVE, *PROXY_FLAG,
+                "--form-string", f"chat_id={dzen_channel}",
                 "-F", f"photo=@{photo_path}",
                 f"{base_url}/sendPhoto",
             ]
-        else:
-            body = json.dumps({
-                "chat_id": dzen_channel,
-                "text": caption,
-                "parse_mode": "HTML",
-            })
-            cmd = [
-                "curl", "-s", "--max-time", "15",
-                "-H", "Content-Type: application/json",
-                "-d", body,
-                f"{base_url}/sendMessage",
-            ]
+            r = subprocess.run(cmd_photo, capture_output=True, timeout=35)
+            resp = json.loads(r.stdout) if r.stdout else {}
+            if not resp.get("ok"):
+                print(f"   ❌ Дзен фото: {resp.get('description', 'unknown')}")
+                return False
+            print(f"   ✅ Фото в Дзен")
 
-        result = subprocess.run(cmd, capture_output=True, timeout=35)
-        resp = json.loads(result.stdout)
+        body = json.dumps({
+            "chat_id": dzen_channel,
+            "text": caption,
+            "parse_mode": "HTML",
+        })
+        cmd_text = [
+            "curl", "-s", "--max-time", "15",
+            *RESOLVE, *PROXY_FLAG,
+            "-H", "Content-Type: application/json",
+            "-d", body,
+            f"{base_url}/sendMessage",
+        ]
+        r = subprocess.run(cmd_text, capture_output=True, timeout=20)
+        resp = json.loads(r.stdout) if r.stdout else {}
         if resp.get("ok"):
             print(f"   ✅ Дзен-мост {dzen_channel}")
             return True
         else:
-            print(f"   ❌ Дзен: {resp.get('description', 'unknown error')}")
+            print(f"   ❌ Дзен текст: {resp.get('description', 'unknown error')}")
             return False
     except Exception as e:
         print(f"   ❌ Дзен: {e}")
@@ -203,8 +218,8 @@ def _clean_text(text: str) -> str:
 
 def _adapt_text_for_vk(text: str) -> str:
     """
-    Адаптация текста под формат ВК (жирный через ** **).
-    Жирным выделяются: заголовок статьи + заголовки разделов (строки с эмодзи).
+    Адаптация текста под формат ВК.
+    Заголовки: ЗАГЛАВНЫМИ БУКВАМИ (работает везде, не зависит от VK Markdown).
     """
     result = _clean_text(text)
 
@@ -217,12 +232,13 @@ def _adapt_text_for_vk(text: str) -> str:
             adapted.append(line)
             continue
 
-        already_bold = stripped.startswith('**') or stripped.startswith('<b>')
+        if stripped.startswith('#'):
+            adapted.append(line)
+            continue
 
-        if i == 0:
-            adapted.append(f'**{stripped}**' if not already_bold else stripped)
-        elif stripped[0] in HEADER_EMOJIS and len(stripped) < 150:
-            adapted.append(f'**{stripped}**' if not already_bold else stripped)
+        is_header = (i == 0) or (stripped[0] in HEADER_EMOJIS and len(stripped) < 150)
+        if is_header:
+            adapted.append(stripped.upper())
         else:
             adapted.append(line)
 

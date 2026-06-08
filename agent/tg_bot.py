@@ -34,14 +34,23 @@ os.makedirs(LOG_DIR, exist_ok=True)
 HISTORY_LOG_PATH = os.path.join(LOG_DIR, "history.md")
 
 # Буфер pending_posts (для morning_post.py)
-PENDING_DIR = os.path.join(BASE_DIR, "ai-eggs", "data", "pending_posts")
+PENDING_DIR = os.path.join(BASE_DIR, "data", "pending_posts")
 
-# 3. Бот (Прямое соединение)
-PROXY_URL = ""
+# 3. Бот (через SOCKS5 — прямой доступ к TG заблокирован)
+PROXY_URL = os.getenv("TELEGRAM_PROXY", "")
 
 def _make_session(proxy_url: str):
-    """Создаём стандартную сессию. Прямое соединение (прокси не нужен)."""
-    print("✅ Сессия запущена (Прямое соединение, timeout=120)")
+    """Создаём сессию с SOCKS5 прокси (прямое соединение не работает из РФ)."""
+    if proxy_url and (proxy_url.startswith("socks5://") or proxy_url.startswith("socks5h://")):
+        try:
+            proxy_print = proxy_url.split("@")[-1] if "@" in proxy_url else proxy_url
+            session = AiohttpSession(proxy=proxy_url, timeout=120.0)
+            print(f"  🔌 Сессия через SOCKS5 ({proxy_print}), timeout=120")
+            return session
+        except Exception as e:
+            print(f"  ⚠️ SOCKS5 не подключился ({e}), падаю на прямое соединение")
+
+    print("  ✅ Прямое соединение, timeout=120")
     return AiohttpSession(timeout=120.0)
 
 

@@ -38,7 +38,9 @@ def generate_leonardo(keywords: str, api_key: str) -> str | None:
         "blurry, low quality, pixelated, "
         "cartoon, illustration, drawing, painting, digital art, "
         "surreal, abstract, CGI, 3D render, anime, "
-        "oversaturated, neon colors"
+        "oversaturated, neon colors, "
+        "cowboy hat, cowboy boots, american flag, US style, Texas, "
+        "american farmer, american barn, american landscape"
     )
 
     headers = {
@@ -48,7 +50,9 @@ def generate_leonardo(keywords: str, api_key: str) -> str | None:
     prompt = (
         f"Professional editorial photograph for farming magazine. "
         f"{keywords}. "
-        f"Russian homestead, natural daylight, warm tones. "
+        f"Realistic Russian homestead, Russian countryside, Slavic rural setting. "
+        f"Natural daylight, warm tones. "
+        f"No american style, no cowboy hats, no US farm aesthetic. "
         f"Shot on Canon EOS R5, 35mm lens, f/5.6. "
         f"Editorial magazine quality, realistic, high detail."
     )
@@ -100,6 +104,16 @@ def generate_leonardo(keywords: str, api_key: str) -> str | None:
         print(f"  ❌ Leonardo: {str(e)[:100]}")
         return None
 
+
+# ─── VK API с retry ───────────────────────────────────────────────────────
+
+def _vk_api_call(method: str, params: dict, token: str, timeout: int = 15) -> dict:
+    """Вызов VK API через curl с retry (3 попытки на транспорт)."""
+    params["access_token"] = token
+    params["v"] = "5.199"
+    url = f"https://api.vk.com/method/{method}"
+    raw = _curl_post(url, data=params, timeout=timeout, retries=3)
+    return json.loads(raw)
 
 # ─── curl-транспорт с retry (устойчив к нестабильности VPN) ──────────────────
 import time
@@ -380,63 +394,75 @@ def download_photo(url: str) -> str | None:
 
 
 def upload_photo_to_vk(photo_path: str, vk_token: str, vk_group_id: str) -> str | None:
-    """Загружает фото на VK сервер через curl."""
-    VK_V = "5.199"
+    """
+    Загружает фото на VK сервер.
+    3 попытки на VK API уровне — устойчив к rate limit и временным ошибкам.
+    Постоянные ошибки (неверный токен, доступ) не ретраятся.
+    """
+    _PERMANENT_CODES = {5, 15, 121, 200, 201, 203, 214, 220, 221}
 
-    def vk_call(method, params):
-        params["access_token"] = vk_token
-        params["v"] = VK_V
-        url = f"https://api.vk.com/method/{method}"
-        cmd = [
-            "curl", "-s",
-            "--max-time", "15",
-            "--connect-timeout", "6",
-            url,
-        ]
-        for k, v in params.items():
-            cmd += ["-d", f"{k}={urllib.parse.quote(str(v))}"]
-        result = subprocess.run(cmd, capture_output=True, timeout=20)
-        if result.returncode != 0:
-            raise OSError(f"VK API curl error: {result.stderr.decode()[:100]}")
-        return json.loads(result.stdout)
+    for attempt in range(1, 4):
+        try:
+            # 1. Получаем URL для загрузки
+            upload_data = _vk_api_call("photos.getWallUploadServer", {"group_id": vk_group_id}, vk_token)
+            if "error" in upload_data:
+                code = upload_data["error"].get("error_code", 0)
+                msg = upload_data["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"❌ VK getWallUploadServer: {msg}")
+                    return None
+                print(f"⚠️ VK getWallUploadServer ({code}), попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+            upload_url = upload_data["response"]["upload_url"]
 
-    try:
-        # 1. Получаем URL для загрузки
-        upload_data = vk_call("photos.getWallUploadServer", {"group_id": vk_group_id})
-        if "error" in upload_data:
-            print(f"❌ VK getWallUploadServer: {upload_data['error']['error_msg']}")
-            return None
-        upload_url = upload_data["response"]["upload_url"]
+            # 2. Загружаем файл (3 retry внутри _curl_upload)
+            upload_result = json.loads(
+                _curl_upload(upload_url, "photo", photo_path, timeout=30)
+            )
+            if not upload_result.get("photo"):
+                print(f"⚠️ VK upload: пустой ответ, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
 
-        # 2. Загружаем файл через curl multipart
-        upload_result = json.loads(
-            _curl_upload(upload_url, "photo", photo_path, timeout=30)
-        )
+            # 3. Сохраняем фото
+            save_result = _vk_api_call("photos.saveWallPhoto", {
+                "group_id": vk_group_id,
+                "photo": upload_result["photo"],
+                "server": upload_result["server"],
+                "hash": upload_result["hash"],
+            }, vk_token)
 
-        # 3. Сохраняем фото
-        save_result = vk_call("photos.saveWallPhoto", {
-            "group_id": vk_group_id,
-            "photo": upload_result.get("photo", ""),
-            "server": upload_result.get("server", ""),
-            "hash": upload_result.get("hash", ""),
-        })
+            if "error" in save_result:
+                code = save_result["error"].get("error_code", 0)
+                msg = save_result["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"❌ VK saveWallPhoto: {msg}")
+                    return None
+                print(f"⚠️ VK saveWallPhoto ({code}), попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
 
-        if "error" in save_result:
-            print(f"❌ VK saveWallPhoto: {save_result['error']['error_msg']}")
-            return None
+            photos = save_result.get("response", [])
+            if not photos:
+                print(f"⚠️ VK saveWallPhoto: пустой ответ, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
 
-        photos = save_result.get("response", [])
-        if photos:
             p = photos[0]
             attachment = f"photo{p['owner_id']}_{p['id']}"
             print(f"✅ Фото загружено в VK: {attachment}")
+
             return attachment
 
-    except Exception as e:
-        print(f"❌ Ошибка загрузки фото в VK: {e}")
-    finally:
-        if os.path.exists(photo_path):
-            os.unlink(photo_path)
+        except Exception as e:
+            print(f"⚠️ Ошибка загрузки фото (попытка {attempt}): {e}")
+            if attempt < 3:
+                time.sleep(3)
 
     return None
 

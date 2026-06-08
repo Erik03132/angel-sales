@@ -17,6 +17,7 @@
 
 import json
 import os
+import subprocess
 import sys
 from datetime import datetime
 
@@ -138,7 +139,9 @@ def generate_photo(post_text: str, brand_key: str) -> str | None:
         r"\bиндюк\w*": "turkey poultry farming",
         r"\bутк\w*": "ducks on pond farm",
         r"\bгус\w*": "geese on farm pond",
+        r"\bкоз\w*": "goats on pasture farm animals",
         r"\bкролик\w*": "rabbits in wooden hutch farm",
+        r"\bпчел\w*": "beehives bees in apiary garden",
         r"\bсад\b": "fruit garden orchard spring summer",
         r"\bгрядк\w*": "raised garden beds vegetable garden",
         r"\bрассад\w*": "seedlings in greenhouse gardening",
@@ -146,9 +149,14 @@ def generate_photo(post_text: str, brand_key: str) -> str | None:
         r"\bяйц\w*": "chicken eggs nest basket poultry",
         r"\bкорм\w*": "chicken feed grain poultry feeding",
         r"\bкурятник\w*": "chicken coop interior poultry house",
-        r"\bпород\w*": "chicken breed poultry variety farm",
+        r"\bпород\w*": "farm animals livestock variety",
+        r"\bинкубатор\w*": "incubator with chicken eggs hatching, close-up view",
+        r"\bовоскоп\w*": "eggs candling inspection chicken farm",
+        r"\bнаседк\w*": "hen sitting on eggs in nest",
+        r"\bвылуп\w*": "baby chick hatching from egg shell, close-up",
+        r"\bсуточн\w*": "day old baby chicks in brooder under heat lamp",
     }
-    prompt_en = "countryside farm rural Russia homestead"
+    prompt_en = "russian countryside farm rural homestead, slavic village, central Russia, wooden house, birch trees, no american style, no cowboy"
     for pattern, en_prompt in topic_keywords.items():
         if _re.search(pattern, clean.lower()):
             prompt_en = en_prompt
@@ -251,13 +259,18 @@ def send_preview_to_admin(post_id: str) -> bool:
     post = pending["post"]
     photo_path = pending.get("photo_path")
 
-    # Формируем текст превью
+    # Формируем текст превью (первая строка — ЗАГЛАВНЫМИ)
+    post_text = post['text']
+    first_newline = post_text.find('\n')
+    if first_newline > 0:
+        post_text = post_text[:first_newline].upper() + post_text[first_newline:]
+
     platforms_str = " → ".join(pending["platforms"]).upper()
     caption = (
         f"{brand['emoji']} <b>{brand['name']}</b> | {post.get('rubric', '')}\n"
         f"📡 {platforms_str}\n"
         f"{'─' * 30}\n\n"
-        f"{post['text']}\n\n"
+        f"{post_text}\n\n"
         f"{'─' * 30}\n"
         f"⏰ {datetime.now().strftime('%d.%m.%Y %H:%M')}"
     )
@@ -270,7 +283,10 @@ def send_preview_to_admin(post_id: str) -> bool:
                 {"text": "🔄 Ещё", "callback_data": f"content_more:{post_id}"},
             ],
             [
+                {"text": "📡 Только TG", "callback_data": f"content_only:tg:{post_id}"},
                 {"text": "📡 Только Дзен", "callback_data": f"content_only:dzen:{post_id}"},
+            ],
+            [
                 {"text": "📡 Только VK", "callback_data": f"content_only:vk:{post_id}"},
             ],
             [
@@ -286,48 +302,52 @@ def send_preview_to_admin(post_id: str) -> bool:
         print("❌ ANGELOCHKA_BOT_TOKEN не найден!")
         return False
 
-    base_url = f"https://api.telegram.org/bot{bot_token}"
+    # ⚠️ api.telegram.org не резолвится через штатный DNS в РФ — используем --resolve + --proxy
+    PROXY = os.getenv("TELEGRAM_PROXY") or ENV.get("TELEGRAM_PROXY", "")
+    PROXY_FLAG = ["--proxy", PROXY] if PROXY else []
+    RESOLVE = ["--resolve", "api.telegram.org:443:149.154.167.220"]
+    BASE = f"https://api.telegram.org/bot{bot_token}"
 
-    import requests as req
-    proxy_url = ENV.get("TELEGRAM_PROXY", "")
-    proxies = {"https": proxy_url, "http": proxy_url} if proxy_url else None
     try:
         if photo_path and os.path.exists(photo_path):
-            # sendPhoto через requests с прокси (curl multipart нестабилен)
-            with open(photo_path, "rb") as img:
-                resp = req.post(
-                    f"{base_url}/sendPhoto",
-                    data={
-                        "chat_id": admin_id,
-                        "caption": f"📸 {brand['emoji']} {post.get('text','')[:80]}...",
-                        "parse_mode": "HTML",
-                    },
-                    files={"photo": img},
-                    timeout=90,
-                    proxies=proxies,
-                )
-            data = resp.json()
-            if not data.get("ok"):
-                print(f"⚠️ TG sendPhoto: {data.get('description', 'unknown')}")
+            cmd = [
+                "curl", "-s", "--max-time", "30",
+                *RESOLVE,
+                *PROXY_FLAG,
+                "-F", f"chat_id={admin_id}",
+                "-F", f"photo=@{photo_path}",
+                "-F", f"caption=📸 {brand['emoji']} {post.get('text','')[:80]}...",
+                f"{BASE}/sendPhoto",
+            ]
+            r = subprocess.run(cmd, capture_output=True, timeout=40)
+            d = json.loads(r.stdout)
+            if d.get("ok"):
+                print("  ✅ Фото отправлено")
+            else:
+                print(f"  ⚠️ TG sendPhoto: {d.get('description', 'unknown')}")
 
-        # Текст с кнопками — отдельным сообщением
-        resp2 = req.post(
-            f"{base_url}/sendMessage",
-            json={
-                "chat_id": admin_id,
-                "text": caption,
-                "parse_mode": "HTML",
-                "reply_markup": keyboard,
-            },
-            proxies=proxies,
-            timeout=30,
-        )
-        d2 = resp2.json()
-        if d2.get("ok"):
+        body = json.dumps({
+            "chat_id": admin_id,
+            "text": caption,
+            "parse_mode": "HTML",
+            "reply_markup": keyboard,
+        }, ensure_ascii=False)
+
+        cmd = [
+            "curl", "-s", "--max-time", "15",
+            *RESOLVE,
+            *PROXY_FLAG,
+            "-H", "Content-Type: application/json",
+            "-d", body,
+            f"{BASE}/sendMessage",
+        ]
+        r = subprocess.run(cmd, capture_output=True, timeout=20)
+        d = json.loads(r.stdout)
+        if d.get("ok"):
             print("📱 Текст + кнопки отправлены")
             return True
         else:
-            print(f"❌ TG sendMessage: {d2.get('description', 'unknown')}")
+            print(f"❌ TG sendMessage: {d.get('description', 'unknown')}")
             return False
 
     except Exception as e:
@@ -362,6 +382,9 @@ def is_valid_ok_post(post_text: str) -> bool:
         "🎥 СЦЕНАРИЙ",
         "ВИДЕОРОЛИК",
         "СЪЁМКА",
+        "ТЕМА ДЛЯ КЛИПА",
+        "ДЛЯ КЛИПА",
+        "🎥",
     ]
     
     first_lines = post_text.split('\n')[:5]  # Проверяем первые 5 строк
@@ -415,51 +438,10 @@ def load_ok_post(date_str: str) -> dict | None:
 
             photo_path = photo_file if os.path.exists(photo_file) else None
             
-            # Если фото нет — генерируем через каскад
+            # Если фото нет — генерируем через каскад (начало: Leonardo AI)
             if not photo_path:
                 print("   ⚠️ Фото не найдено — генерируем...")
-                env = load_env()
-                
-                # Извлекаем ключевые слова из текста
-                first_line = post_text.split('\n')[0][:60]
-                import re
-                keywords = re.sub(r'[^\w\sа-яё]', '', first_line).strip()
-                keywords = f"{keywords} farm poultry"
-                
-                # Каскад: Imagen → Unsplash → Pexels → Pixabay
-                from photo_cascade import (
-                    download_photo,
-                    fetch_pexels,
-                    fetch_unsplash,
-                    generate_imagen,
-                )
-                
-                # Пробуем Imagen 4.0
-                gemini_key = env.get("GEMINI_API_KEY") or env.get("GEMINI_PRO_API_KEY")
-                proxy = env.get("TELEGRAM_PROXY", "")
-                
-                if gemini_key and proxy:
-                    photo_path = generate_imagen(keywords, gemini_key, proxy)
-                    if photo_path:
-                        print("   ✅ Imagen 4.0")
-                
-                # Fallback на Unsplash
-                if not photo_path:
-                    unsplash_key = env.get("UNSPLASH_ACCESS_KEY", "")
-                    if unsplash_key:
-                        url = fetch_unsplash(keywords, unsplash_key)
-                        if url:
-                            photo_path = download_photo(url)
-                            print("   ✅ Unsplash")
-                
-                # Fallback на Pexels
-                if not photo_path:
-                    pexels_key = env.get("PEXELS_API_KEY", "")
-                    if pexels_key:
-                        url = fetch_pexels(keywords, pexels_key)
-                        if url:
-                            photo_path = download_photo(url)
-                            print("   ✅ Pexels")
+                photo_path = generate_photo(post_text, "podvorye")
                 
                 # Сохраняем в папку ОК
                 if photo_path:
@@ -483,6 +465,33 @@ def load_ok_post(date_str: str) -> dict | None:
 def mark_ok_published(folder_name: str):
     """Помечает пост как опубликованный (просто лог)"""
     print(f"   📝 {folder_name} → опубликовано")
+
+
+def _load_content_plan(brand_key: str = "podvorye") -> str | None:
+    """Читает контент-план и возвращает тему на сегодня."""
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    month = datetime.now().month
+    plan_files = {
+        5: "month1_content_plan.md",   # май
+        6: "month2_content_plan.md",   # июнь
+    }
+    plan_file = plan_files.get(month, "month1_content_plan.md")
+    plan_path = os.path.join(base, "vk_content", brand_key, plan_file)
+    if not os.path.exists(plan_path):
+        plan_path = os.path.join(base, "vk_content", brand_key, "month1_content_plan.md")
+    if not os.path.exists(plan_path):
+        return None
+
+    today = datetime.now().strftime("%d.%m")
+    with open(plan_path) as f:
+        for line in f:
+            line = line.strip()
+            if today in line and "—" in line and line.startswith("###"):
+                topic = line.split("—", 1)[-1].strip()
+                topic = topic.strip("«»\"'")
+                print(f"   📅 Контент-план → {topic}")
+                return topic
+    return None
 
 
 def morning_generate(brand_key: str = "podvorye", topic: str = None) -> str | None:
@@ -517,6 +526,10 @@ def morning_generate(brand_key: str = "podvorye", topic: str = None) -> str | No
     else:
         # ❌ Генерируем новое
         print("   ⚠️ Не найдено — генерируем новое...")
+
+        # Берём тему из контент-плана, если не задана явно
+        if not topic:
+            topic = _load_content_plan(brand_key)
         
         print("📝 Генерация текста...")
         post = generate_post_text(brand_key, topic)
