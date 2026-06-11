@@ -86,7 +86,7 @@ DIGEST_STATE_FILE = os.path.join(BASE_DIR, "data", "habr_digest_state.json")
 
 def fetch_hub_rss(hub_name, max_items=20):
     """Получить статьи из RSS хаба."""
-    url = f"https://habr.com/ru/rss/hub/{hub_name}/all/"
+    url = f"https://habr.com/ru/rss/hubs/{hub_name}/"
     try:
         resp = requests.get(url, timeout=15, headers={
             "User-Agent": "Antigravity-HabrDigest/1.0"

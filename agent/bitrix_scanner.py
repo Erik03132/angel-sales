@@ -34,6 +34,26 @@ TRULY_FORGOTTEN_STAGES = {"NEW", "8"}
 
 # --- Helpers ---
 
+def get_deal_amount(deal: dict) -> tuple:
+    """SSoT: сумма сделки с приоритетом данных 1С.
+    
+    Правило (SSOT_REPORTS.md, 11.06.2026):
+    1. Если есть UF_CRM_1641882450 (факт оплаты из 1С) → берём его
+    2. Иначе → OPPORTUNITY (план из Bitrix)
+    
+    Returns: (amount: float, source: str)
+    """
+    paid_1c = deal.get("UF_CRM_1641882450", "")
+    if paid_1c:
+        try:
+            val = float(str(paid_1c).replace(" ", "").replace(",", "."))
+            if val > 0:
+                return val, "1С"
+        except (ValueError, TypeError):
+            pass
+    opp = float(deal.get("OPPORTUNITY", 0) or 0)
+    return opp, "Bitrix"
+
 def bitrix_call(method, params=None):
     """Вызов Bitrix24 REST API."""
     url = f"{BITRIX_URL}/{method}"
@@ -542,7 +562,7 @@ def run_scan():
         "deals": {
             "count": len(deals),
             "items": deals[:50],  # Не храним больше 50 за раз
-            "total_amount": sum(float(d.get("OPPORTUNITY", 0) or 0) for d in deals)
+            "total_amount": sum(get_deal_amount(d)[0] for d in deals)
         },
         "activities": {
             "total": len(activities["all"]),
@@ -583,11 +603,27 @@ def run_scan():
                 paid_amount += float(str(paid_sum).replace(" ", "").replace(",", "."))
             except (ValueError, TypeError):
                 pass
+    # Расхождения план (Bitrix) vs факт (1С)
+    mismatches = []
+    for d in deals:
+        amt_1c, src = get_deal_amount(d)
+        amt_bx = float(d.get("OPPORTUNITY", 0) or 0)
+        if src == "1С" and abs(amt_1c - amt_bx) > 1.0:
+            mismatches.append({
+                "deal_id": d.get("ID"),
+                "title": d.get("TITLE", "")[:50],
+                "bitrix_sum": amt_bx,
+                "1c_sum": amt_1c,
+                "diff": amt_bx - amt_1c,
+            })
+    
     scan_result["payment_summary"] = {
         "paid_count": paid_count,
         "paid_amount": paid_amount,
         "total_count": len(deals),
         "total_amount": scan_result["deals"]["total_amount"],
+        "mismatches": mismatches,  # Расхождения Bitrix vs 1С
+        "mismatch_count": len(mismatches),
     }
 
     # Статистика по менеджерам
@@ -598,7 +634,7 @@ def run_scan():
         if mgr_name not in manager_stats:
             manager_stats[mgr_name] = {"deals": 0, "amount": 0}
         manager_stats[mgr_name]["deals"] += 1
-        manager_stats[mgr_name]["amount"] += float(deal.get("OPPORTUNITY", 0) or 0)
+        manager_stats[mgr_name]["amount"] += get_deal_amount(deal)[0]
 
     for act in activities["calls"]:
         mgr_id = str(act.get("RESPONSIBLE_ID", "?"))
