@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Get VK user token via Android app credentials (not IP-bound)."""
-import json, subprocess, urllib.parse, os, re
+import json
+import os
+import re
+import subprocess
+import urllib.parse
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(os.path.dirname(BASE), ".env")
@@ -17,10 +21,14 @@ if os.path.exists(ENV_PATH):
 login = env.get("VK_LOGIN", "")
 password = env.get("VK_PASS", "")
 
-# VK Android app credentials (public)
-client_id = "2274003"
-client_secret = "hHbZxrka2uZ6jB1inYsH"
-scope = "photos,wall,groups,offline"
+# VK Android app credentials (from .env, fallback to public defaults)
+client_id = env.get("VK_CLIENT_ID", "2274003")
+client_secret = env.get("VK_CLIENT_SECRET", "")
+scope = env.get("VK_SCOPE", "photos,wall,groups,offline")
+
+if not client_secret:
+    print("❌ Ошибка: VK_CLIENT_SECRET не найден в .env")
+    exit(1)
 
 url = f"https://oauth.vk.com/token?grant_type=password&client_id={client_id}&client_secret={client_secret}&username={urllib.parse.quote(login)}&password={urllib.parse.quote(password)}&scope={scope}&v=5.199"
 cmd = ["curl", "-s", "-L", "--max-time", "15", url]
