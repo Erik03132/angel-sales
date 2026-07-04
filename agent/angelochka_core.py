@@ -1562,3 +1562,25 @@ def _log_trace(query, answer, breed_resolved, faq_hit, role):
     except Exception as e:
         print(f"⚠️ Trace logging failed: {e}")
 
+
+# ═══════════════════════════════════════════════════════════════
+# MULTI-AGENT SYSTEM (Optional - 70/30 workflow/autonomy)
+# Based on: https://habr.com/ru/companies/alpinadigital/articles/1054436/
+# ═══════════════════════════════════════════════════════════════
+
+_USE_MULTI_AGENT = os.getenv("USE_MULTI_AGENT", "false").lower() == "true"
+_orchestrator = None
+
+def _get_orchestrator():
+    """Lazy init of multi-agent orchestrator"""
+    global _orchestrator
+    if _orchestrator is None:
+        try:
+            from angela_agents import AngelaOrchestrator
+            _orchestrator = AngelaOrchestrator()
+            print("✅ Multi-Agent system loaded (Router + KB + Generator)")
+        except Exception as e:
+            print(f"⚠️ Multi-Agent load failed: {e}, using legacy")
+            _orchestrator = False  # Mark as failed
+    return _orchestrator if _orchestrator is not False else None
+
