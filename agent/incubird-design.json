@@ -1,0 +1,41 @@
+{
+  "name": "IncuBird",
+  "theme": "warm",
+  "colors": [
+    {"name": "Wheat", "value": "#f5e6ca", "token": "--color-wheat", "role": "Page background, warm base"},
+    {"name": "Olive", "value": "#7a9e5a", "token": "--color-olive", "role": "Primary accent, CTAs"},
+    {"name": "Terracotta", "value": "#c4724a", "token": "--color-terracotta", "role": "Secondary accent, highlights"},
+    {"name": "Soil", "value": "#4a3728", "token": "--color-soil", "role": "Body text, headings"},
+    {"name": "Cream", "value": "#faf3e8", "token": "--color-cream", "role": "Card surfaces, elevated backgrounds"},
+    {"name": "Sage", "value": "#b8c9a8", "token": "--color-sage", "role": "Borders, dividers, muted accents"},
+    {"name": "Honey", "value": "#d4a853", "token": "--color-honey", "role": "Warnings, ratings, stars"},
+    {"name": "White", "value": "#ffffff", "token": "--color-white", "role": "Contrast text on dark backgrounds"}
+  ],
+  "typography": {
+    "font_primary": "Manrope, sans-serif",
+    "font_heading": "PT Serif, serif",
+    "font_mono": "JetBrains Mono, monospace",
+    "weights": {"light": 300, "regular": 400, "medium": 500, "bold": 700},
+    "scale": {
+      "display": "72px", "h1": "48px", "h2": "32px",
+      "h3": "24px", "body": "16px", "body_sm": "14px", "caption": "12px"
+    }
+  },
+  "spacing": {
+    "base": 4, "scale": [4, 8, 12, 16, 24, 32, 48, 64, 96],
+    "card_padding": 24, "section_gap": 64, "element_gap": 8, "max_width": "1200px"
+  },
+  "components": {
+    "button": {"radius": 8, "padding": "12px 24px", "font_weight": 500},
+    "card": {"radius": 12, "padding": 24, "shadow": "0 2px 8px rgba(74, 55, 40, 0.08)"},
+    "input": {"radius": 8, "padding": "12px 16px", "border": "1px solid #b8c9a8"},
+    "badge": {"radius": 4, "padding": "2px 8px", "font_size": "12px"}
+  },
+  "guidelines": [
+    "Use warm earth tones — avoid cold blues and grays",
+    "PT Serif for headings, Manrope for body",
+    "Generous whitespace — rural brands should feel open, not cramped",
+    "Rounded corners (8-12px) for approachability",
+    "Subtle shadows with warm undertones (rgba with brown shift)"
+  ]
+}
