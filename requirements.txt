@@ -13,3 +13,4 @@ flask==3.0.0
 markdown2==2.4.12
 schedule==1.2.1
 pysocks==1.7.1
+edge-tts==7.2.8

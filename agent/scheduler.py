@@ -326,7 +326,7 @@ def main():
             task_key = f"{today}-habr"
             if hour == DIGEST_HOUR and minute < 5 and task_key not in executed_today:
                 log("📰 HABR DIGEST (→ Игорю)...")
-                run_script("habr_digest.py", timeout=120)
+                run_script("habr_intelligence.py", timeout=300)
                 executed_today.add(task_key)
 
             # --- УТРЕННИЙ ОТЧЁТ НОЧНОГО АУДИТА (08:00 MSK) → Игорю ---

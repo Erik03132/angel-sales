@@ -169,7 +169,7 @@ def _publish_dzen(pending: dict, env: dict) -> bool:
             if not resp.get("ok"):
                 print(f"   ❌ Дзен фото: {resp.get('description', 'unknown')}")
                 return False
-            print(f"   ✅ Фото в Дзен")
+            print("   ✅ Фото в Дзен")
 
         body = json.dumps({
             "chat_id": dzen_channel,

@@ -12,7 +12,9 @@
 import json
 import os
 import re
+import subprocess
 import tempfile
+import urllib.parse
 import urllib.request
 
 try:
@@ -46,76 +48,102 @@ def load_env(path=None):
 
 
 # ═══════════════════════════════════════════════
-# Каскадный поиск фото (Unsplash → Pexels → Pixabay)
+# Каскадный поиск фото (Unsplash → Pexels → Pixabay) через curl + прокси
 # ═══════════════════════════════════════════════
 
-def _fetch_unsplash(keywords, api_key):
+def _curl_get(url, proxy, auth_header=None):
+    """curl GET с поддержкой SOCKS5 прокси. Возвращает response body или None."""
+    cmd = ["curl", "-s", "--max-time", "15", "--connect-timeout", "10"]
+    if proxy:
+        cmd.extend(["--proxy", proxy])
+    if auth_header:
+        cmd.extend(["-H", auth_header])
+    cmd.append(url)
     try:
-        import urllib.parse
-        query = urllib.parse.quote(keywords)
-        url = f"https://api.unsplash.com/search/photos?query={query}&per_page=1&orientation=landscape"
-        req = urllib.request.Request(url)
-        req.add_header("Authorization", f"Client-ID {api_key}")
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            results = data.get("results", [])
-            if results:
-                return results[0]["urls"]["regular"]
+        result = subprocess.run(cmd, capture_output=True, timeout=20)
+        if result.returncode == 0 and result.stdout:
+            return result.stdout.decode("utf-8")
     except Exception as e:
-        print(f"⚠️ Unsplash: {e}")
+        print(f"⚠️ curl error: {e}")
     return None
 
 
-def _fetch_pexels(keywords, api_key):
+def _fetch_unsplash(keywords, api_key, proxy):
+    query = urllib.parse.quote(keywords)
+    url = f"https://api.unsplash.com/search/photos?query={query}&per_page=1&orientation=landscape"
+    resp = _curl_get(url, proxy, f"Authorization: Client-ID {api_key}")
+    if not resp:
+        return None
     try:
-        import urllib.parse
-        query = urllib.parse.quote(keywords)
-        url = f"https://api.pexels.com/v1/search?query={query}&per_page=1"
-        req = urllib.request.Request(url)
-        req.add_header("Authorization", api_key)
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            photos = data.get("photos", [])
-            if photos:
-                return photos[0]["src"]["large"]
+        data = json.loads(resp)
+        results = data.get("results", [])
+        if results:
+            return results[0]["urls"]["regular"]
     except Exception as e:
-        print(f"⚠️ Pexels: {e}")
+        print(f"⚠️ Unsplash parse: {e}")
     return None
 
 
-def _fetch_pixabay(keywords, api_key):
+def _fetch_pexels(keywords, api_key, proxy):
+    query = urllib.parse.quote(keywords)
+    url = f"https://api.pexels.com/v1/search?query={query}&per_page=1"
+    resp = _curl_get(url, proxy, f"Authorization: {api_key}")
+    if not resp:
+        return None
     try:
-        import urllib.parse
-        query = urllib.parse.quote(keywords)
-        url = f"https://pixabay.com/api/?key={api_key}&q={query}&image_type=photo&per_page=3&lang=ru"
-        with urllib.request.urlopen(url, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            hits = data.get("hits", [])
-            if hits:
-                return hits[0]["webformatURL"]
+        data = json.loads(resp)
+        photos = data.get("photos", [])
+        if photos:
+            return photos[0]["src"]["large"]
     except Exception as e:
-        print(f"⚠️ Pixabay: {e}")
+        print(f"⚠️ Pexels parse: {e}")
     return None
 
 
-def _download_photo(url):
-    """Скачивает фото во временный файл."""
+def _fetch_pixabay(keywords, api_key, proxy):
+    query = urllib.parse.quote(keywords)
+    url = f"https://pixabay.com/api/?key={api_key}&q={query}&image_type=photo&per_page=3&lang=ru"
+    resp = _curl_get(url, proxy)
+    if not resp:
+        return None
     try:
-        req = urllib.request.Request(url)
-        req.add_header("User-Agent", "Mozilla/5.0")
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            suffix = ".png" if "png" in url.lower() else ".jpg"
-            tmp = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
-            tmp.write(resp.read())
-            tmp.close()
-            return tmp.name
+        data = json.loads(resp)
+        hits = data.get("hits", [])
+        if hits:
+            return hits[0]["webformatURL"]
+    except Exception as e:
+        print(f"⚠️ Pixabay parse: {e}")
+    return None
+
+
+def _download_photo(url, proxy):
+    """Скачивает фото через curl+прокси во временный файл."""
+    suffix = ".png" if "png" in url.lower() else ".jpg"
+    tmp = tempfile.NamedTemporaryFile(delete=False, suffix=suffix)
+    tmp_path = tmp.name
+    tmp.close()
+
+    cmd = ["curl", "-sL", "--max-time", "20", "--connect-timeout", "10"]
+    if proxy:
+        cmd.extend(["--proxy", proxy])
+    cmd.extend(["-o", tmp_path, url])
+
+    try:
+        result = subprocess.run(cmd, capture_output=True, timeout=25)
+        if result.returncode == 0 and os.path.getsize(tmp_path) > 1024:
+            return tmp_path
+        print(f"⚠️ Скачать фото не удалось: curl={result.returncode}, size={os.path.getsize(tmp_path) if os.path.exists(tmp_path) else 0}")
     except Exception as e:
         print(f"⚠️ Скачать фото не удалось: {e}")
+
+    if os.path.exists(tmp_path):
+        os.unlink(tmp_path)
     return None
 
 
 def fetch_photo_cascade(keywords, env):
     """Каскадный поиск фото. Возвращает путь к tmp-файлу или None."""
+    proxy = env.get("TELEGRAM_PROXY", "")
     for fetcher, key_name, name in [
         (_fetch_unsplash, "UNSPLASH_ACCESS_KEY", "Unsplash"),
         (_fetch_pexels, "PEXELS_API_KEY", "Pexels"),
@@ -124,10 +152,10 @@ def fetch_photo_cascade(keywords, env):
         api_key = env.get(key_name, "")
         if not api_key:
             continue
-        photo_url = fetcher(keywords, api_key)
+        photo_url = fetcher(keywords, api_key, proxy)
         if photo_url:
             print(f"📷 {name}: нашли фото → {photo_url[:60]}...")
-            path = _download_photo(photo_url)
+            path = _download_photo(photo_url, proxy)
             if path:
                 return path
     return None
@@ -182,23 +210,28 @@ class VKPoster:
 
     def upload_photo(self, photo_path):
         """
-        Загрузка фото на стену группы.
+        Загрузка фото на стену группы (3 попытки).
         Возвращает attachment-строку 'photo-GID_PID' или None.
         """
         if not photo_path or not os.path.exists(photo_path):
             return None
-        try:
-            photos = self.upload.photo_wall(
-                photo_path,
-                group_id=int(self.group_id)
-            )
-            if photos:
-                p = photos[0]
-                attachment = f"photo{p['owner_id']}_{p['id']}"
-                print(f"📸 Фото загружено: {attachment}")
-                return attachment
-        except Exception as e:
-            print(f"❌ Ошибка загрузки фото: {e}")
+        for attempt in range(1, 4):
+            try:
+                photos = self.upload.photo_wall(
+                    photo_path,
+                    group_id=int(self.group_id)
+                )
+                if photos:
+                    p = photos[0]
+                    attachment = f"photo{p['owner_id']}_{p['id']}"
+                    print(f"📸 Фото загружено: {attachment}")
+                    return attachment
+                print(f"⚠️ Пустой ответ, попытка {attempt}")
+            except Exception as e:
+                print(f"⚠️ Ошибка загрузки фото (попытка {attempt}): {e}")
+            if attempt < 3:
+                import time
+                time.sleep(3)
         return None
 
     def upload_photo_from_url(self, keywords, group_name=""):

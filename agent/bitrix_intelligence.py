@@ -24,6 +24,11 @@ from dotenv import load_dotenv
 load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 BITRIX_URL = os.getenv("PRODUCTION_BITRIX_WEBHOOK_URL", "").rstrip("/")
+if not BITRIX_URL or not BITRIX_URL.startswith("https://"):
+    raise EnvironmentError(
+        "❌ PRODUCTION_BITRIX_WEBHOOK_URL не задан или не начинается с https://. "
+        "Проверь .env файл!"
+    )
 INTEL_PATH = os.path.join(DATA_DIR, 'intelligence_digest.json')
 INTEL_MD_PATH = os.path.join(DATA_DIR, 'intelligence_digest.md')
 KNOWLEDGE_PATH = os.path.join(DATA_DIR, 'expert_knowledge.md')
@@ -40,9 +45,19 @@ def log(msg):
 def bx_post(method, params=None):
     """POST-запрос к Bitrix24 REST API."""
     try:
-        resp = requests.post(f"{BITRIX_URL}/{method}", json=params or {}, timeout=20)
-        if resp.status_code == 200:
-            return resp.json()
+        resp = requests.post(f"{BITRIX_URL}/{method}", json=params or {}, timeout=20, verify=True)
+        if resp.status_code != 200:
+            log(f"  ⚠️ HTTP {resp.status_code} от B24 ({method}): {resp.text[:200]}")
+            return {}
+        data = resp.json()
+        if isinstance(data, dict) and data.get("error"):
+            log(f"  ⚠️ B24 API ошибка ({method}): {data.get('error')} — {data.get('error_description', '')}")
+            return {}
+        return data
+    except requests.exceptions.Timeout:
+        log(f"  ⏰ Таймаут запроса B24 ({method})")
+    except requests.exceptions.RequestException as e:
+        log(f"  🔌 Сетевая ошибка B24 ({method}): {e}")
     except Exception as e:
         log(f"  API error ({method}): {e}")
     return {}
@@ -59,6 +74,9 @@ def bx_get_all(method, params=None, key="result", limit=200):
         items = data.get(key, [])
         if isinstance(items, dict):
             items = items.get("tasks", items.get("items", []))
+        if not isinstance(items, list):
+            log(f"  ⚠️ bx_get_all ({method}): ожидали list, получили {type(items).__name__} — пропускаем")
+            break
         all_items.extend(items)
         next_page = data.get("next")
         if len(all_items) >= limit or not next_page:

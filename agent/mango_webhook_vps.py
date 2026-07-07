@@ -58,6 +58,9 @@ STAGE_CANCELLED = os.getenv("BX_STAGE_CANCELLED", "LOSE")
 LOG_DIR = Path(os.getenv("MANGO_WEBHOOK_LOG_DIR", "/var/log"))
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+VOICE_EVENTS_PATH = Path("/var/log/voice-angela/events.jsonl")
+VOICE_EVENTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(message)s",
@@ -68,6 +71,15 @@ logging.basicConfig(
     ],
 )
 log = logging.getLogger("mango-wh")
+
+
+def _write_voice_event(data: dict) -> None:
+    """Write call event for voice_bridge to consume."""
+    try:
+        with open(VOICE_EVENTS_PATH, "a") as f:
+            f.write(json.dumps(data, ensure_ascii=False) + "\n")
+    except Exception as e:
+        log.error("voice event: %s", e)
 
 # command_id / entry_id → {phone, deal_id, call_id, ...}
 pending: dict[str, dict] = {}
@@ -179,7 +191,7 @@ def _find_pending(command_id: str, entry_id: str) -> dict | None:
 
 
 def _maybe_play_client_leg(data: dict) -> None:
-    """Клиент ответил на callback — проигрываем Kore."""
+    """Клиент ответил на callback — проигрываем Kore (если не тестовый)."""
     if data.get("callback_initiator") != "API":
         return
     if data.get("call_state") != "Connected":
@@ -198,6 +210,20 @@ def _maybe_play_client_leg(data: dict) -> None:
     ctx = _find_pending(command_id, entry_id)
     if ctx and ctx.get("phone") and ctx["phone"] != client_phone:
         log.warning("phone mismatch pending=%s event=%s", ctx["phone"], client_phone)
+
+    # Always notify listeners that the callback connected
+    _write_voice_event({
+        "type": "callback_connected",
+        "command_id": command_id,
+        "call_id": call_id,
+        "phone": _norm_phone(str(to_num)),
+        "timestamp": datetime.now().isoformat(),
+    })
+
+    # Skip auto-play for test calls — the test script handles audio itself
+    if command_id.startswith("test_call_"):
+        log.info("🧪 TEST callback connected — skip auto-play (cid=%s)", call_id[:20])
+        return
 
     if call_id in played_message:
         return
@@ -283,6 +309,47 @@ class WebhookHandler(BaseHTTPRequestHandler):
 
         _maybe_play_client_leg(data)
 
+        # Detect inbound calls for voice-angela
+        call_id = data.get("call_id", "")
+        from_num = str(data.get("from", {}).get("number", ""))
+        callback_initiator = data.get("callback_initiator", "")
+
+        # Auto-play greeting for inbound calls on Appeared
+        cb_cid = call_id or entry_id
+        if cb_cid and call_state == "Appeared" and callback_initiator != "API":
+            if _is_client_number(from_num):
+                import threading as _th
+                log.info("INBOUND %s -> auto-play %s (cid=%s)", from_num, MANGO_AUDIO_NAME, cb_cid[:20])
+                _th.Thread(target=lambda cid=cb_cid: play_on_call(cid, MANGO_AUDIO_ID, "greeting"), daemon=True).start()
+        if call_id and call_state == "Connected" and callback_initiator != "API":
+            if _is_client_number(from_num):
+                log.info("📞 INBOUND call_id=%s from=%s → voice-angela", call_id, from_num)
+                _write_voice_event({
+                    "type": "inbound_call",
+                    "call_id": call_id,
+                    "phone": _norm_phone(from_num),
+                    "command_id": command_id,
+                    "timestamp": datetime.now().isoformat(),
+                })
+        # Also log call disconnect
+        if call_id and call_state in ("Disconnected", "Failed"):
+            _write_voice_event({
+                "type": "call_end",
+                "call_id": call_id,
+                "timestamp": datetime.now().isoformat(),
+            })
+
+        # Capture recording_id for post-call analysis
+        if path == "events/events/record/added":
+            rec_id = data.get("recording_id", "") or data.get("record_id", "") or entry_id
+            if rec_id and rec_id != "?":
+                _write_voice_event({
+                    "type": "recording_added",
+                    "recording_id": str(rec_id),
+                    "call_id": call_id or command_id or "",
+                    "timestamp": datetime.now().isoformat(),
+                })
+
         dtmf = data.get("dtmf")
         if dtmf is not None:
             _forward_dtmf(
@@ -291,6 +358,12 @@ class WebhookHandler(BaseHTTPRequestHandler):
                 command_id,
                 str(entry_id),
             )
+            _write_voice_event({
+                "type": "dtmf",
+                "call_id": command_id or data.get("call_id", ""),
+                "digit": str(dtmf),
+                "timestamp": datetime.now().isoformat(),
+            })
 
     def log_message(self, fmt, *args):
         pass

@@ -15,6 +15,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 import urllib.parse
 from datetime import datetime
 
@@ -64,61 +65,92 @@ def vk_call(method: str, params: dict) -> dict:
 def upload_photo_to_vk_cache(photo_path: str) -> str | None:
     """
     Загружает фото в ВК (photos.getWallUploadServer → save).
+    3 попытки для transient VK-ошибок.
     Возвращает attachment: photo{owner_id}_{id}
     """
     if not os.path.exists(photo_path):
         print(f"   ❌ Фото не найдено: {photo_path}")
         return None
-    
-    print(f"   📤 Загрузка фото: {os.path.basename(photo_path)}")
-    
-    # 1. Получаем URL для загрузки
-    upload_data = vk_call("photos.getWallUploadServer", {"group_id": VK_GROUP_ID})
-    
-    if "error" in upload_data:
-        print(f"   ❌ VK API: {upload_data['error']['error_msg']}")
-        return None
-    
-    upload_url = upload_data["response"]["upload_url"]
-    print("   📍 Upload URL получен")
-    
-    # 2. Загружаем файл через curl multipart
-    upload_cmd = [
-        "curl", "-s", "--max-time", "30",
-        "-F", f"photo=@{photo_path}",
-        upload_url
-    ]
-    
-    upload_result = subprocess.run(upload_cmd, capture_output=True, timeout=35)
-    upload_resp = json.loads(upload_result.stdout)
-    
-    if not upload_resp.get("photo"):
-        print(f"   ❌ Загрузка не удалась: {upload_resp}")
-        return None
-    
-    print("   ✅ Фото загружено на сервер VK")
-    
-    # 3. Сохраняем фото
-    save_data = vk_call("photos.saveWallPhoto", {
-        "group_id": VK_GROUP_ID,
-        "photo": upload_resp.get("photo", ""),
-        "server": upload_resp.get("server", ""),
-        "hash": upload_resp.get("hash", ""),
-    })
-    
-    if "error" in save_data:
-        print(f"   ❌ VK save: {save_data['error']['error_msg']}")
-        return None
-    
-    photos = save_data.get("response", [])
-    if not photos:
-        return None
-    
-    p = photos[0]
-    attachment = f"photo{p['owner_id']}_{p['id']}"
-    
-    print(f"   ✅ Attachment: {attachment}")
-    return attachment
+
+    _PERMANENT_CODES = {5, 15, 121, 200, 201, 203, 214, 220, 221}
+
+    for attempt in range(1, 4):
+        print(f"   📤 Загрузка фото: {os.path.basename(photo_path)} (попытка {attempt})")
+
+        try:
+            # 1. Получаем URL для загрузки
+            upload_data = vk_call("photos.getWallUploadServer", {"group_id": VK_GROUP_ID})
+
+            if "error" in upload_data:
+                code = upload_data["error"].get("error_code", 0)
+                msg = upload_data["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"   ❌ VK API: {msg}")
+                    return None
+                print(f"   ⚠️ VK API ({code}): {msg}, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            upload_url = upload_data["response"]["upload_url"]
+            print("   📍 Upload URL получен")
+
+            # 2. Загружаем файл через curl multipart
+            upload_cmd = [
+                "curl", "-s", "--max-time", "30",
+                "-F", f"photo=@{photo_path}",
+                upload_url
+            ]
+
+            upload_result = subprocess.run(upload_cmd, capture_output=True, timeout=35)
+            upload_resp = json.loads(upload_result.stdout)
+
+            if not upload_resp.get("photo"):
+                print(f"   ⚠️ Загрузка не удалась: {upload_resp}, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            print("   ✅ Фото загружено на сервер VK")
+
+            # 3. Сохраняем фото
+            save_data = vk_call("photos.saveWallPhoto", {
+                "group_id": VK_GROUP_ID,
+                "photo": upload_resp.get("photo", ""),
+                "server": upload_resp.get("server", ""),
+                "hash": upload_resp.get("hash", ""),
+            })
+
+            if "error" in save_data:
+                code = save_data["error"].get("error_code", 0)
+                msg = save_data["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"   ❌ VK save: {msg}")
+                    return None
+                print(f"   ⚠️ VK save ({code}): {msg}, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            photos = save_data.get("response", [])
+            if not photos:
+                print(f"   ⚠️ VK save: пустой ответ, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            p = photos[0]
+            attachment = f"photo{p['owner_id']}_{p['id']}"
+
+            print(f"   ✅ Attachment: {attachment}")
+            return attachment
+
+        except Exception as e:
+            print(f"   ⚠️ Ошибка (попытка {attempt}): {e}")
+            if attempt < 3:
+                time.sleep(3)
+
+    return None
 
 
 def publish_post(text: str, attachment: str = None) -> int | None:

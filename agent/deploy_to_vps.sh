@@ -10,7 +10,7 @@
 VPS_USER="root"
 VPS_IP="72.56.38.19"
 VPS_DIR="/root/antigravity/ai-eggs"
-LOCAL_DIR="/Users/igorvasin/freelance-2026/ai-eggs"
+LOCAL_DIR="/Users/igorvasin/freelance-2026/projects/ai-eggs"
 
 echo "🚀 DEPLOY ANGELA → VPS ($VPS_IP)"
 echo "================================"
@@ -89,7 +89,7 @@ ssh ${SSH_OPTS} "${VPS_USER}@${VPS_IP}" << 'REMOTE_SETUP'
 
     # Устанавливаем зависимости
     echo "📦 Устанавливаем зависимости..."
-    venv/bin/pip install -q python-dotenv requests httpx 2>/dev/null
+    venv/bin/pip install -q python-dotenv requests httpx edge-tts 2>/dev/null
     if [ -f "requirements.txt" ]; then
         venv/bin/pip install -q -r requirements.txt 2>/dev/null
     fi

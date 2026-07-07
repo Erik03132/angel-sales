@@ -1,0 +1,7 @@
+{
+  "client_question": "Сколько стоят бройлеры и когда можно забрать?",
+  "recognized": "",
+  "angela_answer": "Привет! Чем могу помочь? Выбираете цыплят для мяса, яиц или универсальных?  \n\n(Если нужно подробнее по конкретной породе — уточните, отвечу кратко и по делу. Например: «Расскажи про Ломан Браун»).",
+  "client_audio": "/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/client_question.wav",
+  "response_audio": "/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/angela_1781683603268.wav"
+}

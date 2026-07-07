@@ -254,7 +254,7 @@ def generate_imagen_photo(prompt, env, aspect="16:9"):
 
 
 def upload_photo_bytes_vk(photo_bytes, group_id, env):
-    """Загрузка сгенерированного фото в VK через User Token."""
+    """Загрузка сгенерированного фото в VK через User Token. 3 попытки."""
     user_token = env.get("VK_USER_TOKEN", "")
     if not user_token:
         print("  ⚠️ VK_USER_TOKEN не найден — фото не загрузить")
@@ -263,45 +263,76 @@ def upload_photo_bytes_vk(photo_bytes, group_id, env):
     try:
         import requests
     except ImportError:
-        # Простой fallback без requests
         print("  ⚠️ requests не установлен, фото пропускаем")
         return None
 
-    # 1. Get upload URL
-    r = requests.get("https://api.vk.com/method/photos.getWallUploadServer", params={
-        "access_token": user_token, "group_id": group_id, "v": "5.199"
-    })
-    d = r.json()
-    if "error" in d:
-        print(f"  ❌ Upload URL: {d['error']['error_msg']}")
-        return None
-    upload_url = d["response"]["upload_url"]
+    _PERMANENT_CODES = {5, 15, 121, 200, 201, 203, 214, 220, 221}
 
-    # 2. Upload tmp file
-    with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
-        f.write(photo_bytes)
-        tmp_path = f.name
+    for attempt in range(1, 4):
+        try:
+            # 1. Get upload URL
+            r = requests.get("https://api.vk.com/method/photos.getWallUploadServer", params={
+                "access_token": user_token, "group_id": group_id, "v": "5.199"
+            }, timeout=15)
+            d = r.json()
+            if "error" in d:
+                code = d["error"].get("error_code", 0)
+                msg = d["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"  ❌ Upload URL: {msg}")
+                    return None
+                print(f"  ⚠️ Upload URL ({code}): {msg}, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+            upload_url = d["response"]["upload_url"]
 
-    try:
-        with open(tmp_path, "rb") as f:
-            r2 = requests.post(upload_url, files={"photo": f})
-        ud = r2.json()
-    finally:
-        os.unlink(tmp_path)
+            # 2. Upload tmp file
+            with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as f:
+                f.write(photo_bytes)
+                tmp_path = f.name
 
-    # 3. Save
-    r3 = requests.get("https://api.vk.com/method/photos.saveWallPhoto", params={
-        "access_token": user_token, "group_id": group_id,
-        "photo": ud["photo"], "server": ud["server"], "hash": ud["hash"], "v": "5.199"
-    })
-    sd = r3.json()
-    if "error" in sd:
-        print(f"  ❌ Save: {sd['error']['error_msg']}")
-        return None
-    p = sd["response"][0]
-    attachment = f"photo{p['owner_id']}_{p['id']}"
-    print(f"  📸 Фото загружено в VK: {attachment}")
-    return attachment
+            try:
+                with open(tmp_path, "rb") as f:
+                    r2 = requests.post(upload_url, files={"photo": f}, timeout=30)
+                ud = r2.json()
+            finally:
+                os.unlink(tmp_path)
+
+            if not ud.get("photo"):
+                print(f"  ⚠️ Upload response: пустой ответ, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            # 3. Save
+            r3 = requests.get("https://api.vk.com/method/photos.saveWallPhoto", params={
+                "access_token": user_token, "group_id": group_id,
+                "photo": ud["photo"], "server": ud["server"], "hash": ud["hash"], "v": "5.199"
+            }, timeout=15)
+            sd = r3.json()
+            if "error" in sd:
+                code = sd["error"].get("error_code", 0)
+                msg = sd["error"]["error_msg"]
+                if code in _PERMANENT_CODES:
+                    print(f"  ❌ Save: {msg}")
+                    return None
+                print(f"  ⚠️ Save ({code}): {msg}, попытка {attempt}")
+                if attempt < 3:
+                    time.sleep(3)
+                continue
+
+            p = sd["response"][0]
+            attachment = f"photo{p['owner_id']}_{p['id']}"
+            print(f"  📸 Фото загружено в VK: {attachment}")
+            return attachment
+
+        except Exception as e:
+            print(f"  ⚠️ Ошибка загрузки (попытка {attempt}): {e}")
+            if attempt < 3:
+                time.sleep(3)
+
+    return None
 
 
 # ═══════════════════════════════════════════════
@@ -327,14 +358,10 @@ def get_next_posts(content_dir, posted_log_path, count=1):
     posted = load_posted(posted_log_path)
     posted_keys = set(posted.get("_keys", []))
 
-    # Также проверяем по индексу (совместимость со старым форматом)
-    posted_indices = set(str(k) for k in posted.keys() if k != "_keys")
-
     unpublished = []
     for post in all_posts:
         key = post.get("post_id_key", "")
-        idx = str(post.get("index", 0))
-        if key not in posted_keys and idx not in posted_indices:
+        if key not in posted_keys:
             unpublished.append(post)
 
     return unpublished[:count]
@@ -388,13 +415,16 @@ def publish_group(group_key, env, count=1, dry_run=False):
             results.append({"status": "dry-run", "text": post["text"][:50]})
             continue
 
-        # Фото через Imagen 4.0
+        # Фото: Imagen 4.0 → fallback на стоковый каскад
         attachment = None
         prompt = _make_imagen_prompt(post["text"], post.get("meta", {}), cfg["default_photo_prompt"])
         print(f"  🎨 Imagen 4.0: «{prompt[:60]}»...")
         photo_bytes = generate_imagen_photo(prompt, env)
         if photo_bytes:
             attachment = upload_photo_bytes_vk(photo_bytes, group_id, env)
+        if not attachment:
+            print("  📷 Fallback: стоковый каскад...")
+            attachment = poster.upload_photo_from_url(prompt, group_key)
 
         # Публикация
         print("  📝 Публикую...")

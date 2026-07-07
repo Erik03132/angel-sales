@@ -1,0 +1,7 @@
+{
+  "client_question": "Сколько стоят бройлеры и когда можно забрать?",
+  "recognized": "сколько стоит бройлеры, когда можно забрать.",
+  "angela_answer": "Бройлеры (Кобб-500 и Росс-308) — **65₽** за голову. Забрать можно сразу, уточните наличие.  \n\nЕсли нужны детали по доставке или объёмам — скажите, переключу на оператора.",
+  "client_audio": "/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/client_question.wav",
+  "response_audio": "/Users/igorvasin/freelance-2026/ai-eggs/agent/tts_cache/angela_1781683843176.wav"
+}

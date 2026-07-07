@@ -1,0 +1,48 @@
+⚠️ PersistentHistory: не удалось создать таблицу: No module named 'psycopg2'
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 1.000000 seconds and try again... (tryings = 0, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 1.318921 seconds and try again... (tryings = 1, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 1.706213 seconds and try again... (tryings = 2, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 2.219792 seconds and try again... (tryings = 3, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 2.836355 seconds and try again... (tryings = 4, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 3.622425 seconds and try again... (tryings = 5, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 4.703119 seconds and try again... (tryings = 6, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 4.762489 seconds and try again... (tryings = 7, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 5.122220 seconds and try again... (tryings = 8, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 4.996122 seconds and try again... (tryings = 9, bot id = 8336409939)
+Failed to fetch updates - TelegramConflictError: Telegram server says - Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+Sleep for 5.011954 seconds and try again... (tryings = 10, bot id = 8336409939)
+Received SIGTERM signal
+✅ Feed Calculator загружен: 6 наборов
+✅ BM25 индекс: 139 документов
+✅ RAG Lite подключён
+⚠️ VectorDB недоступна: No module named 'psycopg2'
+✅ Граф памяти: 5 узлов, 1 клиентов
+⚠️ Векторный поиск недоступен: No module named 'faiss'
+✅ FAQ cache загружен: 73 записей
+✅ SmartFAQ: 2 в кэше, 21 отслеживается
+✅ Unified Brain загружен: 139 элементов, 139 товаров
+✅ Sales Skill загружен: 6974 символов
+⚠️ BM25 каталог не загружен: No module named 'rank_bm25'
+  🔌 Сессия через SOCKS5 (socks5://localhost:1080), timeout=120
+
+🚀 Анжелочка v9.2 [Anti-Conflict + Lock Guard]
+   PID:        66662
+   Gemini:     ✅
+   Neon DB:    ✅
+   Silent Mode: 🔊 ВЫКЛ
+   Admin ID: 176203333
+   ⏩ Пропускаю регистрацию меню
+   ⏳ Удаление вебхука (попытка 1)...
+   🚀 Запускаю polling (попытка 1/5)...
+
+🔓 Lock-файл освобождён

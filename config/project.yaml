@@ -1,0 +1,22 @@
+name: ai-eggs
+status: active
+owner: human
+stack: ["Python"]
+
+goals:
+  - "Описать основную цель проекта ai-eggs"
+  - "Определить MVP"
+  - "Описать ключевые метрики успеха"
+
+metrics:
+  - name: "example_metric"
+    target: "0"
+    unit: "count"
+
+constraints:
+  - "Бюджет"
+  - "Сроки"
+  - "Технические ограничения"
+
+notes: |
+  AGENTS.md — Контекст проекта AI Eggs

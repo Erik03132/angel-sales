@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Upload photo to VK group album using group token + direct CDN upload."""
-import json, subprocess, urllib.parse, os, sys
+import json
+import os
+import subprocess
+import sys
+import urllib.parse
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(os.path.dirname(BASE), ".env")

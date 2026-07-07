@@ -1,21 +1,19 @@
-# Чекпоинт AI Eggs
+## 🏁 2026-07-07 — AI-Eggs (IncuBird)
 
-## Последняя сессия
-Починка angela-autopilot + сокращение до минимума:
-- Упал из-за `ModuleNotFoundError: schedule` (не тот интерпретатор)
-- Перезапущен с `/root/antigravity/ai-eggs/venv/bin/python3`
-- Удалены all отчёты (20:00 Заботкина, 20:05 Птенчикова, 21:00 спокойной ночи)
-- Отправка только владельцу (176203333), Андрей исключён
-- v3.1 — только 09:00 MSK утренний пинг
+**Статус:** Voice Angela запущена, VPS `72.56.38.19` жив. Автообзвон через Mango.
 
-## Состояние
-- VPS работает, все 11 PM2 процессов online
-- `angela-autopilot` — online, uptime 29s, без ошибок
-- TG-бот (angela-bot) работает 4 дня без перерыва
-- SOCKS5-прокси жив, но нестабилен (были таймауты)
+**Ключевые компоненты:**
+- `agent/voice_bridge.py` (voice-angela, PM2 id 21) — входящие звонки baresip
+- `agent/angela_outbound.py` — исходящий обзвон + Битрикс
+- Mango webhook `/opt/mango_webhook.py` (PM2 id 8)
 
-## Следующий шаг
-- [ ] #2 — Локальный Fallback (Ollama/Qwen) — защита от блокировок
-- [ ] #3 — Авто-напоминания по забытым сделкам (3.3 млн₽)
-- [ ] #4 — Мульти-кабинетная интеграция Авито (автоответы)
-- [ ] #5 — Bitrix Disk API (Рембрандт)
+**Стек:** OpenRouter DeepSeek → Qwen fallback. Gemini Kore TTS (через SOCKS5). Whisper STT.
+
+**Проблемы:** Whisper hallucinates на тишине/автоответчиках. Авито ждёт OAuth2 токен.
+
+**VPS:** `root@72.56.38.19`, 12 PM2 процессов.
+
+**План на завтра:**
+- Продолжить автообзвон
+- Настроить Авито OAuth2
+- Улучшить STT обработку (batch по raw WAV)

@@ -1,39 +1,51 @@
 {
   "1": {
-    "post_id": 23,
-    "published_at": "2026-05-05T19:45:00",
-    "scheduled": true,
-    "title": "Пост A.1"
+    "post_id": 88,
+    "url": "https://vk.com/wall-238316002_88",
+    "posted_at": "2026-05-31T09:30:18.231441",
+    "source_file": "june_week1_posts.md",
+    "text_preview": "# Посты ВезёмЦыплят — Июнь, Неделя 1 (посты 28-32)\n# СТАТУС: 📦 КЭШ — НЕ ПУБЛИКОВ",
+    "has_photo": true
   },
   "2": {
-    "post_id": 24,
-    "published_at": "2026-05-06T10:00:00",
-    "scheduled": true,
-    "title": "Пост A.2"
+    "post_id": 101,
+    "url": "https://vk.com/wall-238316002_101",
+    "posted_at": "2026-06-15T09:30:09.122842",
+    "source_file": "starter_posts.md",
+    "text_preview": "🐣 Привет! Мы — «ВезёмЦыплят»\n\nИнкубатор «Азовский» — более 10 лет на рынке. Выра",
+    "has_photo": false
   },
   "3": {
-    "post_id": 25,
-    "published_at": "2026-05-07T10:00:00",
-    "scheduled": true,
-    "title": "Пост A.3"
+    "post_id": 102,
+    "url": "https://vk.com/wall-238316002_102",
+    "posted_at": "2026-06-18T09:30:07.244783",
+    "source_file": "starter_posts.md",
+    "text_preview": "🏠 Наш инкубатор — 10 лет опыта, 50 000+ цыплят в год\n\nМы находимся в посёлке Азо",
+    "has_photo": false
   },
   "4": {
-    "post_id": 26,
-    "published_at": "2026-05-08T10:00:00",
-    "scheduled": true,
-    "title": "Пост A.4"
+    "post_id": 103,
+    "url": "https://vk.com/wall-238316002_103",
+    "posted_at": "2026-06-19T09:30:02.665725",
+    "source_file": "starter_posts.md",
+    "text_preview": "🚚 Куда мы доставляем цыплят\n\nНаша география — от Крыма до Москвы. Везём лично, н",
+    "has_photo": false
   },
   "5": {
-    "post_id": 27,
-    "published_at": "2026-05-09T10:00:00",
-    "scheduled": true,
-    "title": "Пост A.5"
+    "post_id": 104,
+    "url": "https://vk.com/wall-238316002_104",
+    "posted_at": "2026-06-20T09:30:02.442179",
+    "source_file": "starter_posts.md",
+    "text_preview": "💰 ПРАЙС-ЛИСТ — МАЙ 2026\n\n🐔 БРОЙЛЕРЫ (суточные):\n• КОББ-500 — от 65₽/шт (от 100 г",
+    "has_photo": false
   },
   "6": {
-    "post_id": 28,
-    "published_at": "2026-05-10T10:00:00",
-    "scheduled": true,
-    "title": "Пост A.6"
+    "post_id": 100,
+    "url": "https://vk.com/wall-238316002_100",
+    "posted_at": "2026-06-14T09:30:09.953409",
+    "source_file": "june_week1_posts.md",
+    "text_preview": "🆕 НОВИНКА: ЦЕСАРКИ! ПЕРВЫЙ ВЫВОД — СЕРЕДИНА ИЮНЯ\n\nОбещали — выполняем! В июне ст",
+    "has_photo": false
   },
   "7": {
     "post_id": 29,
@@ -160,5 +172,17 @@
     "published_at": "2026-05-31T10:00:00",
     "scheduled": true,
     "title": "Пост 27 (15-31 мая)"
-  }
+  },
+  "_keys": [
+    "0658ae567fa2",
+    "f044033c2795",
+    "05061effa311",
+    "aebe63e8c92e",
+    "7056db455d70",
+    "c9c57bd9b2b3",
+    "e8912a829834",
+    "f15ad7b99502",
+    "3e0030d75031",
+    "d24da857991f"
+  ]
 }

@@ -1,0 +1,30 @@
+agents:
+  - id: architect
+    name: Архитектор
+    foundation: foundation/agents/architect
+    project_skills: []
+    role_in_project: "Проектирование high-level архитектуры, контекстов и модулей"
+
+  - id: researcher
+    name: Исследователь
+    foundation: foundation/agents/researcher
+    project_skills: []
+    role_in_project: "Ресёрч рынка, технологий, конкурентов"
+
+  - id: coder
+    name: Разработчик
+    foundation: foundation/agents/coder
+    project_skills: []
+    role_in_project: "Написание кода, рефакторинг, тесты"
+
+  - id: tester
+    name: Тестировщик
+    foundation: foundation/agents/tester
+    project_skills: []
+    role_in_project: "Проверка качества, тестовые сценарии"
+
+  - id: project-manager
+    name: Проектный менеджер
+    foundation: foundation/agents/project-manager
+    project_skills: []
+    role_in_project: "Планирование, декомпозиция, хронология"

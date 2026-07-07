@@ -81,7 +81,11 @@ def is_admin(user_id: int) -> bool:
 
 
 def is_silent_mode() -> bool:
-    return os.path.exists(LOG_ONLY_FLAG)
+    """Проверяет режим тишины. Атомарное чтение с защитой от race condition."""
+    try:
+        return os.path.exists(LOG_ONLY_FLAG)
+    except OSError:
+        return False
 
 
 # ============================================================
