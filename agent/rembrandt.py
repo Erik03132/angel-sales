@@ -17,10 +17,12 @@ import json
 import os
 import sys
 
-from .brand_system import BrandSystem, load_brand, INCUBIRD_DEFAULT
-from .component_generator import generate_component, COMPONENT_TYPES
-from .design_generator import generate_design_md
-from .image_generator import leonardo_generate, download_image
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from agent.brand_system import BrandSystem, load_brand, INCUBIRD_DEFAULT
+from agent.component_generator import generate_component, COMPONENT_TYPES
+from agent.design_generator import generate_design_md
+from agent.image_generator import leonardo_generate, download_image
 
 
 def main():
