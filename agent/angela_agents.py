@@ -24,6 +24,11 @@ from sales_logic import apply_sales_layer, resolve_breed_synonyms
 from tool_digest import digest_product_context, digest_vector_context
 from vector_memory import VectorMemory
 
+# FAQ matching thresholds (from Habr RAG article pattern)
+FAQ_SIMILARITY_THRESHOLD = 0.78
+FAQ_NEGATIVE_THRESHOLD = 0.83
+FAQ_NEGATIVE_PENALTY = 2.0
+
 # RAG Lite
 try:
     from rag_lite import format_context_for_llm, search_knowledge
@@ -110,9 +115,6 @@ class RouterAgent:
         """Classify query complexity: 'lite' | 'std' | 'pro'"""
         text = prompt.lower().strip()
         
-        if len(text) < 15:
-            return "lite"
-        
         _PRO_KEYWORDS = {
             "жалоба", "претензия", "плохо", "дохнут", "падёж", "мор",
             "обман", "кинули", "некачественный", "больные", "заболели",
@@ -121,6 +123,7 @@ class RouterAgent:
             "оптом", "крупная партия", "тысяча", "10000", "5000",
             "конкурент", "другой поставщик", "у других дешевле",
             "юрлицо", "договор", "счёт-фактура", "накладная", "НДС",
+            "опрос", "отзыв",
         }
         
         _LITE_KEYWORDS = {
@@ -137,7 +140,10 @@ class RouterAgent:
         for kw in _PRO_KEYWORDS:
             if kw in text:
                 return "pro"
-        
+
+        if len(text) < 15:
+            return "lite"
+
         for kw in _LITE_KEYWORDS:
             if kw in text:
                 return "lite"
@@ -151,21 +157,21 @@ class RouterAgent:
         """Detect topic category (deterministic)"""
         q = query.lower()
         
-        if any(kw in q for kw in ["цена", "стоимость", "сколько стоит", "прайс"]):
+        if any(kw in q for kw in ["цена", "стоимость", "сколько сто", "прайс"]):
             return "pricing"
-        elif any(kw in q for kw in ["доставка", "когда доставка", "сроки", "привезут"]):
+        elif any(kw in q for kw in ["доставк", "срок", "привезут", "везё"]):
             return "delivery"
         elif any(kw in q for kw in ["корм", "кормление", "комбикорм", "ПК-"]):
             return "feeding"
-        elif any(kw in q for kw in ["порода", "цыплята", "бройлер", "несушк"]):
+        elif any(kw in q for kw in ["пород", "цыплят", "бройлер", "утк", "индюк", "несушк", "перепел", "цесарк", "гус"]):
             return "breeds"
-        elif any(kw in q for kw in ["наличие", "остаток", "есть в наличии"]):
+        elif any(kw in q for kw in ["налич", "остатк", "есть в"]):
             return "availability"
         elif any(kw in q for kw in ["инкубац", "вылуп", "яйц"]):
             return "incubation"
         elif any(kw in q for kw in ["crm", "сделк", "менеджер", "продаж"]):
             return "crm"
-        elif any(kw in q for kw in ["задач", "проект", "разработк", "код"]):
+        elif any(kw in q for kw in ["задач", "проект", "разработк", "код", "функционал", "нов"]):
             return "dev"
         else:
             return "general"
@@ -199,6 +205,8 @@ class KnowledgeBaseAgent:
         self._prices_cache = {"data": None, "mtime": 0}
         self._prices_json_path = os.path.join(BASE_DIR, 'config', 'prices.json')
         self._faq_cache = {}
+        self._faq_synonyms = {}
+        self._faq_aliases = {}
         self._wisdom = ""
         self._product_items = []
         self._product_bm25 = None
@@ -221,6 +229,20 @@ class KnowledgeBaseAgent:
                 self._faq_cache = json.load(f)
             print(f"✅ KB: FAQ cache loaded: {len(self._faq_cache)} entries")
         
+        # FAQ negative synonyms
+        _syn_path = os.path.join(DATA_DIR, 'faq_synonyms.json')
+        if os.path.exists(_syn_path):
+            with open(_syn_path, 'r', encoding='utf-8') as f:
+                self._faq_synonyms = json.load(f)
+            print(f"✅ KB: FAQ negative synonyms loaded: {len(self._faq_synonyms)} entries")
+
+        # FAQ morphological aliases
+        _alias_path = os.path.join(DATA_DIR, 'faq_aliases.json')
+        if os.path.exists(_alias_path):
+            with open(_alias_path, 'r', encoding='utf-8') as f:
+                self._faq_aliases = json.load(f)
+            print(f"✅ KB: FAQ aliases loaded: {len(self._faq_aliases)} entries")
+
         # Expert knowledge
         _wisdom_path = os.path.join(DATA_DIR, 'expert_knowledge.md')
         if os.path.exists(_wisdom_path):
@@ -447,21 +469,72 @@ class KnowledgeBaseAgent:
         
         return ""
     
+    @staticmethod
+    def _fingerprint(text: str) -> set[str]:
+        q = re.sub(r"[^а-яёa-z0-9\s]", "", text.lower().strip())
+        _noise = {"а","и","в","на","у","вас","ваш","ваши","мне","мой",
+                  "ли","бы","же","то","не","да","нет","как","что",
+                  "есть","это","вот","ещё","еще","уже","или","но",
+                  "здравствуйте","добрый","день","привет","пожалуйста",
+                  "подскажите","скажите","расскажи","расскажите",
+                  "можно","хотел","хотела","бы","привезите","привези"}
+        return {w for w in q.split() if w not in _noise and len(w) > 2}
+
+    def _fingerprint_score(self, query: str, candidate: str) -> float:
+        fp_q = self._fingerprint(query)
+        fp_c = self._fingerprint(candidate)
+        if not fp_c:
+            return 0.0
+        base_score = len(fp_q & fp_c) / max(len(fp_c), 1)
+
+        # Expand with aliases (morphological variants)
+        if candidate in self._faq_aliases:
+            for alias in self._faq_aliases[candidate]:
+                fp_a = self._fingerprint(alias)
+                if fp_a and (fp_q & fp_a):
+                    extended = fp_c | fp_a
+                    alias_score = len(fp_q & extended) / max(len(extended), 1)
+                    base_score = max(base_score, alias_score)
+
+        return base_score
+
+    def _has_negative_match(self, query: str, neg_synonyms: list[str]) -> bool:
+        for neg in neg_synonyms:
+            score = self._fingerprint_score(query, neg)
+            if score >= FAQ_NEGATIVE_THRESHOLD:
+                return True
+        return False
+
     def lookup_faq(self, query: str) -> str:
-        """Look up FAQ cache"""
-        # SmartFAQ
+        """Look up FAQ cache with fingerprint matching, aliases, negative synonyms"""
+        # SmartFAQ (exact fingerprint — fast path)
         if self._smart_faq:
             cached = self._smart_faq.lookup(query)
             if cached:
                 return cached
-        
-        # Static FAQ
+
+        best_score = 0.0
+        best_answer = None
+
         for q, a in self._faq_cache.items():
-            q_lower = q.lower().strip()
-            query_lower = query.lower().strip()
-            if len(query_lower) < 30 and q_lower == query_lower:
+            # Exact match (fast path)
+            if query.lower().strip() == q.lower().strip():
                 return a
-        
+
+            # Fingerprint overlap scoring (with aliases)
+            score = self._fingerprint_score(query, q)
+
+            # Negative synonyms penalty
+            if score > 0 and q in self._faq_synonyms and self._has_negative_match(query, self._faq_synonyms[q]):
+                score /= FAQ_NEGATIVE_PENALTY
+
+            if score > best_score:
+                best_score = score
+                best_answer = a
+
+        if best_score >= 0.5:
+            return best_answer
+
         return ""
     
     def track_faq(self, query: str, answer: str):

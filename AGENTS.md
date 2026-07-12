@@ -24,6 +24,8 @@ AI-EGGS (IncuBird / ВезёмЦыплят) — AI-инфраструктура 
 | Test call | `agent/test_voice_call.py` | — | Тестовый callback |
 | Спек | `docs/superpowers/specs/2026-06-16-realtime-voice-angela.md` | — | Спецификация |
 
+**Eval suite:** `python3 tests/eval_angela.py` — прогонять перед изменениями промптов/моделей/router/FAQ. 47 тестов: Router (regression+capability) + FAQ (точность, алиасы, negative synonyms).
+
 **LLM каскад:** OpenRouter DeepSeek → Qwen 2.5 → локальный Ollama llama3.2:1b (fallback)
 **TTS каскад:** Gemini Kore (через SOCKS5 прокси)
 
