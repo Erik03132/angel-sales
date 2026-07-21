@@ -306,8 +306,6 @@ if not os.getenv("OPENROUTER_API_KEY"):
 OPENROUTER_KEY = (os.getenv("OPENROUTER_API_KEY") or "").strip() or None
 # PERPLEXITY_KEY загружается локально в call_perplexity_search()
 NEON_DATABASE_URL = os.getenv("NEON_DATABASE_URL")
-# GEMINI_API_KEY сохранён только для call_analyzer (аудио-транскрипция)
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") or os.getenv("GEMINI_PRO_API_KEY")
 
 # --- Каскадный LLM-движок ---
 # Приоритет 1: OpenRouter  — основной (deepseek, claude, и др.)

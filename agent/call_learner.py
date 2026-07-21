@@ -42,11 +42,8 @@ os.makedirs(LEARNING_DIR, exist_ok=True)
 load_dotenv(BASE_DIR / ".env", override=True)
 
 # ── Конфиг ───────────────────────────────────────────────────────────────────
-GEMINI_KEY   = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", "")
-GEMINI_MODEL = "gemini-2.5-flash"
-MSK = timezone(timedelta(hours=3))
-
 OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY", "")
+MSK = timezone(timedelta(hours=3))
 
 # Каскад free-моделей OpenRouter для экстракции фактов (июль 2026)
 EXTRACT_MODELS = [

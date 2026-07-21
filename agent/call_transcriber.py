@@ -45,17 +45,24 @@ load_dotenv(BASE_DIR / ".env", override=True)
 # ── Конфиг ───────────────────────────────────────────────────────────────────
 BITRIX_URL   = (os.getenv("PRODUCTION_BITRIX_WEBHOOK_URL") or
                 os.getenv("BITRIX_WEBHOOK_URL", "")).rstrip("/")
-GEMINI_KEY   = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", "")
-GEMINI_MODEL = "gemini-2.5-flash"  # актуальная модель с поддержкой аудио
+OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY")
+WHISPER_MODEL = os.getenv("WHISPER_MODEL", "tiny")
 MIN_DURATION = 10      # сек — не транскрибируем совсем короткие
 MAX_PER_RUN  = 100     # лимит за один запуск
 MSK = timezone(timedelta(hours=3))
 
-# Прокси подхватывается автоматически через HTTPS_PROXY/HTTP_PROXY из .env
-# google-genai (httpx) и requests читают эти переменные из os.environ
-# Убедитесь что .env содержит: HTTPS_PROXY=socks5://...
+# Каскад free-моделей OpenRouter для анализа транскриптов
+ANALYZE_MODELS = [
+    "google/gemma-4-31b-it:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "meta-llama/llama-3.3-70b-instruct:free",
+    "openai/gpt-oss-20b:free",
+]
 
-# Промпт для Gemini
+# Прокси для OpenRouter (из РФ — только через SOCKS5)
+PROXY_URL = os.getenv("TELEGRAM_PROXY") or "socks5h://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469"
+
+# Промпт для анализа транскрипта
 SYSTEM_PROMPT = """Ты — аналитик телефонных переговоров птицеводческого хозяйства "ВезёмЦыплят" (Крым).
 Тебе предоставлена запись звонка (входящий или исходящий) между менеджером и клиентом.
 
@@ -227,74 +234,83 @@ def update_activity_comment(activity_id: str, comment: str):
         print(f"  ⚠️ Не удалось обновить activity {activity_id}: {e}")
 
 
-# ── Gemini Flash транскрипция ─────────────────────────────────────────────────
-def transcribe_audio_gemini(audio_path: str, call_meta: dict) -> dict | None:
-    """
-    Отправляет аудиофайл в Gemini Flash и получает транскрипт + саммари.
-    Использует новый SDK google-genai. Прокси — автоматически через HTTPS_PROXY из .env.
-    Возвращает dict или None при ошибке.
-    """
+# ── Whisper + OpenRouter (локально, без API) ──────────────────────────────────
+def transcribe_audio_whisper(audio_path: str, call_meta: dict) -> dict | None:
+    """Транскрибирует аудио через faster-whisper (локально), анализирует через OpenRouter free."""
     try:
-        from google import genai
-        from google.genai import types
+        from faster_whisper import WhisperModel
     except ImportError:
-        print("  ❌ google-genai не установлен. Запустите: pip install google-genai 'httpx[socks]'")
+        print("  ❌ faster-whisper не установлен. pip install faster-whisper")
         return None
-
-    if not GEMINI_KEY:
-        print("  ❌ GEMINI_API_KEY не задан в .env")
-        return None
-
-    client = genai.Client(api_key=GEMINI_KEY)
-    # Прокси подхватывается через HTTPS_PROXY из os.environ (установлен load_dotenv выше)
 
     direction = "входящий" if str(call_meta.get("CALL_TYPE")) == "2" else "исходящий"
     phone = call_meta.get("PHONE_NUMBER", "неизвестен")
     duration = int(call_meta.get("CALL_DURATION", 0))
 
+    # === Фаза 1: Whisper → транскрипт ===
+    print("     🎙️ Whisper: транскрибирую...")
+    try:
+        whisper = WhisperModel(WHISPER_MODEL, device="cpu", compute_type="int8")
+        segments, info = whisper.transcribe(audio_path, language="ru")
+        transcript_lines = []
+        for seg in segments:
+            transcript_lines.append(f"[{seg.start:.1f}s] {seg.text.strip()}")
+        transcript = "\n".join(transcript_lines)
+        if not transcript.strip():
+            print("     ⚠️ Whisper: пустой транскрипт")
+            return {"transcript": "", "summary": "Звонок без речи", "raw_only": True}
+        print(f"     ✅ Whisper: {info.duration:.0f}с, {len(transcript_lines)} строк")
+    except Exception as e:
+        print(f"  ❌ Whisper ошибка: {type(e).__name__}: {e}")
+        return None
+
+    # === Фаза 2: OpenRouter free → анализ ===
     user_prompt = (
         f"Тип звонка: {direction}\n"
         f"Телефон клиента: {phone}\n"
         f"Длительность: {duration // 60}:{duration % 60:02d}\n"
         f"Дата: {call_meta.get('CALL_START_DATE', '')[:16]}\n\n"
-        "Пожалуйста, обработай запись звонка согласно инструкциям."
+        f"ТРАНСКРИПТ ЗВОНКА:\n{transcript}"
     )
 
-    try:
-        with open(audio_path, "rb") as f:
-            audio_data = f.read()
+    proxies = {"https": PROXY_URL, "http": PROXY_URL}
+    for model in ANALYZE_MODELS:
+        try:
+            resp = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_prompt},
+                    ],
+                    "temperature": 0.1,
+                    "max_tokens": 2048,
+                },
+                proxies=proxies,
+                timeout=90,
+            )
+            if resp.status_code == 200:
+                raw = resp.json()["choices"][0]["message"]["content"].strip()
+                if "```json" in raw:
+                    raw = raw.split("```json")[1].split("```")[0].strip()
+                elif "```" in raw:
+                    raw = raw.split("```")[1].split("```")[0].strip()
+                result = json.loads(raw)
+                result["transcript"] = transcript
+                print(f"     ✅ OpenRouter/{model}: анализ завершён")
+                return result
+            else:
+                print(f"     ⚠ OpenRouter/{model}: {resp.status_code}")
+        except (json.JSONDecodeError, KeyError) as e:
+            return {"transcript": transcript, "summary": raw[:500] if 'raw' in dir() else transcript[:500],
+                    "client_questions": [], "agreements": [], "manager_score": None, "raw_only": True}
+        except Exception as e:
+            print(f"     ⚠ OpenRouter/{model}: {type(e).__name__}: {e}")
 
-        response = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=[
-                types.Content(parts=[
-                    types.Part(text=SYSTEM_PROMPT + "\n\n" + user_prompt),
-                    types.Part(inline_data=types.Blob(
-                        mime_type="audio/mp3",
-                        data=audio_data,
-                    )),
-                ])
-            ],
-        )
-
-        raw = response.text.strip()
-
-        # Пробуем распарсить JSON из ответа
-        if "```json" in raw:
-            raw = raw.split("```json")[1].split("```")[0].strip()
-        elif "```" in raw:
-            raw = raw.split("```")[1].split("```")[0].strip()
-
-        result = json.loads(raw)
-        return result
-
-    except json.JSONDecodeError:
-        # Если Gemini вернул не JSON — сохраняем как raw text
-        return {"transcript": raw, "summary": raw[:500], "raw_only": True,
-                "client_questions": [], "agreements": [], "manager_score": None}
-    except Exception as e:
-        print(f"  ❌ Gemini ошибка: {type(e).__name__}: {e}")
-        return None
+    return {"transcript": transcript, "summary": transcript[:500],
+            "client_questions": [], "agreements": [], "manager_score": None, "raw_only": True}
 
 
 # ── Основной pipeline ─────────────────────────────────────────────────────────
@@ -345,8 +361,8 @@ def process_call(call: dict, dry_run: bool = False) -> bool:
         return False
 
     # Транскрибируем
-    print("     🤖 Транскрибирую через Gemini Flash...")
-    result = transcribe_audio_gemini(tmp_path, call)
+    print("     🤖 Транскрибирую через Whisper + OpenRouter...")
+    result = transcribe_audio_whisper(tmp_path, call)
 
     # Удаляем временный файл
     try:

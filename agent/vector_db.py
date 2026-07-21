@@ -4,33 +4,23 @@ from dotenv import load_dotenv
 from psycopg2 import pool
 from psycopg2.extras import Json, RealDictCursor
 
-# Загружаем настройки из локального .env
 load_dotenv()
-
-# Если ключей нет локально, пробуем найти их в родительской папке (для совместимости)
 if not os.getenv("GEMINI_API_KEY"):
     load_dotenv(os.path.join(os.path.dirname(__file__), '..', '.env'))
 
+# --- Lazy-import FastEmbed (локально, без API) ---
+_embedder = None
 
-# --- Lazy-import Gemini (может упасть без прокси) ---
-_genai = None
+EMBED_DIM = 384
+EMBED_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 
-# Применяем прокси для Google API
-GOOGLE_PROXY = os.getenv("TELEGRAM_PROXY", "socks5h://Q3NeJXTY:dsBaWh2L@172.120.21.141:64469")
-if GOOGLE_PROXY:
-    os.environ["HTTP_PROXY"] = GOOGLE_PROXY
-    os.environ["HTTPS_PROXY"] = GOOGLE_PROXY
 
-def _get_genai():
-    global _genai
-    if _genai is None:
-        import google.generativeai as genai
-        # GEMINI_API_KEY может быть не AIza-ключом (AQ.Ab8RN... → 401 ACCESS_TOKEN_TYPE_UNSUPPORTED).
-        # GEMINI_BACKUP_KEY — правильный AIza-ключ, работает для embed_content.
-        api_key = os.getenv("GEMINI_BACKUP_KEY") or os.getenv("GEMINI_API_KEY")
-        genai.configure(api_key=api_key, transport="rest")
-        _genai = genai
-    return _genai
+def _get_embedder():
+    global _embedder
+    if _embedder is None:
+        from fastembed import TextEmbedding
+        _embedder = TextEmbedding(EMBED_MODEL)
+    return _embedder
 
 
 class AngelochkaVectorDB:
@@ -43,48 +33,42 @@ class AngelochkaVectorDB:
 
     def _init_db(self):
         try:
-            # Создаем пул соединений (от 1 до 5)
             self.connection_pool = pool.SimpleConnectionPool(1, 5, self.db_url)
-            
             conn = self._get_valid_conn()
             try:
                 with conn.cursor() as cur:
                     cur.execute("CREATE EXTENSION IF NOT EXISTS vector;")
-                    cur.execute("""
+                    cur.execute(f"""
                         CREATE TABLE IF NOT EXISTS angelochka_knowledge (
                             id SERIAL PRIMARY KEY,
                             content TEXT,
                             metadata JSONB,
-                            embedding vector(3072)
+                            embedding vector({EMBED_DIM})
                         );
                     """)
                     conn.commit()
             finally:
                 self.connection_pool.putconn(conn)
-            print("✅ Neon VectorDB: пул инициализирован")
+            print(f"✅ Neon VectorDB: пул инициализирован (embedding dim={EMBED_DIM})")
         except Exception as e:
             print(f"❌ Ошибка инициализации Neon DB: {e}")
             self.enabled = False
 
     def _get_valid_conn(self):
-        """Получить валидное соединение из пула с авто-переподключением"""
         max_retries = 3
         for attempt in range(max_retries):
             try:
                 conn = self.connection_pool.getconn()
-                # Проверяем, что соединение живое
-                conn.isolation_level  # Простой пинг
+                conn.isolation_level
                 with conn.cursor() as cur:
                     cur.execute("SELECT 1")
                 return conn
             except Exception:
-                # Соединение битое — убиваем и берём новое
                 try:
                     self.connection_pool.putconn(conn, close=True)
                 except Exception:
                     pass
                 if attempt == max_retries - 1:
-                    # Пересоздаём весь пул
                     try:
                         self.connection_pool.closeall()
                     except Exception:
@@ -94,8 +78,8 @@ class AngelochkaVectorDB:
         return self.connection_pool.getconn()
 
     def health_check(self):
-        """Проверка готовности базы и API"""
-        if not self.enabled: return False
+        if not self.enabled:
+            return False
         try:
             conn = self._get_valid_conn()
             self.connection_pool.putconn(conn)
@@ -104,16 +88,13 @@ class AngelochkaVectorDB:
             return False
 
     def get_embedding(self, text: str):
-        genai = _get_genai()
-        result = genai.embed_content(
-            model="models/gemini-embedding-2-preview",
-            content=text,
-            task_type="retrieval_document"
-        )
-        return result['embedding']
+        embedder = _get_embedder()
+        emb = list(embedder.embed(text))[0]
+        return emb.tolist()
 
     def add_knowledge(self, text: str, meta: dict):
-        if not self.enabled: return
+        if not self.enabled:
+            return
         conn = None
         try:
             embedding = self.get_embedding(text)
@@ -127,15 +108,20 @@ class AngelochkaVectorDB:
         except Exception as e:
             print(f"❌ Ошибка при добавлении знаний: {e}")
             if conn:
-                try: conn.rollback()
-                except: pass
+                try:
+                    conn.rollback()
+                except Exception:
+                    pass
         finally:
             if conn:
-                try: self.connection_pool.putconn(conn)
-                except: pass
+                try:
+                    self.connection_pool.putconn(conn)
+                except Exception:
+                    pass
 
     def search(self, query: str, limit=3):
-        if not self.enabled: return []
+        if not self.enabled:
+            return []
         conn = None
         try:
             query_embedding = self.get_embedding(query)
@@ -151,5 +137,7 @@ class AngelochkaVectorDB:
             return []
         finally:
             if conn:
-                try: self.connection_pool.putconn(conn)
-                except: pass
+                try:
+                    self.connection_pool.putconn(conn)
+                except Exception:
+                    pass
