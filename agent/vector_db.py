@@ -25,7 +25,10 @@ def _get_genai():
     global _genai
     if _genai is None:
         import google.generativeai as genai
-        genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+        # GEMINI_API_KEY может быть не AIza-ключом (AQ.Ab8RN... → 401 ACCESS_TOKEN_TYPE_UNSUPPORTED).
+        # GEMINI_BACKUP_KEY — правильный AIza-ключ, работает для embed_content.
+        api_key = os.getenv("GEMINI_BACKUP_KEY") or os.getenv("GEMINI_API_KEY")
+        genai.configure(api_key=api_key, transport="rest")
         _genai = genai
     return _genai
 

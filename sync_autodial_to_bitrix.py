@@ -3,7 +3,8 @@
 import os, requests, json, time
 from dotenv import load_dotenv
 
-load_dotenv("/root/antigravity/ai-eggs/.env", override=True)
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+load_dotenv(os.path.join(_BASE_DIR, ".env"), override=True)
 for v in ("HTTPS_PROXY","HTTP_PROXY","ALL_PROXY","https_proxy","http_proxy","all_proxy"):
     os.environ.pop(v, None)
 

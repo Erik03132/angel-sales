@@ -30,10 +30,20 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
+# Битрикс доступен из РФ напрямую — убираем прокси (иначе SOCKS localhost:1080 ломает запросы)
+for _v in ("HTTPS_PROXY", "HTTP_PROXY", "ALL_PROXY", "https_proxy", "http_proxy", "all_proxy"):
+    os.environ.pop(_v, None)
+
 from angelochka_core import get_answer
 from smart_handoff import handoff_detector
 
-BITRIX_URL = os.getenv("BITRIX_WEBHOOK_URL", "").rstrip("/")
+# Вебхук от имени Анжелочки (user 41624) — видит входящие сообщения ей.
+# PRODUCTION_BITRIX_WEBHOOK_URL (42020=Василич) видит только свои диалоги — НЕ подходит для polling.
+BITRIX_URL = (
+    os.getenv("ANGELOCHKA_BITRIX_WEBHOOK_URL")
+    or os.getenv("PRODUCTION_BITRIX_WEBHOOK_URL")
+    or os.getenv("BITRIX_WEBHOOK_URL", "")
+).rstrip("/")
 ANGELOCHKA_USER_ID = os.getenv("BITRIX_BOT_USER_ID", "41624")  # ID Анжелочки в Битриксе
 POLL_INTERVAL = 15  # секунд между проверками
 OWNER_TG_ID = 176203333  # Игорь — шпионский мониторинг

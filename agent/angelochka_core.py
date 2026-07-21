@@ -334,7 +334,14 @@ def get_persona_prompt_info(persona=None):
     p = persona or get_current_persona()
     from datetime import datetime
 
-    from daily_report import get_dynamic_crm_report, get_dynamic_sandbox_report
+    # get_dynamic_crm_report определена в этом же модуле (строка ~738).
+    # get_dynamic_sandbox_report ранее импортировалась из daily_report, но там её нет —
+    # используем локальную заглушку (sandbox-режим Птенчиковой без свежего скана).
+    try:
+        from daily_report import get_dynamic_sandbox_report
+    except ImportError:
+        def get_dynamic_sandbox_report():
+            return "Свежих данных по sandbox нет."
     
     today_str = datetime.now().strftime("%d.%m.%Y")
     
@@ -480,11 +487,15 @@ def _call_openrouter(prompt, history=None, system_prompt=None, tier=None):
         print("⚠️ OPENROUTER_API_KEY не задан!")
         return None
 
+    # OpenRouter заблокирован в РФ — НУЖЕН прокси (socks5h://).
+    # Раньше прокси отключали (proxies=None), но это даёт 403 из РФ.
+    # Теперь .env использует socks5h:// — оставляем прокси из окружения.
+    # Сохраняем только для восстановления, не убираем.
     saved_proxies = {}
     for key in ["HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "http_proxy", "https_proxy", "all_proxy"]:
         if key in os.environ:
-            saved_proxies[key] = os.environ.pop(key)
-    
+            saved_proxies[key] = os.environ[key]
+
     messages = []
     # System prompt отдельным сообщением — КРИТИЧНО для следования инструкциям
     # Добавляем cache_control для Anthropic моделей (экономия ~90% на input-токенах)
@@ -497,23 +508,29 @@ def _call_openrouter(prompt, history=None, system_prompt=None, tier=None):
                 "cache_control": {"type": "ephemeral"}
             }]
         })
-    
+
     # Конвертируем историю Gemini-формата в OpenAI-формат
     if history:
         for msg in history:
             role = "assistant" if msg.get("role") == "model" else msg.get("role", "user")
             content = msg.get("parts", [msg.get("content", "")])[0] if isinstance(msg.get("parts"), list) else msg.get("content", "")
             messages.append({"role": role, "content": content})
-    
+
     messages.append({"role": "user", "content": prompt})
-    
+
     # Определяем тир если не задан
     if tier is None:
         tier = _classify_complexity(prompt, history)
-    
+
     or_models = _TIER_MODELS.get(tier, _TIER_MODELS["std"])
     print(f"🎯 Тир: {tier.upper()} → модели: {[m.split('/')[-1] for m in or_models]}")
-    
+
+    # Прокси для OpenRouter (socks5h:// из .env) — без него 403 из РФ
+    or_proxies = {
+        "http": saved_proxies.get("HTTPS_PROXY") or saved_proxies.get("HTTP_PROXY"),
+        "https": saved_proxies.get("HTTPS_PROXY") or saved_proxies.get("HTTP_PROXY"),
+    }
+
     try:
         for model_name in or_models:
             try:
@@ -522,7 +539,7 @@ def _call_openrouter(prompt, history=None, system_prompt=None, tier=None):
                     headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
                     json={"model": model_name, "messages": messages, "max_tokens": 4096},
                     timeout=45,
-                    proxies={"http": None, "https": None}  # Явно отключаем прокси
+                    proxies=or_proxies if or_proxies["https"] else None
                 )
                 try:
                     data = resp.json()
@@ -536,10 +553,10 @@ def _call_openrouter(prompt, history=None, system_prompt=None, tier=None):
                     print(f"⚠️ OpenRouter {model_name}: {data.get('error', 'Unknown error')}")
             except Exception as e:
                 print(f"⚠️ OpenRouter {model_name} exception: {e}")
-        
+
         return None
     finally:
-        # Восстанавливаем прокси (если были)
+        # Восстанавливаем прокси (на случай если их меняли)
         for key, val in saved_proxies.items():
             os.environ[key] = val
 
