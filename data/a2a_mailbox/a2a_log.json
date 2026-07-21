@@ -1,42 +1,218 @@
 [
   {
     "event": "publish",
-    "message_id": "avitolog_1776243638654",
-    "sender": "avitolog",
-    "receiver": "angelochka",
-    "intent": "notification",
-    "timestamp": "2026-04-15T12:00:38.654809"
+    "message_id": "smoke_1784103846154",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:24:06.155403"
   },
   {
     "event": "publish",
-    "message_id": "scanner_1776243638655",
-    "sender": "scanner",
-    "receiver": "all",
-    "intent": "insight",
-    "timestamp": "2026-04-15T12:00:38.655877"
+    "message_id": "smoke_1784104132796",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:28:52.797121"
   },
   {
     "event": "publish",
-    "message_id": "angelochka_1776243638656",
-    "sender": "angelochka",
+    "message_id": "smoke_1784104133102",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:28:53.102945"
+  },
+  {
+    "event": "publish",
+    "message_id": "smoke_1784104154526",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:29:14.526720"
+  },
+  {
+    "event": "publish",
+    "message_id": "smoke_1784104154832",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:29:14.833842"
+  },
+  {
+    "event": "publish",
+    "message_id": "smoke_1784104163211",
+    "sender": "smoke",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:29:23.212240"
+  },
+  {
+    "event": "publish",
+    "message_id": "test_1784104369936",
+    "sender": "test",
+    "receiver": "levitan",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:32:49.953412"
+  },
+  {
+    "event": "publish",
+    "message_id": "test_1784104373969",
+    "sender": "test",
+    "receiver": "hh",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:32:53.971277"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784104790413",
+    "sender": "autopilot",
     "receiver": "reporter",
     "intent": "delegate_task",
-    "timestamp": "2026-04-15T12:00:38.656647"
+    "timestamp": "2026-07-15T11:39:50.416329"
   },
   {
     "event": "publish",
-    "message_id": "proactive_1776254410813",
-    "sender": "proactive",
-    "receiver": "all",
-    "intent": "insight",
-    "timestamp": "2026-04-15T15:00:10.850735"
+    "message_id": "autopilot_1784104790417",
+    "sender": "autopilot",
+    "receiver": "scanner",
+    "intent": "delegate_task",
+    "timestamp": "2026-07-15T11:39:50.417480"
   },
   {
     "event": "publish",
-    "message_id": "proactive_1776254410861",
-    "sender": "proactive",
-    "receiver": "angelochka",
-    "intent": "notification",
-    "timestamp": "2026-04-15T15:00:10.863906"
+    "message_id": "autopilot_1784104790417",
+    "sender": "autopilot",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:39:50.418020"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784104794442",
+    "sender": "autopilot",
+    "receiver": "scanner",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:39:54.446457"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784104799469",
+    "sender": "autopilot",
+    "receiver": "reporter",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:39:59.471611"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784104804496",
+    "sender": "autopilot",
+    "receiver": "levitan",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:40:04.497629"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784104810517",
+    "sender": "autopilot",
+    "receiver": "hh",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T11:40:10.520328"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784138403853",
+    "sender": "autopilot",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T21:00:03.860288"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784138404871",
+    "sender": "autopilot",
+    "receiver": "scanner",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T21:00:04.875133"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784138409942",
+    "sender": "autopilot",
+    "receiver": "reporter",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T21:00:09.946780"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784138414985",
+    "sender": "autopilot",
+    "receiver": "levitan",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T21:00:14.988827"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784138420027",
+    "sender": "autopilot",
+    "receiver": "hh",
+    "intent": "request_data",
+    "timestamp": "2026-07-15T21:00:20.029688"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181628887",
+    "sender": "autopilot",
+    "receiver": "reporter",
+    "intent": "delegate_task",
+    "timestamp": "2026-07-16T09:00:28.898411"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181628911",
+    "sender": "autopilot",
+    "receiver": "scanner",
+    "intent": "delegate_task",
+    "timestamp": "2026-07-16T09:00:28.913525"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181628914",
+    "sender": "autopilot",
+    "receiver": "echo",
+    "intent": "request_data",
+    "timestamp": "2026-07-16T09:00:28.915060"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181633951",
+    "sender": "autopilot",
+    "receiver": "scanner",
+    "intent": "request_data",
+    "timestamp": "2026-07-16T09:00:33.953951"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181638985",
+    "sender": "autopilot",
+    "receiver": "reporter",
+    "intent": "request_data",
+    "timestamp": "2026-07-16T09:00:38.990150"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181644023",
+    "sender": "autopilot",
+    "receiver": "levitan",
+    "intent": "request_data",
+    "timestamp": "2026-07-16T09:00:44.026388"
+  },
+  {
+    "event": "publish",
+    "message_id": "autopilot_1784181650066",
+    "sender": "autopilot",
+    "receiver": "hh",
+    "intent": "request_data",
+    "timestamp": "2026-07-16T09:00:50.071423"
   }
 ]

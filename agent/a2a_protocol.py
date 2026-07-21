@@ -36,7 +36,7 @@ class AgentMessage:
     """Сообщение между агентами."""
     
     def __init__(self, sender: str, receiver: str, intent: str, 
-                 payload: dict = None, priority: int = 3):
+                 payload: dict = None, priority: int = 3, signature: str = None):
         self.id = f"{sender}_{int(time.time()*1000)}"
         self.sender = sender
         self.receiver = receiver
@@ -45,9 +45,10 @@ class AgentMessage:
         self.priority = priority  # 1=urgent, 5=low
         self.timestamp = datetime.now().isoformat()
         self.status = "pending"
+        self.signature = signature
     
     def to_dict(self):
-        return {
+        d = {
             "id": self.id,
             "sender": self.sender,
             "receiver": self.receiver,
@@ -57,11 +58,14 @@ class AgentMessage:
             "timestamp": self.timestamp,
             "status": self.status
         }
+        if self.signature:
+            d["signature"] = self.signature
+        return d
     
     @classmethod
     def from_dict(cls, d):
         msg = cls(d["sender"], d["receiver"], d["intent"], 
-                  d.get("payload", {}), d.get("priority", 3))
+                  d.get("payload", {}), d.get("priority", 3), d.get("signature"))
         msg.id = d.get("id", msg.id)
         msg.timestamp = d.get("timestamp", msg.timestamp)
         msg.status = d.get("status", "pending")
@@ -95,8 +99,15 @@ class AgentBus:
     
     def publish(self, msg: AgentMessage):
         """Публикует сообщение в шину."""
+        d = msg.to_dict()
+        # Подписываем, если доступен governance + задан секрет (production-режим).
+        try:
+            from a2a_governance import sign_message
+            d = sign_message(d)
+        except Exception:
+            pass
         inbox = self._load_inbox()
-        inbox.append(msg.to_dict())
+        inbox.append(d)
         # Максимум 200 сообщений в inbox
         if len(inbox) > 200:
             inbox = inbox[-200:]
@@ -224,3 +235,21 @@ def delegate_task(sender: str, receiver: str, task: str, params: dict = None):
         priority=2
     )
     return bus.publish(msg)
+
+
+def call_agent(sender: str, receiver: str, query: str, params: dict = None,
+               timeout: int = 60, poll: float = 1.0) -> dict:
+    """Синхронный запрос к агенту с ожиданием ответа (роадмап: waitForResponse).
+
+    Публикует request_data и поллит шину, пока сообщение не станет 'done'.
+    Возвращает m['result'] или {'error': 'timeout', ...}.
+    """
+    msg_id = request_data(sender, receiver, query, params)
+    waited = 0.0
+    while waited < timeout:
+        for m in bus._load_inbox():
+            if m["id"] == msg_id and m["status"] == "done":
+                return m.get("result", {})
+        time.sleep(poll)
+        waited += poll
+    return {"error": "timeout", "message_id": msg_id}
