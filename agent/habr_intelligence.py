@@ -411,11 +411,17 @@ def analyze_with_gemini(article: dict) -> dict:
 
 
 def analyze_with_openrouter(article: dict) -> dict:
-    """Fallback: LLM-анализ через OpenRouter (без прокси — Session trust_env=False)."""
+    """LLM-анализ через OpenRouter (бесплатные free-модели, через прокси)."""
     if not OPENROUTER_KEY:
-        return {"применение": "—", "проект": "—", "агент": "—"}
-    # deepseek первым — gemini-OR даёт 404, deepseek стабилен и бесплатен
-    for model in ["deepseek/deepseek-chat", "qwen/qwen-2.5-7b-instruct"]:
+        return {"фича": "—", "оценка": "—", "план": "—", "применение": "—", "проект": "—", "агент": "—", "решение": "—"}
+    # Каскад free-моделей OpenRouter (актуально на июль 2026)
+    free_models = [
+        "google/gemma-4-31b-it:free",
+        "nvidia/nemotron-3-super-120b-a12b:free",
+        "meta-llama/llama-3.3-70b-instruct:free",
+        "openai/gpt-oss-20b:free",
+    ]
+    for model in free_models:
         try:
             resp = NO_PROXY_SESSION.post(
                 "https://openrouter.ai/api/v1/chat/completions",
@@ -431,14 +437,14 @@ def analyze_with_openrouter(article: dict) -> dict:
                 text = resp.json()["choices"][0]["message"]["content"]
                 result = _parse_llm_response(text)
                 if result["фича"] != "—":
-                    print(f"  ✅ OpenRouter/{model} OK")
+                    print(f"  ✅ OpenRouter/free/{model} OK")
                     return result
-                print(f"  ⚠ OpenRouter/{model}: ответ не распознан")
+                print(f"  ⚠ OpenRouter/free/{model}: ответ не распознан")
             else:
-                print(f"  ⚠ OpenRouter/{model}: {resp.status_code}")
+                print(f"  ⚠ OpenRouter/free/{model}: {resp.status_code}")
         except Exception as e:
-            print(f"  ⚠ OpenRouter/{model} error: {e}")
-    return {"фича": "—", "применение": "—", "проект": "—", "агент": "—", "решение": "—"}
+            print(f"  ⚠ OpenRouter/free/{model} error: {e}")
+    return {"фича": "—", "оценка": "—", "план": "—", "применение": "—", "проект": "—", "агент": "—", "решение": "—"}
 
 
 def _build_ollama_prompt(article: dict) -> str:

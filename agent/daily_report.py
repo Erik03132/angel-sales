@@ -27,9 +27,20 @@ load_dotenv(os.path.join(BASE_DIR, '.env'), override=True)
 
 TELEGRAM_TOKEN = os.getenv("ANGELOCHKA_BOT_TOKEN")
 OWNER_ID = 176203333  # Игорь
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 PROXY_URL = os.getenv("TELEGRAM_PROXY")
+
+# === КАСКАД OpenRouter (бесплатные модели) ===
+# Актуально на июль 2026. DeepSeek/Gemini free больше нет на OpenRouter.
+# Rate limit: ~20 req/min, ~200-1000 req/day для free моделей.
+CASCADE_MODELS = [
+    "google/gemma-4-31b-it:free",              # Tier 1: Gemma 4 31B — лучшая free для инструкций
+    "nvidia/nemotron-3-super-120b-a12b:free",  # Tier 2: 1M контекст, сильное reasoning
+    "meta-llama/llama-3.3-70b-instruct:free",  # Tier 3: 131K, надёжная классика
+    "openai/gpt-oss-20b:free",                 # Tier 4: быстрый лёгкий fallback
+    "deepseek/deepseek-chat",                  # Tier 5: платный $0.14/1M — последний рубеж
+]
+SEND_REPORT_CHAT_ID = OWNER_ID
 
 DATA_DIR = os.path.join(BASE_DIR, "data")
 SCAN_LOG_DIR = os.path.join(DATA_DIR, "bitrix_scans")
@@ -367,24 +378,22 @@ def aggregate_product_sales(deal_items):
 
 
 def generate_ai_insights(report_text, scan):
-    """AI-анализ отчёта по утверждённому шаблону.
+    """AI-анализ отчёта по каскаду бесплатных OpenRouter-моделей.
 
-    КАСКАД МОДЕЛЕЙ (обновлено 13.05.2026):
-    1. Gemini 2.5 Flash — напрямую через Google API (бесплатно, надёжно)
-    2. DeepSeek — через OpenRouter (дешёвая альтернатива)
-    3. Fallback — безопасный отчёт без AI
+    КАСКАД МОДЕЛЕЙ (обновлено 21.07.2026):
+    1→N: OpenRouter free модели из CASCADE_MODELS (бесплатно)
+    N+1: DeepSeek Chat (платный fallback $0.14/1M)
+    Fallback: безопасный отчёт без AI
 
     ⚠️ IRON_RULE: ВСЕ API-запросы — ТОЛЬКО через USA прокси (TELEGRAM_PROXY)!
     """
-    if not requests:
+    if not requests or not OPENROUTER_API_KEY:
         return _safe_fallback_insights(report_text, scan)
 
-    # Прокси для ВСЕХ API-запросов (USA fallback)
     proxies = {}
     if PROXY_URL:
         proxy = PROXY_URL.replace("socks5://", "socks5h://")
         proxies = {"https": proxy, "http": proxy}
-        print(f"🇺🇸 API-запросы через прокси: {PROXY_URL}")
 
     prompt = f"""Ты — Анжела Заботкина, AI-аналитик CRM инкубатора птиц.
 
@@ -406,54 +415,34 @@ def generate_ai_insights(report_text, scan):
 
 Отчёт сформирован Анжелой Заботкиной (CRM Аналитика) 👩‍💼"""
 
-    # === 1. Gemini 2.0 Flash — напрямую (Google API) через прокси ===
-    if GEMINI_API_KEY:
+    for model in CASCADE_MODELS:
+        label = f"free/{model}" if ":free" in model else "paid"
         try:
-            print("🤖 Отчёт: пробую Gemini 2.0 Flash (напрямую)...")
-            resp = requests.post(
-                f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}",
-                headers={"Content-Type": "application/json"},
-                json={
-                    "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {"temperature": 0.15}
-                },
-                proxies=proxies,
-                timeout=45
-            )
-            if resp.status_code == 200:
-                data = resp.json()
-                if "candidates" in data and len(data["candidates"]) > 0:
-                    ai_text = data["candidates"][0]["content"]["parts"][0]["text"]
-                    print("✅ Отчёт сгенерирован через Gemini 2.0 Flash (напрямую)")
-                    return ai_text
-            else:
-                print(f"⚠️ Gemini API error: {resp.status_code} — {resp.text[:200]}")
-        except Exception as e:
-            print(f"⚠️ Gemini direct failed: {e}")
-
-    # === 2. DeepSeek — через OpenRouter (тоже через прокси) ===
-    if OPENROUTER_API_KEY:
-        try:
-            print("🤖 Отчёт: пробую DeepSeek Chat (OpenRouter)...")
+            print(f"🤖 Отчёт: пробую {model} ({label})...")
             resp = requests.post(
                 "https://openrouter.ai/api/v1/chat/completions",
-                headers={"Authorization": f"Bearer {OPENROUTER_API_KEY}", "Content-Type": "application/json"},
+                headers={
+                    "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+                    "Content-Type": "application/json",
+                },
                 json={
-                    "model": "deepseek/deepseek-chat",
+                    "model": model,
                     "messages": [{"role": "user", "content": prompt}],
-                    "temperature": 0.15
+                    "temperature": 0.15,
                 },
                 proxies=proxies,
-                timeout=45
+                timeout=60,
             )
             if resp.status_code == 200:
                 data = resp.json()
                 if "choices" in data and data["choices"]:
                     ai_text = data["choices"][0]["message"]["content"]
-                    print("✅ Отчёт сгенерирован через DeepSeek (OpenRouter)")
+                    print(f"✅ Отчёт сгенерирован через {model}")
                     return ai_text
+            else:
+                print(f"⚠️ {model}: {resp.status_code} — {resp.text[:200]}")
         except Exception as e:
-            print(f"⚠️ DeepSeek/OpenRouter failed: {e}")
+            print(f"⚠️ {model} failed: {e}")
 
     return _safe_fallback_insights(report_text, scan)
 

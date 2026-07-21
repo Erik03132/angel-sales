@@ -21,16 +21,11 @@ call_learner.py — Обучение Заботкиной из транскри�
 import argparse
 import json
 import os
+import requests
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from dotenv import load_dotenv
-
-try:
-    from google import genai
-    from google.genai import types
-except ImportError:
-    genai = None
 
 # ── Пути ─────────────────────────────────────────────────────────────────────
 SCRIPT_DIR = Path(__file__).parent
@@ -51,8 +46,17 @@ GEMINI_KEY   = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY", "")
 GEMINI_MODEL = "gemini-2.5-flash"
 MSK = timezone(timedelta(hours=3))
 
+OPENROUTER_KEY = os.getenv("OPENROUTER_API_KEY", "")
+
+# Каскад free-моделей OpenRouter для экстракции фактов (июль 2026)
+EXTRACT_MODELS = [
+    "google/gemma-4-31b-it:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "meta-llama/llama-3.3-70b-instruct:free",
+    "openai/gpt-oss-20b:free",
+]
+
 TELEGRAM_TOKEN = os.getenv("ANGELOCHKA_BOT_TOKEN")
-PROXY_URL = os.getenv("HTTPS_PROXY") or os.getenv("ALL_PROXY")
 
 # Маркер секции в expert_knowledge.md
 SECTION_MARKER = "## 📞 Данные из звонков (автообновление)"
@@ -107,20 +111,13 @@ EXTRACT_PROMPT = """Ты — аналитик данных птицеводче�
 """
 
 
-# ── Gemini Flash ─────────────────────────────────────────────────────────────
+# ── OpenRouter Free Cascade ─────────────────────────────────────────────────
 def extract_facts_from_transcripts(transcripts: list[dict], date_str: str) -> dict | None:
-    """Отправляет пакет транскриптов в Gemini Flash для экстракции фактов."""
-    if genai is None:
-        print("  ❌ google-genai не установлен. pip install google-genai 'httpx[socks]'")
+    """Отправляет пакет транскриптов в OpenRouter free каскад для экстракции фактов."""
+    if not OPENROUTER_KEY:
+        print("  ❌ OPENROUTER_API_KEY не задан в .env")
         return None
 
-    if not GEMINI_KEY:
-        print("  ❌ GEMINI_API_KEY не задан в .env")
-        return None
-
-    client = genai.Client(api_key=GEMINI_KEY)
-
-    # Собираем текст из транскриптов
     batch_text = f"Дата звонков: {date_str}\nКоличество звонков: {len(transcripts)}\n\n"
     for i, t in enumerate(transcripts, 1):
         summary = t.get("summary", "")
@@ -129,46 +126,48 @@ def extract_facts_from_transcripts(transcripts: list[dict], date_str: str) -> di
         questions = t.get("client_questions", [])
         phone = t.get("phone", "?")
         direction = t.get("direction", "?")
-
         batch_text += f"--- Звонок {i} ({direction}, {phone}) ---\n"
         batch_text += f"Саммари: {summary}\n"
         if agreements:
             batch_text += f"Договорённости: {'; '.join(agreements)}\n"
         if questions:
             batch_text += f"Вопросы клиента: {'; '.join(questions)}\n"
-        # Транскрипт — обрезаем до 2000 символов на звонок
         if transcript:
             batch_text += f"Транскрипт:\n{transcript[:2000]}\n"
         batch_text += "\n"
 
-    try:
-        response = client.models.generate_content(
-            model=GEMINI_MODEL,
-            contents=[
-                types.Content(parts=[
-                    types.Part(text=EXTRACT_PROMPT + "\n\n" + batch_text),
-                ])
-            ],
-        )
+    for model in EXTRACT_MODELS:
+        try:
+            resp = requests.post(
+                "https://openrouter.ai/api/v1/chat/completions",
+                headers={"Authorization": f"Bearer {OPENROUTER_KEY}", "Content-Type": "application/json"},
+                json={
+                    "model": model,
+                    "messages": [{"role": "user", "content": EXTRACT_PROMPT + "\n\n" + batch_text}],
+                    "temperature": 0.1,
+                    "max_tokens": 2048,
+                },
+                timeout=60,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                raw = data["choices"][0]["message"]["content"].strip()
+                if "```json" in raw:
+                    raw = raw.split("```json")[1].split("```")[0].strip()
+                elif "```" in raw:
+                    raw = raw.split("```")[1].split("```")[0].strip()
+                result = json.loads(raw)
+                result["date"] = date_str
+                print(f"  ✅ OpenRouter/{model} — {result.get('facts_count', 0)} фактов")
+                return result
+            else:
+                print(f"  ⚠ OpenRouter/{model}: {resp.status_code}")
+        except (json.JSONDecodeError, KeyError) as e:
+            print(f"  ⚠ OpenRouter/{model}: не JSON — {str(e)[:100]}")
+        except Exception as e:
+            print(f"  ⚠ OpenRouter/{model}: {type(e).__name__}: {e}")
 
-        raw = response.text.strip()
-
-        # Парсим JSON
-        if "```json" in raw:
-            raw = raw.split("```json")[1].split("```")[0].strip()
-        elif "```" in raw:
-            raw = raw.split("```")[1].split("```")[0].strip()
-
-        result = json.loads(raw)
-        result["date"] = date_str
-        return result
-
-    except json.JSONDecodeError:
-        print(f"  ⚠️ Gemini вернул не JSON: {raw[:200]}")
-        return None
-    except Exception as e:
-        print(f"  ❌ Gemini ошибка: {type(e).__name__}: {e}")
-        return None
+    return None
 
 
 def send_quality_alert(alert: dict):

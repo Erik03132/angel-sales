@@ -27,3 +27,6 @@ Thumbs.db
 
 # Node
 node_modules/
+*.log
+logs/
+night_audit_vps.sh
